@@ -5,7 +5,10 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.3"]
                  [yogthos/config "1.2.0"]
-                 [io.forward/clojure-mail "1.0.8"]]
+                 [io.forward/clojure-mail "1.0.8"]
+                 [clj-tagsoup "0.3.0" :exclusions [org.clojure/clojure org.clojure/data.xml]]
+                 [org.clojure/data.xml "0.0.8"]
+                 [dk.ative/docjure "1.14.0"]]
   :main ^:skip-aot wpforms-mails.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
