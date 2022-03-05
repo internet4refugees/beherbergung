@@ -8,6 +8,7 @@
                  [io.forward/clojure-mail "1.0.8"]
                  [clj-tagsoup "0.3.0" :exclusions [org.clojure/clojure org.clojure/data.xml]]
                  [org.clojure/data.xml "0.0.8"]
+                 [semantic-csv "0.2.1-alpha1"]
                  [dk.ative/docjure "1.14.0"]]
   :main ^:skip-aot wpforms-mails.core
   :target-path "target/%s"

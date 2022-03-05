@@ -6,7 +6,7 @@
             [clojure-mail.message :as cmm]
             [pl.danieljanus.tagsoup :refer [parse-string]]
             [wpforms-mails.parse-hickup :refer [wpforms_html->edn]]
-            [dk.ative.docjure.spreadsheet :refer [create-workbook save-workbook!]])
+            [data.table.writer :refer [save-table!]])
   (:import [java.util Properties]
            [javax.mail Session]
            [javax.mail.internet MimeMessage])
@@ -39,21 +39,16 @@
              (->> msg:edn :body :body
                   parse-string))))
 
-(defn save-spreadsheet! [filename sheet data]
-  (let [wb (create-workbook sheet
-                            (concat [(keys (first data))]
-                                    (map vals data)))]
-  (save-workbook! filename wb)))
-
 (defn -main
-  [& _args]
+ ([] (-main "host-offers.xlsx"))
+ ([filename & _args]
   (->> (file->messages (:wpforms-mails-file env))
        (map (fn [message]
             (-> message
                 message->html
                 wpforms_html->edn)))
        rest  ;; TODO filter valid entries
-       (save-spreadsheet! "host-offers.xlsx" "Host Offers")))
+       (save-table! filename {:workbook-name "Host Offers"}))))
 
 (comment
   (count (mbox->emls (:wpforms-mails-file env)))
