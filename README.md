@@ -35,7 +35,7 @@ A website written for this use case allows easy input of filters. The usage of f
 
 There is no need to use this component for NGOs happy with their existing solution. Instead they can use the [import function or an API adapter](#import-of-existing-datasets).
 
-A optional new form was requested by:
+An optional new form was requested by:
 
 - [ ] zentralwerk & goethe institut
 - [ ] lifeline
