@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+## During development and testing you can use this mock as a replacement for GNU Mailutils.
+## Just set: PATH=$PATH:backend/resources/mock
+
+FILE="/tmp/mail.log"
+echo $@ >> $FILE
+cat >> $FILE
+echo >> $FILE

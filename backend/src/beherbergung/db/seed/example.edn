@@ -1,0 +1,23 @@
+[
+ {:xt/id "lifeline"
+  :xt/spec :beherbergung.model.ngo/record
+  :name "Mission Lifeline"
+  :beherbergung.model.login/login:ids ["login_crewing"]}
+ {:xt/id "warhelp"
+  :xt/spec :beherbergung.model.ngo/record
+  :name "Warhelp.eu"
+  :beherbergung.model.login/login:ids ["login_max_mueller"]}
+ {:xt/id "zentralwerk"
+  :xt/spec :beherbergung.model.ngo/record
+  :name "Zentralwerk e.V."}
+
+ {:xt/id "login_max_mueller"
+  :xt/spec :beherbergung.model.login/record
+  :mail "praxis@max.mueller.de"
+  :password-hash "100$12$argon2id$v13$hq47jacLIYoiNMD9kdyy+w$ISDi+bSSTmsgqu648LQLv7ySU+lG2VGKRfa06HNfjzk$$$" #_"i!A;z\"'^G3Q)w])%83)" }
+
+ {:xt/id "login_crewing"
+  :xt/spec :beherbergung.model.login/record
+  :mail "crewing@example-ngo.com"
+  :password-hash "100$12$argon2id$v13$lWXab18B+9b79jAk7noAwg$01ak9vbuyxhuKDvBnWV8wuwxIJ5GR6zjz/lJhdw1s+I$$$" #_"Vr(+cFtUG=rsj2:/]*uR" }
+]

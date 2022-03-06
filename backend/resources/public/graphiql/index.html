@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      body {
+        height: 100%;
+        margin: 0;
+        width: 100%;
+        overflow: hidden;
+      }
+      #graphiql {
+        height: 100vh;
+      }
+    </style>
+
+    <link rel="stylesheet" href="/assets/graphiql/graphiql.css">
+
+    <script src="/assets/react/umd/react.development.js"></script>
+    <script src="/assets/react-dom/umd/react-dom.development.js"></script>
+    <script src="/assets/graphiql/graphiql.js"></script>
+
+  </head>
+  <body>
+    <div id="graphiql">Loading...</div>
+    <script>
+
+      function graphQLFetcher(graphQLParams) {
+        // This example expects a GraphQL server at the path /graphql.
+        // Change this to point wherever you host your GraphQL server.
+        return fetch('/graphql', {
+          method: 'post',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(graphQLParams),
+          credentials: 'include',
+        }).then(function (response) {
+          return response.text();
+        }).then(function (responseBody) {
+          try {
+            return JSON.parse(responseBody);
+          } catch (error) {
+            return responseBody;
+          }
+        });
+      }
+
+      // Render <GraphiQL /> into the body.
+      // See the GraphiQL project page for more info on different options.
+      ReactDOM.render(
+        React.createElement(GraphiQL, {
+          fetcher: graphQLFetcher
+        }),
+        document.getElementById('graphiql')
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+/target
+/lib
+/classes
+/checkouts
+pom.xml.asc
+*.jar
+*.class
+/.lein-env
+/.lein-repl-history
+/.lein-failures
+/.nrepl-port
+/.lsp
+/.clj-kondo/.cache
+result
+data
