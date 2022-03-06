@@ -1,3 +1,9 @@
+*.xlsx
+*.csv
+
+.clj-kondo/
+.lsp/
+
 /target
 /classes
 /checkouts
@@ -9,5 +15,3 @@ pom.xml.asc
 /.lein-*
 /.nrepl-port
 /.prepl-port
-*.xlsx
-*.csv

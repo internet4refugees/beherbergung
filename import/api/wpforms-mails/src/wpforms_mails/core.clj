@@ -47,7 +47,8 @@
             (-> message
                 message->html
                 wpforms_html->edn)))
-       rest  ;; TODO filter valid entries
+       rest  ;; TODO filter valid entries, in my example file all except the first mail are from wpforms
+             ;; We should generate and include an example mbox without sensible data for testing…
        (save-table! filename {:workbook-name "Host Offers"}))))
 
 (comment

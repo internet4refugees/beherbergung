@@ -1,6 +1,7 @@
 (ns data.table.writer
   (:require [dk.ative.docjure.spreadsheet :as xls]
             [semantic-csv.core :as sc]
+            [data.edn.writer :refer [write-edn]]
             [clojure.spec.alpha :as s]
             [clojure.string :refer [ends-with?]]))
 
@@ -8,7 +9,7 @@
 (s/def ::table-map (s/coll-of map?))
 (s/def ::table-vec (s/coll-of vector?))
 (s/def ::table (s/or :map ::table-map
-                       :vec ::table-vec))
+                     :vec ::table-vec))
 
 (defn vectorize-if-needed [table]
   (assert (s/valid? ::table table))
@@ -25,10 +26,14 @@
  ([filename table]
   (save-table! filename {} table))
  ([filename args table]
-  (assert (or (ends-with? filename ".xlsx")
-              (ends-with? filename ".csv")))
-  (if (ends-with? filename ".xlsx")
+  (cond
+    (ends-with? filename ".xlsx")
       (table2xls filename args table)
+    (ends-with? filename ".csv")
       (let [args+defaults (merge {:writer-opts {:delimiter ";"}} args)] 
-           (sc/spit-csv filename args+defaults table)))
+           (sc/spit-csv filename args+defaults table))
+    (ends-with? filename ".edn")
+      (write-edn filename table)
+    :else
+      (assert false "Unsupported file extension!"))
   (println "Saved " filename)))
