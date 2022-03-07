@@ -1,17 +1,17 @@
 ## common
 
-DATA_DIR="./data"
+export DATA_DIR=${DATA_DIR:='./data'}
 
 ## download
 
-START=500  #57
-END=500  #1000
+export START=${START:=500}  #57
+export END=${END:=1000}
 
-WP_ADMIN_URL='https://example.com/wp-admin/admin.php'
-FORM_ID=16993
-NONCE='caffeeeeee'
-AUTHORIZATION_HEADER='authorization: Basic Base64EncodedDataaaaaaaaaa=='
-COOKIE_HEADER='cookie: wordpress_sec_thisCopiedFromTheBrower; wordpress_logged_in_; some_other_cookies'
+export WP_ADMIN_URL=${WP_ADMIN_URL:='https://example.com/wp-admin/admin.php'}
+export FORM_ID=${FORM_ID:=16993}
+export NONCE=${NONCE:='caffeeeeee'}  ## it will change and needs be replaced
+export AUTHORIZATION_HEADER=${AUTHORIZATION_HEADER:='authorization: Basic Base64EncodedDataaaaaaaaaa=='}
+export COOKIE_HEADER=${COOKIE_HEADER:='cookie: wordpress_sec_thisCopiedFromTheBrower; wordpress_logged_in_; some_other_cookies'}
 
 ## HEADERS_THAT_SEEM_TO_BE_NOT_REQUIRED
 #-H 'authority: example.com' \
@@ -20,7 +20,7 @@ COOKIE_HEADER='cookie: wordpress_sec_thisCopiedFromTheBrower; wordpress_logged_i
 
 ## merge
 
-OUT="/tmp/example.csv"
+export UT=${OUT:="/tmp/example.csv"}
 
 ## setup
 
