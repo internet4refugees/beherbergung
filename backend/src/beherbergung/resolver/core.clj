@@ -7,12 +7,12 @@
             ;; any login
             [beherbergung.resolver.root.login :refer [login]]
             ;; ngo login
-            [beherbergung.resolver.root.ngo.ngo-example :refer [ngo_example]]
+            [beherbergung.resolver.root.ngo.get-offers :refer [get_offers]]
             ;; admin passphrase
             [beherbergung.resolver.root.admin.export :refer [export]]))
 
 (def graphql* (executor {:query {:login #'login
-                                 :ngo_example #'ngo_example
+                                 :get_offers #'get_offers
                                  :export #'export}
                          :mutation {}}))
 

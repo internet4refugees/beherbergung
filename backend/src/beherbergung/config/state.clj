@@ -5,9 +5,12 @@
             [config.core]
             [clojure.string]))
 
-(s/def ::verbose boolean?)
+(s/def ::frontend-base-url string?)
+(s/def ::frontend-backend-base-url string?)
 
 (s/def ::port number?)  ;; the webserver port
+
+(s/def ::verbose boolean?)
 
 (s/def ::validate-output boolean?)  ;; should specialist ensure type correctness
 
@@ -17,29 +20,30 @@
 (s/def ::db-export-prefix (s/nilable string?))  ;; path where during startup an export should be written
 (s/def ::db-validate boolean?)
 
+(s/def ::admin-passphrase (s/nilable string?))  ;; allows setting up ngo logins and encrypted downloads of db exports
+(s/def ::admin-gpg-id string?)
+
+(s/def ::import-file string?)
+
 (s/def ::mail-host string?)
 (s/def ::mail-user string?)
 (s/def ::mail-pass string?)
 (s/def ::mail-port number?)
 (s/def ::mail-from (s/nilable string?))
 
-(s/def ::admin-passphrase (s/nilable string?))  ;; allows setting up ngo logins and encrypted downloads of db exports
-(s/def ::admin-gpg-id string?)
-
-(s/def ::frontend-base-url string?)
-(s/def ::frontend-backend-base-url string?)
-
-(s/def ::env (s/keys :req-un [::verbose
+(s/def ::env (s/keys :req-un [::frontend-base-url
+                              ::frontend-backend-base-url
                               ::port
+                              ::verbose
                               ::validate-output
                               ::db-inmemory ::db-dir
                               ::db-seed ::db-export-prefix
                               ::db-validate
-                              ;::mail-host ::mail-user ::mail-pass ::mail-port ::mail-from
                               ::admin-passphrase
                               ::admin-gpg-id
-                              ::frontend-base-url
-                              ::frontend-backend-base-url]))
+                              ::import-file
+                              ;::mail-host ::mail-user ::mail-pass ::mail-port ::mail-from
+                             ]))
 
 (defn strip-secrets [env]
   (assoc env :mail-pass "*"

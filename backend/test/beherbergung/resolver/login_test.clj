@@ -1,4 +1,4 @@
-(ns beherbergung.resolver.login
+(ns beherbergung.resolver.login-test
   (:require [clojure.test :refer [use-fixtures deftest is]]
             [mount.core :as mount]
             [beherbergung.resolver.core :refer [graphql]]
