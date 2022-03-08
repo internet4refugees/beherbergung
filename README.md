@@ -18,18 +18,19 @@ This repository contains tools for NGOs, organizing private hosting.
 
 Every NGO can decide between self-hosting the backend or using a backend provided by us.
 
-- [ ] nixos server deployment
-- [x] reproducible builds with nixpkgs
-- [x] xtdb
-- [x] graphql
-
-Reuses the technology stack of [swlkup](https://github.com/johannesloetzsch/swlkup)
+Implemented by reusing the technology stack of [swlkup](https://github.com/johannesloetzsch/swlkup)
 
 ## A frontend for authorized NGO members, to **search** the database
 
 A website written for this use case allows easy input of filters. The usage of finding matches will be much more convenient than working with a spreadsheet.
 
 - [ ] **Should be available this week** (work in progress)
+
+Features to process an `hosting offer` dataset:
+
+- [ ] note if host was `contacted` (by which `login`) + additional notes
+- [ ] keep track if offer is `still free` / `occupied (till)` / `free again`
+
 
 ## A customizable public form, to submit new offers
 
