@@ -27,7 +27,7 @@
                 :place_city "f"
                 :contact_phone "sQdB"
                 :place_zip "cid1"
-                :time_from_str "KSAFC"
+                :time_from_str "03/05/2022"
                 :place_country "toTz5B"
                 :animals_present false
                 :languages '("vMR0zyECr")
