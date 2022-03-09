@@ -13,6 +13,9 @@ import {TypeColumn, TypeFilterValue, TypeSingleFilterValue} from "@inovua/reactd
 import NumberFilter from "@inovua/reactdatagrid-community/NumberFilter";
 import moment from "moment";
 
+import {useTranslation} from "react-i18next";
+import { resources } from '../../i18n/config';
+
 global.moment = moment
 
 type HostOfferLookupTableProps = {
@@ -171,6 +174,12 @@ const defaultFilterValue: TypeFilterValue = columns
 
 const HostOfferLookupTable = ({ data }: HostOfferLookupTableProps) => {
   const dataSource = data.get_offers || []
+
+  const { i18n: { language }  } = useTranslation()
+  // @ts-ignore
+  const reactdatagridi18n = resources[language]?.translation?.reactdatagrid
+
+
   return <>
     <DataGrid
       idProperty="id"
@@ -184,6 +193,7 @@ const HostOfferLookupTable = ({ data }: HostOfferLookupTableProps) => {
       columns={columns}
       dataSource={dataSource}
       style={{minHeight: '1000px'}}
+      i18n={ reactdatagridi18n|| undefined}
     />
   </>
 }

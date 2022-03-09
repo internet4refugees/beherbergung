@@ -7,7 +7,7 @@ import de from './de.json'
 export const resources = {
   en: { translation: en },
   de: { translation: de }
-} as const
+}
 
 i18next
   .use(initReactI18next)
