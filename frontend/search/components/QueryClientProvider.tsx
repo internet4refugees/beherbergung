@@ -4,7 +4,7 @@ import {ReactQueryDevtools} from 'react-query/devtools'
 
 const queryClient = new QueryClient()
 
-export default function MyQueryClientProvider({children}: {children: React.Component}) {
+export default function MyQueryClientProvider({children}: {children: React.ReactChild}) {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
