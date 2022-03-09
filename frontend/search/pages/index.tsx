@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import HostOfferLookupWrapper from '../components/ngo/HostOfferLookupWrapper'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -11,7 +12,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        Miau
+        <HostOfferLookupWrapper />
       </main>
 
     </div>
