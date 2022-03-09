@@ -1,4 +1,5 @@
-({:beds 0,
+({:id "0"
+  :beds 0,
   :place_street "",
   :contact_email nil,
   :contact_name_full "",
@@ -14,7 +15,8 @@
   :languages (),
   :accessible false,
   :animals_allowed false}
- {:beds nil,
+ {:id "1"
+  :beds nil,
   :place_street "g",
   :contact_email "8",
   :contact_name_full "",
@@ -30,7 +32,8 @@
   :languages (),
   :accessible nil,
   :animals_allowed false}
- {:beds 1,
+ {:id "2"
+  :beds 1,
   :place_street "p8",
   :contact_email "i",
   :contact_name_full nil,
@@ -46,7 +49,8 @@
   :languages (),
   :accessible nil,
   :animals_allowed true}
- {:beds 0,
+ {:id "3"
+  :beds 0,
   :place_street "w4",
   :contact_email "5",
   :contact_name_full nil,
@@ -62,7 +66,8 @@
   :languages ("x" "ni"),
   :accessible false,
   :animals_allowed nil}
- {:beds 2,
+ {:id "4"
+  :beds 2,
   :place_street nil,
   :contact_email nil,
   :contact_name_full "",
@@ -78,7 +83,8 @@
   :languages (),
   :accessible true,
   :animals_allowed true}
- {:beds 1,
+ {:id "5"
+  :beds 1,
   :place_street "4N2",
   :contact_email "u1",
   :contact_name_full "BmUzV",
@@ -94,7 +100,8 @@
   :languages ("DX" "E" "G3wuv"),
   :accessible false,
   :animals_allowed false}
- {:beds 0,
+ {:id "6"
+  :beds 0,
   :place_street "T",
   :contact_email "W1wL",
   :contact_name_full "51p9",
@@ -110,7 +117,8 @@
   :languages nil,
   :accessible false,
   :animals_allowed true}
- {:beds nil,
+ {:id "7"
+  :beds nil,
   :place_street "0IDd",
   :contact_email "2511JLD",
   :contact_name_full "JQw21",
@@ -126,7 +134,8 @@
   :languages (),
   :accessible false,
   :animals_allowed false}
- {:beds 4,
+ {:id "8"
+  :beds 4,
   :place_street "Wy",
   :contact_email "35e6Rnj",
   :contact_name_full "",
@@ -142,7 +151,8 @@
   :languages nil,
   :accessible true,
   :animals_allowed false}
- {:beds 27,
+ {:id "9"
+  :beds 27,
   :place_street "wIbUsu",
   :contact_email "x0Vl9",
   :contact_name_full "48",

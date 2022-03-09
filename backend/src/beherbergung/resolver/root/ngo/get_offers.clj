@@ -18,7 +18,9 @@
     (Integer/parseInt s)
     (catch NumberFormatException _e)))
 
-(def mapping_lifeline_wpforms {;; TODO: the times are not parsed till now
+(def mapping_lifeline_wpforms {:id #(or (get % "E-Mail") (get % "Telefonnummer")) ;; TODO: uuid will be generated when record is written to db
+
+                               ;; TODO: the times are not parsed till now
                                :time_from_str "frühestes Einzugsdatum"
                                :time_duration_str "Möglicher Aufenthalt (Dauer)"
 
@@ -61,6 +63,7 @@
 (s/def ::t_string t/string #_ (s/with-gen t/string #(s/gen string?)))
 (s/def ::t_int t/int #_ (s/with-gen t/int #(s/gen int?)))
 
+(s/def :xtdb.api/id (s/nilable ::t_string))  ;; TODO: in future not nilable
 (s/def ::time_from_str (s/nilable ::t_string))
 (s/def ::time_duration_str (s/nilable ::t_string))
 (s/def ::beds (s/nilable ::t_int))
@@ -77,7 +80,8 @@
 (s/def ::contact_phone (s/nilable ::t_string))
 (s/def ::contact_email (s/nilable ::t_string))
 (s/def ::note (s/nilable ::t_string))
-(s/def ::offer (s/keys :req-un [::time_from_str ::time_duration_str ::beds ::languages
+(s/def ::offer (s/keys :req-un [:xtdb.api/id
+                                ::time_from_str ::time_duration_str ::beds ::languages
                                 ::place_country ::place_city ::place_zip ::place_street ::place_street_number
                                 ::accessible ::animals_allowed ::animals_present
                                 ::contact_name_full ::contact_phone ::contact_email
