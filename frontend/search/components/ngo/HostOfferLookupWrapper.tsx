@@ -7,11 +7,10 @@ type HostLookupWrapperProps = Record<string, never>
 
 const HostOfferLookupWrapper = ({}: HostLookupWrapperProps) => {
   const {data, isFetching} = useGetOffersQuery({auth: testAuth as Auth}, {staleTime: 60 * 1000})
-  if (isFetching) {
-    return "loading…"
-  } else if (data?.get_offers) {
-    return (<HostOfferLookupTable data={data}/>)
-  }
+
+  return <>{
+    (!isFetching && data?.get_offers) ? <HostOfferLookupTable data={data}/> : "loading…"
+  }</>
 }
 
 export default HostOfferLookupWrapper

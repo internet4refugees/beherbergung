@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 
 import { CheckBoxOutlineBlank, CheckBox } from '@mui/icons-material';
 
@@ -20,6 +20,16 @@ type HostOfferLookupTableProps = {
 }
 
 type ColumnRaw = { name: string; header: string; type: string }
+
+/**
+ * you can generate an inital raw column json by running the following
+ * function
+ */
+const makeColumnDefinition = (data: any ) => Object.keys(data)
+  .map(k => ({
+    name: k,
+    header: k.replace(/_/g, ' '),
+    type: typeof data[k]}))
 
 const columnsRaw: ColumnRaw[] = [
   {
@@ -117,14 +127,17 @@ const operatorsForType = {
   boolean: 'eq'
 }
 
-const customRendererForType = [
+type CustomRendererMatcher = {
+  match: { [key: string]: any }
+  render: (...args: any[]) => ReactNode
+}
+
+const customRendererForType: CustomRendererMatcher[] = [
   {
-    id: 'bool2checkbox',
     match: {type: 'boolean'},
     render: ({ value }) => !!value ? <CheckBox /> : <CheckBoxOutlineBlank />
   },
   {
-    id: 'email',
     match: {type: 'string', name: 'contact_email'},
     render: ({ value }) => (<a href={`mailto:${value}`} >{value}</a>)
   }
@@ -135,14 +148,13 @@ const findMatchingRenderer = (c: ColumnRaw) => {
     // @ts-ignore
     return Object.keys(d.match).reduce((prev, cur) => prev && c[cur] === d.match[cur] , true )
   })
-  console.log(customRenderer)
   return customRenderer?.render
 }
 
 const columns: TypeColumn[] = columnsRaw
   .map(c => ({
     ...c,
-    render: findMatchingRenderer(c) || null,
+    render: findMatchingRenderer(c) || undefined,
     filterEditor: filterMappings[c.type as 'string' | 'number' | 'boolean' | 'date']
   }))
 
@@ -157,12 +169,6 @@ const defaultFilterValue: TypeFilterValue = columns
     } as unknown as TypeSingleFilterValue
   } )
 
-const makeColumnDefinition = (data: any ) => Object.keys(data)
-  .map(k => ({
-    name: k,
-    header: k.replace(/_/g, ' '),
-    type: typeof data[k]}))
-
 const HostOfferLookupTable = ({ data }: HostOfferLookupTableProps) => {
   const dataSource = data.get_offers || []
   return <>
@@ -174,6 +180,7 @@ const HostOfferLookupTable = ({ data }: HostOfferLookupTableProps) => {
       defaultFilterValue={defaultFilterValue}
       rowIndexColumn
       enableSelection
+      enableColumnAutosize={false}
       columns={columns}
       dataSource={dataSource}
       style={{minHeight: '1000px'}}
