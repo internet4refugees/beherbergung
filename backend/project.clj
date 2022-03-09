@@ -36,6 +36,8 @@
                  [org.clojure/tools.logging "1.2.4"]
                  [org.slf4j/slf4j-api "2.0.0-alpha6"]
                  [org.slf4j/slf4j-simple "2.0.0-alpha6"]
+                 ;; testing
+                 [org.clojure/test.check "0.9.0"]
                 ]
   :main beherbergung.webserver.state
   :profiles {:dev {:dependencies [;; helpers for testing

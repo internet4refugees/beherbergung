@@ -16,10 +16,9 @@
 
 (deftest correct-login
   (let [offers (get_offers {:auth {:mail mail :password password}})]
-       (is (= 110 (count offers)))  ;; TODO: we need a test dataset that can be published (generated)
-       (is (= {:accessible true
-               :note "füg"}
-              (first offers)))))
+       (is (= 10 (count offers)))  ;; 10 is the default sample size of gen/sample
+       (is (= {:accessible true, :note "hkUGJ8"}
+              (nth offers 7)))))  ;; picked one of the random generated datasets that contains not so many trivial values
 
 (deftest wrong-login
   (let [offers (get_offers {:auth {:mail mail :password "wrong"}})]
