@@ -1,7 +1,6 @@
 (ns beherbergung.webserver.middleware
   (:require [beherbergung.config.state :refer [env]]
             [ring.middleware.resource :refer [wrap-resource]]
-            [ring.middleware.webjars :refer [wrap-webjars]]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [ring.middleware.content-type :refer [wrap-content-type]]
             [ring.middleware.not-modified :refer [wrap-not-modified]]
@@ -29,7 +28,7 @@
   "Add graphqli using org.webjars/graphiql and resources/public/graphiql/index.html"
   [handler]
   (-> handler
-      (wrap-webjars)
+      #_ (wrap-webjars)  ;; we will provide resources from npm
       (wrap-resource "public")))
 
 (defn wrap-graphql
