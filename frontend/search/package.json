@@ -1,0 +1,23 @@
+{
+  "name": "beherbergung-search-frontend",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "generate": "cd codegen && graphql-codegen generate",
+    "dev": "next dev",
+    "build": "next build --no-lint",
+    "start": "next start",
+    "export": "next export"
+  },
+  "dependencies": {
+    "graphql-request": "^3.7.0",
+    "react-query": "^3.34.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^2.3.0",
+    "@graphql-codegen/typescript": "^2.4.1",
+    "@graphql-codegen/typescript-operations": "^2.2.1",
+    "@graphql-codegen/typescript-react-query": "^3.2.2",
+    "typescript": "4.5.2"
+  }
+}
