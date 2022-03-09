@@ -8,6 +8,9 @@ import BoolFilter from '@inovua/reactdatagrid-community/BoolFilter'
 import {GetOffersQuery} from "../../codegen/generates";
 import {TypeColumn, TypeFilterValue, TypeSingleFilterValue} from "@inovua/reactdatagrid-community/types";
 import NumberFilter from "@inovua/reactdatagrid-community/NumberFilter";
+import moment from "moment";
+
+global.moment = moment
 
 type HostOfferLookupTableProps = {
   data: GetOffersQuery
@@ -111,7 +114,7 @@ const operatorsForType = {
 const columns: TypeColumn[] = columnsRaw
   .map(c => ({
     ...c,
-    filterEditor: filterMappings[c.type as 'string' | 'number' | 'boolean']
+    filterEditor: filterMappings[c.type as 'string' | 'number' | 'boolean' | 'date']
   }))
 
 const defaultFilterValue: TypeFilterValue = columns
@@ -132,8 +135,7 @@ const makeColumnDefinition = (data: any ) => Object.keys(data)
     type: typeof data[k]}))
 
 const HostOfferLookupTable = ({ data }: HostOfferLookupTableProps) => {
-  console.log({columns})
-  const dataSource = data.get_offers?.map((d, index) => ({...d, id: index})) || []
+  const dataSource = data.get_offers || []
   return <>
     <DataGrid
       idProperty="id"
