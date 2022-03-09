@@ -29,10 +29,10 @@
                                            (into {}))))]
        (map (mapping->fn mapping) offers)))
 
-(def t_boolean (s/with-gen t/boolean #(s/gen boolean?)))
-(def t_string (s/with-gen t/string #(s/gen string?)))
-(s/def ::accessible (s/nilable t_boolean))
-(s/def ::note (s/nilable t_string))
+(s/def ::t_boolean t/boolean #_ (s/with-gen t/boolean #(s/gen boolean?)))
+(s/def ::t_string t/string #_ (s/with-gen t/string #(s/gen string?)))
+(s/def ::accessible (s/nilable ::t_boolean))
+(s/def ::note (s/nilable ::t_string))
 (s/def ::offer (s/keys :req-un [::accessible ::note]))
 
 (comment
