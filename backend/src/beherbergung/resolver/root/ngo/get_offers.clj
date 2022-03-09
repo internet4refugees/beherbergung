@@ -39,7 +39,7 @@
                                :contact_phone "Telefonnummer"
                                :contact_email "E-Mail"
                                :note "Nachricht"})
-(def mapping_identity {:accessible :accessible
+#_(def mapping_identity {:accessible :accessible
                        :note :note})
 
 (defn unify
@@ -102,6 +102,7 @@
          (if (:import-file env)
              (unify (clojure.edn/read-string (slurp (:import-file env)))
                     mapping_lifeline_wpforms)
-             (gen/sample (s/gen ::offer))))))
+             (clojure.edn/read-string (slurp "./data/sample-data/example.edn"))  ;; till conflict between `specialist-server.type` and `with-gen` is fixed
+             #_(gen/sample (s/gen ::offer))))))
 
 (s/def ::get_offers (t/resolver #'get_offers))
