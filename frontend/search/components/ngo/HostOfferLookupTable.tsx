@@ -1,4 +1,7 @@
 import React from 'react'
+
+import { CheckBoxOutlineBlank, CheckBox } from '@mui/icons-material';
+
 import '@inovua/reactdatagrid-community/index.css'
 
 import DataGrid from '@inovua/reactdatagrid-community'
@@ -16,7 +19,9 @@ type HostOfferLookupTableProps = {
   data: GetOffersQuery
 }
 
-const columnsRaw: { name: string; header: string; type: string }[] = [
+type ColumnRaw = { name: string; header: string; type: string }
+
+const columnsRaw: ColumnRaw[] = [
   {
     "name": "beds",
     "header": "beds",
@@ -108,23 +113,47 @@ const filterMappings = {
 const operatorsForType = {
   number: 'gte',
   string: 'contains',
-  date: 'inrange'}
+  date: 'inrange',
+  boolean: 'eq'
+}
 
+const customRendererForType = [
+  {
+    id: 'bool2checkbox',
+    match: {type: 'boolean'},
+    render: ({ value }) => !!value ? <CheckBox /> : <CheckBoxOutlineBlank />
+  },
+  {
+    id: 'email',
+    match: {type: 'string', name: 'contact_email'},
+    render: ({ value }) => (<a href={`mailto:${value}`} >{value}</a>)
+  }
+]
+
+const findMatchingRenderer = (c: ColumnRaw) => {
+  const customRenderer = customRendererForType.find(d => {
+    // @ts-ignore
+    return Object.keys(d.match).reduce((prev, cur) => prev && c[cur] === d.match[cur] , true )
+  })
+  console.log(customRenderer)
+  return customRenderer?.render
+}
 
 const columns: TypeColumn[] = columnsRaw
   .map(c => ({
     ...c,
+    render: findMatchingRenderer(c) || null,
     filterEditor: filterMappings[c.type as 'string' | 'number' | 'boolean' | 'date']
   }))
 
 const defaultFilterValue: TypeFilterValue = columns
-  .filter(( {type} ) => type && ['string', 'number', 'date'].includes( type ))
+  .filter(( {type} ) => type && ['string', 'number', 'date', 'boolean'].includes( type ))
   .map(( {name, type} ) => {
     return {
       name,
       type,
-      value: '',
-      operator: operatorsForType[type as 'string' | 'number' | 'date']
+      value: null,
+      operator: operatorsForType[type as 'string' | 'number' | 'date' | 'boolean']
     } as unknown as TypeSingleFilterValue
   } )
 
