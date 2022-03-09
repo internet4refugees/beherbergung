@@ -23,7 +23,7 @@
 (s/def ::admin-passphrase (s/nilable string?))  ;; allows setting up ngo logins and encrypted downloads of db exports
 (s/def ::admin-gpg-id string?)
 
-(s/def ::import-file string?)
+(s/def ::import-file (s/nilable string?))
 
 (s/def ::mail-host string?)
 (s/def ::mail-user string?)

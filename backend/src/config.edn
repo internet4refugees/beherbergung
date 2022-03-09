@@ -10,6 +10,8 @@
  :db-export-prefix "./data/export/"
  :db-validate true
 
+ :import-file nil
+
  ;:mail-host ""
  ;:mail-user ""
  ;:mail-pass ""
