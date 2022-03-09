@@ -7,23 +7,51 @@
             [beherbergung.model.ngo :as ngo]
             [clojure.edn]
             [clojure.spec.gen.alpha :as gen]
-            [beherbergung.db.export :refer [write-edn]]))
+            [beherbergung.db.export :refer [write-edn]]
+            [clojure.string :refer [split]]))
 
 (defn JaNein->bool [JaNein]
   ({"Ja" true "Nein" false} JaNein))
 
-#_(def mapping {:accessible #(JaNein->bool (get % "Ist die Unterkunft rollstuhlgerecht?"))
-              :note "Nachricht"})
-(def mapping {:accessible :accessible
-              :note :note})
+(defn ->Int [s]
+  (try
+    (Integer/parseInt s)
+    (catch NumberFormatException _e)))
+
+(def mapping_lifeline_wpforms {;; TODO: the times are not parsed till now
+                               :time_from_str "frühestes Einzugsdatum"
+                               :time_duration_str "Möglicher Aufenthalt (Dauer)"
+
+                               :beds ["Verfügbare Betten" ->Int]
+                               :languages ["Sprachen (sprechen / verstehen)" #(split % #",")]
+
+                               :place_country "Land"
+                               :place_city "Ort"
+                               :place_zip "PLZ"
+                               :place_street "Straße"
+                               :place_street_number"Hausnummer"
+
+                               :accessible ["Ist die Unterkunft rollstuhlgerecht?" JaNein->bool]
+                               :animals_allowed ["Haustiere erlaubt?" JaNein->bool]
+                               :animals_present ["Sind Haustiere im Haushalt vorhanden?" JaNein->bool]
+
+                               :contact_name_full "Name"
+                               :contact_phone "Telefonnummer"
+                               :contact_email "E-Mail"
+                               :note "Nachricht"})
+(def mapping_identity {:accessible :accessible
+                       :note :note})
 
 (defn unify
-  [offers]
+  [offers mapping]
   (let [mapping->fn (fn [mapping]
                         (fn [dataset] (->> mapping
                                            (map (fn [[k v]]
                                                     [k (cond (fn? v)
                                                                (v dataset)
+                                                             (vector? v)
+                                                               (let [[orig_kw parse_fn] v]
+                                                                    (parse_fn (get dataset orig_kw)))
                                                              :else
                                                                (get dataset v))]))
                                            (into {}))))]
@@ -31,9 +59,29 @@
 
 (s/def ::t_boolean t/boolean #_ (s/with-gen t/boolean #(s/gen boolean?)))
 (s/def ::t_string t/string #_ (s/with-gen t/string #(s/gen string?)))
+(s/def ::t_int t/int #_ (s/with-gen t/int #(s/gen int?)))
+
+(s/def ::time_from_str (s/nilable ::t_string))
+(s/def ::time_duration_str (s/nilable ::t_string))
+(s/def ::beds (s/nilable ::t_int))
+(s/def ::languages (s/nilable (s/* ::t_string)))
+(s/def ::place_country (s/nilable ::t_string))
+(s/def ::place_city (s/nilable ::t_string))
+(s/def ::place_zip (s/nilable ::t_string))
+(s/def ::place_street (s/nilable ::t_string))
+(s/def ::place_street_number (s/nilable ::t_string))
 (s/def ::accessible (s/nilable ::t_boolean))
+(s/def ::animals_allowed (s/nilable ::t_boolean))
+(s/def ::animals_present (s/nilable ::t_boolean))
+(s/def ::contact_name_full (s/nilable ::t_string))
+(s/def ::contact_phone (s/nilable ::t_string))
+(s/def ::contact_email (s/nilable ::t_string))
 (s/def ::note (s/nilable ::t_string))
-(s/def ::offer (s/keys :req-un [::accessible ::note]))
+(s/def ::offer (s/keys :req-un [::time_from_str ::time_duration_str ::beds ::languages
+                                ::place_country ::place_city ::place_zip ::place_street ::place_street_number
+                                ::accessible ::animals_allowed ::animals_present
+                                ::contact_name_full ::contact_phone ::contact_email
+                                ::note]))
 
 (comment
   (write-edn "./data/sample-data/example.edn"
@@ -52,7 +100,8 @@
        (when ngo:id
          ;; TODO: take it from the db and filter it by visibility to the ngo
          (if (:import-file env)
-             (unify (clojure.edn/read-string (slurp (:import-file env))))
+             (unify (clojure.edn/read-string (slurp (:import-file env)))
+                    mapping_lifeline_wpforms)
              (gen/sample (s/gen ::offer))))))
 
 (s/def ::get_offers (t/resolver #'get_offers))

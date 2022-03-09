@@ -10,7 +10,7 @@
  :db-export-prefix "./data/export/"
  :db-validate true
 
- :import-file "./data/sample-data/example.edn"
+ :import-file nil #_"./data/sample-data/example.edn"
 
  ;:mail-host ""
  ;:mail-user ""

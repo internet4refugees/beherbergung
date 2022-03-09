@@ -7,7 +7,7 @@
 (def password "i!A;z\\\"'^G3Q)w])%83)")
 
 (defn get_offers [variables]
-  (let [response (graphql {:query "query x($auth: Auth) { get_offers(auth: $auth){ accessible note } }"
+  (let [response (graphql {:query "query x($auth: Auth) { get_offers(auth: $auth){ time_from_str time_duration_str beds languages place_country place_city place_zip place_street place_street_number accessible animals_allowed animals_present contact_name_full contact_phone contact_email note } }"
                            :variables variables})]
         (get-in response [:data :get_offers])))
 
@@ -18,7 +18,7 @@
   (let [offers (get_offers {:auth {:mail mail :password password}})]
        (is (= 10 (count offers)))  ;; 10 is the default sample size of gen/sample
        (is (= {:accessible true, :note "hkUGJ8"}
-              (nth offers 7)))))  ;; picked one of the random generated datasets that contains not so many trivial values
+              (nth offers 0)))))  ;; picked one of the random generated datasets that contains not so many trivial values
 
 (deftest wrong-login
   (let [offers (get_offers {:auth {:mail mail :password "wrong"}})]

@@ -19,28 +19,28 @@ export type Scalars = {
 /** Authentication requires either a valid mail+password combination or a jwt obtained by an earlier login. */
 export type Auth = {
   /** Self descriptive. */
-  jwt: Scalars['String'];
-  /** Self descriptive. */
   mail: Scalars['String'];
   /** Self descriptive. */
   password: Scalars['String'];
+  /** Self descriptive. */
+  jwt: Scalars['String'];
 };
 
 /** The type that query operations will be rooted at. */
 export type QueryType = {
   __typename?: 'QueryType';
-  /** Export an encrypted database dump */
-  export?: Maybe<Export>;
-  /** The offers that are visible for the ngo, belonging to the login */
-  get_offers?: Maybe<Array<Get_Offers>>;
   /** For a username+password get a jwt containing the login:id */
   login: Login;
+  /** The offers that are visible for the ngo, belonging to the login */
+  get_offers?: Maybe<Array<Get_Offers>>;
+  /** Export an encrypted database dump */
+  export?: Maybe<Export>;
 };
 
 
 /** The type that query operations will be rooted at. */
-export type QueryTypeExportArgs = {
-  password: Scalars['String'];
+export type QueryTypeLoginArgs = {
+  auth: Auth;
 };
 
 
@@ -51,23 +51,37 @@ export type QueryTypeGet_OffersArgs = {
 
 
 /** The type that query operations will be rooted at. */
-export type QueryTypeLoginArgs = {
-  auth: Auth;
+export type QueryTypeExportArgs = {
+  password: Scalars['String'];
 };
 
 /** Export an encrypted database dump */
 export type Export = {
   __typename?: 'export';
-  err?: Maybe<Scalars['String']>;
   /** Self descriptive. */
   exit: Scalars['Int'];
   out?: Maybe<Scalars['String']>;
+  err?: Maybe<Scalars['String']>;
 };
 
 /** The offers that are visible for the ngo, belonging to the login */
 export type Get_Offers = {
   __typename?: 'get_offers';
+  time_from_str?: Maybe<Scalars['String']>;
+  time_duration_str?: Maybe<Scalars['String']>;
+  beds?: Maybe<Scalars['Int']>;
+  languages?: Maybe<Array<Scalars['String']>>;
+  place_country?: Maybe<Scalars['String']>;
+  place_city?: Maybe<Scalars['String']>;
+  place_zip?: Maybe<Scalars['String']>;
+  place_street?: Maybe<Scalars['String']>;
+  place_street_number?: Maybe<Scalars['String']>;
   accessible?: Maybe<Scalars['Boolean']>;
+  animals_allowed?: Maybe<Scalars['Boolean']>;
+  animals_present?: Maybe<Scalars['Boolean']>;
+  contact_name_full?: Maybe<Scalars['String']>;
+  contact_phone?: Maybe<Scalars['String']>;
+  contact_email?: Maybe<Scalars['String']>;
   note?: Maybe<Scalars['String']>;
 };
 
@@ -89,7 +103,7 @@ export type GetOffersQueryVariables = Exact<{
 }>;
 
 
-export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', accessible?: boolean | null, note?: string | null }> | null };
+export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null }> | null };
 
 
 export const LoginDocument = `
@@ -114,7 +128,21 @@ export const useLoginQuery = <
 export const GetOffersDocument = `
     query GetOffers($auth: Auth!) {
   get_offers(auth: $auth) {
+    time_from_str
+    time_duration_str
+    beds
+    languages
+    place_country
+    place_city
+    place_zip
+    place_street
+    place_street_number
     accessible
+    animals_allowed
+    animals_present
+    contact_name_full
+    contact_phone
+    contact_email
     note
   }
 }
