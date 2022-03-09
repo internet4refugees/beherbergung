@@ -1,59 +1,28 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <style>
-      body {
-        height: 100%;
-        margin: 0;
-        width: 100%;
-        overflow: hidden;
-      }
-      #graphiql {
-        height: 100vh;
-      }
-    </style>
-
-    <link rel="stylesheet" href="/assets/graphiql/graphiql.css">
-
+    <title>Simple GraphiQL Example</title>
+    <link href="https://unpkg.com/graphiql/graphiql.min.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="/assets/graphiql/graphiql.css">-->
+  </head>
+  <body style="margin: 0;">
+    <div id="graphiql" style="height: 100vh;"></div>
+    
+    <script crossorigin src="https://unpkg.com/react/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/graphiql/graphiql.min.js"></script>
+    <!--
     <script src="/assets/react/umd/react.development.js"></script>
     <script src="/assets/react-dom/umd/react-dom.development.js"></script>
     <script src="/assets/graphiql/graphiql.js"></script>
+    -->
 
-  </head>
-  <body>
-    <div id="graphiql">Loading...</div>
     <script>
+      // This expects a GraphQL server at the path /graphql.
+      const fetcher = GraphiQL.createFetcher({ url: '/graphql' });
 
-      function graphQLFetcher(graphQLParams) {
-        // This example expects a GraphQL server at the path /graphql.
-        // Change this to point wherever you host your GraphQL server.
-        return fetch('/graphql', {
-          method: 'post',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(graphQLParams),
-          credentials: 'include',
-        }).then(function (response) {
-          return response.text();
-        }).then(function (responseBody) {
-          try {
-            return JSON.parse(responseBody);
-          } catch (error) {
-            return responseBody;
-          }
-        });
-      }
-
-      // Render <GraphiQL /> into the body.
-      // See the GraphiQL project page for more info on different options.
       ReactDOM.render(
-        React.createElement(GraphiQL, {
-          fetcher: graphQLFetcher
-        }),
-        document.getElementById('graphiql')
+        React.createElement(GraphiQL, { fetcher: fetcher }),
+        document.getElementById('graphiql'),
       );
     </script>
   </body>
