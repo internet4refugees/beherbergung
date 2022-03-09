@@ -30,7 +30,7 @@ const columnsRaw: { name: string; header: string; type: string }[] = [
   {
     "name": "contact_email",
     "header": "contact email",
-    "type": "object"
+    "type": "string"
   },
   {
     "name": "contact_name_full",
@@ -60,7 +60,7 @@ const columnsRaw: { name: string; header: string; type: string }[] = [
   {
     "name": "contact_phone",
     "header": "contact phone",
-    "type": "object"
+    "type": "string"
   },
   {
     "name": "place_zip",
