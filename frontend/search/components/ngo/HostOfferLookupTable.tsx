@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react'
 
-import { CheckBoxOutlineBlank, CheckBox } from '@mui/icons-material';
+import {CheckBoxOutlineBlank, CheckBox} from '@mui/icons-material';
 
 import '@inovua/reactdatagrid-community/index.css'
 
@@ -14,7 +14,8 @@ import NumberFilter from "@inovua/reactdatagrid-community/NumberFilter";
 import moment from "moment";
 
 import {useTranslation} from "react-i18next";
-import { resources } from '../../i18n/config';
+import {resources} from '../../i18n/config';
+import {Box} from "@mui/material";
 
 global.moment = moment
 
@@ -28,11 +29,12 @@ type ColumnRaw = { name: string; header: string; type: string }
  * you can generate an inital raw column json by running the following
  * function
  */
-const makeColumnDefinition = (data: any ) => Object.keys(data)
+const makeColumnDefinition = (data: any) => Object.keys(data)
   .map(k => ({
     name: k,
     header: k.replace(/_/g, ' '),
-    type: typeof data[k]}))
+    type: typeof data[k]
+  }))
 
 const columnsRaw: ColumnRaw[] = [
   {
@@ -138,18 +140,18 @@ type CustomRendererMatcher = {
 const customRendererForType: CustomRendererMatcher[] = [
   {
     match: {type: 'boolean'},
-    render: ({ value }) => !!value ? <CheckBox /> : <CheckBoxOutlineBlank />
+    render: ({value}) => !!value ? <CheckBox/> : <CheckBoxOutlineBlank/>
   },
   {
     match: {type: 'string', name: 'contact_email'},
-    render: ({ value }) => (<a href={`mailto:${value}`} >{value}</a>)
+    render: ({value}) => (<a href={`mailto:${value}`}>{value}</a>)
   }
 ]
 
 const findMatchingRenderer = (c: ColumnRaw) => {
   const customRenderer = customRendererForType.find(d => {
     // @ts-ignore
-    return Object.keys(d.match).reduce((prev, cur) => prev && c[cur] === d.match[cur] , true )
+    return Object.keys(d.match).reduce((prev, cur) => prev && c[cur] === d.match[cur], true)
   })
   return customRenderer?.render
 }
@@ -162,40 +164,44 @@ const columns: TypeColumn[] = columnsRaw
   }))
 
 const defaultFilterValue: TypeFilterValue = columns
-  .filter(( {type} ) => type && ['string', 'number', 'date', 'boolean'].includes( type ))
-  .map(( {name, type} ) => {
+  .filter(({type}) => type && ['string', 'number', 'date', 'boolean'].includes(type))
+  .map(({name, type}) => {
     return {
       name,
       type,
       value: null,
       operator: operatorsForType[type as 'string' | 'number' | 'date' | 'boolean']
     } as unknown as TypeSingleFilterValue
-  } )
+  })
 
-const HostOfferLookupTable = ({ data }: HostOfferLookupTableProps) => {
+const HostOfferLookupTable = ({data}: HostOfferLookupTableProps) => {
   const dataSource = data.get_offers || []
 
-  const { i18n: { language }  } = useTranslation()
+  const {i18n: {language}} = useTranslation()
   // @ts-ignore
   const reactdatagridi18n = resources[language]?.translation?.reactdatagrid
 
 
-  return <>
-    <DataGrid
-      idProperty="id"
-      filterable
-      showColumnMenuFilterOptions={true}
-      showFilteringMenuItems={true}
-      defaultFilterValue={defaultFilterValue}
-      rowIndexColumn
-      enableSelection
-      enableColumnAutosize={false}
-      columns={columns}
-      dataSource={dataSource}
-      style={{minHeight: '1000px'}}
-      i18n={ reactdatagridi18n|| undefined}
-    />
-  </>
+  return <Box sx={{display: 'flex', alignItems: 'stretch', flexDirection: 'column', minHeight: '100%'}}>
+    <div
+      style={{flex: '1 1', height: '100%'}}
+    >
+      <DataGrid
+        idProperty="id"
+        filterable
+        showColumnMenuFilterOptions={true}
+        showFilteringMenuItems={true}
+        defaultFilterValue={defaultFilterValue}
+        rowIndexColumn
+        enableSelection
+        enableColumnAutosize={false}
+        columns={columns}
+        dataSource={dataSource}
+        i18n={reactdatagridi18n || undefined}
+        style={{flex: '1 1', height: '100%'}}
+      />
+    </div>
+  </Box>
 }
 
 export default HostOfferLookupTable

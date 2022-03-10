@@ -3,6 +3,7 @@
 }
 
 .main {
+  max-height: 100vh;
   min-height: 100vh;
-  padding: 4rem 4rem;
+  padding: 0;
 }
