@@ -63,12 +63,14 @@
 
        (export-named-by-date db_ctx "start")  ;; before seeding
 
-       (let [seed-file (if (not-empty (:db-seed env))
-                           (:db-seed env)
-                           (io/resource "beherbergung/db/seed/example.edn"))]
+       (let [seed-file (when (not-empty (:db-seed env))
+                             (:db-seed env)
+                             ;; TODO configuration for tests
+                             #_(io/resource "beherbergung/db/seed/test.edn"))]
             (when (:verbose env)
                   (println "Seed the database from:" seed-file))
-            (seed seed-file db_ctx))
+            (when seed-file
+                  (seed seed-file db_ctx)))
       
        (if (:db-validate env)
            (or (validate-db db_ctx)

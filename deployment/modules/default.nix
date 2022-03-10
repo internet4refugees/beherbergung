@@ -7,7 +7,7 @@
     wget curl
     htop atop iotop iftop
     file bc jq
-    git
+    git gnupg
     bind.dnsutils
   ];
 

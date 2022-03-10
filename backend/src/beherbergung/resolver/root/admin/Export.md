@@ -8,3 +8,11 @@ curl 'https://URL/graphql' -H 'Content-Type: application/json' --data '{"query":
 cd backend
 gpg --decrypt /tmp/export.gpg | DB_SEED=/dev/stdin DB_INMEMORY=true lein run
 ```
+
+## Preparation at server
+
+Ensure, your server trusts the admin-keyid:
+
+```sh
+echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key $ADMIN_GPG_ID trust
+```

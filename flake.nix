@@ -31,8 +31,8 @@
     commonModules = [
       ./deployment/modules/nix.nix
       ./deployment/modules/default.nix
-      #sops-nix.nixosModules.sops
-      #./deployment/modules/sops.nix
+      sops-nix.nixosModules.sops
+      ./deployment/modules/sops.nix
       ./deployment/modules/dns.nix
       #./deployment/modules/monitoring/client.nix
       ./deployment/modules/nginx/beherbergung.nix

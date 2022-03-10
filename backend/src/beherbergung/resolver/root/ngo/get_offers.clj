@@ -103,6 +103,7 @@
         [ngo:id] (auth+role->entity ctx (:auth opt) ::ngo/record)]
        (when ngo:id
          ;; TODO: take it from the db and filter it by visibility to the ngo
+         ;; When importing, we want define to which ngo the imported dataset is visible
          (if (:import-file env)
              (unify (clojure.edn/read-string (slurp (:import-file env)))
                     mapping_lifeline_wpforms)

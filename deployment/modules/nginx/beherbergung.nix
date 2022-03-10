@@ -15,6 +15,9 @@
       #default = true;  ## we would need cors settings supporting multiple hosts
       forceSSL = true;
       useACMEHost = config.networking.domain;
+      basicAuthFile = config.sops.secrets."nginx-passwd".path;  # Required as a quick+dirty hack while the !changed! backend password is delivered from the frontend :/
+                                                                # Todo: integrate LoginForm into frontend
+                                                                # Later: For defence in depth
       locations."/" = {
         proxyPass = "http://localhost:3000";
         #proxyWebsockets = true;
