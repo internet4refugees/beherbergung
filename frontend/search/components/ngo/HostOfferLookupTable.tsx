@@ -33,38 +33,8 @@ const makeColumnDefinition = (data: any ) => Object.keys(data)
 
 const columnsRaw: ColumnRaw[] = [
   {
-    "name": "beds",
-    "header": "beds",
-    "type": "number"
-  },
-  {
-    "name": "place_street",
-    "header": "place street",
-    "type": "string"
-  },
-  {
-    "name": "contact_email",
-    "header": "contact email",
-    "type": "string"
-  },
-  {
-    "name": "contact_name_full",
-    "header": "contact name full",
-    "type": "string"
-  },
-  {
-    "name": "time_duration_str",
-    "header": "time duration str",
-    "type": "string"
-  },
-  {
-    "name": "note",
-    "header": "note",
-    "type": "string"
-  },
-  {
-    "name": "place_street_number",
-    "header": "place street number",
+    "name": "place_country",
+    "header": "place country",
     "type": "string"
   },
   {
@@ -73,14 +43,9 @@ const columnsRaw: ColumnRaw[] = [
     "type": "string"
   },
   {
-    "name": "contact_phone",
-    "header": "contact phone",
-    "type": "string"
-  },
-  {
-    "name": "place_zip",
-    "header": "place zip",
-    "type": "string"
+    "name": "beds",
+    "header": "beds",
+    "type": "number"
   },
   {
     "name": "time_from_str",
@@ -88,14 +53,9 @@ const columnsRaw: ColumnRaw[] = [
     "type": "date"
   },
   {
-    "name": "place_country",
-    "header": "place country",
+    "name": "time_duration_str",
+    "header": "time duration str",
     "type": "string"
-  },
-  {
-    "name": "animals_present",
-    "header": "animals present",
-    "type": "boolean"
   },
   {
     "name": "languages",
@@ -111,7 +71,47 @@ const columnsRaw: ColumnRaw[] = [
     "name": "animals_allowed",
     "header": "animals allowed",
     "type": "boolean"
-  }
+  },
+  {
+    "name": "animals_present",
+    "header": "animals present",
+    "type": "boolean"
+  },
+  {
+    "name": "note",
+    "header": "note",
+    "type": "string"
+  },
+  {
+    "name": "contact_name_full",
+    "header": "contact name full",
+    "type": "string"
+  },
+  {
+    "name": "contact_phone",
+    "header": "contact phone",
+    "type": "string"
+  },
+  {
+    "name": "contact_email",
+    "header": "contact email",
+    "type": "string"
+  },
+  {
+    "name": "place_street",
+    "header": "place street",
+    "type": "string"
+  },
+  {
+    "name": "place_street_number",
+    "header": "place street number",
+    "type": "string"
+  },
+  {
+    "name": "place_zip",
+    "header": "place zip",
+    "type": "string"
+  },
 ]
 
 const filterMappings = {
