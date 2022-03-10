@@ -182,10 +182,13 @@ const HostOfferLookupTable = ({data}: HostOfferLookupTableProps) => {
   const reactdatagridi18n = resources[language]?.translation?.reactdatagrid
 
 
-  return <Box sx={{display: 'flex', alignItems: 'stretch', flexDirection: 'column', minHeight: '100%'}}>
+  return <Box sx={{
+      display: 'flex',
+      alignItems: 'stretch',
+      flexDirection: 'column',
+      height: '100%'}}>
     <div
-      style={{flex: '1 1', height: '100%'}}
-    >
+      style={{flex: '1 1', height: '100%'}}>
       <DataGrid
         idProperty="id"
         filterable
