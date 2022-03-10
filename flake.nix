@@ -35,7 +35,7 @@
       #./deployment/modules/sops.nix
       ./deployment/modules/dns.nix
       #./deployment/modules/monitoring/client.nix
-      #./deployment/modules/nginx/timmi.nix
+      ./deployment/modules/nginx/beherbergung.nix
       #nix-deploy-git.nixosModule
       #./deployment/modules/nix-deploy-git.nix
     ];
@@ -52,7 +52,7 @@
       beherbergung-lifeline = nixpkgs.lib.nixosSystem (lib.mergeAttrs commonAttrs {
         modules = commonModules ++ [
           ./deployment/hosts/beherbergung-lifeline/configuration.nix
-          #./deployment/modules/nginx/timmi-public.nix
+          #./deployment/modules/nginx/beherbergung-lifeline.nix
           #./deployment/modules/binarycache/client.nix
           #./deployment/modules/binarycache/server.nix
           #./deployment/modules/monitoring/server.nix

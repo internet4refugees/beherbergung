@@ -3,7 +3,8 @@ let
    util = dns.util.${system};
 in
 {
-  networking.domain = "beherbergung.mission-lifeline.de";
+  networking.domain = "beherbergung.broenradio.org";
+                      # "beherbergung.mission-lifeline.de";
 
   services.bind = {
     enable = true;
@@ -12,9 +13,9 @@ in
         master = true;
         file = util.writeZone "${config.networking.domain}" (import (./dns + "/${config.networking.domain}.nix") {inherit dns;});
       };
-      "beherbergung.broenradio.org" = {  ## not required in future (but till the NS-record of beherbergung.mission-lifeline.de is configured)
+      "beherbergung.mission-lifeline.de" = {  ## not required in future (but till the NS-record of beherbergung.mission-lifeline.de is configured)
         master = true;
-        file = util.writeZone "beherbergung.broenradio.org" (import (./dns + "/${config.networking.domain}.nix") {inherit dns;});
+        file = util.writeZone "beherbergung.mission-lifeline.de" (import (./dns + "/${config.networking.domain}.nix") {inherit dns;});
       };
     };
   };
