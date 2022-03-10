@@ -6,11 +6,13 @@ import HostOfferLookupTable from "./HostOfferLookupTable";
 type HostLookupWrapperProps = Record<string, never>
 
 const HostOfferLookupWrapper = ({}: HostLookupWrapperProps) => {
-  const {data, isFetching} = useGetOffersQuery({auth: testAuth as Auth}, {staleTime: 60 * 1000})
+  const staleTimeMinutes = 60  // hotfix till table settings by user (columns width, filters, sort options, …) are persisted
+  const {data, isFetching} = useGetOffersQuery({auth: testAuth as Auth}, {staleTime: staleTimeMinutes * 60 * 1000})
 
-  return <>{
-    (!isFetching && data?.get_offers) ? <HostOfferLookupTable data={data}/> : "loading…"
-  }</>
+  return <>
+    { isFetching && <p> loading… </p> }
+    { data?.get_offers && <HostOfferLookupTable data={data}/> }
+  </>
 }
 
 export default HostOfferLookupWrapper
