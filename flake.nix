@@ -33,7 +33,7 @@
       ./deployment/modules/default.nix
       #sops-nix.nixosModules.sops
       #./deployment/modules/sops.nix
-      #./deployment/modules/dns.nix
+      ./deployment/modules/dns.nix
       #./deployment/modules/monitoring/client.nix
       #./deployment/modules/nginx/timmi.nix
       #nix-deploy-git.nixosModule
