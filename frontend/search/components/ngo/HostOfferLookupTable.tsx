@@ -198,7 +198,7 @@ const HostOfferLookupTable = ({data}: HostOfferLookupTableProps) => {
         columns={columns}
         dataSource={dataSource}
         i18n={reactdatagridi18n || undefined}
-        style={{flex: '1 1', height: '100%'}}
+        style={{height: '100%'}}
       />
     </div>
   </Box>
