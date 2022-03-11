@@ -1,8 +1,7 @@
 .container {
-  padding: 0 2rem;
 }
 
 .main {
+  max-height: 100vh;
   min-height: 100vh;
-  padding: 4rem 4rem;
 }
