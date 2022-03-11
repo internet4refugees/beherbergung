@@ -4,6 +4,7 @@
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [ring.middleware.content-type :refer [wrap-content-type]]
             [ring.middleware.not-modified :refer [wrap-not-modified]]
+            [ring.middleware.cors :refer [wrap-cors]]
             [ring.util.json-response :refer [json-response]]
             [ring.util.response :refer [resource-response content-type]]
             [lib.graphql.middleware :refer [wrap-graphql-error]]
@@ -89,6 +90,15 @@
                           :backend_base_url (:frontend-backend-base-url env)})
           (handler req))))
 
+(defn wrap-cors-from-env
+  "cors configuration depends on `env`"
+  [handler]
+  (fn [req]
+      (let [dynamic-wrapped (wrap-cors handler :access-control-allow-origin [#"http://localhost:3000"
+                                                                            (when (:frontend-base-url env) (re-pattern (:frontend-base-url env)))]
+                                               :access-control-allow-methods [:get :put :post :delete])
+            res (dynamic-wrapped req)]
+           res)))
 
 (defn wrap-defaults [handler]
   (-> handler
@@ -97,5 +107,7 @@
 
       (etag/wrap-file-etag)
       (wrap-not-modified)
+
+      (wrap-cors-from-env)
 
       (wrap-debug)))
