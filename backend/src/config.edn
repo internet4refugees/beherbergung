@@ -6,7 +6,7 @@
 
  :db-inmemory false
  :db-dir "./data/xtdb/rocksdb"
- :db-seed ""
+ :db-seed nil
  :db-export-prefix "./data/export/"
  :db-validate true
 
