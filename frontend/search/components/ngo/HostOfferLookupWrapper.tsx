@@ -16,7 +16,7 @@ const HostOfferLookupWrapper = ({}: HostLookupWrapperProps) => {
         display: 'flex',
         alignItems: 'stretch',
         flexDirection: 'column',
-        height: '100%'}}>
+        height: '100vh'}}>
         <div
           style={{flex: '1 1', height: '100%'}}>
             <HostOfferLookupTable data={data}/>
