@@ -2,7 +2,7 @@ import i18next from 'i18next'
 import '../../i18n/config'
 
 
-export default () => {
+const LanguageSelection = () => {
   const languages =   [{id: 'de', name: 'Deutsch'}, {id: 'en', name: 'Englisch'}]
 
   return  (
@@ -17,3 +17,5 @@ export default () => {
     </div>
   )
 }
+
+export default LanguageSelection
