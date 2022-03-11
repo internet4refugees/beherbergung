@@ -22,15 +22,11 @@ Implemented by reusing the technology stack of [swlkup](https://github.com/johan
 
 ## A frontend for authorized NGO members, to **search** the database
 
-A website written for this use case allows easy input of filters. The usage of finding matches will be much more convenient than working with a spreadsheet.
+A website [based on reactdatagrid](https://reactdatagrid.io/) allows easy filtering and sorting of results. The usage of finding matches is much more convenient than working with a regular spreadsheet. Collaboration features will be available soon.
 
-- [ ] **Should be available this week** (work in progress)
-
-Features to process an `hosting offer` dataset:
-
-- [ ] note if host was `contacted` (by which `login`) + additional notes
-- [ ] keep track if offer is `still free` / `occupied (till)` / `free again`
-
+- [x] Alpha version is online
+- [ ] Editable columns
+- [ ] Map view / Location filter+sorting
 
 ## A customizable public form, to submit new offers
 
