@@ -20,12 +20,11 @@
 
 (def mapping_lifeline_wpforms {:id #(or (get % "E-Mail") (get % "Telefonnummer")) ;; TODO: uuid will be generated when record is written to db
 
-                               ;; TODO: the times are not parsed till now
                                :time_from_str "frühestes Einzugsdatum"
-                               :time_duration_str "Möglicher Aufenthalt (Dauer)"
+                               :time_duration_str "Möglicher Aufenthalt (Dauer)"  ;; TODO: the duration is not parsed till now
 
                                :beds ["Verfügbare Betten" ->Int]
-                               :languages ["Sprachen (sprechen / verstehen)" #(split % #",")]
+                               :languages ["Sprachen (sprechen / verstehen)" #(split % #"\n")]
 
                                :place_country "Land"
                                :place_city "Ort"
