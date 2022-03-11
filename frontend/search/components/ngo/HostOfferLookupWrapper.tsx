@@ -1,17 +1,22 @@
 import React from 'react'
-import {Auth, useGetOffersQuery} from "../../codegen/generates";
+import { Auth, useGetOffersQuery } from "../../codegen/generates"
 import testAuth from '../util/testAuth.json'
-import HostOfferLookupTable from "./HostOfferLookupTable";
-import {Box} from "@mui/material";
+import HostOfferLookupTable from "./HostOfferLookupTable"
+import { Box } from "@mui/material"
+import { useTranslation } from 'react-i18next'
 
 type HostLookupWrapperProps = Record<string, never>
 
 const HostOfferLookupWrapper = ({}: HostLookupWrapperProps) => {
+  const { t } = useTranslation()
+
   const staleTimeMinutes = 60  // hotfix till table settings by user (columns width, filters, sort options, …) are persisted
-  const {data, isFetching} = useGetOffersQuery({auth: testAuth as Auth}, {staleTime: staleTimeMinutes * 60 * 1000})
+  const {data, isFetching, error} = useGetOffersQuery({auth: testAuth as Auth}, {staleTime: staleTimeMinutes * 60 * 1000})
 
   return <>
-    { isFetching && <p> loading… </p> }
+    { isFetching && <p>{ t('loading…') }</p> }
+    { error && <p>{ t('An error occurred while trying to get data from the backend.') }</p> }
+    { data && !data.get_offers && <p>{ t('Seems like you have no permissions. Please try to login again.') }</p> }
     { data?.get_offers && <Box sx={{
         display: 'flex',
         alignItems: 'stretch',
