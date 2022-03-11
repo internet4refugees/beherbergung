@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
@@ -18,11 +18,16 @@ type LeafletMapProps = {onBoundsChange?: (bounds: L.LatLngBounds) => void}
 
 const BoundsChangeListener = ({onBoundsChange}: {onBoundsChange?: (bounds: L.LatLngBounds) => void}) => {
   const map = useMap()
-  const updateBounds = () => {
-    onBoundsChange && onBoundsChange(
-      map.getBounds()
-    )
-  }
+
+  const updateBounds = useCallback(
+    () => {
+      onBoundsChange && onBoundsChange(
+        map.getBounds()
+      )
+    },
+    [map],
+  );
+
   useEffect(() => {
     updateBounds()
   }, [map, updateBounds])
