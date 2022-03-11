@@ -2,6 +2,7 @@ import React from 'react'
 import {Auth, useGetOffersQuery} from "../../codegen/generates";
 import testAuth from '../util/testAuth.json'
 import HostOfferLookupTable from "./HostOfferLookupTable";
+import {Box} from "@mui/material";
 
 type HostLookupWrapperProps = Record<string, never>
 
@@ -11,7 +12,16 @@ const HostOfferLookupWrapper = ({}: HostLookupWrapperProps) => {
 
   return <>
     { isFetching && <p> loading… </p> }
-    { data?.get_offers && <HostOfferLookupTable data={data}/> }
+    { data?.get_offers && <Box sx={{
+        display: 'flex',
+        alignItems: 'stretch',
+        flexDirection: 'column',
+        height: '100%'}}>
+        <div
+          style={{flex: '1 1', height: '100%'}}>
+            <HostOfferLookupTable data={data}/>
+        </div>
+    </Box> }
   </>
 }
 
