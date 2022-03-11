@@ -22,6 +22,4 @@
     shell = "${pkgs.bash}/bin/bash";
   };
   users.groups."beherbergung" = {};
-
-  networking.firewall.allowedTCPPorts = [ 4000 3000 ];
 }
