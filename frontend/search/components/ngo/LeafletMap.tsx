@@ -25,7 +25,7 @@ const BoundsChangeListener = ({onBoundsChange}: {onBoundsChange?: (bounds: L.Lat
         map.getBounds()
       )
     },
-    [map],
+    [map, onBoundsChange],
   );
 
   useEffect(() => {
