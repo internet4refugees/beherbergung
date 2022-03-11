@@ -13,10 +13,12 @@
 (defn JaNein->bool [JaNein]
   ({"Ja" true "Nein" false} JaNein))
 
-(defn ->Int [s]
+(defn ->Int
+  "If unable to parse, we return the original string (requires union datatype)"
+  [s]
   (try
     (Integer/parseInt s)
-    (catch NumberFormatException _e)))
+    (catch NumberFormatException _e s)))
 
 (def mapping_lifeline_wpforms {:id #(or (get % "E-Mail") (get % "Telefonnummer")) ;; TODO: uuid will be generated when record is written to db
 
@@ -60,12 +62,13 @@
 
 (s/def ::t_boolean t/boolean #_ (s/with-gen t/boolean #(s/gen boolean?)))
 (s/def ::t_string t/string #_ (s/with-gen t/string #(s/gen string?)))
-(s/def ::t_int t/int #_ (s/with-gen t/int #(s/gen int?)))
+(s/def ::t_int_string (s/or :int t/int
+                            :string t/string) #_ (s/with-gen t/int #(s/gen int?)))
 
 (s/def :xtdb.api/id (s/nilable ::t_string))  ;; TODO: in future not nilable
 (s/def ::time_from_str (s/nilable ::t_string))
 (s/def ::time_duration_str (s/nilable ::t_string))
-(s/def ::beds (s/nilable ::t_int))
+(s/def ::beds (s/nilable ::t_int_string))
 (s/def ::languages (s/nilable (s/* ::t_string)))
 (s/def ::place_country (s/nilable ::t_string))
 (s/def ::place_city (s/nilable ::t_string))
