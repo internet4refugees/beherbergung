@@ -13,19 +13,26 @@
 (defn JaNein->bool [JaNein]
   ({"Ja" true "Nein" false} JaNein))
 
-(defn ->Int
-  "If unable to parse, we return the original string (requires union datatype)"
-  [s]
-  (try
-    (Integer/parseInt s)
-    (catch NumberFormatException _e s)))
+(t/defscalar int_string
+  {:name "Int" :description "Integer or String"}
+  ;; TODO: Here we should be able to use s/with-gen
+  (fn [v]
+    (cond
+      (number? v)
+        (int v)
+      (string? v)
+        (try
+          (Integer/parseInt v)
+          (catch NumberFormatException _e v))
+      :else
+        ::s/invalid)))
 
 (def mapping_lifeline_wpforms {:id #(or (get % "E-Mail") (get % "Telefonnummer")) ;; TODO: uuid will be generated when record is written to db
 
                                :time_from_str "frühestes Einzugsdatum"
                                :time_duration_str "Möglicher Aufenthalt (Dauer)"  ;; TODO: the duration is not parsed till now
 
-                               :beds ["Verfügbare Betten" ->Int]
+                               :beds ["Verfügbare Betten" #(s/conform int_string %)]
                                :languages ["Sprachen (sprechen / verstehen)" #(split % #"\n")]
 
                                :place_country "Land"
@@ -62,8 +69,7 @@
 
 (s/def ::t_boolean t/boolean #_ (s/with-gen t/boolean #(s/gen boolean?)))
 (s/def ::t_string t/string #_ (s/with-gen t/string #(s/gen string?)))
-(s/def ::t_int_string (s/or :int t/int
-                            :string t/string) #_ (s/with-gen t/int #(s/gen int?)))
+(s/def ::t_int_string int_string #_ (s/with-gen t/int #(s/gen int?)))
 
 (s/def :xtdb.api/id (s/nilable ::t_string))  ;; TODO: in future not nilable
 (s/def ::time_from_str (s/nilable ::t_string))
