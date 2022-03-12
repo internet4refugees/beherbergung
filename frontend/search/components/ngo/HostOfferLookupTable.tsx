@@ -137,13 +137,13 @@ const filterMappings = {
   string: StringFilter,
   boolean: BoolFilter,
   number: NumberFilter,
-  date: DateFilter
+  date: DateFilter,
 }
 const operatorsForType = {
   number: 'gte',
   string: 'contains',
-  date: 'inrange',
-  boolean: 'eq'
+  date: 'beforeOrOn',
+  boolean: 'eq',
 }
 
 type CustomRendererMatcher = {
@@ -162,7 +162,7 @@ const customRendererForType: CustomRendererMatcher[] = [
   }
 ]
 
-const findMatchingRenderer = (c: ColumnRaw) => {
+const findMatchingRenderer = (c: Partial<ColumnRaw>) => {
   const customRenderer = customRendererForType.find(d => {
     // @ts-ignore
     return Object.keys(d.match).reduce((prev, cur) => prev && c[cur] === d.match[cur], true)
