@@ -23,7 +23,12 @@ type HostOfferLookupTableProps = {
   data: GetOffersQuery
 }
 
-type ColumnRaw = { name: string; header: string; type: string }
+interface ColumnRaw {
+  name: string;
+  header: string;
+  type: string;
+  defaultWidth: number;
+}
 
 /**
  * you can generate an inital raw column json by running the following
@@ -36,86 +41,95 @@ const makeColumnDefinition = (data: any) => Object.keys(data)
     type: typeof data[k]
   }))
 
-const columnsRaw: ColumnRaw[] = [
+const columnsRaw: Partial<ColumnRaw>[] = [
   {
     "name": "place_country",
-    "header": "place country",
-    "type": "string"
+    "header": "Country",
+    "type": "string",
+    "defaultWidth": 10
   },
   {
     "name": "place_city",
-    "header": "place city",
+    "header": "City",
     "type": "string"
   },
   {
     "name": "beds",
-    "header": "beds",
+    "header": "Beds",
     "type": "number"
   },
   {
     "name": "time_from_str",
-    "header": "time from str",
-    "type": "date"
+    "header": "From",
+    "type": "date",
+    "defaultWidth": 90
   },
   {
     "name": "time_duration_str",
-    "header": "time duration str",
+    "header": "Duration",
     "type": "string"
   },
   {
     "name": "languages",
     "header": "languages",
-    "type": "object"
+    "type": "object",
+    "defaultWidth": 200
   },
   {
     "name": "accessible",
     "header": "accessible",
-    "type": "boolean"
+    "type": "boolean",
+    "defaultWidth": 80
   },
   {
     "name": "animals_allowed",
-    "header": "animals allowed",
-    "type": "boolean"
+    "header": "allows animals",
+    "type": "boolean",
+    "defaultWidth": 80
   },
   {
     "name": "animals_present",
-    "header": "animals present",
-    "type": "boolean"
+    "header": "has animals",
+    "type": "boolean",
+    "defaultWidth": 80
   },
   {
     "name": "note",
-    "header": "note",
-    "type": "string"
+    "header": "Note",
+    "type": "string",
+    "defaultWidth": 400
   },
   {
     "name": "contact_name_full",
-    "header": "contact name full",
+    "header": "Name",
     "type": "string"
   },
   {
     "name": "contact_phone",
-    "header": "contact phone",
+    "header": "Phone",
     "type": "string"
   },
   {
     "name": "contact_email",
-    "header": "contact email",
+    "header": "EMail",
     "type": "string"
   },
   {
     "name": "place_street",
-    "header": "place street",
+    "header": "Street",
     "type": "string"
   },
   {
     "name": "place_street_number",
-    "header": "place street number",
-    "type": "string"
+    "header": "Street number",
+    "type": "string",
+    "defaultWidth": 80
   },
   {
     "name": "place_zip",
-    "header": "place zip",
-    "type": "string"
+    "header": "Zip",
+    "type": "string",
+    "defaultWidth": 80
   },
 ]
 
