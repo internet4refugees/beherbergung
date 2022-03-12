@@ -1,6 +1,12 @@
-{:verbose false
+{
+ :frontend-base-url "http://localhost:4000"
+ :frontend-backend-base-url "http://localhost:4000"
 
  :port 4000
+
+ :jwt-secret nil
+
+ :verbose false
 
  :validate-output true
 
@@ -20,7 +26,4 @@
 
  :admin-passphrase nil
  :admin-gpg-id "9EA68B7F21204979645182E4287B083353C3241C"
-
- :frontend-base-url "http://localhost:4000"
- :frontend-backend-base-url "http://localhost:4000"
 }

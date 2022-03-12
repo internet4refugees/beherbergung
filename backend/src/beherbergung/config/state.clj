@@ -7,8 +7,8 @@
 
 (s/def ::frontend-base-url string?)
 (s/def ::frontend-backend-base-url string?)
-
 (s/def ::port number?)  ;; the webserver port
+(s/def ::jwt-secret (s/nilable string?))
 
 (s/def ::verbose boolean?)
 
@@ -34,6 +34,7 @@
 (s/def ::env (s/keys :req-un [::frontend-base-url
                               ::frontend-backend-base-url
                               ::port
+                              ::jwt-secret
                               ::verbose
                               ::validate-output
                               ::db-inmemory ::db-dir
@@ -47,7 +48,8 @@
 
 (defn strip-secrets [env]
   (assoc env :mail-pass "*"
-             :admin-passphrase "*"))
+             :admin-passphrase "*"
+             :jwt-secret "*"))
 
 (defn filter-defined [keys-spec m]
   (let [req-un (last (s/form keys-spec))
