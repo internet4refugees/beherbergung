@@ -49,7 +49,7 @@ export function Login() {
       console.log('session expired')
       auth.logout()
     }
-  }, [auth.jwt, data])
+  }, [auth, data])
 
   if(!auth.jwt) {
     return (

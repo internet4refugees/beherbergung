@@ -293,7 +293,7 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTab
     /** For now the easiest way to ensure the user can see if data was updated in the db is by calling `refetch_rw()`
         TODO: error handling **/
     await mutate(auth, {value, columnId, rowId}) && refetch_rw()
-  }, [dataSource])
+  }, [auth, refetch_rw])
 
   const {i18n: {language}} = useTranslation()
   // @ts-ignore
