@@ -284,8 +284,10 @@ async function mutate(auth: AuthState, onEditComplete: {value: string, columnId:
   return result?.write_rw
 }
 
+const rw_default = {rw_note: ''}  // Required for filtering 'Not empty'. TODO: Should be fixed in StringFilter
+
 const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTableProps) => {
-  const dataSource = !data_ro.get_offers ? [] : data_ro.get_offers.map( e_ro => ({...e_ro, ...data_rw.find((e_rw: any) => e_rw.id === e_ro.id)}) )
+  const dataSource = !data_ro.get_offers ? [] : data_ro.get_offers.map( e_ro => ({...e_ro, ...(data_rw.find((e_rw: any) => e_rw.id === e_ro.id) || rw_default)}) )
 
   const auth = useAuthStore()
 
