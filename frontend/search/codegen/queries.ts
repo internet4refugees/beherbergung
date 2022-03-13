@@ -8,7 +8,7 @@ export const login = gql`
 export const get_offers = gql`
   query GetOffers($auth: Auth!) {
     get_offers(auth: $auth) {
-      id  
+      id
       time_from_str
       time_duration_str
       beds
@@ -25,5 +25,13 @@ export const get_offers = gql`
       contact_phone
       contact_email
       note
+    }
+  }`
+
+export const get_rw = gql`
+  query GetRw($auth: Auth!) {
+    get_rw(auth: $auth) {
+      id
+      rw_note
     }
   }`

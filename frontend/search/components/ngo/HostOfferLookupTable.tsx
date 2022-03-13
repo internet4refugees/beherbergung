@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react'
+import React, {ReactNode, useCallback} from 'react'
 
 import {CheckBoxOutlineBlank, CheckBox} from '@mui/icons-material';
 
@@ -17,16 +17,22 @@ import {useTranslation} from "react-i18next";
 import {resources} from '../../i18n/config';
 import {Box} from "@mui/material";
 
+import { fetcher } from '../../codegen/fetcher'
+import { useAuthStore, AuthState } from '../Login'
+
 global.moment = moment
 
 type HostOfferLookupTableProps = {
-  data: GetOffersQuery
+  data_ro: GetOffersQuery,
+  data_rw: any,  // TODO
+  refetch_rw: any,
 }
 
 interface ColumnRaw {
   name: string;
   header: string;
   type: string;
+  editable: boolean;
   defaultWidth: number;
 }
 
@@ -94,8 +100,15 @@ const columnsRaw: Partial<ColumnRaw>[] = [
     "defaultWidth": 80
   },
   {
+    "name": "rw_note",
+    "header": "Our notes",
+    "type": "string",
+    "editable": true,
+    "defaultWidth": 400
+  },
+  {
     "name": "note",
-    "header": "Note",
+    "header": "User comment",
     "type": "string",
     "defaultWidth": 400
   },
@@ -188,8 +201,23 @@ const defaultFilterValue: TypeFilterValue = columns
     } as unknown as TypeSingleFilterValue
   })
 
-const HostOfferLookupTable = ({data}: HostOfferLookupTableProps) => {
-  const dataSource = data.get_offers || []
+async function mutate(auth: AuthState, onEditComplete: {value: string, columnId: string, rowId: string}) {
+  const result = await fetcher<any, any>(`mutation WriteRW($auth: Auth!, $onEditComplete: Boolean) {
+                                            write_rw(auth: $auth, onEditComplete: $onEditComplete) }`,
+                                         {auth, onEditComplete})()
+  return result?.write_rw
+}
+
+const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTableProps) => {
+  const dataSource = !data_ro.get_offers ? [] : data_ro.get_offers.map( e_ro => ({...e_ro, ...data_rw.find((e_rw: any) => e_rw.id === e_ro.id)}) )
+
+  const auth = useAuthStore()
+
+  const onEditComplete = useCallback(async ({value, columnId, rowId}) => {
+    /** For now the easiest way to ensure the user can see if data was updated in the db is by calling `refetch_rw()`
+        TODO: error handling **/
+    (value || value==='') && await mutate(auth, {value, columnId, rowId}) && refetch_rw()
+  }, [dataSource])
 
   const {i18n: {language}} = useTranslation()
   // @ts-ignore
@@ -216,6 +244,7 @@ const HostOfferLookupTable = ({data}: HostOfferLookupTableProps) => {
         dataSource={dataSource}
         i18n={reactdatagridi18n || undefined}
         style={{height: '100%'}}
+	onEditComplete={onEditComplete}
       />
     </div>
   </Box>

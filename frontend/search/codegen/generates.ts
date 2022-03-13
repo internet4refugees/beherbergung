@@ -33,6 +33,7 @@ export type QueryType = {
   export?: Maybe<Export>;
   /** The offers that are visible for the ngo, belonging to the login */
   get_offers?: Maybe<Array<Get_Offers>>;
+  get_rw?: Maybe<Array<Get_Rw>>;
   /** For a username+password get a jwt containing the login:id */
   login: Login;
 };
@@ -46,6 +47,12 @@ export type QueryTypeExportArgs = {
 
 /** The type that query operations will be rooted at. */
 export type QueryTypeGet_OffersArgs = {
+  auth: Auth;
+};
+
+
+/** The type that query operations will be rooted at. */
+export type QueryTypeGet_RwArgs = {
   auth: Auth;
 };
 
@@ -86,6 +93,12 @@ export type Get_Offers = {
   time_from_str?: Maybe<Scalars['String']>;
 };
 
+export type Get_Rw = {
+  __typename?: 'get_rw';
+  id?: Maybe<Scalars['String']>;
+  rw_note?: Maybe<Scalars['String']>;
+};
+
 /** For a username+password get a jwt containing the login:id */
 export type Login = {
   __typename?: 'login';
@@ -105,6 +118,13 @@ export type GetOffersQueryVariables = Exact<{
 
 
 export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null }> | null };
+
+export type GetRwQueryVariables = Exact<{
+  auth: Auth;
+}>;
+
+
+export type GetRwQuery = { __typename?: 'QueryType', get_rw?: Array<{ __typename?: 'get_rw', id?: string | null, rw_note?: string | null }> | null };
 
 
 export const LoginDocument = `
@@ -159,5 +179,25 @@ export const useGetOffersQuery = <
     useQuery<GetOffersQuery, TError, TData>(
       ['GetOffers', variables],
       fetcher<GetOffersQuery, GetOffersQueryVariables>(GetOffersDocument, variables),
+      options
+    );
+export const GetRwDocument = `
+    query GetRw($auth: Auth!) {
+  get_rw(auth: $auth) {
+    id
+    rw_note
+  }
+}
+    `;
+export const useGetRwQuery = <
+      TData = GetRwQuery,
+      TError = unknown
+    >(
+      variables: GetRwQueryVariables,
+      options?: UseQueryOptions<GetRwQuery, TError, TData>
+    ) =>
+    useQuery<GetRwQuery, TError, TData>(
+      ['GetRw', variables],
+      fetcher<GetRwQuery, GetRwQueryVariables>(GetRwDocument, variables),
       options
     );
