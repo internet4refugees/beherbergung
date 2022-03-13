@@ -9,19 +9,27 @@
             [clojure.edn]))
 
 (s/fdef write_rw
-        :args (s/tuple map? (s/keys :req-un [::auth/auth ::oneditcomplete/onEditComplete]) map? map?)
+        :args (s/tuple map? (s/keys :req-un [::auth/auth ::oneditcomplete/onEditCompleteByType]) map? map?)
         :ret (s/nilable t/boolean))
 
 (defn write_rw
   [_node opt ctx _info]
-  (let [{:keys [tx_sync tx-committed?]} (:db_ctx ctx)
-        [ngo:id] (auth+role->entity ctx (:auth opt) ::ngo/record)]
-       (boolean (when ngo:id
-         (let [{:keys [value columnId rowId]} (:onEditComplete opt)
-               t (tx_sync [;; TODO use :xtdb.api/match to verify we update the latest version instead of last write wins
-                           [:xtdb.api/put {:xt/id rowId
-                                           :xt/spec ::offer-rw/record
-                                           (keyword columnId) value}]])]
-              (tx-committed? t))))))
+  (let [{:keys [tx-fn-put tx-fn-call sync]} (:db_ctx ctx)
+        [ngo:id] (auth+role->entity ctx (:auth opt) ::ngo/record)
+        tx_result (when ngo:id
+                        (let [{:keys [rowId columnId
+                                      value_boolean value_string]} (:onEditCompleteByType opt)
+                              value (or value_boolean value_string)
+                              doc {(keyword columnId) value}]
+                             (tx-fn-put :write_rw
+                                   '(fn [ctx eid doc]
+                                        (let [db (xtdb.api/db ctx)
+                                              entity (xtdb.api/entity db eid)]
+                                             [[:xtdb.api/put (assoc (merge entity doc)
+                                                                    :xt/id eid
+                                                                    :xt/spec ::offer-rw/record)]])))
+                             (tx-fn-call :write_rw rowId doc)))]
+       (sync)
+       (boolean (:xtdb.api/tx-id tx_result))))
 
 (s/def ::get_offers (t/resolver #'write_rw))

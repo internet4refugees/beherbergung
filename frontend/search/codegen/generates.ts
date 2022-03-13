@@ -26,6 +26,29 @@ export type Auth = {
   password: Scalars['String'];
 };
 
+/** If this server supports mutation, the type that mutation operations will be rooted at. */
+export type MutationType = {
+  __typename?: 'MutationType';
+  write_rw?: Maybe<Scalars['Boolean']>;
+};
+
+
+/** If this server supports mutation, the type that mutation operations will be rooted at. */
+export type MutationTypeWrite_RwArgs = {
+  auth: Auth;
+  onEditComplete: OnEditComplete;
+};
+
+/** https://reactdatagrid.io/docs/api-reference#props-onEditComplete */
+export type OnEditComplete = {
+  /** Self descriptive. */
+  columnId: Scalars['String'];
+  /** Self descriptive. */
+  rowId: Scalars['String'];
+  /** Self descriptive. */
+  value: Scalars['String'];
+};
+
 /** The type that query operations will be rooted at. */
 export type QueryType = {
   __typename?: 'QueryType';
@@ -95,8 +118,12 @@ export type Get_Offers = {
 
 export type Get_Rw = {
   __typename?: 'get_rw';
-  id?: Maybe<Scalars['String']>;
+  /** Self descriptive. */
+  id: Scalars['String'];
+  rw_contact_replied?: Maybe<Scalars['String']>;
+  rw_contacted?: Maybe<Scalars['String']>;
   rw_note?: Maybe<Scalars['String']>;
+  rw_offer_occupied?: Maybe<Scalars['String']>;
 };
 
 /** For a username+password get a jwt containing the login:id */
@@ -124,7 +151,7 @@ export type GetRwQueryVariables = Exact<{
 }>;
 
 
-export type GetRwQuery = { __typename?: 'QueryType', get_rw?: Array<{ __typename?: 'get_rw', id?: string | null, rw_note?: string | null }> | null };
+export type GetRwQuery = { __typename?: 'QueryType', get_rw?: Array<{ __typename?: 'get_rw', id: string, rw_contacted?: string | null, rw_contact_replied?: string | null, rw_offer_occupied?: string | null, rw_note?: string | null }> | null };
 
 
 export const LoginDocument = `
@@ -185,6 +212,9 @@ export const GetRwDocument = `
     query GetRw($auth: Auth!) {
   get_rw(auth: $auth) {
     id
+    rw_contacted
+    rw_contact_replied
+    rw_offer_occupied
     rw_note
   }
 }

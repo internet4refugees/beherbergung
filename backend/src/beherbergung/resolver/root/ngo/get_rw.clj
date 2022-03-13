@@ -7,14 +7,9 @@
             [beherbergung.model.offer-rw :as offer-rw :refer [db->graphql]]
             [clojure.edn]))
 
-(s/def :xt/id t/string)
-(s/def ::rw_note (s/nilable t/string))
-(s/def ::rw (s/keys :req-un [:xt/id
-                             ::rw_note]))
-
 (s/fdef get_rw
         :args (s/tuple map? (s/keys :req-un [::auth/auth]) map? map?)
-        :ret (s/nilable (s/* ::rw)))
+        :ret (s/nilable (s/* ::offer-rw/record)))
 
 (defn get_rw
   [_node opt ctx _info]

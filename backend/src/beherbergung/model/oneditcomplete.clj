@@ -4,9 +4,11 @@
 
 (s/def ::rowId t/string)
 (s/def ::columnId t/string)
-(s/def ::value t/string)
+(s/def ::value_string (s/nilable t/string))
+(s/def ::value_boolean (s/nilable t/boolean))
 
-(t/defobject OnEditComplete {:name "OnEditComplete" :kind t/input-object-kind :description "https://reactdatagrid.io/docs/api-reference#props-onEditComplete"}
-             :req-un [::rowId ::columnId ::value])
+(t/defobject OnEditCompleteByType {:name "OnEditCompleteByType" :kind t/input-object-kind :description "https://reactdatagrid.io/docs/api-reference#props-onEditComplete"}
+             :req-un [::rowId ::columnId
+                      ::value_string ::value_boolean])
 
-(s/def ::onEditComplete OnEditComplete)
+(s/def ::onEditCompleteByType OnEditCompleteByType)

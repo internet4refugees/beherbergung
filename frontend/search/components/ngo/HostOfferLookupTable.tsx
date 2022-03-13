@@ -1,21 +1,22 @@
 import React, {ReactNode, useCallback} from 'react'
 
-import {CheckBoxOutlineBlank, CheckBox} from '@mui/icons-material';
+import {CheckBoxOutlineBlank, CheckBox} from '@mui/icons-material'
 
 import '@inovua/reactdatagrid-community/index.css'
 
 import DataGrid from '@inovua/reactdatagrid-community'
+import {TypeColumn, TypeFilterValue, TypeSingleFilterValue} from "@inovua/reactdatagrid-community/types"
 import DateFilter from '@inovua/reactdatagrid-community/DateFilter'
 import StringFilter from '@inovua/reactdatagrid-community/StringFilter'
 import BoolFilter from '@inovua/reactdatagrid-community/BoolFilter'
-import {GetOffersQuery} from "../../codegen/generates";
-import {TypeColumn, TypeFilterValue, TypeSingleFilterValue} from "@inovua/reactdatagrid-community/types";
-import NumberFilter from "@inovua/reactdatagrid-community/NumberFilter";
-import moment from "moment";
+import NumberFilter from "@inovua/reactdatagrid-community/NumberFilter"
+import BoolEditor from '@inovua/reactdatagrid-community/BoolEditor'
+import {GetOffersQuery} from "../../codegen/generates"
+import moment from "moment"
 
-import {useTranslation} from "react-i18next";
-import {resources} from '../../i18n/config';
-import {Box} from "@mui/material";
+import {useTranslation} from "react-i18next"
+import {resources} from '../../i18n/config'
+import {Box} from "@mui/material"
 
 import { fetcher } from '../../codegen/fetcher'
 import { useAuthStore, AuthState } from '../Login'
@@ -34,6 +35,7 @@ interface ColumnRaw {
   type: string;
   editable: boolean;
   defaultWidth: number;
+  group: string;
 }
 
 /**
@@ -49,13 +51,46 @@ const makeColumnDefinition = (data: any) => Object.keys(data)
 
 const columnsRaw: Partial<ColumnRaw>[] = [
   {
+    "name": "rw_contacted",
+    "group": "contactStatus",
+    "header": "Asked",
+    "type": "boolean",
+    "editable": true,
+    "defaultWidth": 85
+  },
+  {
+    "name": "rw_contact_replied",
+    "group": "contactStatus",
+    "header": "Answered",
+    "type": "boolean",
+    "editable": true,
+    "defaultWidth": 110
+  },
+  {
+    "name": "rw_offer_occupied",
+    "group": "offerStatus",
+    "header": "Occupied",
+    "type": "boolean",
+    "editable": true,
+    "defaultWidth": 110
+  },
+  {
+    "name": "rw_note",
+    "header": "Our notes",
+    "type": "string",
+    "editable": true,
+    "defaultWidth": 400
+  },
+  {
     "name": "place_country",
+    "group": "locationCoarse",
     "header": "Country",
     "type": "string",
     "defaultWidth": 10
   },
   {
     "name": "place_city",
+    "group": "locationCoarse",
     "header": "City",
     "type": "string"
   },
@@ -66,45 +101,43 @@ const columnsRaw: Partial<ColumnRaw>[] = [
   },
   {
     "name": "time_from_str",
+    "group": "time",
     "header": "From",
     "type": "date",
     "defaultWidth": 90
   },
   {
     "name": "time_duration_str",
+    "group": "time",
     "header": "Duration",
     "type": "string"
   },
   {
     "name": "languages",
-    "header": "languages",
+    "header": "Languages",
     "type": "object",
     "defaultWidth": 200
   },
   {
     "name": "accessible",
-    "header": "accessible",
+    "group": "features",
+    "header": "Accessible",
     "type": "boolean",
-    "defaultWidth": 80
+    "defaultWidth": 120
   },
   {
     "name": "animals_allowed",
-    "header": "allows animals",
+    "group": "animals",
+    "header": "Allowed",
     "type": "boolean",
-    "defaultWidth": 80
+    "defaultWidth": 100
   },
   {
     "name": "animals_present",
-    "header": "has animals",
+    "group": "animals",
+    "header": "Present",
     "type": "boolean",
-    "defaultWidth": 80
-  },
-  {
-    "name": "rw_note",
-    "header": "Our notes",
-    "type": "string",
-    "editable": true,
-    "defaultWidth": 400
+    "defaultWidth": 95
   },
   {
     "name": "note",
@@ -114,36 +147,53 @@ const columnsRaw: Partial<ColumnRaw>[] = [
   },
   {
     "name": "contact_name_full",
+    "group": "contact",
     "header": "Name",
     "type": "string"
   },
   {
     "name": "contact_phone",
+    "group": "contact",
     "header": "Phone",
     "type": "string"
   },
   {
     "name": "contact_email",
+    "group": "contact",
     "header": "EMail",
     "type": "string"
   },
   {
     "name": "place_street",
+    "group": "address",
     "header": "Street",
     "type": "string"
   },
   {
     "name": "place_street_number",
-    "header": "Street number",
+    "group": "address",
+    "header": "Number",
     "type": "string",
-    "defaultWidth": 80
+    "defaultWidth": 100
   },
   {
     "name": "place_zip",
+    "group": "address",
     "header": "Zip",
     "type": "string",
     "defaultWidth": 80
   },
+]
+
+const groups = [
+  { name: 'contactStatus', header: 'Contact Status' },
+  { name: 'offerStatus', header: 'Offer Status' },
+  { name: 'locationCoarse', header: 'Location' },
+  { name: 'time', header: 'Time' },
+  { name: 'features', header: 'Limitations / Features' },
+  { name: 'animals', group: 'features', header: 'Animals' },
+  { name: 'contact', header: 'Contact' },
+  { name: 'address', group: 'contact', header: 'Address' },
 ]
 
 const filterMappings = {
@@ -151,6 +201,12 @@ const filterMappings = {
   boolean: BoolFilter,
   number: NumberFilter,
   date: DateFilter,
+}
+const editorMappings = {
+  string: null,
+  boolean: BoolEditor,
+  number: null,
+  date: null
 }
 const operatorsForType = {
   number: 'gte',
@@ -164,6 +220,16 @@ type CustomRendererMatcher = {
   render: (...args: any[]) => ReactNode
 }
 
+function Email({value}: {value: string}) {
+  const href = `mailto:${value}`
+  return <a href={href}>{value}</a>
+}
+
+function Phone({value}: {value: string}) {
+  const href = `tel:${value}`
+  return <a href={href}>{value}</a>
+}
+
 const customRendererForType: CustomRendererMatcher[] = [
   {
     match: {type: 'boolean'},
@@ -171,7 +237,11 @@ const customRendererForType: CustomRendererMatcher[] = [
   },
   {
     match: {type: 'string', name: 'contact_email'},
-    render: ({value}) => (<a href={`mailto:${value}`}>{value}</a>)
+    render: Email
+  },
+  {
+    match: {type: 'string', name: 'contact_phone'},
+    render: Phone
   }
 ]
 
@@ -187,7 +257,8 @@ const columns: TypeColumn[] = columnsRaw
   .map(c => ({
     ...c,
     render: findMatchingRenderer(c) || undefined,
-    filterEditor: filterMappings[c.type as 'string' | 'number' | 'boolean' | 'date']
+    filterEditor: filterMappings[c.type as 'string' | 'number' | 'boolean' | 'date'],
+    editor: editorMappings[c.type as 'string' | 'number' | 'boolean' | 'date']
   }))
 
 const defaultFilterValue: TypeFilterValue = columns
@@ -202,9 +273,14 @@ const defaultFilterValue: TypeFilterValue = columns
   })
 
 async function mutate(auth: AuthState, onEditComplete: {value: string, columnId: string, rowId: string}) {
-  const result = await fetcher<any, any>(`mutation WriteRW($auth: Auth!, $onEditComplete: Boolean) {
-                                            write_rw(auth: $auth, onEditComplete: $onEditComplete) }`,
-                                         {auth, onEditComplete})()
+  const type = typeof(onEditComplete.value)
+  const onEditCompleteByType = {rowId: onEditComplete.rowId,
+                                columnId: onEditComplete.columnId,
+                                value_boolean: type === 'boolean' && onEditComplete.value || null,
+                                value_string: type === 'string' && onEditComplete.value || null}
+  const result = await fetcher<any, any>(`mutation WriteRW($auth: Auth!, $onEditCompleteByType: Boolean) {
+                                            write_rw(auth: $auth, onEditCompleteByType: $onEditCompleteByType) }`,
+                                         {auth, onEditCompleteByType})()
   return result?.write_rw
 }
 
@@ -216,7 +292,7 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTab
   const onEditComplete = useCallback(async ({value, columnId, rowId}) => {
     /** For now the easiest way to ensure the user can see if data was updated in the db is by calling `refetch_rw()`
         TODO: error handling **/
-    (value || value==='') && await mutate(auth, {value, columnId, rowId}) && refetch_rw()
+    await mutate(auth, {value, columnId, rowId}) && refetch_rw()
   }, [dataSource])
 
   const {i18n: {language}} = useTranslation()
@@ -245,6 +321,7 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTab
         i18n={reactdatagridi18n || undefined}
         style={{height: '100%'}}
 	onEditComplete={onEditComplete}
+	groups={groups}
       />
     </div>
   </Box>

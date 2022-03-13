@@ -32,6 +32,9 @@ export const get_rw = gql`
   query GetRw($auth: Auth!) {
     get_rw(auth: $auth) {
       id
+      rw_contacted
+      rw_contact_replied
+      rw_offer_occupied
       rw_note
     }
   }`
