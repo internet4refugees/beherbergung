@@ -21,7 +21,7 @@ const HostOfferLookupWrapper = ({}: HostLookupWrapperProps) => {
         display: 'flex',
         alignItems: 'stretch',
         flexDirection: 'column',
-        height: '100vh'}}>
+        height: '100%'}}>
       <div>
         { (queryResult_ro.isFetching || queryResult_rw.isFetching) && t('loading…') }
         { (queryResult_ro.error || queryResult_rw.error) && t('An error occurred while trying to get data from the backend.') }
