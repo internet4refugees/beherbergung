@@ -1,8 +1,10 @@
-import {Array2StringTransformOptions} from "../tableValueMapper";
+import {Array2StringTransformOptions, DateToISOTransformOptions} from "../tableValueMapper";
 
 export type ColumnOptions = {
+  dateFormat?: string
   transform?: {
     array2string?: Array2StringTransformOptions
+    date2Iso?: DateToISOTransformOptions
   }
 }
 export interface ColumnRaw {

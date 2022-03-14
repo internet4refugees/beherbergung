@@ -62,7 +62,15 @@ const columnsRaw: ColumnRaw[] = [
     "group": "time",
     "header": "From",
     "type": "date",
-    "defaultWidth": 90
+    "defaultWidth": 90,
+    "options": {
+      "dateFormat": "MM/DD/YYYY",
+      "transform": {
+        "date2Iso": {
+          "inputDateFormat": "MM/DD/YYYY"
+        }
+      }
+    }
   },
   {
     "name": "time_duration_str",
@@ -74,7 +82,14 @@ const columnsRaw: ColumnRaw[] = [
     "name": "languages",
     "header": "Languages",
     "type": "object",
-    "defaultWidth": 200
+    "defaultWidth": 200,
+    "options": {
+      "transform": {
+        array2string: {
+          join: ","
+        }
+      }
+    }
   },
   {
     "name": "accessible",
