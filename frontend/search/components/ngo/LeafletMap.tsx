@@ -5,15 +5,18 @@ import 'leaflet/dist/leaflet.css'
 import {
   LayersControl,
   MapContainer,
-  Marker,
-  Polygon,
-  Polyline,
+  //Marker,
+  //Polygon,
+  //Polyline,
   Popup,
+  Circle,
   TileLayer,
   useMap,
   useMapEvent
 } from '@monsonjeremy/react-leaflet'
 import * as L from 'leaflet'
+import { useLeafletStore } from './LeafletStore'
+
 type LeafletMapProps = {onBoundsChange?: (bounds: L.LatLngBounds) => void}
 
 const BoundsChangeListener = ({onBoundsChange}: {onBoundsChange?: (bounds: L.LatLngBounds) => void}) => {
@@ -26,7 +29,7 @@ const BoundsChangeListener = ({onBoundsChange}: {onBoundsChange?: (bounds: L.Lat
       )
     },
     [map, onBoundsChange],
-  );
+  )
 
   useEffect(() => {
     updateBounds()
@@ -36,12 +39,14 @@ const BoundsChangeListener = ({onBoundsChange}: {onBoundsChange?: (bounds: L.Lat
   useMapEvent('load', (e) =>  updateBounds())
   return null
 }
+
 const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
   const [zoom, setZoom] = useState<number>( 8 )
   const [position, setPosition] = useState<L.LatLngExpression>(  {
     lat: 51.0833,
     lng: 13.73126,
   } )
+  const leafletStore = useLeafletStore()
 
   return (
     <>
@@ -80,6 +85,19 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
               maxNativeZoom={20}
             />
           </LayersControl.BaseLayer>
+
+
+          {leafletStore.markers.map(m =>
+	    /** TODO: Maybe a clustered marker would be helpfull, but we loose the possibility of showing the radius (display accuracy of the coordinate).
+	    *         Probably the best solution is showing Circle and clustered marker.
+	    **/
+            <Circle key={m.id}
+                    center={[m.lat, m.lng]}
+                    radius={m.radius}
+                    pathOptions={{color: 'grey'}}>
+              <Popup><a href={`#${m.id}`}>{ m.content }</a></Popup>
+            </Circle>
+          )}
         </LayersControl>
       </MapContainer>
     </>)

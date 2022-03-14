@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useGetOffersQuery, useGetRwQuery } from "../../codegen/generates"
 import HostOfferLookupTable, {HostOfferLookupTableProps} from "./HostOfferLookupTable"
 import { Box } from "@mui/material"
 import { useTranslation } from 'react-i18next'
 import { Login, useAuthStore } from '../Login'
+import { useLeafletStore } from './LeafletStore'
+import { filterUndefOrNull } from '../util/notEmpty'
 
 type HostOfferLookupWrapperProps = Partial<HostOfferLookupTableProps>
 
@@ -13,8 +15,21 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
 
   const staleTimeMinutes_ro = 5
   const staleTimeMinutes_rw = 1
-  const queryResult_ro = useGetOffersQuery({auth}, {staleTime: staleTimeMinutes_ro * 60 * 1000})
-  const queryResult_rw = useGetRwQuery({auth}, {staleTime: staleTimeMinutes_rw * 60 * 1000})
+  const queryResult_ro = useGetOffersQuery({auth}, {enabled: !!auth.jwt, staleTime: staleTimeMinutes_ro * 60 * 1000})
+  const queryResult_rw = useGetRwQuery({auth}, {enabled: !!auth.jwt, staleTime: staleTimeMinutes_rw * 60 * 1000})
+  const {data: data_ro} = queryResult_ro
+  const {data: data_rw} = queryResult_rw
+
+  const leafletStore = useLeafletStore()
+  useEffect(() => {
+    const markers = data_ro?.get_offers?.map(row => (row.id && row.place_lon && row.place_lat
+						            && ({id: row.id,
+                                                                 lat: row.place_lat,
+                                                                 lng: row.place_lon,
+                                                                 radius: 1000,  // TODO
+                                                                 content: 'TODO'}) || undefined))
+    leafletStore.setMarkers(filterUndefOrNull(markers))
+  }, [data_ro])
 
   return <>
     <Box sx={{
@@ -25,16 +40,16 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
       <div style={{minHeight: '2em', display: 'flex'}}>
         { (queryResult_ro.isFetching || queryResult_rw.isFetching) && t('loading…') }
         { (queryResult_ro.error || queryResult_rw.error) && t('An error occurred while trying to get data from the backend.') }
-        { (queryResult_ro.data && !queryResult_ro.data.get_offers || queryResult_rw.data && !queryResult_rw.data.get_rw)
+        { (data_ro && !data_ro.get_offers || data_rw && !data_rw.get_rw)
           && t('Seems like you have no permissions. Please try to login again.') }
         <Login/>
       </div>
-      {queryResult_ro.data && <div
+      {data_ro && <div
           style={{flex: '1 1', height: '100%'}}>
             <HostOfferLookupTable
               {...props}
-              data_ro={queryResult_ro.data.get_offers}
-              data_rw={queryResult_rw.data?.get_rw}
+              data_ro={data_ro.get_offers}
+              data_rw={data_rw?.get_rw}
               refetch_rw={queryResult_rw.refetch}
             />
         </div>}
