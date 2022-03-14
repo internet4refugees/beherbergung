@@ -96,7 +96,7 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
 	    /** TODO: Maybe a clustered marker would be helpfull, but we loose the possibility of showing the radius (display accuracy of the coordinate).
 	    *         Probably the best solution is showing Circle and clustered marker.
 	    **/
-            <Circle key={m.id}
+            <Circle key={m.id + Math.random() /* Till we have unique ids from the db */}
                     center={[m.lat, m.lng]}
                     radius={m.radius}
                     pathOptions={{color: 'grey'}}>
