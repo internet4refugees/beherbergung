@@ -20,10 +20,15 @@ import { useLeafletStore } from './LeafletStore'
 type LeafletMapProps = {onBoundsChange?: (bounds: L.LatLngBounds) => void}
 
 const BoundsChangeListener = ({onBoundsChange}: {onBoundsChange?: (bounds: L.LatLngBounds) => void}) => {
+  const leafletStore = useLeafletStore()
+
   const map = useMap()
 
   const updateBounds = useCallback(
     () => {
+      leafletStore.setCenter(map.getCenter())
+
+      // onBoundsChange is unused at the moment
       onBoundsChange && onBoundsChange(
         map.getBounds()
       )

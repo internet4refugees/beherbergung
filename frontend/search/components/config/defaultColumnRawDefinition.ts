@@ -33,6 +33,13 @@ const columnsRaw: ColumnRaw[] = [
     "defaultWidth": 400
   },
   {
+    "name": "place_distance",
+    "group": "distance",
+    "header": "km",
+    "type": "number",
+    "defaultWidth": 105
+  },
+  {
     "name": "place_country",
     "group": "locationCoarse",
     "header": "Country",
