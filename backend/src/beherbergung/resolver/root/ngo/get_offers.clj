@@ -5,103 +5,10 @@
             [beherbergung.config.state :refer [env]]
             [beherbergung.model.auth :as auth]
             [beherbergung.model.ngo :as ngo]
-            [clojure.edn]
-            [clojure.spec.gen.alpha :as gen]
-            [beherbergung.db.export :refer [write-edn]]
-            [clojure.string :refer [split]]))
-
-(defn JaNein->bool [JaNein]
-  ({"Ja" true "Nein" false} JaNein))
-
-(t/defscalar int_string
-  {:name "Int" :description "Integer or String"}
-  ;; TODO: Here we should be able to use s/with-gen
-  (fn [v]
-    (cond
-      (number? v)
-        (int v)
-      (string? v)
-        (try
-          (Integer/parseInt v)
-          (catch NumberFormatException _e v))
-      :else
-        ::s/invalid)))
-
-(def mapping_lifeline_wpforms {:id #(or (get % "E-Mail") (get % "Telefonnummer")) ;; TODO: uuid will be generated when record is written to db
-
-                               :time_from_str "frühestes Einzugsdatum"
-                               :time_duration_str "Möglicher Aufenthalt (Dauer)"  ;; TODO: the duration is not parsed till now
-
-                               :beds ["Verfügbare Betten" #(s/conform int_string %)]
-                               :languages ["Sprachen (sprechen / verstehen)" #(split % #"\n")]
-
-                               :place_country "Land"
-                               :place_city "Ort"
-                               :place_zip "PLZ"
-                               :place_street "Straße"
-                               :place_street_number"Hausnummer"
-
-                               :accessible ["Ist die Unterkunft rollstuhlgerecht?" JaNein->bool]
-                               :animals_allowed ["Haustiere erlaubt?" JaNein->bool]
-                               :animals_present ["Sind Haustiere im Haushalt vorhanden?" JaNein->bool]
-
-                               :contact_name_full "Name"
-                               :contact_phone "Telefonnummer"
-                               :contact_email "E-Mail"
-                               :note "Nachricht"})
-#_(def mapping_identity {:accessible :accessible
-                       :note :note})
-
-(defn unify
-  [offers mapping]
-  (let [mapping->fn (fn [mapping]
-                        (fn [dataset] (->> mapping
-                                           (map (fn [[k v]]
-                                                    [k (cond (fn? v)
-                                                               (v dataset)
-                                                             (vector? v)
-                                                               (let [[orig_kw parse_fn] v]
-                                                                    (parse_fn (get dataset orig_kw)))
-                                                             :else
-                                                               (get dataset v))]))
-                                           (into {}))))]
-       (map (mapping->fn mapping) offers)))
-
-(s/def ::t_boolean t/boolean #_ (s/with-gen t/boolean #(s/gen boolean?)))
-(s/def ::t_string t/string #_ (s/with-gen t/string #(s/gen string?)))
-(s/def ::t_int_string int_string #_ (s/with-gen t/int #(s/gen int?)))
-(s/def ::t_float t/float)
-
-(s/def :xtdb.api/id (s/nilable ::t_string))  ;; TODO: in future not nilable
-(s/def ::time_from_str (s/nilable ::t_string))
-(s/def ::time_duration_str (s/nilable ::t_string))
-(s/def ::beds (s/nilable ::t_int_string))
-(s/def ::languages (s/nilable (s/* ::t_string)))
-(s/def ::place_country (s/nilable ::t_string))
-(s/def ::place_city (s/nilable ::t_string))
-(s/def ::place_zip (s/nilable ::t_string))
-(s/def ::place_street (s/nilable ::t_string))
-(s/def ::place_street_number (s/nilable ::t_string))
-(s/def ::place_lon (s/nilable ::t_float))
-(s/def ::place_lat (s/nilable ::t_float))
-(s/def ::accessible (s/nilable ::t_boolean))
-(s/def ::animals_allowed (s/nilable ::t_boolean))
-(s/def ::animals_present (s/nilable ::t_boolean))
-(s/def ::contact_name_full (s/nilable ::t_string))
-(s/def ::contact_phone (s/nilable ::t_string))
-(s/def ::contact_email (s/nilable ::t_string))
-(s/def ::note (s/nilable ::t_string))
-(s/def ::offer (s/keys :req-un [:xtdb.api/id
-                                ::time_from_str ::time_duration_str ::beds ::languages
-                                ::place_country ::place_city ::place_zip ::place_street ::place_street_number
-                                ::place_lon ::place_lat
-                                ::accessible ::animals_allowed ::animals_present
-                                ::contact_name_full ::contact_phone ::contact_email
-                                ::note]))
-
-(comment
-  (write-edn "./data/sample-data/example.edn"
-             (gen/sample (s/gen ::offer))))
+            [beherbergung.model.offer :as offer]
+            [beherbergung.model.offer-mapping.core :refer [unify]]
+            [beherbergung.model.offer-mapping.lifeline]
+            [clojure.edn]))
 
 (defn mock_geocoding
   "just to provide sample data while developing the frontend"
@@ -113,7 +20,7 @@
 
 (s/fdef get_offers
         :args (s/tuple map? (s/keys :req-un [::auth/auth]) map? map?)
-        :ret (s/nilable (s/* ::offer)))
+        :ret (s/nilable (s/* ::offer/offer)))
 
 
 (defn get_offers
@@ -127,7 +34,7 @@
          (mock_geocoding  ;; TODO
            (if (:import-file env)
                (unify (clojure.edn/read-string (slurp (:import-file env)))
-                      mapping_lifeline_wpforms)
+                      beherbergung.model.offer-mapping.lifeline/mapping)
                (clojure.edn/read-string (slurp "./data/sample-data/example.edn"))  ;; till conflict between `specialist-server.type` and `with-gen` is fixed
                #_(gen/sample (s/gen ::offer)))))))
 
