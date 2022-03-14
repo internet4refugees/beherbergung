@@ -22,13 +22,13 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
         alignItems: 'stretch',
         flexDirection: 'column',
         height: '100%'}}>
-      <div>
+      <div style={{minHeight: '2em', display: 'flex'}}>
         { (queryResult_ro.isFetching || queryResult_rw.isFetching) && t('loading…') }
         { (queryResult_ro.error || queryResult_rw.error) && t('An error occurred while trying to get data from the backend.') }
         { (queryResult_ro.data && !queryResult_ro.data.get_offers || queryResult_rw.data && !queryResult_rw.data.get_rw)
           && t('Seems like you have no permissions. Please try to login again.') }
+        <Login/>
       </div>
-      <Login/>
       {queryResult_ro.data && <div
           style={{flex: '1 1', height: '100%'}}>
             <HostOfferLookupTable

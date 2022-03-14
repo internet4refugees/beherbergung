@@ -18,8 +18,8 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <SplitPane split={"horizontal"}>
-          <LeafletMapWithoutSSR />
           <HostOfferLookupWrapper />
+          <LeafletMapWithoutSSR />
         </SplitPane>
       </main>
 
