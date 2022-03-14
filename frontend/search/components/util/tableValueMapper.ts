@@ -7,7 +7,7 @@ export type Array2StringTransformOptions = {
 
 const array2string = (value: string[], options: Array2StringTransformOptions) => value.join(options.join || ',')
 
-export const transformValue = <T>(values: T, columnsRaw: ColumnRaw[]) => {
+export const transformValue: <T>(values: T, columnsRaw: ColumnRaw[]) => T = (values, columnsRaw) => {
   const newValues = {...values}
   columnsRaw
     .forEach(c => {

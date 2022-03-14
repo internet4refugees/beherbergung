@@ -5,13 +5,14 @@ import {CheckBoxOutlineBlank, CheckBox} from '@mui/icons-material'
 import '@inovua/reactdatagrid-community/index.css'
 
 import DataGrid from '@inovua/reactdatagrid-community'
+import filter from '@inovua/reactdatagrid-community/filter'
 import {TypeColumn, TypeFilterValue, TypeSingleFilterValue} from "@inovua/reactdatagrid-community/types"
 import DateFilter from '@inovua/reactdatagrid-community/DateFilter'
 import StringFilter from '@inovua/reactdatagrid-community/StringFilter'
 import BoolFilter from '@inovua/reactdatagrid-community/BoolFilter'
 import NumberFilter from "@inovua/reactdatagrid-community/NumberFilter"
 import BoolEditor from '@inovua/reactdatagrid-community/BoolEditor'
-import {GetOffersQuery, GetRwQuery} from "../../codegen/generates"
+import {GetOffersDocument, GetOffersQuery, GetRwQuery} from "../../codegen/generates"
 import moment from "moment"
 
 import {useTranslation} from "react-i18next"
@@ -28,10 +29,12 @@ import {transformValue} from "../util/tableValueMapper";
 
 global.moment = moment
 
+type Data = GetOffersQuery["get_offers"];
 type HostOfferLookupTableProps = {
   data_ro?: GetOffersQuery,
   data_rw?: GetRwQuery,  // TODO
   refetch_rw: any,
+  onFilteredDataChange?: (data: Data[]) => void
 }
 
 const filterMappings = {
@@ -124,11 +127,21 @@ async function mutate(auth: AuthState, onEditComplete: {value: string, columnId:
 
 const rw_default = {rw_note: ''}  // Required for filtering 'Not empty'. TODO: Should be fixed in StringFilter
 
-const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTableProps) => {
-  const [dataSource, setDataSource] = useState<any[]>([]);
+const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw, onFilteredDataChange}: HostOfferLookupTableProps) => {
+  const [dataSource, setDataSource] = useState<Data[]>([]);
+  const [filteredData, setFilteredData] = useState<Data[]>([]);
+  const [filterValue, setFilterValue] = useState(defaultFilterValue);
+
+  const filterValueChangeHandler = useCallback((_filterValue) => {
+    const data = filter(dataSource, filterValue)  as Data[]
+    setFilterValue(_filterValue);
+    setFilteredData(data)
+    onFilteredDataChange && onFilteredDataChange(data)
+  }, [dataSource])
 
 
   useEffect(() => {
+    // @ts-ignore
     setDataSource((/*data_rw?.get_rw || */ data_ro?.get_offers || []).map(v => transformValue(v, columnsRaw)))
   }, [data_ro, data_rw]);
 
@@ -149,7 +162,8 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTab
         filterable
         showColumnMenuFilterOptions={true}
         showFilteringMenuItems={true}
-        defaultFilterValue={defaultFilterValue}
+        filterValue={filterValue}
+        onFilterValueChange={filterValueChangeHandler}
         rowIndexColumn
         enableSelection
         enableColumnAutosize={false}
