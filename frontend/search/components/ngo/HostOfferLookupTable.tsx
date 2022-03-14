@@ -1,4 +1,4 @@
-import React, {ReactNode, useCallback} from 'react'
+import React, {ReactNode, useCallback, useEffect, useState} from 'react'
 
 import {CheckBoxOutlineBlank, CheckBox} from '@mui/icons-material'
 
@@ -11,7 +11,7 @@ import StringFilter from '@inovua/reactdatagrid-community/StringFilter'
 import BoolFilter from '@inovua/reactdatagrid-community/BoolFilter'
 import NumberFilter from "@inovua/reactdatagrid-community/NumberFilter"
 import BoolEditor from '@inovua/reactdatagrid-community/BoolEditor'
-import {GetOffersQuery} from "../../codegen/generates"
+import {GetOffersQuery, GetRwQuery} from "../../codegen/generates"
 import moment from "moment"
 
 import {useTranslation} from "react-i18next"
@@ -23,12 +23,14 @@ import { useAuthStore, AuthState } from '../Login'
 import defaultColumnRawDefinition from "../config/defaultColumnRawDefinition";
 import defaultColumnGroups from "../config/defaultColumnGroups";
 import { ColumnRaw } from '../util/datagrid/columnRaw'
+import columnsRaw from "../config/defaultColumnRawDefinition";
+import {transformValue} from "../util/tableValueMapper";
 
 global.moment = moment
 
 type HostOfferLookupTableProps = {
-  data_ro: GetOffersQuery,
-  data_rw: any,  // TODO
+  data_ro?: GetOffersQuery,
+  data_rw?: GetRwQuery,  // TODO
   refetch_rw: any,
 }
 
@@ -123,7 +125,12 @@ async function mutate(auth: AuthState, onEditComplete: {value: string, columnId:
 const rw_default = {rw_note: ''}  // Required for filtering 'Not empty'. TODO: Should be fixed in StringFilter
 
 const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTableProps) => {
-  const dataSource = !data_ro.get_offers ? [] : data_ro.get_offers.map( e_ro => ({...e_ro, ...(data_rw.find((e_rw: any) => e_rw.id === e_ro.id) || rw_default)}) )
+  const [dataSource, setDataSource] = useState<any[]>([]);
+
+
+  useEffect(() => {
+    setDataSource((/*data_rw?.get_rw || */ data_ro?.get_offers || []).map(v => transformValue(v, columnsRaw)))
+  }, [data_ro, data_rw]);
 
   const auth = useAuthStore()
 
@@ -137,14 +144,7 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTab
   // @ts-ignore
   const reactdatagridi18n = resources[language]?.translation?.reactdatagrid
 
-  return <Box sx={{
-      display: 'flex',
-      alignItems: 'stretch',
-      flexDirection: 'column',
-      height: '100%'}}>
-    <div
-      style={{flex: '1 1', height: '100%'}}>
-      <DataGrid
+  return <DataGrid
         idProperty="id"
         filterable
         showColumnMenuFilterOptions={true}
@@ -157,11 +157,9 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTab
         dataSource={dataSource}
         i18n={reactdatagridi18n || undefined}
         style={{height: '100%'}}
-	onEditComplete={onEditComplete}
-	groups={defaultColumnGroups}
+	      onEditComplete={onEditComplete}
+	      groups={defaultColumnGroups}
       />
-    </div>
-  </Box>
 }
 
 export default HostOfferLookupTable

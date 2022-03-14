@@ -17,27 +17,25 @@ const HostOfferLookupWrapper = ({}: HostLookupWrapperProps) => {
   const queryResult_rw = useGetRwQuery({auth}, {staleTime: staleTimeMinutes_rw * 60 * 1000})
 
   return <>
-    <div style={{minHeight: '5vh', display: 'flex'}}>  {/** TODO: a proper Header (css class) **/}
+    <Box sx={{
+        display: 'flex',
+        alignItems: 'stretch',
+        flexDirection: 'column',
+        height: '100vh'}}>
       <div>
         { (queryResult_ro.isFetching || queryResult_rw.isFetching) && t('loading…') }
         { (queryResult_ro.error || queryResult_rw.error) && t('An error occurred while trying to get data from the backend.') }
         { (queryResult_ro.data && !queryResult_ro.data.get_offers || queryResult_rw.data && !queryResult_rw.data.get_rw)
-	  && t('Seems like you have no permissions. Please try to login again.') }
+          && t('Seems like you have no permissions. Please try to login again.') }
       </div>
       <Login/>
-    </div>
-    { queryResult_ro.data?.get_offers && <Box sx={{
-        display: 'flex',
-        alignItems: 'stretch',
-        flexDirection: 'column',
-        height: '95vh'}}>
-        <div
+      {queryResult_ro.data && <div
           style={{flex: '1 1', height: '100%'}}>
             <HostOfferLookupTable data_ro={queryResult_ro.data}
-	                          data_rw={queryResult_rw.data?.get_rw||[]}
+	                          data_rw={queryResult_rw.data}
 				  refetch_rw={queryResult_rw.refetch}/>
-        </div>
-    </Box> }
+        </div>}
+    </Box>
   </>
 }
 

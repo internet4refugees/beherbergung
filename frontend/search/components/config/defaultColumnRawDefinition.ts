@@ -1,6 +1,6 @@
 import {ColumnRaw} from "../util/datagrid/columnRaw";
 
-const columnsRaw: Partial<ColumnRaw>[] = [
+const columnsRaw: ColumnRaw[] = [
   {
     "name": "rw_contacted",
     "group": "contactStatus",
