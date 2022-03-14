@@ -1,13 +1,13 @@
 import React from 'react'
 import { useGetOffersQuery, useGetRwQuery } from "../../codegen/generates"
-import HostOfferLookupTable from "./HostOfferLookupTable"
+import HostOfferLookupTable, {HostOfferLookupTableProps} from "./HostOfferLookupTable"
 import { Box } from "@mui/material"
 import { useTranslation } from 'react-i18next'
 import { Login, useAuthStore } from '../Login'
 
-type HostLookupWrapperProps = Record<string, never>
+type HostOfferLookupWrapperProps = Partial<HostOfferLookupTableProps>
 
-const HostOfferLookupWrapper = ({}: HostLookupWrapperProps) => {
+const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
   const { t } = useTranslation()
   const auth = useAuthStore()
 
@@ -31,9 +31,12 @@ const HostOfferLookupWrapper = ({}: HostLookupWrapperProps) => {
       <Login/>
       {queryResult_ro.data && <div
           style={{flex: '1 1', height: '100%'}}>
-            <HostOfferLookupTable data_ro={queryResult_ro.data}
-	                          data_rw={queryResult_rw.data}
-				  refetch_rw={queryResult_rw.refetch}/>
+            <HostOfferLookupTable
+              {...props}
+              data_ro={queryResult_ro.data}
+              data_rw={queryResult_rw.data}
+              refetch_rw={queryResult_rw.refetch}
+            />
         </div>}
     </Box>
   </>

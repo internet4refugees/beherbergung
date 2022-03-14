@@ -30,7 +30,7 @@ import {transformValue} from "../util/tableValueMapper";
 global.moment = moment
 
 type Data = GetOffersQuery["get_offers"];
-type HostOfferLookupTableProps = {
+export type HostOfferLookupTableProps = {
   data_ro?: GetOffersQuery,
   data_rw?: GetRwQuery,  // TODO
   refetch_rw: any,
