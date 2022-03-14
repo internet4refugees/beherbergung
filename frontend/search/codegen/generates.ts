@@ -36,17 +36,17 @@ export type MutationType = {
 /** If this server supports mutation, the type that mutation operations will be rooted at. */
 export type MutationTypeWrite_RwArgs = {
   auth: Auth;
-  onEditComplete: OnEditComplete;
+  onEditCompleteByType: OnEditCompleteByType;
 };
 
 /** https://reactdatagrid.io/docs/api-reference#props-onEditComplete */
-export type OnEditComplete = {
+export type OnEditCompleteByType = {
   /** Self descriptive. */
   columnId: Scalars['String'];
   /** Self descriptive. */
   rowId: Scalars['String'];
-  /** Self descriptive. */
-  value: Scalars['String'];
+  value_boolean?: InputMaybe<Scalars['Boolean']>;
+  value_string?: InputMaybe<Scalars['String']>;
 };
 
 /** The type that query operations will be rooted at. */
@@ -109,6 +109,8 @@ export type Get_Offers = {
   note?: Maybe<Scalars['String']>;
   place_city?: Maybe<Scalars['String']>;
   place_country?: Maybe<Scalars['String']>;
+  place_lat?: Maybe<Scalars['Float']>;
+  place_lon?: Maybe<Scalars['Float']>;
   place_street?: Maybe<Scalars['String']>;
   place_street_number?: Maybe<Scalars['String']>;
   place_zip?: Maybe<Scalars['String']>;
@@ -144,7 +146,7 @@ export type GetOffersQueryVariables = Exact<{
 }>;
 
 
-export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null }> | null };
+export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null }> | null };
 
 export type GetRwQueryVariables = Exact<{
   auth: Auth;
@@ -186,6 +188,8 @@ export const GetOffersDocument = `
     place_zip
     place_street
     place_street_number
+    place_lon
+    place_lat
     accessible
     animals_allowed
     animals_present

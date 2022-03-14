@@ -70,6 +70,7 @@
 (s/def ::t_boolean t/boolean #_ (s/with-gen t/boolean #(s/gen boolean?)))
 (s/def ::t_string t/string #_ (s/with-gen t/string #(s/gen string?)))
 (s/def ::t_int_string int_string #_ (s/with-gen t/int #(s/gen int?)))
+(s/def ::t_float t/float)
 
 (s/def :xtdb.api/id (s/nilable ::t_string))  ;; TODO: in future not nilable
 (s/def ::time_from_str (s/nilable ::t_string))
@@ -81,6 +82,8 @@
 (s/def ::place_zip (s/nilable ::t_string))
 (s/def ::place_street (s/nilable ::t_string))
 (s/def ::place_street_number (s/nilable ::t_string))
+(s/def ::place_lon (s/nilable ::t_float))
+(s/def ::place_lat (s/nilable ::t_float))
 (s/def ::accessible (s/nilable ::t_boolean))
 (s/def ::animals_allowed (s/nilable ::t_boolean))
 (s/def ::animals_present (s/nilable ::t_boolean))
@@ -91,6 +94,7 @@
 (s/def ::offer (s/keys :req-un [:xtdb.api/id
                                 ::time_from_str ::time_duration_str ::beds ::languages
                                 ::place_country ::place_city ::place_zip ::place_street ::place_street_number
+                                ::place_lon ::place_lat
                                 ::accessible ::animals_allowed ::animals_present
                                 ::contact_name_full ::contact_phone ::contact_email
                                 ::note]))
@@ -98,6 +102,14 @@
 (comment
   (write-edn "./data/sample-data/example.edn"
              (gen/sample (s/gen ::offer))))
+
+(defn mock_geocoding
+  "just to provide sample data while developing the frontend"
+  [table]
+  (map #(-> %
+            (assoc :place_lon  12.34
+                   :place_lat 51.34))
+       table))
 
 (s/fdef get_offers
         :args (s/tuple map? (s/keys :req-un [::auth/auth]) map? map?)
@@ -112,10 +124,11 @@
        (when ngo:id
          ;; TODO: take it from the db and filter it by visibility to the ngo
          ;; When importing, we want define to which ngo the imported dataset is visible
-         (if (:import-file env)
-             (unify (clojure.edn/read-string (slurp (:import-file env)))
-                    mapping_lifeline_wpforms)
-             (clojure.edn/read-string (slurp "./data/sample-data/example.edn"))  ;; till conflict between `specialist-server.type` and `with-gen` is fixed
-             #_(gen/sample (s/gen ::offer))))))
+         (mock_geocoding  ;; TODO
+           (if (:import-file env)
+               (unify (clojure.edn/read-string (slurp (:import-file env)))
+                      mapping_lifeline_wpforms)
+               (clojure.edn/read-string (slurp "./data/sample-data/example.edn"))  ;; till conflict between `specialist-server.type` and `with-gen` is fixed
+               #_(gen/sample (s/gen ::offer)))))))
 
 (s/def ::get_offers (t/resolver #'get_offers))

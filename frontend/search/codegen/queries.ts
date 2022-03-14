@@ -18,6 +18,8 @@ export const get_offers = gql`
       place_zip
       place_street
       place_street_number
+      place_lon
+      place_lat
       accessible
       animals_allowed
       animals_present
