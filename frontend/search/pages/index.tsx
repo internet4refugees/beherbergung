@@ -3,6 +3,8 @@ import Head from 'next/head'
 import HostOfferLookupWrapper from '../components/ngo/HostOfferLookupWrapper'
 import styles from '../styles/Home.module.css'
 import { useTranslation } from 'react-i18next'
+import {SplitPane} from "react-collapse-pane";
+import {LeafletMapWithoutSSR} from "../components/ngo/LeafletMapWithoutSSR";
 
 const Home: NextPage = () => {
   const { t } = useTranslation()
@@ -15,7 +17,10 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <HostOfferLookupWrapper />
+        <SplitPane split={"horizontal"}>
+          <LeafletMapWithoutSSR />
+          <HostOfferLookupWrapper />
+        </SplitPane>
       </main>
 
     </div>

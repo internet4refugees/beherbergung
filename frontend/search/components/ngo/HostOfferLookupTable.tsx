@@ -1,200 +1,41 @@
-import React, {ReactNode, useCallback} from 'react'
+import React, {ReactNode, useCallback, useEffect, useState} from 'react'
 
 import {CheckBoxOutlineBlank, CheckBox} from '@mui/icons-material'
 
 import '@inovua/reactdatagrid-community/index.css'
 
 import DataGrid from '@inovua/reactdatagrid-community'
+import filter from '@inovua/reactdatagrid-community/filter'
 import {TypeColumn, TypeFilterValue, TypeSingleFilterValue} from "@inovua/reactdatagrid-community/types"
 import DateFilter from '@inovua/reactdatagrid-community/DateFilter'
 import StringFilter from '@inovua/reactdatagrid-community/StringFilter'
 import BoolFilter from '@inovua/reactdatagrid-community/BoolFilter'
 import NumberFilter from "@inovua/reactdatagrid-community/NumberFilter"
 import BoolEditor from '@inovua/reactdatagrid-community/BoolEditor'
-import {GetOffersQuery} from "../../codegen/generates"
+import { GetOffersQuery, GetRwQuery} from "../../codegen/generates"
 import moment from "moment"
 
 import {useTranslation} from "react-i18next"
 import {resources} from '../../i18n/config'
-import {Box} from "@mui/material"
 
 import { fetcher } from '../../codegen/fetcher'
 import { useAuthStore, AuthState } from '../Login'
+import defaultColumnRawDefinition from "../config/defaultColumnRawDefinition";
+import defaultColumnGroups from "../config/defaultColumnGroups";
+import { ColumnRaw } from '../util/datagrid/columnRaw'
+import columnsRaw from "../config/defaultColumnRawDefinition";
+import {transformValue} from "../util/tableValueMapper";
+import {filterUndefOrNull} from "../util/notEmpty";
 
 global.moment = moment
 
-type HostOfferLookupTableProps = {
-  data_ro: GetOffersQuery,
-  data_rw: any,  // TODO
+export type HostOfferLookupTableDataType = GetOffersQuery["get_offers"] & GetRwQuery["get_rw"];
+export type HostOfferLookupTableProps = {
+  data_ro?: GetOffersQuery["get_offers"],
+  data_rw?: GetRwQuery["get_rw"],  // TODO
   refetch_rw: any,
+  onFilteredDataChange?: (data: HostOfferLookupTableDataType[]) => void
 }
-
-interface ColumnRaw {
-  name: string;
-  header: string;
-  type: string;
-  editable: boolean;
-  defaultWidth: number;
-  group: string;
-}
-
-/**
- * you can generate an inital raw column json by running the following
- * function
- */
-const makeColumnDefinition = (data: any) => Object.keys(data)
-  .map(k => ({
-    name: k,
-    header: k.replace(/_/g, ' '),
-    type: typeof data[k]
-  }))
-
-const columnsRaw: Partial<ColumnRaw>[] = [
-  {
-    "name": "rw_contacted",
-    "group": "contactStatus",
-    "header": "Asked",
-    "type": "boolean",
-    "editable": true,
-    "defaultWidth": 85
-  },
-  {
-    "name": "rw_contact_replied",
-    "group": "contactStatus",
-    "header": "Answered",
-    "type": "boolean",
-    "editable": true,
-    "defaultWidth": 110
-  },
-  {
-    "name": "rw_offer_occupied",
-    "group": "offerStatus",
-    "header": "Occupied",
-    "type": "boolean",
-    "editable": true,
-    "defaultWidth": 110
-  },
-  {
-    "name": "rw_note",
-    "header": "Our notes",
-    "type": "string",
-    "editable": true,
-    "defaultWidth": 400
-  },
-  {
-    "name": "place_country",
-    "group": "locationCoarse",
-    "header": "Country",
-    "type": "string",
-    "defaultWidth": 10
-  },
-  {
-    "name": "place_city",
-    "group": "locationCoarse",
-    "header": "City",
-    "type": "string"
-  },
-  {
-    "name": "beds",
-    "header": "Beds",
-    "type": "number"
-  },
-  {
-    "name": "time_from_str",
-    "group": "time",
-    "header": "From",
-    "type": "date",
-    "defaultWidth": 90
-  },
-  {
-    "name": "time_duration_str",
-    "group": "time",
-    "header": "Duration",
-    "type": "string"
-  },
-  {
-    "name": "languages",
-    "header": "Languages",
-    "type": "object",
-    "defaultWidth": 200
-  },
-  {
-    "name": "accessible",
-    "group": "features",
-    "header": "Accessible",
-    "type": "boolean",
-    "defaultWidth": 120
-  },
-  {
-    "name": "animals_allowed",
-    "group": "animals",
-    "header": "Allowed",
-    "type": "boolean",
-    "defaultWidth": 100
-  },
-  {
-    "name": "animals_present",
-    "group": "animals",
-    "header": "Present",
-    "type": "boolean",
-    "defaultWidth": 95
-  },
-  {
-    "name": "note",
-    "header": "User comment",
-    "type": "string",
-    "defaultWidth": 400
-  },
-  {
-    "name": "contact_name_full",
-    "group": "contact",
-    "header": "Name",
-    "type": "string"
-  },
-  {
-    "name": "contact_phone",
-    "group": "contact",
-    "header": "Phone",
-    "type": "string"
-  },
-  {
-    "name": "contact_email",
-    "group": "contact",
-    "header": "EMail",
-    "type": "string"
-  },
-  {
-    "name": "place_street",
-    "group": "address",
-    "header": "Street",
-    "type": "string"
-  },
-  {
-    "name": "place_street_number",
-    "group": "address",
-    "header": "Number",
-    "type": "string",
-    "defaultWidth": 100
-  },
-  {
-    "name": "place_zip",
-    "group": "address",
-    "header": "Zip",
-    "type": "string",
-    "defaultWidth": 80
-  },
-]
-
-const groups = [
-  { name: 'contactStatus', header: 'Contact Status' },
-  { name: 'offerStatus', header: 'Offer Status' },
-  { name: 'locationCoarse', header: 'Location' },
-  { name: 'time', header: 'Time' },
-  { name: 'features', header: 'Limitations / Features' },
-  { name: 'animals', group: 'features', header: 'Animals' },
-  { name: 'contact', header: 'Contact' },
-  { name: 'address', group: 'contact', header: 'Address' },
-]
 
 const filterMappings = {
   string: StringFilter,
@@ -253,7 +94,7 @@ const findMatchingRenderer = (c: Partial<ColumnRaw>) => {
   return customRenderer?.render
 }
 
-const columns: TypeColumn[] = columnsRaw
+const columns: TypeColumn[] = defaultColumnRawDefinition
   .map(c => ({
     ...c,
     render: findMatchingRenderer(c) || undefined,
@@ -286,8 +127,30 @@ async function mutate(auth: AuthState, onEditComplete: {value: string, columnId:
 
 const rw_default = {rw_note: ''}  // Required for filtering 'Not empty'. TODO: Should be fixed in StringFilter
 
-const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTableProps) => {
-  const dataSource = !data_ro.get_offers ? [] : data_ro.get_offers.map( e_ro => ({...e_ro, ...(data_rw.find((e_rw: any) => e_rw.id === e_ro.id) || rw_default)}) )
+const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw, onFilteredDataChange}: HostOfferLookupTableProps) => {
+  const [dataSource, setDataSource] = useState<HostOfferLookupTableDataType[]>([]);
+  const [filteredData, setFilteredData] = useState<HostOfferLookupTableDataType[]>([]);
+  const [filterValue, setFilterValue] = useState(defaultFilterValue);
+
+  const filterValueChangeHandler = useCallback((_filterValue) => {
+    const data = filter(dataSource, filterValue)  as HostOfferLookupTableDataType[]
+    setFilterValue(_filterValue);
+    setFilteredData(data)
+    onFilteredDataChange && onFilteredDataChange(data)
+  }, [dataSource])
+
+
+  useEffect(() => {
+    // @ts-ignore
+    const data = filterUndefOrNull( data_ro
+      ?.map( e_ro => ({
+          ...e_ro,
+          ...((data_rw?.find((e_rw) => e_rw.id === e_ro.id) || rw_default))}) ) || [])
+
+    // @ts-ignore
+    data && setDataSource(data)
+    //setDataSource((/*data_rw?.get_rw || */ data_ro?.get_offers || []).map(v => transformValue(v, columnsRaw)))
+  }, [data_ro, data_rw]);
 
   const auth = useAuthStore()
 
@@ -301,15 +164,7 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTab
   // @ts-ignore
   const reactdatagridi18n = resources[language]?.translation?.reactdatagrid
 
-
-  return <Box sx={{
-      display: 'flex',
-      alignItems: 'stretch',
-      flexDirection: 'column',
-      height: '100%'}}>
-    <div
-      style={{flex: '1 1', height: '100%'}}>
-      <DataGrid
+  return <DataGrid
         idProperty="id"
         filterable
         showColumnMenuFilterOptions={true}
@@ -322,11 +177,9 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw}: HostOfferLookupTab
         dataSource={dataSource}
         i18n={reactdatagridi18n || undefined}
         style={{height: '100%'}}
-	onEditComplete={onEditComplete}
-	groups={groups}
+	      onEditComplete={onEditComplete}
+	      groups={defaultColumnGroups}
       />
-    </div>
-  </Box>
 }
 
 export default HostOfferLookupTable
