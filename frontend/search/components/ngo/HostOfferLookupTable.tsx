@@ -12,12 +12,11 @@ import StringFilter from '@inovua/reactdatagrid-community/StringFilter'
 import BoolFilter from '@inovua/reactdatagrid-community/BoolFilter'
 import NumberFilter from "@inovua/reactdatagrid-community/NumberFilter"
 import BoolEditor from '@inovua/reactdatagrid-community/BoolEditor'
-import {GetOffersDocument, GetOffersQuery, GetRwQuery} from "../../codegen/generates"
+import { GetOffersQuery, GetRwQuery} from "../../codegen/generates"
 import moment from "moment"
 
 import {useTranslation} from "react-i18next"
 import {resources} from '../../i18n/config'
-import {Box} from "@mui/material"
 
 import { fetcher } from '../../codegen/fetcher'
 import { useAuthStore, AuthState } from '../Login'
@@ -26,15 +25,16 @@ import defaultColumnGroups from "../config/defaultColumnGroups";
 import { ColumnRaw } from '../util/datagrid/columnRaw'
 import columnsRaw from "../config/defaultColumnRawDefinition";
 import {transformValue} from "../util/tableValueMapper";
+import {filterUndefOrNull} from "../util/notEmpty";
 
 global.moment = moment
 
-type Data = GetOffersQuery["get_offers"];
+export type HostOfferLookupTableDataType = GetOffersQuery["get_offers"] & GetRwQuery["get_rw"];
 export type HostOfferLookupTableProps = {
-  data_ro?: GetOffersQuery,
-  data_rw?: GetRwQuery,  // TODO
+  data_ro?: GetOffersQuery["get_offers"],
+  data_rw?: GetRwQuery["get_rw"],  // TODO
   refetch_rw: any,
-  onFilteredDataChange?: (data: Data[]) => void
+  onFilteredDataChange?: (data: HostOfferLookupTableDataType[]) => void
 }
 
 const filterMappings = {
@@ -128,12 +128,12 @@ async function mutate(auth: AuthState, onEditComplete: {value: string, columnId:
 const rw_default = {rw_note: ''}  // Required for filtering 'Not empty'. TODO: Should be fixed in StringFilter
 
 const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw, onFilteredDataChange}: HostOfferLookupTableProps) => {
-  const [dataSource, setDataSource] = useState<Data[]>([]);
-  const [filteredData, setFilteredData] = useState<Data[]>([]);
+  const [dataSource, setDataSource] = useState<HostOfferLookupTableDataType[]>([]);
+  const [filteredData, setFilteredData] = useState<HostOfferLookupTableDataType[]>([]);
   const [filterValue, setFilterValue] = useState(defaultFilterValue);
 
   const filterValueChangeHandler = useCallback((_filterValue) => {
-    const data = filter(dataSource, filterValue)  as Data[]
+    const data = filter(dataSource, filterValue)  as HostOfferLookupTableDataType[]
     setFilterValue(_filterValue);
     setFilteredData(data)
     onFilteredDataChange && onFilteredDataChange(data)
@@ -142,7 +142,14 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw, onFilteredDataChang
 
   useEffect(() => {
     // @ts-ignore
-    setDataSource((/*data_rw?.get_rw || */ data_ro?.get_offers || []).map(v => transformValue(v, columnsRaw)))
+    const data = filterUndefOrNull( data_ro
+      ?.map( e_ro => ({
+          ...e_ro,
+          ...((data_rw?.find((e_rw) => e_rw.id === e_ro.id) || rw_default))}) ) || [])
+
+    // @ts-ignore
+    data && setDataSource(data)
+    //setDataSource((/*data_rw?.get_rw || */ data_ro?.get_offers || []).map(v => transformValue(v, columnsRaw)))
   }, [data_ro, data_rw]);
 
   const auth = useAuthStore()
@@ -162,8 +169,7 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw, onFilteredDataChang
         filterable
         showColumnMenuFilterOptions={true}
         showFilteringMenuItems={true}
-        filterValue={filterValue}
-        onFilterValueChange={filterValueChangeHandler}
+        defaultFilterValue={defaultFilterValue}
         rowIndexColumn
         enableSelection
         enableColumnAutosize={false}

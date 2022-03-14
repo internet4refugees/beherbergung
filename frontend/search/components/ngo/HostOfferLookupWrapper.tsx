@@ -33,8 +33,8 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
           style={{flex: '1 1', height: '100%'}}>
             <HostOfferLookupTable
               {...props}
-              data_ro={queryResult_ro.data}
-              data_rw={queryResult_rw.data}
+              data_ro={queryResult_ro.data.get_offers}
+              data_rw={queryResult_rw.data?.get_rw}
               refetch_rw={queryResult_rw.refetch}
             />
         </div>}
