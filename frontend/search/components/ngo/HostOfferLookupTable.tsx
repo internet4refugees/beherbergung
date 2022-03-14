@@ -136,7 +136,7 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw, onFilteredDataChang
   const [filteredData, setFilteredData] = useState<HostOfferLookupTableDataType[]>([]);
   const [filterValue, setFilterValue] = useState<TypeFilterValue>(defaultFilterValue);
 
-  const filterValueChangeHandler = useCallback((_filterValue: TypeFilterValue) => {
+  const filterValueChangeHandler = useCallback((_filterValue?: TypeFilterValue) => {
     const data = !_filterValue
       ? dataSource
       : extendedFilter(
@@ -144,7 +144,7 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw, onFilteredDataChang
         _filterValue,
         columnsRaw
       )
-    setFilterValue(_filterValue);
+    _filterValue && setFilterValue(_filterValue);
     setFilteredData(data)
     onFilteredDataChange && onFilteredDataChange(data)
   }, [dataSource])
@@ -160,6 +160,7 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw, onFilteredDataChang
 
     // @ts-ignore
     data && setDataSource(data)
+    filterValueChangeHandler()
     //setDataSource((/*data_rw?.get_rw || */ data_ro?.get_offers || []).map(v => transformValue(v, columnsRaw)))
   }, [data_ro, data_rw]);
 

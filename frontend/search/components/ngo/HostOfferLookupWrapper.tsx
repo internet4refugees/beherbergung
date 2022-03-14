@@ -1,18 +1,29 @@
-import React, { useEffect } from 'react'
+import React, {useCallback, useEffect} from 'react'
 import { useGetOffersQuery, useGetRwQuery } from "../../codegen/generates"
-import HostOfferLookupTable, {HostOfferLookupTableProps} from "./HostOfferLookupTable"
+import HostOfferLookupTable, {HostOfferLookupTableDataType, HostOfferLookupTableProps} from "./HostOfferLookupTable"
 import { Box } from "@mui/material"
 import { useTranslation } from 'react-i18next'
 import { Login, useAuthStore } from '../Login'
-import { useLeafletStore } from './LeafletStore'
+import {Marker, useLeafletStore} from './LeafletStore'
 import { filterUndefOrNull } from '../util/notEmpty'
 import { haversine_distance } from '../util/distance'
+import {marker} from "leaflet";
 
 type HostOfferLookupWrapperProps = Partial<HostOfferLookupTableProps>
 
 function floor(v: number|undefined) {
   return v && Math.floor(v)
 }
+
+//type HostOfferLookupTableDataRowType = NonNullable<HostOfferLookupTableDataType>[number]
+const makeMarker: (row: { id?: string | null; place_lon?: number | null; place_lat?: number | null }) => Marker | undefined =
+  ({ id, place_lon, place_lat }) => id && place_lon && place_lat && ({
+    id: id,
+    lat: place_lat,
+    lng: place_lon,
+    radius: 1000,  // TODO
+    content: 'TODO'
+  }) || undefined;
 
 const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
   const { t } = useTranslation()
@@ -25,19 +36,26 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
   const {data: data_ro} = queryResult_ro
   const {data: data_rw} = queryResult_rw
 
-  const {setMarkers, center} = useLeafletStore()
+  const {setMarkers, center, setFilteredMarkers} = useLeafletStore()
   useEffect(() => {
-    const markers = data_ro?.get_offers?.map(row => (row.id && row.place_lon && row.place_lat
-                                                            && ({id: row.id,
-                                                                 lat: row.place_lat,
-                                                                 lng: row.place_lon,
-                                                                 radius: 1000,  // TODO
-                                                                 content: 'TODO'}) || undefined))
+    const markers = filterUndefOrNull( data_ro?.get_offers?.map(makeMarker) )
+
+
     setMarkers(filterUndefOrNull(markers))
   }, [data_ro])
 
   const data_ro_withDistance = data_ro?.get_offers?.map(r => ({...r,
                                                                place_distance: floor(haversine_distance(center?.lat, center?.lng, r.place_lat, r.place_lon))}))
+
+  const handleFilteredDataChange = useCallback(
+    (data:  HostOfferLookupTableDataType[]) => {
+      // @ts-ignore
+      const _filteredMarkers = filterUndefOrNull( data.map(d => d && makeMarker(d)))
+      console.log({_filteredMarkers})
+      //setFilteredMarkers(_filteredMarkers)
+    },
+    [setFilteredMarkers],
+  );
 
   return <>
     <Box sx={{
@@ -59,6 +77,7 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
               data_ro={data_ro_withDistance}
               data_rw={data_rw?.get_rw}
               refetch_rw={queryResult_rw.refetch}
+              onFilteredDataChange={handleFilteredDataChange}
             />
         </div>}
     </Box>
