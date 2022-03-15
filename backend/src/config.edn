@@ -17,6 +17,7 @@
  :db-validate true
 
  :import-file nil #_"./data/sample-data/example.edn"
+ :import-ngo "warhelp"
 
  ;:mail-host ""
  ;:mail-user ""

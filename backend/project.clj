@@ -26,6 +26,8 @@
                  [crypto-random "1.2.1"]
                  [buddy/buddy-sign "3.4.333"]
                  #_[com.draines/postal "2.0.4"]
+                 ;; ajax (geocoding)
+                 [clj-http "3.12.3"]
                  ;; logging
                  [org.clojure/tools.logging "1.2.4"]
                  [org.slf4j/slf4j-api "2.0.0-alpha6"]

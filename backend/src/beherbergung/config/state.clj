@@ -24,6 +24,7 @@
 (s/def ::admin-gpg-id string?)
 
 (s/def ::import-file (s/nilable string?))
+(s/def ::import-ngo (s/nilable string?))
 
 (s/def ::mail-host string?)
 (s/def ::mail-user string?)
@@ -43,6 +44,7 @@
                               ::admin-passphrase
                               ::admin-gpg-id
                               ::import-file
+                              ::import-ngo
                               ;::mail-host ::mail-user ::mail-pass ::mail-port ::mail-from
                              ]))
 

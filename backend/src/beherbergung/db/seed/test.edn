@@ -13,7 +13,7 @@
 
  {:xt/id "login_max_mueller"
   :xt/spec :beherbergung.model.login/record
-  :mail "praxis@max.mueller.de"
+  :mail "max.mueller@warhelp.eu"
   :password-hash "100$12$argon2id$v13$hq47jacLIYoiNMD9kdyy+w$ISDi+bSSTmsgqu648LQLv7ySU+lG2VGKRfa06HNfjzk$$$" #_"i!A;z\"'^G3Q)w])%83)" }
 
  {:xt/id "login_crewing"
