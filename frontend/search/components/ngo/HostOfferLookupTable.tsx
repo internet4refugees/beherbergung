@@ -144,9 +144,10 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw, onFilteredDataChang
     // @ts-ignore
     const data = filterUndefOrNull( data_ro
       ?.map( e_ro => ({
-          ...e_ro,
           ...((data_rw?.find((e_rw) => e_ro.id_tmp === e_rw.id || `rw_${e_ro.id}` === e_rw.id
-			    ) || rw_default))}) ) || [])
+			    ) || rw_default)),
+          ...e_ro
+      }) ) || [])
 
     // @ts-ignore
     data && setDataSource(data)
