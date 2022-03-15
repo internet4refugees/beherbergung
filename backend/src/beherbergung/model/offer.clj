@@ -23,7 +23,8 @@
 (s/def ::t_int_string int_string #_ (s/with-gen t/int #(s/gen int?)))
 (s/def ::t_float t/float)
 
-(s/def :xtdb.api/id (s/nilable ::t_string))  ;; TODO: in future not nilable
+(s/def :xt/id ::t_string)
+(s/def ::id_tmp (s/nilable ::t_string))
 (s/def ::time_from_str (s/nilable ::t_string))
 (s/def ::time_duration_str (s/nilable ::t_string))
 (s/def ::beds (s/nilable ::t_int_string))
@@ -42,7 +43,7 @@
 (s/def ::contact_phone (s/nilable ::t_string))
 (s/def ::contact_email (s/nilable ::t_string))
 (s/def ::note (s/nilable ::t_string))
-(s/def ::offer (s/keys :req-un [:xtdb.api/id
+(s/def ::offer (s/keys :req-un [:xtdb.api/id ::id_tmp
                                 ::time_from_str ::time_duration_str ::beds ::languages
                                 ::place_country ::place_city ::place_zip ::place_street ::place_street_number
                                 ::place_lon ::place_lat
@@ -53,3 +54,9 @@
 (comment
   (write-edn "./data/sample-data/example.edn"
              (gen/sample (s/gen ::offer))))
+
+(s/def ::record ::offer)
+
+(defn db->graphql [record]
+  (some-> record
+          (assoc :id (:xt/id record))))

@@ -2,9 +2,10 @@
   (:require [clojure.spec.alpha :as s]
             [specialist-server.type :as t]))
 
+(s/def ::id t/string)
 (s/def ::ngo (s/keys :req-un [::id ::name]))
 
-(s/def ::ngo:id t/id)
+(s/def ::ngo:id t/id)  ;; TODO remove
 
 (t/defscalar NgoRefs
              {:name "NgoRefs" :description "Either a collection of ngo-ids or `any`"}

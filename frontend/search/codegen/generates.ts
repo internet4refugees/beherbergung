@@ -105,6 +105,7 @@ export type Get_Offers = {
   contact_name_full?: Maybe<Scalars['String']>;
   contact_phone?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
+  id_tmp?: Maybe<Scalars['String']>;
   languages?: Maybe<Array<Scalars['String']>>;
   note?: Maybe<Scalars['String']>;
   place_city?: Maybe<Scalars['String']>;
@@ -146,7 +147,7 @@ export type GetOffersQueryVariables = Exact<{
 }>;
 
 
-export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null }> | null };
+export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id?: string | null, id_tmp?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null }> | null };
 
 export type GetRwQueryVariables = Exact<{
   auth: Auth;
@@ -179,6 +180,7 @@ export const GetOffersDocument = `
     query GetOffers($auth: Auth!) {
   get_offers(auth: $auth) {
     id
+    id_tmp
     time_from_str
     time_duration_str
     beds

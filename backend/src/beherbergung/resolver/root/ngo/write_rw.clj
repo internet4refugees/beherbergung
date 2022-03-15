@@ -28,7 +28,7 @@
                                              [[:xtdb.api/put (assoc (merge entity doc)
                                                                     :xt/id eid
                                                                     :xt/spec ::offer-rw/record)]])))
-                             (tx-fn-call :write_rw rowId doc)))]
+                             (tx-fn-call :write_rw (str "rw_" rowId) doc)))]
        (sync)
        (boolean (:xtdb.api/tx-id tx_result))))
 

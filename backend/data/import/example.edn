@@ -1,4 +1,5 @@
 ({:id "0"
+  :id_tmp "0"
   :beds 0,
   :place_street "",
   :contact_email nil,
@@ -6,16 +7,17 @@
   :time_duration_str "",
   :note "",
   :place_street_number "",
-  :place_city "",
+  :place_city "Dresden",
   :contact_phone nil,
   :place_zip "",
   :time_from_str "10/04/2022",
-  :place_country "",
+  :place_country "Deutschland",
   :animals_present false,
   :languages (),
   :accessible false,
   :animals_allowed false}
  {:id "1"
+  :id_tmp "1"
   :beds nil,
   :place_street "g",
   :contact_email "8",
@@ -23,7 +25,7 @@
   :time_duration_str "5",
   :note "F",
   :place_street_number "",
-  :place_city "",
+  :place_city "Leipzig",
   :contact_phone nil,
   :place_zip "",
   :time_from_str "03/04/2022",
@@ -33,6 +35,7 @@
   :accessible nil,
   :animals_allowed false}
  {:id "2"
+  :id_tmp "2"
   :beds 1,
   :place_street "p8",
   :contact_email "i",
@@ -40,16 +43,17 @@
   :time_duration_str "D0",
   :note "0",
   :place_street_number "",
-  :place_city nil,
+  :place_city "Chemnitz",
   :contact_phone "Q",
   :place_zip "RD",
   :time_from_str "03/04/2022",
-  :place_country nil,
+  :place_country "Germany",
   :animals_present true,
   :languages (),
   :accessible nil,
   :animals_allowed true}
  {:id "3"
+  :id_tmp "3"
   :beds 0,
   :place_street "w4",
   :contact_email "5",
@@ -57,16 +61,17 @@
   :time_duration_str "6GW",
   :note nil,
   :place_street_number "",
-  :place_city "1bh",
+  :place_city "Mittweida",
   :contact_phone nil,
   :place_zip "PG4",
   :time_from_str "03/04/2022",
-  :place_country "I7",
+  :place_country "Deutschland",
   :animals_present false,
   :languages ("x" "ni"),
   :accessible false,
   :animals_allowed nil}
  {:id "4"
+  :id_tmp "4"
   :beds 2,
   :place_street nil,
   :contact_email nil,
@@ -74,16 +79,17 @@
   :time_duration_str "wES5",
   :note "",
   :place_street_number "z7g",
-  :place_city "x",
+  :place_city "Freiberg",
   :contact_phone "w8l",
   :place_zip "1E",
   :time_from_str "01/01/2022",
-  :place_country "8",
+  :place_country "Deutschland",
   :animals_present nil,
   :languages (),
   :accessible true,
   :animals_allowed true}
  {:id "5"
+  :id_tmp "5"
   :beds 1,
   :place_street "4N2",
   :contact_email "u1",
@@ -91,7 +97,7 @@
   :time_duration_str "P0E5",
   :note "Ue7F1",
   :place_street_number "9Ms7",
-  :place_city "6",
+  :place_city "Radeberg",
   :contact_phone "OI",
   :place_zip "1",
   :time_from_str "03/04/2022",
@@ -101,6 +107,7 @@
   :accessible false,
   :animals_allowed false}
  {:id "6"
+  :id_tmp "6"
   :beds 0,
   :place_street "T",
   :contact_email "W1wL",
@@ -108,16 +115,17 @@
   :time_duration_str "",
   :note nil,
   :place_street_number "yPkLR",
-  :place_city "cj1A2",
+  :place_city "Radebeul",
   :contact_phone "r",
   :place_zip "cJ9z7",
   :time_from_str "03/04/2022",
-  :place_country "5",
+  :place_country "Deutschland",
   :animals_present true,
   :languages nil,
   :accessible false,
   :animals_allowed true}
  {:id "7"
+  :id_tmp "7"
   :beds nil,
   :place_street "0IDd",
   :contact_email "2511JLD",
@@ -125,16 +133,17 @@
   :time_duration_str "kP1S8pE",
   :note "P3",
   :place_street_number nil,
-  :place_city "4ML4yG",
+  :place_city "Meißen",
   :contact_phone "7uQ3Px",
   :place_zip "kp5IS",
   :time_from_str "03/04/2022",
-  :place_country nil,
+  :place_country "Deutschland",
   :animals_present true,
   :languages (),
   :accessible false,
   :animals_allowed false}
  {:id "8"
+  :id_tmp "8"
   :beds 4,
   :place_street "Wy",
   :contact_email "35e6Rnj",
@@ -142,16 +151,17 @@
   :time_duration_str "rh9n6q4",
   :note "89Rxzv",
   :place_street_number "",
-  :place_city "u6k41v",
+  :place_city "Pirna",
   :contact_phone "354VW",
   :place_zip "DI19",
   :time_from_str "09/04/2022",
-  :place_country nil,
+  :place_country "Deutschland",
   :animals_present true,
   :languages nil,
   :accessible true,
   :animals_allowed false}
  {:id "9"
+  :id_tmp "9"
   :beds 27,
   :place_street "wIbUsu",
   :contact_email "x0Vl9",
@@ -159,11 +169,11 @@
   :time_duration_str "33",
   :note "Z",
   :place_street_number "VB3",
-  :place_city "f",
+  :place_city "Freital",
   :contact_phone "sQdB",
   :place_zip "cid1",
   :time_from_str "03/05/2022",
-  :place_country "toTz5B",
+  :place_country "Deutschland",
   :animals_present false,
   :languages ("vMR0zyECr"),
   :accessible false,

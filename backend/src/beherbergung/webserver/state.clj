@@ -3,6 +3,7 @@
   (:require [ring.adapter.jetty]
             [ring.middleware.reload]
             [beherbergung.webserver.handler]
+            [beherbergung.db.import.offer.lifeline :refer [import!]]
             [mount.core :as mount :refer [defstate]]
             [beherbergung.config.state]
             [signal.handler :refer [with-handler]]))
@@ -16,6 +17,8 @@
 
 (defn -main [& _args]
   (mount/start)
+
+  (import!)  ;; This is not the seeding, but import from external formats
 
   (let [finaly (fn [] (mount/stop)  ;; Export the database
                       (System/exit 0))]
