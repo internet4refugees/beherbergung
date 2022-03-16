@@ -1,5 +1,7 @@
 This repository contains tools for NGOs, organizing private hosting.
 
+![](./docs/user-guide/graphics/overview.png)
+
 ## Import of existing datasets
 
 - [x] https://mission-lifeline.de/unterkunft-bereitstellen/

@@ -6,18 +6,15 @@
 
 The authentication/login is two-step process, first you will be asked for your organisation login.
 
-![](../graphics/org_password.png)
+![](./graphics/org_password.png)
 
 After that you will see a minimal dialogue asking you for your user-specific login credentials.
 
-![](../graphics/user_password.png)
-
-## Search for entries
-
-- In principle, the header of each column is interactive. Search criteria can be compiled by writing in the columns header.
-  The search results are then displayed directly in the table below.
+![](./graphics/user_password.png)
 
 ### Navigation of the UI
+
+![](./graphics/overview.png)
 
 - **Structure:** On the lower half of the interface is a map, where the locations of the flats are displayed.
   
@@ -33,7 +30,10 @@ It becomes that the flat is in the respective grey circle. For exact locations, 
 
 ### Search and sort
 
-![](../graphics/table.png)
+- In principle, the header of each column is interactive. Search criteria can be compiled by writing in the columns header.
+  The search results are then displayed directly in the table below.
+
+![](./graphics/table.png)
 
 - **Search:** The table can be filtered by most columns. To do this, simply type in the line between the table header and the first line with offers. With the filter symbol that is in this line in
   for example "contains the entered text" or "columns that should be displayed must have a value that is at least as large as the entered value". For most columns we already have a reasonable preselection.
@@ -43,7 +43,7 @@ It becomes that the flat is in the respective grey circle. For exact locations, 
 
 - **Customise filter:** The filter method for a column header is in most cases equality or contains. However, this can also be changed by using the funnel icon (see image).
   
-![](../graphics/city_column.png)
+![](./graphics/city_column.png)
 
 - **Reset filter/search:** F5 reloads the page and resets all filters.
   

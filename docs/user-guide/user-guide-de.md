@@ -6,24 +6,21 @@
 
 Die Authentifizierung/Login ist zweistufig, als Erstes wirst du nach deinem Organisations-Login gefragt.
 
-![](../graphics/org_password.png)
+![](./graphics/org_password.png)
 
 Danach siehst du einen minimalen Dialog, welcher dich nach deinen Benutzer-spezifischen Login-Credentials fragt.
 
-![](../graphics/user_password.png)
-
-## Nach Einträgen Suchen
-
-- Prinzipiell ist der Kopf jeder Spalte interaktiv. Durch schreiben in den Spalten Kopf können Suchkriterien zusammen gestellt werden.
-Die Suchergebnisse werden dann direkt in der Tabelle darunter dargestellt.
+![](./graphics/user_password.png)
 
 ### Navigation der UI
+
+![](./graphics/overview.png)
 
 - **Struktur:** Auf der unteren Hälfte der Oberfläche ist eine Karte, wo die Orte der Wohnungen eingetragen sind.
 
 - **Tabelle zu klein:** Die Platzaufteilung von Kante und Tabelle kann angepasst werden, indem man mit der Maus die Grenze zwischen Karte und Tabelle verschiebt.
 
-  **In der Tabelle navigieren** Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) verschoben werden.
+- **In der Tabelle navigieren** Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) verschoben werden.
 
 
 <!--
@@ -33,7 +30,10 @@ Es wird, dass die Wohnung in dem jeweiligen grauen Kreis ist. Bei genauen Ortsan
 
 ### Suchen und Sortieren
 
-![](../graphics/table.png)
+- Prinzipiell ist der Kopf jeder Spalte interaktiv. Durch schreiben in den Spalten Kopf können Suchkriterien zusammen gestellt werden.
+Die Suchergebnisse werden dann direkt in der Tabelle darunter dargestellt.
+
+![](./graphics/table.png)
 
 - **Suche:** Die Tabelle kann nach den meisten Spalten gefiltert werden. Dafür einfach in der Zeile zwischen dem Tabellenkopf und der ersten Zeile mit Angeboten eingeben. Mit dem Filtersymbol das in dieser Zeile in
 jeder Spalte ist, können weitere Optionen fürs Filtern ausgewählt werden. z.B. „enthält den eingegebenen Text“ oder „Spalten die angezeigt werden sollen, müssen einen Wert haben der mindestens so groß wie der eingegebene Wert ist“. Bei den meisten Spalten haben wir bereits eine sinnvolle Vorauswahl.
@@ -42,7 +42,7 @@ jeder Spalte ist, können weitere Optionen fürs Filtern ausgewählt werden. z.B
 
 - **Filter anpassen:** Die Filtermethode für einen Spaltenkopf ist in den meisten Fällen die Gleichheit oder Beinhaltet. Diese kann aber auch verändert werden durch die Trichter-Symbol (siehe Bild).
 
-![](../graphics/city_column.png)
+![](./graphics/city_column.png)
 
 - **Filter/Suche Zurücksetzen:** F5 lädt die Seite neu und setzt somit alle Filter zurück.
 
