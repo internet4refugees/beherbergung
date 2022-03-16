@@ -19,10 +19,11 @@ After that you will see a minimal dialogue asking you for your user-specific log
 
 ### Navigation of the UI
 
-- **Structure:** On the lower half of the interface is a map where the different flats are entered.
+- **Structure:** On the lower half of the interface is a map, where the locations of the flats are displayed.
   
-- **Table too large:** I would like to draw your attention to the slider at the edge between the map and the table so that you can also view the right edge of the table.
-  edge of the table. After clicking into the table, it can also be moved by using the cursor keys.
+- **Table too small:** There is a handle at the edge between the map and the table, allowing to resize the division of space used for the table and the map.
+
+- **Navigating through the table** After clicking into the table, it can be moved by using the cursor (arrow) keys.
   
 
 <!--

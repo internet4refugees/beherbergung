@@ -19,10 +19,11 @@ Die Suchergebnisse werden dann direkt in der Tabelle darunter dargestellt.
 
 ### Navigation der UI
 
-- **Struktur:** Auf der unteren Hälfte der Oberfläche ist eine Karte, wo die verschiedenen Wohnungen eingetragen sind. 
+- **Struktur:** Auf der unteren Hälfte der Oberfläche ist eine Karte, wo die Orte der Wohnungen eingetragen sind.
 
-- **Tabelle zu groß:** Ich möchte noch auf den Slider an der Kante zwischen Map und Tabelle aufmerksam machen um auch den rechten Rand der Tabelle betrachten zu
-können. Nach klicken in die Tabelle kann diese auch durch die Cursor-Tasten verschoben werden.
+- **Tabelle zu klein:** Die Platzaufteilung von Kante und Tabelle kann angepasst werden, indem man mit der Maus die Grenze zwischen Karte und Tabelle verschiebt.
+
+  **In der Tabelle navigieren** Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) verschoben werden.
 
 
 <!--

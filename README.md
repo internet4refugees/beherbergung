@@ -25,8 +25,10 @@ Implemented by reusing the technology stack of [swlkup](https://github.com/johan
 A website [based on reactdatagrid](https://reactdatagrid.io/) allows easy filtering and sorting of results. The usage of finding matches is much more convenient than working with a regular spreadsheet. Collaboration features will be available soon.
 
 - [x] Alpha version is online
-- [ ] Editable columns
-- [ ] Map view / Location filter+sorting
+- [x] Editable columns
+- [x] Map view / Location filter+sorting
+
+A [user manual](./docs/user-guide/user-guide-en.md) is available in [English](./docs/user-guide/user-guide-en.md) and [German](./docs/user-guide/user-guide-de.md).
 
 ## A customizable public form, to submit new offers
 
