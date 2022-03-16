@@ -5,7 +5,9 @@
             [beherbergung.db.import.offer.ngo.lifeline :as lifeline]
             [beherbergung.db.import.offer.ngo.warhelp :as warhelp]))
 
-(defn import! []
+(defn import!
+ ([] (import! ##Inf))
+ ([limit]
   (if-not (:import-ngo env)
     (println "No IMPORT_NGO defined")
     (let [table (if-not (:import-file env)
@@ -15,13 +17,14 @@
                             (lifeline/importfile->table (:import-file env))
                           "warhelp_beherbergung"
                             (warhelp/importfile->table (:import-file env))
-                          (random/importfile->table)))]
-         (println "Records to be imported:" (count table))
-         (update-offers (:import-ngo env) table)
-         (println "import finished :)"))))
+                          (random/importfile->table)))
+          table-limited (take limit table)]
+         (println "Records to be imported:" (count table-limited))
+         (update-offers (:import-ngo env) table-limited)
+         (println "import finished :)")))))
 
 (comment
-  (import!)
+  (import! 10)
 
   (require '[beherbergung.db.state :refer [db_ctx]])
   (let [ngo:id "warhelp_beherbergung"
