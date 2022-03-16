@@ -6,11 +6,11 @@
 
 The authentication/login is two-step process, first you will be asked for your organisation login.
 
-![](file:///home/revol-xut/workspace/hostel/docs/graphics/org_password.png)
+![](../graphics/org_password.png)
 
 After that you will see a minimal dialogue asking you for your user-specific login credentials.
 
-![](file:///home/revol-xut/workspace/host/docs/graphics/user_password.png)
+![](../graphics/user_password.png)
 
 ## Search for entries
 
@@ -32,7 +32,7 @@ It becomes that the flat is in the respective grey circle. For exact locations, 
 
 ### Search and sort
 
-![](file:///home/revol-xut/workspace/housing/docs/graphics/table.png)
+![](../graphics/table.png)
 
 - **Search:** The table can be filtered by most columns. To do this, simply type in the line between the table header and the first line with offers. With the filter symbol that is in this line in
   for example "contains the entered text" or "columns that should be displayed must have a value that is at least as large as the entered value". For most columns we already have a reasonable preselection.
@@ -40,10 +40,10 @@ It becomes that the flat is in the respective grey circle. For exact locations, 
 - **Column types:** The table header contains input fields that can be used to search. The format of the column header depends on the column. Possible formats are e.g. strings, integers, checkboxes or dates. If a column has an incorrect type, please let us know.
   
 
-![](file:///home/revol-xut/workspace/housing/docs/graphics/city_column.png)
-
 - **Customise filter:** The filter method for a column header is in most cases equality or contains. However, this can also be changed by using the funnel icon (see image).
   
+![](../graphics/city_column.png)
+
 - **Reset filter/search:** F5 reloads the page and resets all filters.
   
 - **Sort table** The table can be sorted by any column. Simply click on the column heading, e.g. "Beds" or "km". Clicking on it again reverses the sorting order. The third click cancels the sorting.

@@ -21,11 +21,11 @@ Die Suchergebnisse werden dann direkt in der Tabelle darunter dargestellt.
 
 - **Struktur:** Auf der unteren Hälfte der Oberfläche ist eine Karte, wo die verschiedenen Wohnungen eingetragen sind. 
 
-- **Tabelle zu groß:**Ich möchte noch auf den Slider an der Kante zwischen Map und Tabelle aufmerksam machen um auch den rechten Rand der Tabelle betrachten zu
+- **Tabelle zu groß:** Ich möchte noch auf den Slider an der Kante zwischen Map und Tabelle aufmerksam machen um auch den rechten Rand der Tabelle betrachten zu
 können. Nach klicken in die Tabelle kann diese auch durch die Cursor-Tasten verschoben werden.
 
 
-<!---->
+<!--
 Es wird, dass die Wohnung in dem jeweiligen grauen Kreis ist. Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort.
 -->
 
@@ -39,9 +39,9 @@ jeder Spalte ist, können weitere Optionen fürs Filtern ausgewählt werden. z.B
 
 - **Spalten Typen:** Der Tabellenkopf enthält Eingabe-Felder, womit sich suchen lässt. Das Format des Spaltenkopfs ist dabei abhängig von der jeweiligen Spalte mögliche Formate sind z.B Zeichenketten, Ganzzahlen, Checkboxes oder Datumsangaben. Wenn eine Spalte einen inkorrekten Typ hat sagt uns gerne bescheid.
 
-![](../graphics/city_column.png)
-
 - **Filter anpassen:** Die Filtermethode für einen Spaltenkopf ist in den meisten Fällen die Gleichheit oder Beinhaltet. Diese kann aber auch verändert werden durch die Trichter-Symbol (siehe Bild).
+
+![](../graphics/city_column.png)
 
 - **Filter/Suche Zurücksetzen:** F5 lädt die Seite neu und setzt somit alle Filter zurück.
 
