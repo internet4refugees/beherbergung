@@ -3,7 +3,7 @@
   (:require [ring.adapter.jetty]
             [ring.middleware.reload]
             [beherbergung.webserver.handler]
-            [beherbergung.db.import.offer.lifeline :refer [import!]]
+            [beherbergung.db.import.offer.core :refer [import!]]
             [mount.core :as mount :refer [defstate]]
             [beherbergung.config.state]
             [signal.handler :refer [with-handler]]))
