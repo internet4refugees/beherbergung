@@ -6,7 +6,7 @@
 (defn JaNein->bool [JaNein]
   ({"Ja" true "Nein" false} JaNein))
 
-(def mapping {:id_tmp #(or (get % "E-Mail") (get % "Telefonnummer"))
+(def mapping {:id_tmp #(or (not-empty (get % "E-Mail")) (get % "Telefonnummer"))
 
               :time_from_str "frühestes Einzugsdatum"
               :time_duration_str "Möglicher Aufenthalt (Dauer)"  ;; TODO: the duration is not parsed till now

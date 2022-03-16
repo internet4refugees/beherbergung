@@ -2,7 +2,8 @@
   (:require [beherbergung.config.state :refer [env]]
             [beherbergung.db.import.offer.helper :refer [update-offers]]
             [beherbergung.db.import.offer.ngo.random :as random]
-            [beherbergung.db.import.offer.ngo.lifeline :as lifeline]))
+            [beherbergung.db.import.offer.ngo.lifeline :as lifeline]
+            [beherbergung.db.import.offer.ngo.warhelp :as warhelp]))
 
 (defn import! []
   (if-not (:import-ngo env)
@@ -12,6 +13,8 @@
                         (case (:import-ngo env)
                           "lifeline_beherbergung"
                             (lifeline/importfile->table (:import-file env))
+                          "warhelp_beherbergung"
+                            (warhelp/importfile->table (:import-file env))
                           (random/importfile->table)))]
          (println "Records to be imported:" (count table))
          (update-offers (:import-ngo env) table)
@@ -20,11 +23,12 @@
 (comment
   (import!)
 
-  (let [ngo:id "lifeline_beherbergung"
-        _ (require '[beherbergung.db.state :refer [db_ctx]])
+  (require '[beherbergung.db.state :refer [db_ctx]])
+  (let [ngo:id "warhelp_beherbergung"
         {:keys [q_unary]} db_ctx]
-       (-> (q_unary '{:find [(pull ?e [*])]
-                      :where [[?e :xt/spec :beherbergung.model.offer/record]
-                              [?e :beherbergung.model.ngo/id ngo:id]]
-                      :in [ngo:id]}
-                    ngo:id))))
+       (->> (q_unary '{:find [(pull ?e [*])]
+                       :where [[?e :xt/spec :beherbergung.model.offer/record]
+                               [?e :beherbergung.model.ngo/id ngo:id]]
+                       :in [ngo:id]}
+                     ngo:id)
+            #_(map :id_tmp))))
