@@ -17,6 +17,10 @@ in
         master = true;
         file = util.writeZone "beherbergung.mission-lifeline.de" (import (./dns + "/${config.networking.domain}.nix") {inherit dns;});
       };
+      "search.warhelp.eu" = {
+        master = true;
+        file = util.writeZone "search.warhelp.eu" (import (./dns + "/search.warhelp.eu.nix") {inherit dns;});
+      };
     };
   };
   networking.firewall.allowedTCPPorts = [ 53 ];
