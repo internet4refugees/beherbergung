@@ -4,5 +4,5 @@
             [beherbergung.model.offer-mapping.warhelp]))
 
 (defn importfile->table [file]
-  (take 5 (unify (clojure.edn/read-string (slurp file))  ;; TODO all
-         beherbergung.model.offer-mapping.warhelp/mapping)))
+  (unify (clojure.edn/read-string (slurp file))
+         beherbergung.model.offer-mapping.warhelp/mapping))

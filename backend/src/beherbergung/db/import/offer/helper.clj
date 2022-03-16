@@ -6,9 +6,14 @@
             [beherbergung.model.ngo :as ngo]))
 
 (defn geocode [record]
-  (let [params {:city (:place_city record)}
-        result (client/get "https://nominatim.openstreetmap.org/search?format=json&limit=1"
-                           {:accept :json :as :json :query-params params})
+  (let [params (cond (not-empty (:place_city record))
+                       {:city (:place_city record)}
+                     (not-empty (:place_str record))
+                       {:q (:place_str record)})
+        result (when params
+                     (prn params)
+                     (client/get "https://nominatim.openstreetmap.org/search?format=json&limit=1"
+                                 {:accept :json :as :json :query-params params}))
         result_ok (when (= 200 (:status result))
                         (first (:body result)))]
         (println (or (:display_name result_ok)

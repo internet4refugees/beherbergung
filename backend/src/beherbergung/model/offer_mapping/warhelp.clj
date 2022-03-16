@@ -21,6 +21,8 @@
               :place_zip (constantly nil)
               :place_street (constantly nil)
               :place_street_number (constantly nil)
+              :place_str #(or (not-empty (get % "Address (+ zip code!)"))
+                              (get % "Address (+ zip code!) / Adresse (+ PLZ)"))
 
               :accessible (constantly nil)
               :animals_allowed (constantly nil)
