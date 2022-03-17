@@ -52,7 +52,6 @@
     devShell.${system} = pkgs.mkShell {
       nativeBuildInputs = [
         pkgs.leiningen
-        pkgs.yarn2nix
         pkgs.yarn
       ];
       shellHook = ''
