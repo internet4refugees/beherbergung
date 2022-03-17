@@ -112,14 +112,14 @@ const columns: TypeColumn[] = defaultColumnRawDefinition
     editor: editorMappings[c.type as 'string' | 'number' | 'boolean' | 'date']
   }))
 
-const defaultFilterValue: TypeFilterValue = columns
+const defaultFilterValue: TypeFilterValue = defaultColumnRawDefinition
   .filter(({type}) => type && ['string', 'number', 'boolean', 'date'].includes(type))
-  .map(({name, type}) => {
+  .map(({name, type, options}) => {
     return {
       name,
       type,
       value: null,
-      operator: operatorsForType[type as 'string' | 'number' | 'date' | 'boolean']
+      operator: options?.filter?.operator || operatorsForType[type as 'string' | 'number' | 'date' | 'boolean']
     } as unknown as TypeSingleFilterValue
   })
 

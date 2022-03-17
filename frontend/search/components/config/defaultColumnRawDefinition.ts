@@ -37,7 +37,12 @@ const columnsRaw: ColumnRaw[] = [
     "group": "distance",
     "header": "km",
     "type": "number",
-    "defaultWidth": 105
+    "defaultWidth": 105,
+    "options": {
+      "filter": {
+        "operator": "lte"
+      }
+    }
   },
   {
     "name": "place_country",

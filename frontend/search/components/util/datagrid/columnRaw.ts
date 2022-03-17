@@ -2,6 +2,9 @@ import {Array2StringTransformOptions, DateToISOTransformOptions} from "../tableV
 
 export type ColumnOptions = {
   dateFormat?: string
+  filter?: {
+    operator?: string
+  }
   transform?: {
     array2string?: Array2StringTransformOptions
     date2Iso?: DateToISOTransformOptions
