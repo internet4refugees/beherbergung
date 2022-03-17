@@ -89,6 +89,9 @@
         inherit (mvn2nix.legacyPackages.${system}) buildMavenRepositoryFromLockFile;
         inherit pkgs;
       };
+      inherit (pkgs.callPackages ./frontend/search {})
+        beherbergung-frontend-deps
+        beherbergung-frontend-assets;
     };
 
     checks.${system} = {
@@ -115,8 +118,10 @@
           nixos-shell.packages.${system}.nixos-shell
         ]
         ++ linters;
+      # disable https://nextjs.org/telemetry
+      NEXT_TELEMETRY_DISABLED = "1";
       shellHook = ''
-        export PATH=${(pkgs.callPackage ./frontend/search {})}/libexec/beherbergung/node_modules/.bin:$PATH
+        export PATH=${self.packages.${system}.beherbergung-frontend-deps}/libexec/beherbergung/node_modules/.bin:$PATH
       '';
     };
 
