@@ -32,7 +32,7 @@ flowchart LR;
         o --> I(mapping)
     end
     subgraph backend
-        B(backend) --- db[(db)] 
+        db[(db)] 
     end
         c_f(file) --> import
     connector --> import
