@@ -52,10 +52,12 @@
     devShell.${system} = pkgs.mkShell {
       nativeBuildInputs = [
         pkgs.leiningen
-        (pkgs.callPackage ./frontend/search {})
         pkgs.yarn2nix
-        #(pkgs.callPackage ./frontend/nix/composition.nix {}).next
+        pkgs.yarn
       ];
+      shellHook = ''
+        export PATH=${(pkgs.callPackage ./frontend/search {})}/libexec/beherbergung/node_modules/.bin:$PATH
+      '';
     };
  
     #defaultPackage.${system} = legacyPackages.${system}.nixos-deploy;
