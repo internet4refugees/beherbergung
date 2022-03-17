@@ -1,6 +1,7 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import { config } from "../../config"
 
 import {
   LayersControl,
@@ -48,8 +49,8 @@ const BoundsChangeListener = ({onBoundsChange}: {onBoundsChange?: (bounds: L.Lat
 const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
   const [zoom, setZoom] = useState<number>( 8 )
   const [position, setPosition] = useState<L.LatLngExpression>(  {
-    lat: 51.0833,
-    lng: 13.73126,
+    lat: config.initial_lat || 51.0833,
+    lng: config.initial_lng || 13.73126,
   } )
   const leafletStore = useLeafletStore()
 
