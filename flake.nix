@@ -45,10 +45,16 @@
       #nixos-deploy = import ./tools/deploy.nix { inherit pkgs; };
     });
 
+    packages.${system} = {
+      devShell = self.devShell.${system}.inputDerivation;
+    };
+
     devShell.${system} = pkgs.mkShell {
       nativeBuildInputs = [
         pkgs.leiningen
-        pkgs.nodejs
+        (pkgs.callPackage ./frontend/search {})
+        pkgs.yarn2nix
+        #(pkgs.callPackage ./frontend/nix/composition.nix {}).next
       ];
     };
  
