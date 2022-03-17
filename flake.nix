@@ -59,6 +59,15 @@
         ];
       });
 
+      beherbergung-warhelp = nixpkgs.lib.nixosSystem (lib.mergeAttrs commonAttrs {
+        modules = # commonModules ++
+        [
+          ./deployment/hosts/beherbergung-warhelp/configuration.nix
+          ./deployment/modules/nix.nix
+          ./deployment/modules/default.nix
+        ];
+      });
+
     };
   };
 }
