@@ -44,6 +44,13 @@
     legacyPackages.${system} = (lib.mergeAttrs pkgs {
       #nixos-deploy = import ./tools/deploy.nix { inherit pkgs; };
     });
+
+    devShell.${system} = pkgs.mkShell {
+      nativeBuildInputs = [
+        pkgs.leiningen
+        pkgs.nodejs
+      ];
+    };
  
     #defaultPackage.${system} = legacyPackages.${system}.nixos-deploy;
 
