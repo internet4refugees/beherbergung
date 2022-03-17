@@ -101,8 +101,7 @@ const findMatchingRenderer = (c: Partial<ColumnRaw>) => {
 const floor = (v: number | undefined) => v && Math.floor(v);
 
 const calculateDistance = (r: {place_lat?: number | null, place_lon?: number | null}, {lng, lat}: LatLng) =>
-  r.place_lat && r.place_lon && lng && lat
-    ? floor(haversine_distance(lat, lng, r.place_lat, r.place_lon)) : r
+  r.place_lat && r.place_lon && lng && lat && floor(haversine_distance(lat, lng, r.place_lat, r.place_lon))
 
 const columns: TypeColumn[] = defaultColumnRawDefinition
   .map(c => ({

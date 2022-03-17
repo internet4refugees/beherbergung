@@ -6,8 +6,6 @@ import { useTranslation } from 'react-i18next'
 import { Login, useAuthStore } from '../Login'
 import {Marker, useLeafletStore} from './LeafletStore'
 import { filterUndefOrNull } from '../util/notEmpty'
-import { haversine_distance } from '../util/distance'
-import {marker} from "leaflet";
 
 type HostOfferLookupWrapperProps = Partial<HostOfferLookupTableProps>
 
