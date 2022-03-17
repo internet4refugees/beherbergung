@@ -166,6 +166,7 @@ const HostOfferLookupTable = ({
       return
     }
     const data = extendedFilter(dataSource, filterValue, columnsRaw)
+    onFilteredDataChange && onFilteredDataChange(data)
     setFilteredData(data)
   }, [dataSource, onFilteredDataChange, setFilteredData, filterValue])
 
