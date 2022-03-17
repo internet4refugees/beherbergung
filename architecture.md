@@ -12,7 +12,7 @@ flowchart LR;
         C ==> D(search):::focus
         C -.- E(submit):::hide_
     end
-    clojure ==Port 4000==> nodejs
+    clojure ==graphql==> nodejs
     linkStyle 0 stroke:lightgrey;
     linkStyle 1 stroke:lightgrey;
     linkStyle 3 stroke:lightgrey;
