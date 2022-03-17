@@ -21,6 +21,10 @@ in
         master = true;
         file = util.writeZone "search.warhelp.eu" (import (./dns + "/search.warhelp.eu.nix") {inherit dns;});
       };
+      "warhelp.broenradio.org" = {  ## till NS-record of "search.warhelp.eu" is set
+        master = true;
+        file = util.writeZone "warhelp.broenradio.org" (import (./dns + "/search.warhelp.eu.nix") {inherit dns;});
+      };
     };
   };
   networking.firewall.allowedTCPPorts = [ 53 ];
