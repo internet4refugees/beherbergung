@@ -8,9 +8,13 @@ This repository contains tools for NGOs, organizing private hosting.
 - [x] https://icanhelp.host/ (public API)
 
 ```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+flowchart LR;
+    subgraph closjure
+    I(import) -.-> B(backend)
+    end
+    subgraph nodejs
+    B ==> C{frontend}
+    C ==> D(search)
+    C -.-> E(submit)
+    end
 ```
