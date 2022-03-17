@@ -1,6 +1,9 @@
 {
   description = "https://github.com/internet4refugees/beherbergung.git development environment + package + deployment";
 
+  nixConfig.extra-substituters = [ "https://cache.garnix.io" ];
+  nixConfig.extra-trusted-public-keys = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
+
   inputs = {
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
@@ -41,6 +44,7 @@
     ];
   in
   rec {
+
     legacyPackages.${system} = (lib.mergeAttrs pkgs {
       #nixos-deploy = import ./tools/deploy.nix { inherit pkgs; };
     });
