@@ -51,6 +51,27 @@ To set config options at runtime, use `environment variables`, `java system prop
 
 ## Notes to developers
 
+Login using credentials from DB_SEED. Hint: be careful with escaping ;-)
+
+### debug 
+
+in case of failure you can add detail information by activating verbose-mode
+
+```bash
+SET VERBOSE=true
+lein run
+```
+
+to check using test-data use
+
+```bash
+set DB_SEED="src/beherbergung/db/seed/test.edn"
+lein run
+```
+
+
+
+
 ### State management
 
 Global state (e.g. instances of database and webserver) are managed by [mount](https://github.com/tolitius/mount).
@@ -78,21 +99,5 @@ consider download, self-install and run via lein.bat
 
 ```bash
 curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein.bat >lein.bat
-lein run
-```
-
-### debug 
-
-in case of failure you can add detail information by activating verbose-mode
-
-```bash
-SET VERBOSE=true
-lein run
-```
-
-to check using test-data use
-
-```bash
-set DB_SEED="src/beherbergung/db/seed/test.edn"
 lein run
 ```
