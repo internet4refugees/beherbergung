@@ -16,8 +16,9 @@
  :db-export-prefix "./data/export/"
  :db-validate true
 
- :import-file nil #_"./data/sample-data/example.edn"
  :import-ngo "warhelp"
+ :import-file nil #_"./data/sample-data/example.edn"
+ :import-limit nil
 
  ;:mail-host ""
  ;:mail-user ""

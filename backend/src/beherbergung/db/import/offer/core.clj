@@ -6,7 +6,7 @@
             [beherbergung.db.import.offer.ngo.warhelp :as warhelp]))
 
 (defn import!
- ([] (import! ##Inf))
+ ([] (import! (or (:import-limit env) ##Inf)))
  ([limit]
   (if-not (:import-ngo env)
     (println "No IMPORT_NGO defined")
