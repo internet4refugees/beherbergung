@@ -20,6 +20,8 @@
                    "   Alternatively production builds including the frontend are available via nix."
                    "</p/>"))
 
+  (GET "/health" [] "ok")
+
   (->
     (POST "/graphql" req
           (response (graphql (:body req))))
