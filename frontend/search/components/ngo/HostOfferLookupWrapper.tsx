@@ -11,10 +11,6 @@ import {marker} from "leaflet";
 
 type HostOfferLookupWrapperProps = Partial<HostOfferLookupTableProps>
 
-function floor(v: number|undefined) {
-  return v && Math.floor(v)
-}
-
 //type HostOfferLookupTableDataRowType = NonNullable<HostOfferLookupTableDataType>[number]
 const makeMarker: (row: { id?: string | null; place_lon?: number | null; place_lat?: number | null }) => Marker | undefined =
   ({ id, place_lon, place_lat }) => id && place_lon && place_lat && ({
@@ -39,20 +35,14 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
   const {setMarkers, center, setFilteredMarkers} = useLeafletStore()
   useEffect(() => {
     const markers = filterUndefOrNull( data_ro?.get_offers?.map(makeMarker) )
-
-
     setMarkers(filterUndefOrNull(markers))
-  }, [data_ro])
-
-  const data_ro_withDistance = data_ro?.get_offers?.map(r => ({...r,
-                                                               place_distance: floor(haversine_distance(center?.lat, center?.lng, r.place_lat, r.place_lon))}))
+  }, [data_ro, setMarkers])
 
   const handleFilteredDataChange = useCallback(
     (data:  HostOfferLookupTableDataType[]) => {
       // @ts-ignore
       const _filteredMarkers = filterUndefOrNull( data.map(d => d && makeMarker(d)))
-      console.log({_filteredMarkers})
-      //setFilteredMarkers(_filteredMarkers)
+      setFilteredMarkers(_filteredMarkers)
     },
     [setFilteredMarkers],
   );
@@ -74,10 +64,11 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
           style={{flex: '1 1', height: '100%'}}>
             <HostOfferLookupTable
               {...props}
-              data_ro={data_ro_withDistance}
+              data_ro={data_ro.get_offers}
               data_rw={data_rw?.get_rw}
               refetch_rw={queryResult_rw.refetch}
               onFilteredDataChange={handleFilteredDataChange}
+              center={center || undefined}
             />
         </div>}
     </Box>
