@@ -69,9 +69,6 @@ set DB_SEED="src/beherbergung/db/seed/test.edn"
 lein run
 ```
 
-
-
-
 ### State management
 
 Global state (e.g. instances of database and webserver) are managed by [mount](https://github.com/tolitius/mount).
