@@ -1,4 +1,22 @@
-({:id "0"
+[#_{:id "offer_42"
+  :id_tmp "42"
+  :beds "2 (+2 Children)"
+  :place_street nil
+  :contact_email ""
+  :contact_name_full "Alex Mustermensch"
+  :time_duration_str "No date set"
+  :note ""
+  :place_street_number nil
+  :place_city nil
+  :contact_phone "+123 45 67 89"
+  :place_zip nil
+  :time_from_str nil
+  :place_country ""
+  :animals_present nil
+  :languages [""]
+  :accessible nil
+  :animals_allowed nil}
+ {:id "0"
   :id_tmp "0"
   :beds 0,
   :place_street "",
@@ -177,4 +195,5 @@
   :animals_present false,
   :languages ("vMR0zyECr"),
   :accessible false,
-  :animals_allowed false})
+  :animals_allowed false}
+]
