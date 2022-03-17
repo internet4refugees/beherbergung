@@ -5,36 +5,40 @@ import {CheckBoxOutlineBlank, CheckBox} from '@mui/icons-material'
 import '@inovua/reactdatagrid-community/index.css'
 
 import DataGrid from '@inovua/reactdatagrid-community'
-import filter from '@inovua/reactdatagrid-community/filter'
 import {TypeColumn, TypeFilterValue, TypeSingleFilterValue} from "@inovua/reactdatagrid-community/types"
 import DateFilter from '@inovua/reactdatagrid-community/DateFilter'
 import StringFilter from '@inovua/reactdatagrid-community/StringFilter'
 import BoolFilter from '@inovua/reactdatagrid-community/BoolFilter'
 import NumberFilter from "@inovua/reactdatagrid-community/NumberFilter"
 import BoolEditor from '@inovua/reactdatagrid-community/BoolEditor'
-import { GetOffersQuery, GetRwQuery} from "../../codegen/generates"
+import {GetOffersQuery, GetRwQuery} from "../../codegen/generates"
 import moment from "moment"
 
 import {useTranslation} from "react-i18next"
 import {resources} from '../../i18n/config'
 
-import { fetcher } from '../../codegen/fetcher'
-import { useAuthStore, AuthState } from '../Login'
+import {fetcher} from '../../codegen/fetcher'
+import {useAuthStore, AuthState} from '../Login'
 import defaultColumnRawDefinition from "../config/defaultColumnRawDefinition";
 import defaultColumnGroups from "../config/defaultColumnGroups";
-import { ColumnRaw } from '../util/datagrid/columnRaw'
+import {ColumnRaw} from '../util/datagrid/columnRaw'
 import columnsRaw from "../config/defaultColumnRawDefinition";
 import {transformValue} from "../util/tableValueMapper";
 import {filterUndefOrNull} from "../util/notEmpty";
+import extendedFilter from "../util/datagrid/extendedFilter";
+import {haversine_distance, LatLng} from "../util/distance";
 
 global.moment = moment
 
-export type HostOfferLookupTableDataType = GetOffersQuery["get_offers"] & GetRwQuery["get_rw"];
+export type HostOfferLookupTableDataType =
+  Omit<NonNullable<(GetOffersQuery["get_offers"] & GetRwQuery["get_rw"])>[number], '__typename'>
+  & { place_distance?: number };
 export type HostOfferLookupTableProps = {
   data_ro?: GetOffersQuery["get_offers"],
   data_rw?: GetRwQuery["get_rw"],  // TODO
   refetch_rw: any,
   onFilteredDataChange?: (data: HostOfferLookupTableDataType[]) => void
+  center?: LatLng
 }
 
 const filterMappings = {
@@ -61,12 +65,12 @@ type CustomRendererMatcher = {
   render: (...args: any[]) => ReactNode
 }
 
-function Email({value}: {value: string}) {
+function Email({value}: { value: string }) {
   const href = `mailto:${value}`
   return <a href={href}>{value}</a>
 }
 
-function Phone({value}: {value: string}) {
+function Phone({value}: { value: string }) {
   const href = `tel:${value}`
   return <a href={href}>{value}</a>
 }
@@ -94,6 +98,11 @@ const findMatchingRenderer = (c: Partial<ColumnRaw>) => {
   return customRenderer?.render
 }
 
+const floor = (v: number | undefined) => v && Math.floor(v);
+
+const calculateDistance = (r: {place_lat?: number | null, place_lon?: number | null}, {lng, lat}: LatLng) =>
+  r.place_lat && r.place_lon && lng && lat && floor(haversine_distance(lat, lng, r.place_lat, r.place_lon))
+
 const columns: TypeColumn[] = defaultColumnRawDefinition
   .map(c => ({
     ...c,
@@ -102,63 +111,87 @@ const columns: TypeColumn[] = defaultColumnRawDefinition
     editor: editorMappings[c.type as 'string' | 'number' | 'boolean' | 'date']
   }))
 
-const defaultFilterValue: TypeFilterValue = columns
-  .filter(({type}) => type && ['string', 'number', 'date', 'boolean'].includes(type))
-  .map(({name, type}) => {
+const defaultFilterValue: TypeFilterValue = defaultColumnRawDefinition
+  .filter(({type}) => type && ['string', 'number', 'boolean', 'date'].includes(type))
+  .map(({name, type, options}) => {
     return {
       name,
       type,
       value: null,
-      operator: operatorsForType[type as 'string' | 'number' | 'date' | 'boolean']
+      operator: options?.filter?.operator || operatorsForType[type as 'string' | 'number' | 'date' | 'boolean']
     } as unknown as TypeSingleFilterValue
   })
 
-async function mutate(auth: AuthState, onEditComplete: {value: string, columnId: string, rowId: string}) {
-  const type = typeof(onEditComplete.value)
-  const onEditCompleteByType = {rowId: onEditComplete.rowId,
-                                columnId: onEditComplete.columnId,
-                                value_boolean: type === 'boolean' && onEditComplete.value || null,
-                                value_string: type === 'string' && onEditComplete.value || null}
+async function mutate(auth: AuthState, onEditComplete: { value: string, columnId: string, rowId: string }) {
+  const type = typeof (onEditComplete.value)
+  const onEditCompleteByType = {
+    rowId: onEditComplete.rowId,
+    columnId: onEditComplete.columnId,
+    value_boolean: type === 'boolean' && onEditComplete.value || null,
+    value_string: type === 'string' && onEditComplete.value || null
+  }
   const result = await fetcher<any, any>(`mutation WriteRW($auth: Auth!, $onEditCompleteByType: Boolean) {
                                             write_rw(auth: $auth, onEditCompleteByType: $onEditCompleteByType) }`,
-                                         {auth, onEditCompleteByType})()
+    {auth, onEditCompleteByType})()
   return result?.write_rw
 }
 
-const rw_default = {rw_note: ''}  // Required for filtering 'Not empty'. TODO: Should be fixed in StringFilter
+const rw_default = {
+  rw_contacted: false,
+  rw_contact_replied: false,
+  rw_offer_occupied: false,
+  rw_note: ''
+}  // Required for filtering 'Not empty'. TODO: Should be fixed in StringFilter
 
-const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw, onFilteredDataChange}: HostOfferLookupTableProps) => {
+const HostOfferLookupTable = ({
+                                data_ro,
+                                data_rw,
+                                refetch_rw,
+                                onFilteredDataChange,
+                                center
+                              }: HostOfferLookupTableProps) => {
   const [dataSource, setDataSource] = useState<HostOfferLookupTableDataType[]>([]);
   const [filteredData, setFilteredData] = useState<HostOfferLookupTableDataType[]>([]);
-  const [filterValue, setFilterValue] = useState(defaultFilterValue);
+  const [filterValue, setFilterValue] = useState<TypeFilterValue | undefined>(defaultFilterValue);
 
-  const filterValueChangeHandler = useCallback((_filterValue) => {
-    const data = filter(dataSource, filterValue)  as HostOfferLookupTableDataType[]
+  const filterValueChangeHandler = useCallback((_filterValue?: TypeFilterValue) => {
     setFilterValue(_filterValue);
-    setFilteredData(data)
-    onFilteredDataChange && onFilteredDataChange(data)
-  }, [dataSource])
+  }, [setFilterValue])
 
+  const filterAndSetData = useCallback(() => {
+    if (!filterValue) {
+      setFilteredData(dataSource)
+      onFilteredDataChange && onFilteredDataChange(dataSource)
+      return
+    }
+    const data = extendedFilter(dataSource, filterValue, columnsRaw)
+    onFilteredDataChange && onFilteredDataChange(data)
+    setFilteredData(data)
+  }, [dataSource, onFilteredDataChange, setFilteredData, filterValue])
 
   useEffect(() => {
-    // @ts-ignore
-    const data = filterUndefOrNull( data_ro
-      ?.map( e_ro => ({
-          ...((data_rw?.find((e_rw) => e_ro.id_tmp === e_rw.id || `rw_${e_ro.id}` === e_rw.id
-			    ) || rw_default)),
-          ...e_ro
-      }) ) || [])
+    filterAndSetData()
+  }, [dataSource, filterValue, filterAndSetData]);
+
+  useEffect(() => {
+    const data = filterUndefOrNull(data_ro
+      ?.map(e_ro => ({
+        ...((data_rw?.find((e_rw) => e_ro.id_tmp === e_rw.id || `rw_${e_ro.id}` === e_rw.id
+        ) || rw_default)),
+        ...e_ro
+      })) || [])
+      .map(v => transformValue(v, columnsRaw))
+      .map(v => center ? {...v, place_distance: calculateDistance(v, center)} : v)
 
     // @ts-ignore
     data && setDataSource(data)
-    //setDataSource((/*data_rw?.get_rw || */ data_ro?.get_offers || []).map(v => transformValue(v, columnsRaw)))
-  }, [data_ro, data_rw]);
+  }, [data_ro, data_rw, center]);
 
   const auth = useAuthStore()
 
   const onEditComplete = useCallback(async ({value, columnId, rowId}) => {
     /** For now the easiest way to ensure the user can see if data was updated in the db is by calling `refetch_rw()`
-        TODO: error handling **/
+     TODO: error handling **/
     await mutate(auth, {value, columnId, rowId}) && refetch_rw()
   }, [auth, refetch_rw])
 
@@ -167,21 +200,22 @@ const HostOfferLookupTable = ({data_ro, data_rw, refetch_rw, onFilteredDataChang
   const reactdatagridi18n = resources[language]?.translation?.reactdatagrid
 
   return <DataGrid
-        idProperty="id"
-        filterable
-        showColumnMenuFilterOptions={true}
-        showFilteringMenuItems={true}
-        defaultFilterValue={defaultFilterValue}
-        rowIndexColumn
-        enableSelection
-        enableColumnAutosize={false}
-        columns={columns}
-        dataSource={dataSource}
-        i18n={reactdatagridi18n || undefined}
-        style={{height: '100%'}}
-	      onEditComplete={onEditComplete}
-	      groups={defaultColumnGroups}
-      />
+    idProperty="id"
+    filterable
+    showColumnMenuFilterOptions={true}
+    showFilteringMenuItems={true}
+    filterValue={filterValue}
+    onFilterValueChange={filterValueChangeHandler}
+    rowIndexColumn
+    enableSelection
+    enableColumnAutosize={false}
+    columns={columns}
+    dataSource={filteredData}
+    i18n={reactdatagridi18n || undefined}
+    style={{height: '100%'}}
+    onEditComplete={onEditComplete}
+    groups={defaultColumnGroups}
+  />
 }
 
 export default HostOfferLookupTable

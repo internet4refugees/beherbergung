@@ -1,8 +1,13 @@
-export type lon=number|null|undefined
-export type lat=number|null|undefined
+export type Lng =number|null|undefined
+export type Lat =number|null|undefined
+
+export type LatLng = {
+  lat: Lat
+  lng: Lng
+}
 
 /** optimization by https://stackoverflow.com/questions/5260423/torad-javascript-function-throwing-error/21623256#21623256 **/
-export function haversine_distance(lat1:lat, lon1: lon, lat2:lat, lon2:lon) {
+export function haversine_distance(lat1:Lat, lon1: Lng, lat2:Lat, lon2:Lng) {
   if(lat1 && lon1 && lat2 && lon2) {
     var R = 6371 // Radius of the earth in km
     var dLat = (lat2 - lat1) * Math.PI / 180  // deg2rad below
