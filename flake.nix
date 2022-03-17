@@ -44,6 +44,19 @@
     legacyPackages.${system} = (lib.mergeAttrs pkgs {
       #nixos-deploy = import ./tools/deploy.nix { inherit pkgs; };
     });
+
+    packages.${system} = {
+      devShell = self.devShell.${system}.inputDerivation;
+    };
+
+    devShell.${system} = pkgs.mkShell {
+      nativeBuildInputs = [
+        pkgs.leiningen
+        (pkgs.callPackage ./frontend/search {})
+        pkgs.yarn2nix
+        #(pkgs.callPackage ./frontend/nix/composition.nix {}).next
+      ];
+    };
  
     #defaultPackage.${system} = legacyPackages.${system}.nixos-deploy;
 
