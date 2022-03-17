@@ -24,7 +24,7 @@ flowchart LR;
     subgraph connector
         direction LR
         c_a(REST-api) --> d 
-        c_c(crawler)--> d
+        c_c(HTML crawler)--> d
         c_m(mail crawler) --> d(data):::focus
     end
     subgraph import
