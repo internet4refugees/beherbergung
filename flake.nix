@@ -23,6 +23,10 @@
       url = "github:kirelagin/dns.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mvn2nix = {
+      url = "github:fzakaria/mvn2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -32,6 +36,7 @@
     nix-deploy-git,
     dns,
     alejandra,
+    mvn2nix,
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
@@ -70,6 +75,13 @@
 
     packages.${system} = {
       devShell = self.devShell.${system}.inputDerivation;
+      backendUpdatedDeps = pkgs.callPackage ./backend/nix/tools/updated-deps.nix {
+        inherit (mvn2nix.legacyPackages.${system}) mvn2nix;
+      };
+      backend = pkgs.callPackage ./backend/nix/beherbergung-backend.nix {
+        inherit (mvn2nix.legacyPackages.${system}) buildMavenRepositoryFromLockFile;
+        inherit pkgs;
+      };
     };
 
     checks.${system} = {
