@@ -38,7 +38,7 @@ export const transformValue: <T>(values: T, columnsRaw: ColumnRaw[]) => T = (
     if (transform.date2Iso) {
       value = callOneOrMany(value, dateToIso, [transform.date2Iso]);
     }
-    if (transform.array2string) {
+    if (transform.array2string?.join) {
       try {
         // @ts-ignore
         newValues[c.name] = array2string(value, transform.array2string);
