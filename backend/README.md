@@ -104,7 +104,7 @@ lein run
 
 ### errors
 
-windows can't handle ":"-file names. Plz disable spit file in backend/src/beherbergung/db/export.clj by `(spit file)))` to `#_(spit file)))`
+windows can't handle ":"-file names. Plz disable spit file in backend/src/beherbergung/db/export.clj by `(spit file)))` to `#_(spit file)))`. Or consider setting database by setting `DB_SEED`.
 
 ```bash
 .\data\export\2022-03-18_10:03:37_start.edn (Die Syntax für den Dateinamen, Verzeichnisnamen oder die Datenträgerbezeichnung ist falsch)
