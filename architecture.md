@@ -2,16 +2,23 @@
 flowchart LR;
     classDef focus fill:#f96;
     classDef hide_ color:gray , stroke-dasharray: 5 5 , stroke:lightgray;
-        subgraph clojure.backend
+     subgraph backend
+        subgraph clojure
+            direction TB
             I(import):::hide_ -.- B(backend):::focus
             B -.- e(export):::hide_
         end
-        subgraph nodejs.frontend
+    end
+    subgraph frontend
+        subgraph nodejs
             direction LR
             D(search):::focus
             E(submit):::hide_
         end
-    clojure.backend ==graphql==> nodejs.frontend 
+    end
+    backend ==graphql==> frontend
+    style clojure color:grey;
+    style nodejs color:grey;
     linkStyle 0 stroke:lightgrey;
     linkStyle 1 stroke:lightgrey;
 ```
