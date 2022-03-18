@@ -1,0 +1,13 @@
+pull_request_rules:
+  - name: automatic merge on CI success
+    conditions:
+      - check-success=format
+      - check-success=devShell
+      - check-success=beherbergung-warhelp
+      - check-success=beherbergung-lifeline
+      - check-success=Evaluate flake.nix
+      - author=github-actions[bot]
+    actions:
+      merge:
+        method: merge
+      delete_head_branch: {}
