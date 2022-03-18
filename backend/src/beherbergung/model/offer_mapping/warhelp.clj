@@ -1,7 +1,5 @@
 (ns beherbergung.model.offer-mapping.warhelp
-  (:require [clojure.spec.alpha :as s]
-            [beherbergung.model.offer :refer [int_string]]
-            [clojure.string :refer [split]]))
+  (:require [clojure.string :refer [split]]))
 
 (defn split_user_string
   "TODO handle common separators entered by users like `,` or `and`"
