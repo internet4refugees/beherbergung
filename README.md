@@ -1,5 +1,7 @@
 This repository contains tools for NGOs, organizing private hosting.
 
+![](./docs/user-guide/graphics/overview.png)
+
 ## Import of existing datasets
 
 - [x] https://mission-lifeline.de/unterkunft-bereitstellen/
@@ -22,15 +24,13 @@ Implemented by reusing the technology stack of [swlkup](https://github.com/johan
 
 ## A frontend for authorized NGO members, to **search** the database
 
-A website written for this use case allows easy input of filters. The usage of finding matches will be much more convenient than working with a spreadsheet.
+A website [based on reactdatagrid](https://reactdatagrid.io/) allows easy filtering and sorting of results. The usage of finding matches is much more convenient than working with a regular spreadsheet. Collaboration features will be available soon.
 
-- [ ] **Should be available this week** (work in progress)
+- [x] Alpha version is online
+- [x] Editable columns
+- [x] Map view / Location filter+sorting
 
-Features to process an `hosting offer` dataset:
-
-- [ ] note if host was `contacted` (by which `login`) + additional notes
-- [ ] keep track if offer is `still free` / `occupied (till)` / `free again`
-
+A [user manual](./docs/user-guide/user-guide-en.md) is available in [English](./docs/user-guide/user-guide-en.md) and [German](./docs/user-guide/user-guide-de.md).
 
 ## A customizable public form, to submit new offers
 
@@ -40,3 +40,7 @@ An optional new form was requested by:
 
 - [ ] zentralwerk & goethe institut
 - [ ] lifeline
+
+## Contributing
+
+See this [file](DEVELOPMENT.md) for developer facing documentation.

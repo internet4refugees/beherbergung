@@ -1,0 +1,11 @@
+schema: http://localhost:4000/graphql
+documents: './queries.ts'
+generates:
+  ./generates.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-query
+    config:
+      fetcher:
+        func: './fetcher#fetcher'

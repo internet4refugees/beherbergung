@@ -2,7 +2,6 @@
   (:require [compojure.core :refer [defroutes GET POST]]
             [compojure.route :as route]
             [ring.util.response :refer [response]]
-            [ring.middleware.cors :refer [wrap-cors]]
             [beherbergung.webserver.middleware :refer [wrap-graphql wrap-graphiql wrap-nextjs-frontend wrap-frontend-config wrap-defaults]]
             [beherbergung.resolver.core :refer [graphql]]
             [beherbergung.config.state :refer [env]]))
@@ -21,6 +20,8 @@
                    "   Alternatively production builds including the frontend are available via nix."
                    "</p/>"))
 
+  (GET "/health" [] "ok")
+
   (->
     (POST "/graphql" req
           (response (graphql (:body req))))
@@ -29,14 +30,10 @@
 
   (route/not-found "Not Found"))
 
-
 (def app
   (-> app-routes
 
       (wrap-nextjs-frontend)
       (wrap-frontend-config)
 
-      (wrap-defaults)
-
-      (wrap-cors :access-control-allow-origin [#"http://localhost:3000"]
-                 :access-control-allow-methods [:get :put :post :delete])))
+      (wrap-defaults)))

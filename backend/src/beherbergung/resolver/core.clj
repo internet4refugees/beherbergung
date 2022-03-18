@@ -8,13 +8,16 @@
             [beherbergung.resolver.root.login :refer [login]]
             ;; ngo login
             [beherbergung.resolver.root.ngo.get-offers :refer [get_offers]]
+            [beherbergung.resolver.root.ngo.get-rw :refer [get_rw]]
+            [beherbergung.resolver.root.ngo.write-rw :refer [write_rw]]
             ;; admin passphrase
             [beherbergung.resolver.root.admin.export :refer [export]]))
 
 (def graphql* (executor {:query {:login #'login
                                  :get_offers #'get_offers
+                                 :get_rw #'get_rw
                                  :export #'export}
-                         :mutation {}}))
+                         :mutation {:write_rw #'write_rw}}))
 
 (defn ->graphql
   "Create a wrapped graphql-executor, that merges context into the request.

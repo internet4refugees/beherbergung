@@ -1,0 +1,10 @@
+keys:
+  - &beherbergung-lifeline 8d7c2caf71c02de02980dba3fdda92b5591c3b27
+  - &j03 9EA68B7F21204979645182E4287B083353C3241C
+  #- &mic age17n64ahe3wesh8l8lj0zylf4nljdmqn28hvqns2g7hgm9mdkhlsvsjuvkxz
+creation_rules:
+  - path_regex: sops/secrets/.*
+    key_groups:
+    - pgp:
+      - *beherbergung-lifeline
+      - *j03

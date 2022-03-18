@@ -7,8 +7,8 @@
 
 (s/def ::frontend-base-url string?)
 (s/def ::frontend-backend-base-url string?)
-
 (s/def ::port number?)  ;; the webserver port
+(s/def ::jwt-secret (s/nilable string?))
 
 (s/def ::verbose boolean?)
 
@@ -16,14 +16,16 @@
 
 (s/def ::db-inmemory boolean?)  ;; we run unit tests in an in-memory instance, otherwise the default db would be looked
 (s/def ::db-dir string?)  ;; ignored when ::db-inmemory
-(s/def ::db-seed string?)  ;; an edn-file to be used for seeding
+(s/def ::db-seed (s/nilable string?))  ;; an edn-file to be used for seeding
 (s/def ::db-export-prefix (s/nilable string?))  ;; path where during startup an export should be written
 (s/def ::db-validate boolean?)
 
 (s/def ::admin-passphrase (s/nilable string?))  ;; allows setting up ngo logins and encrypted downloads of db exports
 (s/def ::admin-gpg-id string?)
 
+(s/def ::import-ngo (s/nilable string?))
 (s/def ::import-file (s/nilable string?))
+(s/def ::import-limit (s/nilable number?))
 
 (s/def ::mail-host string?)
 (s/def ::mail-user string?)
@@ -34,6 +36,7 @@
 (s/def ::env (s/keys :req-un [::frontend-base-url
                               ::frontend-backend-base-url
                               ::port
+                              ::jwt-secret
                               ::verbose
                               ::validate-output
                               ::db-inmemory ::db-dir
@@ -41,13 +44,16 @@
                               ::db-validate
                               ::admin-passphrase
                               ::admin-gpg-id
+                              ::import-ngo
                               ::import-file
+                              ::import-limit
                               ;::mail-host ::mail-user ::mail-pass ::mail-port ::mail-from
                              ]))
 
 (defn strip-secrets [env]
   (assoc env :mail-pass "*"
-             :admin-passphrase "*"))
+             :admin-passphrase "*"
+             :jwt-secret "*"))
 
 (defn filter-defined [keys-spec m]
   (let [req-un (last (s/form keys-spec))
