@@ -7,6 +7,10 @@
   inputs = {
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
+
+    alejandra.url = "github:kamadorueda/alejandra/1.1.0";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +25,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, sops-nix, nix-deploy-git, dns }:
+  outputs = { self, nixpkgs, sops-nix, nix-deploy-git, dns, alejandra }:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
@@ -57,6 +61,9 @@
       nativeBuildInputs = [
         pkgs.leiningen
         pkgs.yarn
+        # TODO: switch to alejandra from nixpkgs in 22.05
+        alejandra.defaultPackage.${system}
+        pkgs.treefmt
       ];
       shellHook = ''
         export PATH=${(pkgs.callPackage ./frontend/search {})}/libexec/beherbergung/node_modules/.bin:$PATH
