@@ -6,6 +6,7 @@
 
 (def mail "max.mueller@warhelp.eu")
 (def password "i!A;z\\\"'^G3Q)w])%83)")
+(def test-import-limit 2)
 
 (defn get_offers [variables]
   (let [response (graphql {:query "query x($auth: Auth) { get_offers(auth: $auth){ time_from_str time_duration_str beds languages place_country place_city place_zip place_street place_street_number accessible animals_allowed animals_present contact_name_full contact_phone contact_email note } }"
@@ -13,11 +14,11 @@
         (get-in response [:data :get_offers])))
 
 
-(use-fixtures :once (fn [testcases] (mount/stop) (mount/start) (import! 10) (testcases) (mount/stop)))
+(use-fixtures :once (fn [testcases] (mount/stop) (mount/start) (import! test-import-limit) (testcases) (mount/stop)))
 
 (deftest correct-login
   (let [offers (get_offers {:auth {:mail mail :password password}})]
-       (is (= 10 (count offers)))  ;; 10 is the default sample size of gen/sample
+       (is (= test-import-limit (count offers)))
        (is (= {:beds 0
                :place_street ""
                :contact_email nil
