@@ -1,12 +1,16 @@
 {
   description = "https://github.com/internet4refugees/beherbergung.git development environment + package + deployment";
 
-  nixConfig.extra-substituters = [ "https://cache.garnix.io" ];
-  nixConfig.extra-trusted-public-keys = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
+  nixConfig.extra-substituters = ["https://cache.garnix.io"];
+  nixConfig.extra-trusted-public-keys = ["cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="];
 
   inputs = {
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
+
+    alejandra.url = "github:kamadorueda/alejandra/1.1.0";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,15 +25,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, sops-nix, nix-deploy-git, dns }:
-  let
+  outputs = {
+    self,
+    nixpkgs,
+    sops-nix,
+    nix-deploy-git,
+    dns,
+    alejandra,
+  }: let
     system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; };
+    pkgs = import nixpkgs {inherit system;};
     inherit (pkgs) lib;
 
     commonAttrs = {
       system = "x86_64-linux";
-      extraArgs = { flake = self; inherit system dns; };
+      extraArgs = {
+        flake = self;
+        inherit system dns;
+      };
     };
     commonModules = [
       ./deployment/modules/nix.nix
@@ -42,50 +55,71 @@
       #nix-deploy-git.nixosModule
       #./deployment/modules/nix-deploy-git.nix
     ];
-  in
-  rec {
-
-    legacyPackages.${system} = (lib.mergeAttrs pkgs {
+    linters = [
+      # TODO: switch to alejandra from nixpkgs in 22.05
+      alejandra.defaultPackage.${system}
+      pkgs.treefmt
+      pkgs.clj-kondo
+      pkgs.shellcheck
+      pkgs.shfmt
+    ];
+  in rec {
+    legacyPackages.${system} = lib.mergeAttrs pkgs {
       #nixos-deploy = import ./tools/deploy.nix { inherit pkgs; };
-    });
+    };
 
     packages.${system} = {
       devShell = self.devShell.${system}.inputDerivation;
     };
 
+    checks.${system} = {
+      format =
+        pkgs.runCommandNoCC "treefmt" {
+          nativeBuildInputs = linters;
+        } ''
+          cp -r ${self} source && chmod -R +w source
+          cd source
+          HOME=$TMPDIR treefmt --fail-on-change
+          touch $out
+        '';
+    };
+
     devShell.${system} = pkgs.mkShell {
-      nativeBuildInputs = [
-        pkgs.leiningen
-        pkgs.yarn
-      ];
+      nativeBuildInputs =
+        [
+          pkgs.leiningen
+          pkgs.yarn
+        ]
+        ++ linters;
       shellHook = ''
         export PATH=${(pkgs.callPackage ./frontend/search {})}/libexec/beherbergung/node_modules/.bin:$PATH
       '';
     };
- 
+
     #defaultPackage.${system} = legacyPackages.${system}.nixos-deploy;
 
     nixosConfigurations = {
-  
       beherbergung-lifeline = nixpkgs.lib.nixosSystem (lib.mergeAttrs commonAttrs {
-        modules = commonModules ++ [
-          ./deployment/hosts/beherbergung-lifeline/configuration.nix
-          #./deployment/modules/nginx/beherbergung-lifeline.nix
-          #./deployment/modules/binarycache/client.nix
-          #./deployment/modules/binarycache/server.nix
-          #./deployment/modules/monitoring/server.nix
-        ];
+        modules =
+          commonModules
+          ++ [
+            ./deployment/hosts/beherbergung-lifeline/configuration.nix
+            #./deployment/modules/nginx/beherbergung-lifeline.nix
+            #./deployment/modules/binarycache/client.nix
+            #./deployment/modules/binarycache/server.nix
+            #./deployment/modules/monitoring/server.nix
+          ];
       });
 
       beherbergung-warhelp = nixpkgs.lib.nixosSystem (lib.mergeAttrs commonAttrs {
-        modules = # commonModules ++
-        [
-          ./deployment/hosts/beherbergung-warhelp/configuration.nix
-          ./deployment/modules/nix.nix
-          ./deployment/modules/default.nix
-        ];
+        modules =
+          # commonModules ++
+          [
+            ./deployment/hosts/beherbergung-warhelp/configuration.nix
+            ./deployment/modules/nix.nix
+            ./deployment/modules/default.nix
+          ];
       });
-
     };
   };
 }

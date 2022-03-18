@@ -1,5 +1,9 @@
-{ config, pkgs, nixpkgs, ... }:
 {
+  config,
+  pkgs,
+  nixpkgs,
+  ...
+}: {
   boot.cleanTmpDir = true;
 
   nix.package = pkgs.nixUnstable;

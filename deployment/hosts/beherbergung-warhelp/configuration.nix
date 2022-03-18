@@ -1,5 +1,9 @@
-{ config, pkgs, modulesPath, ... }:
 {
+  config,
+  pkgs,
+  modulesPath,
+  ...
+}: {
   system.stateVersion = "21.11";
 
   networking.hostName = "beherbergung-warhelp";
