@@ -1,7 +1,7 @@
 (ns beherbergung.config.state
   "Wrapping yogthos/config with defstate allows overwriting the config at runtime and checking it at startup against a spec"
   (:require [clojure.spec.alpha :as s]
-            [mount.core :refer [defstate]]
+            [mount.core :refer [defstate args]]
             [config.core]
             [clojure.string]))
 
