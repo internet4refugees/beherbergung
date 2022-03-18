@@ -40,3 +40,7 @@ An optional new form was requested by:
 
 - [ ] zentralwerk & goethe institut
 - [ ] lifeline
+
+## Contributing
+
+See this [file][DEVELOPMENT.md] for developer facing documentation.
