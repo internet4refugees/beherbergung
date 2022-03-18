@@ -17,6 +17,20 @@ export const get_columns = gql`
       group
       defaultWidth
       editable
+      options {
+        filter {
+          operator
+        }
+        dateFormat
+        transform {
+          date2Iso {
+            inputDateFormat
+          }
+          array2string {
+            join
+          }
+        }
+      }
     }
   }
 `;

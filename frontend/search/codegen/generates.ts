@@ -16,6 +16,11 @@ export type Scalars = {
   Long: any;
 };
 
+export type Array2string = {
+  __typename?: 'Array2string';
+  join?: Maybe<Scalars['String']>;
+};
+
 /** Authentication requires either a valid mail+password combination or a jwt obtained by an earlier login. */
 export type Auth = {
   /** Self descriptive. */
@@ -24,6 +29,16 @@ export type Auth = {
   mail: Scalars['String'];
   /** Self descriptive. */
   password: Scalars['String'];
+};
+
+export type Date2Iso = {
+  __typename?: 'Date2Iso';
+  inputDateFormat?: Maybe<Scalars['String']>;
+};
+
+export type Filter = {
+  __typename?: 'Filter';
+  operator?: Maybe<Scalars['String']>;
 };
 
 /** If this server supports mutation, the type that mutation operations will be rooted at. */
@@ -47,6 +62,13 @@ export type OnEditCompleteByType = {
   rowId: Scalars['String'];
   value_boolean?: InputMaybe<Scalars['Boolean']>;
   value_string?: InputMaybe<Scalars['String']>;
+};
+
+export type Options = {
+  __typename?: 'Options';
+  dateFormat?: Maybe<Scalars['String']>;
+  filter?: Maybe<Filter>;
+  transform?: Maybe<Transform>;
 };
 
 /** The type that query operations will be rooted at. */
@@ -92,6 +114,12 @@ export type QueryTypeLoginArgs = {
   auth: Auth;
 };
 
+export type Transform = {
+  __typename?: 'Transform';
+  array2string?: Maybe<Array2string>;
+  date2Iso?: Maybe<Date2Iso>;
+};
+
 /** Export an encrypted database dump */
 export type Export = {
   __typename?: 'export';
@@ -110,6 +138,7 @@ export type Get_Columns = {
   header: Scalars['String'];
   /** Self descriptive. */
   name: Scalars['String'];
+  options?: Maybe<Options>;
   /** Self descriptive. */
   type: Scalars['String'];
 };
@@ -168,7 +197,7 @@ export type GetColumnsQueryVariables = Exact<{
 }>;
 
 
-export type GetColumnsQuery = { __typename?: 'QueryType', get_columns?: Array<{ __typename?: 'get_columns', name: string, type: string, header: string, group?: string | null, defaultWidth?: number | null, editable?: boolean | null }> | null };
+export type GetColumnsQuery = { __typename?: 'QueryType', get_columns?: Array<{ __typename?: 'get_columns', name: string, type: string, header: string, group?: string | null, defaultWidth?: number | null, editable?: boolean | null, options?: { __typename?: 'Options', dateFormat?: string | null, filter?: { __typename?: 'Filter', operator?: string | null } | null, transform?: { __typename?: 'Transform', date2Iso?: { __typename?: 'Date2Iso', inputDateFormat?: string | null } | null, array2string?: { __typename?: 'Array2string', join?: string | null } | null } | null } | null }> | null };
 
 export type GetOffersQueryVariables = Exact<{
   auth: Auth;
@@ -213,6 +242,20 @@ export const GetColumnsDocument = `
     group
     defaultWidth
     editable
+    options {
+      filter {
+        operator
+      }
+      dateFormat
+      transform {
+        date2Iso {
+          inputDateFormat
+        }
+        array2string {
+          join
+        }
+      }
+    }
   }
 }
     `;
