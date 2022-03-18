@@ -62,12 +62,13 @@ SET VERBOSE=true
 lein run
 ```
 
-to check using test-data use
+to check using test-data use 
 
 ```bash
 set DB_SEED="src/beherbergung/db/seed/test.edn"
 lein run
 ```
+
 
 ### State management
 
@@ -100,3 +101,14 @@ consider download, self-install and run via lein.bat
 curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein.bat >lein.bat
 lein run
 ```
+
+### errors
+
+windows can't handle ":"-file names. Plz disable spit file in backend/src/beherbergung/db/export.clj by `(spit file)))` to `#_(spit file)))`. Or consider setting database by setting `DB_SEED`. Check your db-export-prefix setting for file system compatible pattern.
+
+```bash
+.\data\export\2022-03-18_10:03:37_start.edn (Die Syntax für den Dateinamen, Verzeichnisnamen oder die Datenträgerbezeichnung ist falsch)
+```
+
+
+
