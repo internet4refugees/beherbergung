@@ -8,7 +8,7 @@
 (defn -main
  ([]
   (-main "/dev/stdin"))
- ([csv-file & args]
+ ([csv-file & _args]
   (->> (io/reader csv-file)
        (csv/parse-csv)
        (sc/mappify {:keyify false})

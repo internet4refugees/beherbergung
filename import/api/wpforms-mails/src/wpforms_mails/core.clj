@@ -54,6 +54,7 @@
 (comment
   (count (mbox->emls (:wpforms-mails-file env)))
   (count (file->messages (:wpforms-mails-file env)))
+  (require '[clojure-mail.core :as cmc])
   (message->html (cmc/file->message "/tmp/example"))
   (message->html (second (file->messages (:wpforms-mails-file env))))
   (-main))
