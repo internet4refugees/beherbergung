@@ -4,7 +4,7 @@
             [beherbergung.resolver.core :refer [graphql]]
             [beherbergung.auth.jwt.login :refer [jwt->id]]))
 
-(def mail "praxis@max.mueller.de")
+(def mail "max.mueller@warhelp.eu")
 (def password "i!A;z\\\"'^G3Q)w])%83)")
 
 (use-fixtures :once (fn [testcases] (mount/stop) (mount/start) (testcases) (mount/stop)))

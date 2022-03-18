@@ -1,9 +1,10 @@
 (ns beherbergung.resolver.ngo.get-offers-test
   (:require [clojure.test :refer [use-fixtures deftest is]]
             [mount.core :as mount]
-            [beherbergung.resolver.core :refer [graphql]]))
+            [beherbergung.resolver.core :refer [graphql]]
+            [beherbergung.db.import.offer.core :refer [import!]]))
 
-(def mail "praxis@max.mueller.de")
+(def mail "max.mueller@warhelp.eu")
 (def password "i!A;z\\\"'^G3Q)w])%83)")
 
 (defn get_offers [variables]
@@ -12,27 +13,27 @@
         (get-in response [:data :get_offers])))
 
 
-(use-fixtures :once (fn [testcases] (mount/stop) (mount/start) (testcases) (mount/stop)))
+(use-fixtures :once (fn [testcases] (mount/stop) (mount/start) (import! 10) (testcases) (mount/stop)))
 
 (deftest correct-login
   (let [offers (get_offers {:auth {:mail mail :password password}})]
        (is (= 10 (count offers)))  ;; 10 is the default sample size of gen/sample
-       (is (=  {:beds 27
-                :place_street "wIbUsu"
-                :contact_email "x0Vl9"
-                :contact_name_full "48"
-                :time_duration_str "33"
-                :note "Z"
-                :place_street_number "VB3"
-                :place_city "f"
-                :contact_phone "sQdB"
-                :place_zip "cid1"
-                :time_from_str "03/05/2022"
-                :place_country "toTz5B"
-                :animals_present false
-                :languages '("vMR0zyECr")
-                :accessible false
-                :animals_allowed false}
+       (is (= {:beds 0
+               :place_street ""
+               :contact_email nil
+               :contact_name_full ""
+               :time_duration_str ""
+               :note ""
+               :place_street_number ""
+               :place_city "Dresden"
+               :contact_phone nil
+               :place_zip ""
+               :time_from_str "10/04/2022"
+               :place_country "Deutschland"
+               :animals_present false
+               :languages '()
+               :accessible false
+               :animals_allowed false}
               (last offers)))))  ;; the later random generated datasets contain less trivial values
 
 (deftest wrong-login
