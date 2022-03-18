@@ -110,6 +110,7 @@
           pkgs.yarn
           pkgs.hivemind
           pkgs.nodejs
+          pkgs.entr
           pkgs.nodePackages.prettier
           nixos-shell.packages.${system}.nixos-shell
         ]
