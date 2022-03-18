@@ -1,12 +1,12 @@
 This repository contains the completely declarative+reproducible configurations to deploy a server hosting the „beherbergung“ service and basic infrastructure for reliabiliy+maintainability.
 Most of the service definitions should re reusable with minimal adaptions for completely different projects.
 
-* CI/CD
-* buildcache
-* [monitoring + alerting](./modules/monitoring/README.md)
-* backup
-* dns
-* reverse proxy + acme
+- CI/CD
+- buildcache
+- [monitoring + alerting](./modules/monitoring/README.md)
+- backup
+- dns
+- reverse proxy + acme
 
 Secrets are encrypted with sops.
 
@@ -31,11 +31,14 @@ nix run
 ## Bootstrap
 
 To setup a new server:
+
 1. boot a nixos image
 2. mount the future / to /mnt
 3. copy this repo to /mnt/etc/nixos
 4. check flake.nix and hosts/$HOSTNAME/\*configuration.nix
-  - set a correct static ipv6
+
+- set a correct static ipv6
+
 5. nixos-install:
 
 ```shell
@@ -52,6 +55,7 @@ edit .sops.yaml sops/keys/hosts/$HOSTNAME.asc
 ```
 
 6.2. add pubkey to the developers keyring
+
 ```shell
 gpg --import sops/keys/hosts/$HOSTNAME.asc
 ```

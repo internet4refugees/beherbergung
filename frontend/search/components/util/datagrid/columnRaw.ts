@@ -1,15 +1,18 @@
-import {Array2StringTransformOptions, DateToISOTransformOptions} from "../tableValueMapper";
+import {
+  Array2StringTransformOptions,
+  DateToISOTransformOptions,
+} from "../tableValueMapper";
 
 export type ColumnOptions = {
-  dateFormat?: string
+  dateFormat?: string;
   filter?: {
-    operator?: string
-  }
+    operator?: string;
+  };
   transform?: {
-    array2string?: Array2StringTransformOptions
-    date2Iso?: DateToISOTransformOptions
-  }
-}
+    array2string?: Array2StringTransformOptions;
+    date2Iso?: DateToISOTransformOptions;
+  };
+};
 export interface ColumnRaw {
   name: string;
   header: string;
@@ -17,7 +20,5 @@ export interface ColumnRaw {
   editable?: boolean;
   defaultWidth?: number;
   group?: string;
-  options?: ColumnOptions
+  options?: ColumnOptions;
 }
-
-

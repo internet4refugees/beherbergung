@@ -1,9 +1,12 @@
-import { gql } from 'graphql-request'
+import { gql } from "graphql-request";
 
 export const login = gql`
   query Login($auth: Auth!) {
-    login(auth: $auth) {jwt}
-  }`
+    login(auth: $auth) {
+      jwt
+    }
+  }
+`;
 
 export const get_offers = gql`
   query GetOffers($auth: Auth!) {
@@ -29,7 +32,8 @@ export const get_offers = gql`
       contact_email
       note
     }
-  }`
+  }
+`;
 
 export const get_rw = gql`
   query GetRw($auth: Auth!) {
@@ -40,4 +44,5 @@ export const get_rw = gql`
       rw_offer_occupied
       rw_note
     }
-  }`
+  }
+`;

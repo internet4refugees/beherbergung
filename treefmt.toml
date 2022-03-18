@@ -29,3 +29,18 @@ shfmt -i 2 -s -w "$@"
 ]
 includes = ["*.sh"]
 excludes = []
+
+[formatter.prettier]
+command = "prettier"
+options = ["--write"]
+includes = [
+    "*.css",
+    "*.html",
+    "*.js",
+    "*.json",
+    "*.jsx",
+    "*.md",
+    "*.mdx",
+    "*.scss",
+    "*.ts",
+]

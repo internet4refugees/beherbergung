@@ -15,7 +15,6 @@ lein repl  ## from somewhere within the `backend` directory
 
 To learn more about the datalog query syntax, please use the [XTDB language reference](https://docs.xtdb.com/language-reference/datalog-queries/).
 
-
 # Web UI
 
 If you are looking for a Web UI for inspecting the XTDB database, you may want use [XTDB inspector](https://github.com/tatut/xtdb-inspector).

@@ -22,21 +22,19 @@ Danach siehst du einen minimalen Dialog, welcher dich nach deinen Benutzer-spezi
 
 - **In der Tabelle navigieren** Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) verschoben werden.
 
-
 <!--
 Es wird, dass die Wohnung in dem jeweiligen grauen Kreis ist. Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort.
 -->
 
-
 ### Suchen und Sortieren
 
 - Prinzipiell ist der Kopf jeder Spalte interaktiv. Durch schreiben in den Spalten Kopf können Suchkriterien zusammen gestellt werden.
-Die Suchergebnisse werden dann direkt in der Tabelle darunter dargestellt.
+  Die Suchergebnisse werden dann direkt in der Tabelle darunter dargestellt.
 
 ![](./graphics/table.png)
 
 - **Suche:** Die Tabelle kann nach den meisten Spalten gefiltert werden. Dafür einfach in der Zeile zwischen dem Tabellenkopf und der ersten Zeile mit Angeboten eingeben. Mit dem Filtersymbol das in dieser Zeile in
-jeder Spalte ist, können weitere Optionen fürs Filtern ausgewählt werden. z.B. „enthält den eingegebenen Text“ oder „Spalten die angezeigt werden sollen, müssen einen Wert haben der mindestens so groß wie der eingegebene Wert ist“. Bei den meisten Spalten haben wir bereits eine sinnvolle Vorauswahl.
+  jeder Spalte ist, können weitere Optionen fürs Filtern ausgewählt werden. z.B. „enthält den eingegebenen Text“ oder „Spalten die angezeigt werden sollen, müssen einen Wert haben der mindestens so groß wie der eingegebene Wert ist“. Bei den meisten Spalten haben wir bereits eine sinnvolle Vorauswahl.
 
 - **Spalten Typen:** Der Tabellenkopf enthält Eingabe-Felder, womit sich suchen lässt. Das Format des Spaltenkopfs ist dabei abhängig von der jeweiligen Spalte mögliche Formate sind z.B Zeichenketten, Ganzzahlen, Checkboxes oder Datumsangaben. Wenn eine Spalte einen inkorrekten Typ hat sagt uns gerne bescheid.
 
@@ -54,8 +52,6 @@ jeder Spalte ist, können weitere Optionen fürs Filtern ausgewählt werden. z.B
 
 - Wenn du z.B nach Orten im Dresdner Zentrum sucht richtest du deine Karte so aus das diese auf das Zentrum zeigt und sortierst dann die Einträge in der Tabelle nach der Distanz absteigend.
 
-
 ### Fehler / Bugs gefunden.
 
 - Bitte schreibe uns eine Mail mit einer kurzen Beschreibung wie es zu diesem Fehler kam. Mit einer Anleitung wie man diesen Fehler reproduzieren kann. Screenshots sind meistens auch sehr hilfreich zudem potenziell deine Browser + Version.
-
