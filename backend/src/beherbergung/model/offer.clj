@@ -43,13 +43,14 @@
 (s/def ::contact_phone (s/nilable ::t_string))
 (s/def ::contact_email (s/nilable ::t_string))
 (s/def ::note (s/nilable ::t_string))
-(s/def ::offer (s/keys :req-un [:xtdb.api/id ::id_tmp
+(s/def ::offer (s/keys :req-un [::id_tmp
                                 ::time_from_str ::time_duration_str ::beds ::languages
                                 ::place_country ::place_city ::place_zip ::place_street ::place_street_number
                                 ::place_lon ::place_lat
                                 ::accessible ::animals_allowed ::animals_present
                                 ::contact_name_full ::contact_phone ::contact_email
-                                ::note]))
+                                ::note]
+                       :opt-un [:xt/id ]))  ;; TODO: when validating the db, we either need check for namespaced keywords or call db->graphql
 
 (comment
   (write-edn "./data/sample-data/example.edn"
