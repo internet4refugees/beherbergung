@@ -2,17 +2,18 @@
 command = "alejandra"
 includes = ["*.nix"]
 
-## TODO first we need configure .clj-kondo/config.edn to handle the defstate macro
-#[formatter.clojure]
-#command = "sh"
-#options = [
-#  "-euc",
-#  """
-#  cd backend
-#  clj-kondo --lint "$@"
-#"""
-#]
-#includes = ["*.clj"]
+[formatter.clojure]
+command = "sh"
+options = [
+  "-euc",
+  """
+  cd backend
+  clj-kondo --lint "$@"
+"""
+]
+includes = ["*.clj"]
+# TODO first we need configure .clj-kondo/config.edn to handle the defstate macro
+excludes = ["backend/src/beherbergung/config/state.clj"]
 
 [formatter.shell]
 command = "sh"

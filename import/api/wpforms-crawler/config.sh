@@ -6,12 +6,12 @@ export DATA_DIR=${DATA_DIR:="${SCRIPT_DIR}/data"}
 
 ## download
 
-export START=${START:=500}  #57
+export START=${START:=500} #57
 export END=${END:=1000}
 
 export WP_ADMIN_URL=${WP_ADMIN_URL:='https://example.com/wp-admin/admin.php'}
 export FORM_ID=${FORM_ID:=16993}
-export NONCE=${NONCE:='caffeeeeee'}  ## it will change and needs be replaced
+export NONCE=${NONCE:='caffeeeeee'} ## it will change and needs be replaced
 export AUTHORIZATION_HEADER=${AUTHORIZATION_HEADER:='authorization: Basic Base64EncodedDataaaaaaaaaa=='}
 export COOKIE_HEADER=${COOKIE_HEADER:='cookie: wordpress_sec_thisCopiedFromTheBrower; wordpress_logged_in_; some_other_cookies'}
 
