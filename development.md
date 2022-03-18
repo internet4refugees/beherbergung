@@ -18,3 +18,9 @@ To format and lint all project source code run:
 ```
 $ treefmt
 ```
+
+# Run tests
+
+```
+$ nix flake check -vL
+```
