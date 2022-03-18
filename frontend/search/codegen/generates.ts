@@ -54,6 +54,7 @@ export type QueryType = {
   __typename?: 'QueryType';
   /** Export an encrypted database dump */
   export?: Maybe<Export>;
+  get_columns?: Maybe<Array<Get_Columns>>;
   /** The offers that are visible for the ngo, belonging to the login */
   get_offers?: Maybe<Array<Get_Offers>>;
   get_rw?: Maybe<Array<Get_Rw>>;
@@ -65,6 +66,12 @@ export type QueryType = {
 /** The type that query operations will be rooted at. */
 export type QueryTypeExportArgs = {
   password: Scalars['String'];
+};
+
+
+/** The type that query operations will be rooted at. */
+export type QueryTypeGet_ColumnsArgs = {
+  auth: Auth;
 };
 
 
@@ -92,6 +99,19 @@ export type Export = {
   /** Self descriptive. */
   exit: Scalars['Int'];
   out?: Maybe<Scalars['String']>;
+};
+
+export type Get_Columns = {
+  __typename?: 'get_columns';
+  defaultWidth?: Maybe<Scalars['Int']>;
+  editable?: Maybe<Scalars['Boolean']>;
+  group?: Maybe<Scalars['String']>;
+  /** Self descriptive. */
+  header: Scalars['String'];
+  /** Self descriptive. */
+  name: Scalars['String'];
+  /** Self descriptive. */
+  type: Scalars['String'];
 };
 
 /** The offers that are visible for the ngo, belonging to the login */
@@ -143,6 +163,13 @@ export type LoginQueryVariables = Exact<{
 
 export type LoginQuery = { __typename?: 'QueryType', login: { __typename?: 'login', jwt?: string | null } };
 
+export type GetColumnsQueryVariables = Exact<{
+  auth: Auth;
+}>;
+
+
+export type GetColumnsQuery = { __typename?: 'QueryType', get_columns?: Array<{ __typename?: 'get_columns', name: string, type: string, header: string, group?: string | null, defaultWidth?: number | null, editable?: boolean | null }> | null };
+
 export type GetOffersQueryVariables = Exact<{
   auth: Auth;
 }>;
@@ -175,6 +202,30 @@ export const useLoginQuery = <
     useQuery<LoginQuery, TError, TData>(
       ['Login', variables],
       fetcher<LoginQuery, LoginQueryVariables>(LoginDocument, variables),
+      options
+    );
+export const GetColumnsDocument = `
+    query GetColumns($auth: Auth!) {
+  get_columns(auth: $auth) {
+    name
+    type
+    header
+    group
+    defaultWidth
+    editable
+  }
+}
+    `;
+export const useGetColumnsQuery = <
+      TData = GetColumnsQuery,
+      TError = unknown
+    >(
+      variables: GetColumnsQueryVariables,
+      options?: UseQueryOptions<GetColumnsQuery, TError, TData>
+    ) =>
+    useQuery<GetColumnsQuery, TError, TData>(
+      ['GetColumns', variables],
+      fetcher<GetColumnsQuery, GetColumnsQueryVariables>(GetColumnsDocument, variables),
       options
     );
 export const GetOffersDocument = `

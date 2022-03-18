@@ -4,8 +4,7 @@
             [beherbergung.auth.core :refer [auth+role->entity]]
             [beherbergung.model.auth :as auth]
             [beherbergung.model.ngo :as ngo]
-            [beherbergung.model.offer-rw :as offer-rw :refer [db->graphql]]
-            [clojure.edn]))
+            [beherbergung.model.offer-rw :as offer-rw :refer [db->graphql]]))
 
 (s/fdef get_rw
         :args (s/tuple map? (s/keys :req-un [::auth/auth]) map? map?)
