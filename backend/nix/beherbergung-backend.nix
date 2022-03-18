@@ -42,7 +42,7 @@
 
     installPhase = ''
       mkdir $out
-      cp target/${name}-standalone.jar $out/
+      cp target/${name}-standalone.jar $out/${pname}-standalone.jar
     '';
   };
 in
@@ -55,7 +55,7 @@ in
     ## TODO: JAVA_TOOL_OPTIONS should be generated from jvm-opts in project.clj and also update beherbergung.service
     export MALLOC_ARENA_MAX=2
     export JAVA_TOOL_OPTIONS='-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dlog4j2.formatMsgNoLookups=true'
-    ${jdk11_headless}/bin/java -jar ${beherbergung-backend-jar}/${name}-standalone.jar $@
+    ${jdk11_headless}/bin/java -jar ${beherbergung-backend-jar}/${pname}-standalone.jar $@
   '')
   {
     inherit mavenRepository;
