@@ -8,8 +8,10 @@
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
 
-    alejandra.url = "github:kamadorueda/alejandra/1.1.0";
-    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+    alejandra = {
+      url = "github:kamadorueda/alejandra/1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
