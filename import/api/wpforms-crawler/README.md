@@ -2,7 +2,6 @@
 
 Once we have obtained a cookie, crawling is trivial…
 
-
 ## configuration && usage
 
 ```bash

@@ -89,6 +89,8 @@
         [
           pkgs.leiningen
           pkgs.yarn
+          pkgs.nodejs
+          pkgs.nodePackages.prettier
         ]
         ++ linters;
       shellHook = ''

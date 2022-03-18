@@ -1,13 +1,13 @@
-import i18next from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import en from './en.json'
-import de from './de.json'
+import i18next from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import en from "./en.json";
+import de from "./de.json";
 
 export const resources = {
   en: { translation: en },
-  de: { translation: de }
-}
+  de: { translation: de },
+};
 
 i18next
   .use(initReactI18next)
@@ -19,6 +19,6 @@ i18next
     fallbackLng: "en",
 
     interpolation: {
-      escapeValue: false // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
-    }
-  })
+      escapeValue: false, // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
+    },
+  });
