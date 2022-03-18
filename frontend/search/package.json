@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "generate": "cd codegen && graphql-codegen generate",
-    "dev": "next dev",
+    "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start --hostname ::",
     "lint": "next lint"
