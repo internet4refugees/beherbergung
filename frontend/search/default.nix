@@ -4,4 +4,6 @@ yarn2nix-moretea.mkYarnPackage {
   src = ./.;
   yarnLock = ./yarn.lock;
   packageJSON = ./package.json;
+  # slow
+  dontStrip = true;
 }
