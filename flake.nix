@@ -55,6 +55,14 @@
       #nix-deploy-git.nixosModule
       #./deployment/modules/nix-deploy-git.nix
     ];
+    linters = [
+      # TODO: switch to alejandra from nixpkgs in 22.05
+      alejandra.defaultPackage.${system}
+      pkgs.treefmt
+      pkgs.clj-kondo
+      pkgs.shellcheck
+      pkgs.shfmt
+    ];
   in rec {
     legacyPackages.${system} = lib.mergeAttrs pkgs {
       #nixos-deploy = import ./tools/deploy.nix { inherit pkgs; };
@@ -64,14 +72,25 @@
       devShell = self.devShell.${system}.inputDerivation;
     };
 
+    checks.${system} = {
+      format =
+        pkgs.runCommandNoCC "treefmt" {
+          nativeBuildInputs = linters;
+        } ''
+          cp -r ${self} source && chmod -R +w source
+          cd source
+          HOME=$TMPDIR treefmt --fail-on-change
+          touch $out
+        '';
+    };
+
     devShell.${system} = pkgs.mkShell {
-      nativeBuildInputs = [
-        pkgs.leiningen
-        pkgs.yarn
-        # TODO: switch to alejandra from nixpkgs in 22.05
-        alejandra.defaultPackage.${system}
-        pkgs.treefmt
-      ];
+      nativeBuildInputs =
+        [
+          pkgs.leiningen
+          pkgs.yarn
+        ]
+        ++ linters;
       shellHook = ''
         export PATH=${(pkgs.callPackage ./frontend/search {})}/libexec/beherbergung/node_modules/.bin:$PATH
       '';
