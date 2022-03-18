@@ -1,5 +1,4 @@
-{ dns, ... }:
-
+{dns, ...}:
 with dns.lib.combinators; rec {
   SOA = {
     nameServer = "ns1.broenradio.org.";
@@ -13,11 +12,11 @@ with dns.lib.combinators; rec {
     "ns2.broenradio.org."
   ];
 
-  A = [ "88.99.244.96" ];
-  AAAA = [ "2a01:4f8:10b:49f:1::1" ];
+  A = ["88.99.244.96"];
+  AAAA = ["2a01:4f8:10b:49f:1::1"];
 
   subdomains = {
-    backend = { inherit A AAAA; };
+    backend = {inherit A AAAA;};
     #submission = mic1;
 
     #binarycache = mic1;

@@ -1,4 +1,4 @@
-{ yarn2nix-moretea }:
+{yarn2nix-moretea}:
 yarn2nix-moretea.mkYarnPackage {
   pname = "yarn-node-modules";
   src = ./.;
