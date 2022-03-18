@@ -89,6 +89,7 @@
         [
           pkgs.leiningen
           pkgs.yarn
+          pkgs.hivemind
           pkgs.nodejs
           pkgs.nodePackages.prettier
         ]

@@ -11,6 +11,12 @@ After installing nix to get a shell that has all development dependencies set up
 $ nix develop
 ```
 
+# Start development server
+
+```
+$ hivemind
+```
+
 # Linters and formatting
 
 To format and lint all project source code run:
