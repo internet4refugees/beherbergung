@@ -196,10 +196,11 @@
     };
 
     hydraJobs = with nixpkgs.lib; let
-      hydraJobs = mapAttrs (_: hydraJob);
+      #hydraJobs = mapAttrs (_: hydraJob);
     in {
-      checks = hydraJobs self.checks.x86_64-linux;
-      packages = hydraJobs self.packages.x86_64-linux;
+      # TODO: this does not evaluate (meta attribute is missing)
+      #checks = hydraJobs self.checks.x86_64-linux;
+      #packages = hydraJobs self.packages.x86_64-linux;
       nixosConfigurations =
         mapAttrs (
           _: nixos:
