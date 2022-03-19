@@ -33,6 +33,10 @@
       url = "github:Mic92/nixos-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    deadnix = {
+      url = "github:astro/deadnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -43,7 +47,8 @@
     dns,
     alejandra,
     mvn2nix,
-    nixos-shell
+    nixos-shell,
+    deadnix
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
@@ -99,6 +104,14 @@
           cp -r ${self} source && chmod -R +w source
           cd source
           HOME=$TMPDIR treefmt --fail-on-change
+          touch $out
+        '';
+
+      deadnix =
+        pkgs.runCommandNoCC "deadnix" {
+          nativeBuildInputs = [ deadnix.packages.${system}.deadnix ];
+        } ''
+          deadnix -f ${self}
           touch $out
         '';
     };
