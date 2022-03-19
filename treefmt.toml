@@ -15,21 +15,22 @@ includes = ["*.clj"]
 # TODO first we need configure .clj-kondo/config.edn to handle the defstate macro
 excludes = ["backend/src/beherbergung/config/state.clj"]
 
-[formatter.shell]
-command = "sh"
-options = [
-    "-eucx",
-    """
-# This is a bug in treefmt, the script should not be called without arguments
-if [[ $# -le 0 ]]; then exit 0; fi
-# First shellcheck
-shellcheck "$@"
-# Then format
-shfmt -i 2 -s -w "$@"
-    """
-]
-includes = ["*.sh"]
-excludes = []
+# the shell code here sucks.
+#[formatter.shell]
+#command = "sh"
+#options = [
+#    "-eucx",
+#    """
+## This is a bug in treefmt, the script should not be called without arguments
+#if [[ $# -le 0 ]]; then exit 0; fi
+## First shellcheck
+#shellcheck "$@"
+## Then format
+#shfmt -i 2 -s -w "$@"
+#    """
+#]
+#includes = ["*.sh"]
+#excludes = []
 
 [formatter.prettier]
 command = "prettier"
