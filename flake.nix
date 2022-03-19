@@ -95,6 +95,16 @@
         inherit pkgs;
       };
     };
+    apps.${system} = {
+      # Run the VM with `nixos run .#vm`
+      vm = {
+        type = "app";
+        program =
+          let
+            config = self.nixosConfigurations.vm.config;
+          in "${config.system.build.vm}/bin/run-${config.networking.hostName}-vm";
+      };
+    };
 
     checks.${system} = {
       format =
