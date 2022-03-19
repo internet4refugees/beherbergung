@@ -10,4 +10,4 @@
                   (get-in [:data :__schema :types]))
               (map :name)
               sort)
-         '("Auth" "Boolean" "Float" "ID" "Int" "Long" "MutationType" "OnEditCompleteByType" "QueryType" "String" "export" "get_offers" "get_rw" "login"))))
+         '("Array2string" "Auth" "Boolean" "Date2Iso" "Filter" "Float" "ID" "Int" "Long" "MutationType" "OnEditCompleteByType" "Options" "QueryType" "String" "Transform" "export" "get_columns" "get_offers" "get_rw" "login"))))

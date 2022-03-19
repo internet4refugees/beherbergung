@@ -5,7 +5,7 @@
             [beherbergung.db.import.offer.core :refer [import!]]))
 
 (def mail "max.mueller@warhelp.eu")
-(def password "i!A;z\\\"'^G3Q)w])%83)")
+(def password "18;%+ZW^|tST_lJ(k9P[")
 (def test-import-limit 2)
 
 (defn get_offers [variables]
