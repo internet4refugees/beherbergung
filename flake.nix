@@ -48,7 +48,7 @@
     alejandra,
     mvn2nix,
     nixos-shell,
-    deadnix
+    deadnix,
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
@@ -94,18 +94,19 @@
         inherit (mvn2nix.legacyPackages.${system}) buildMavenRepositoryFromLockFile;
         inherit pkgs;
       };
-      inherit (pkgs.callPackages ./frontend/search {})
+      inherit
+        (pkgs.callPackages ./frontend/search {})
         beherbergung-frontend-deps
-        beherbergung-frontend-assets;
+        beherbergung-frontend-assets
+        ;
     };
     apps.${system} = {
       # Run the VM with `nixos run .#vm`
       vm = {
         type = "app";
-        program =
-          let
-            config = self.nixosConfigurations.vm.config;
-          in "${config.system.build.vm}/bin/run-${config.networking.hostName}-vm";
+        program = let
+          config = self.nixosConfigurations.vm.config;
+        in "${config.system.build.vm}/bin/run-${config.networking.hostName}-vm";
       };
     };
 
@@ -122,7 +123,7 @@
 
       deadnix =
         pkgs.runCommandNoCC "deadnix" {
-          nativeBuildInputs = [ deadnix.packages.${system}.deadnix ];
+          nativeBuildInputs = [deadnix.packages.${system}.deadnix];
         } ''
           deadnix -f ${self}
           touch $out
@@ -162,11 +163,11 @@
           self.nixosModules.beherbergung
           # dummy value to make ci happy
           {
-             boot.loader.systemd-boot.enable = true;
-             fileSystems."/" = {
-               device = "/dev/disk/by-uuid/00000000-0000-0000-0000-000000000000";
-               fsType = "btrfs";
-             };
+            boot.loader.systemd-boot.enable = true;
+            fileSystems."/" = {
+              device = "/dev/disk/by-uuid/00000000-0000-0000-0000-000000000000";
+              fsType = "btrfs";
+            };
           }
         ];
       };
@@ -194,15 +195,17 @@
       });
     };
 
-    hydraJobs = with nixpkgs.lib;
-      let
-        hydraJobs = mapAttrs (_: hydraJob);
-      in {
-        checks = hydraJobs self.checks.x86_64-linux;
-        packages = hydraJobs self.packages.x86_64-linux;
-        nixosConfigurations = mapAttrs (_: nixos:
-          hydraJob nixos.config.system.build.toplevel
-        ) self.nixosConfigurations;
-      };
+    hydraJobs = with nixpkgs.lib; let
+      hydraJobs = mapAttrs (_: hydraJob);
+    in {
+      checks = hydraJobs self.checks.x86_64-linux;
+      packages = hydraJobs self.packages.x86_64-linux;
+      nixosConfigurations =
+        mapAttrs (
+          _: nixos:
+            hydraJob nixos.config.system.build.toplevel
+        )
+        self.nixosConfigurations;
+    };
   };
 }

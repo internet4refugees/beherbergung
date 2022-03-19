@@ -36,5 +36,5 @@ There is no need to use this component for NGOs happy with their existing soluti
 
 # Contributing
 
-See the [developer facing documentation](./docs/DEVELOPMENT.md) and the documentation of the [Architecture](./docs/ARCHITECTURE.md). 
+See the [developer facing documentation](./docs/DEVELOPMENT.md) and the documentation of the [Architecture](./docs/ARCHITECTURE.md).
 There is also a README.md for each component in it's directory.

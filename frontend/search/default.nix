@@ -1,5 +1,9 @@
-{ yarn2nix-moretea, glibcLocales, stdenv, yarn }:
-let
+{
+  yarn2nix-moretea,
+  glibcLocales,
+  stdenv,
+  yarn,
+}: let
   beherbergung-frontend-deps = yarn2nix-moretea.mkYarnPackage {
     pname = "beherbergungs-frontend-deps";
     src = ./.;

@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: {
+{config, ...}: {
   ## After updating the nixpkgs, the acme-unit failed. It was mitigated by:
   ## > chmod acme:nginx /var/lib/acme/
 

@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   boot.cleanTmpDir = true;
 
   nix.package = pkgs.nixUnstable;

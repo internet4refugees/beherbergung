@@ -9,7 +9,7 @@ export const login = gql`
 `;
 
 export const get_columns = gql`
-  query GetColumns($auth: Auth!){
+  query GetColumns($auth: Auth!) {
     get_columns(auth: $auth) {
       name
       type
