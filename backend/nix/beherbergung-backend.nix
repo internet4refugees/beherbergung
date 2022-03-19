@@ -3,7 +3,7 @@
   buildMavenRepositoryFromLockFile,
   patchPublic ? null,
 }: let
-  inherit (pkgs) lib stdenv jdk11_headless maven makeWrapper leiningen;
+  inherit (pkgs) lib stdenv jdk11_headless maven leiningen;
   inherit (stdenv) mkDerivation;
 
   mavenRepository = buildMavenRepositoryFromLockFile {file = ./deps/mvn2nix-lock.json;};

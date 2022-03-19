@@ -1,7 +1,4 @@
 {
-  config,
-  lib,
-  pkgs,
   ...
 }: {
   sops.gnupg.sshKeyPaths = ["/etc/ssh/ssh_host_rsa_key"];

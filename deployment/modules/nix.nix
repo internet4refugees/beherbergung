@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  nixpkgs,
   ...
 }: {
   boot.cleanTmpDir = true;

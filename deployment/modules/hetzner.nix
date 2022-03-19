@@ -1,8 +1,5 @@
 ## a common hardware-configuration.nix for our hetzner servers
 {
-  config,
-  lib,
-  pkgs,
   modulesPath,
   ...
 }: {
