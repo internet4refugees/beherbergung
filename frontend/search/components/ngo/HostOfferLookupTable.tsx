@@ -173,11 +173,11 @@ const HostOfferLookupTable = ({
     const data = extendedFilter(dataSource, filterValue, columnsRaw)
     onFilteredDataChange && onFilteredDataChange(data)
     setFilteredData(data)
-  }, [dataSource, onFilteredDataChange, setFilteredData, filterValue])
+  }, [columnsRaw, dataSource, onFilteredDataChange, setFilteredData, filterValue])
 
   useEffect(() => {
     filterAndSetData()
-  }, [dataSource, filterValue, filterAndSetData]);
+  }, [columnsRaw, dataSource, filterValue, filterAndSetData]);
 
   useEffect(() => {
     const data = filterUndefOrNull(data_ro
@@ -191,7 +191,7 @@ const HostOfferLookupTable = ({
 
     // @ts-ignore
     data && setDataSource(data)
-  }, [data_ro, data_rw, center]);
+  }, [columnsRaw, data_ro, data_rw, center]);
 
   const auth = useAuthStore()
 
