@@ -1,5 +1,9 @@
 [{:id "offer_42"
   :id_tmp "42"
+  :time_submission_str nil
+  :editor nil
+  :rw_contacted nil
+  :rw_offer_occupied true
   :beds "2 (+2 Children)"
   :place_street nil
   :contact_email ""
@@ -17,10 +21,13 @@
   :accessible nil
   :animals_allowed nil
   :covid_vaccination_status_str nil
-  :skills_translation nil
-  :editor nil}
+  :skills_translation nil}
  {:id "0"
   :id_tmp "0"
+  :time_submission_str nil
+  :editor nil
+  :rw_contacted nil
+  :rw_offer_occupied false
   :beds 0,
   :place_street "",
   :contact_email nil,
@@ -38,10 +45,13 @@
   :accessible false,
   :animals_allowed false
   :covid_vaccination_status_str nil
-  :skills_translation nil
-  :editor nil}
+  :skills_translation nil}
  {:id "1"
   :id_tmp "1"
+  :time_submission_str nil
+  :editor nil
+  :rw_contacted nil
+  :rw_offer_occupied nil
   :beds nil,
   :place_street "g",
   :contact_email "8",
@@ -59,10 +69,13 @@
   :accessible nil,
   :animals_allowed false
   :covid_vaccination_status_str nil
-  :skills_translation nil
-  :editor nil}
+  :skills_translation nil}
  {:id "2"
   :id_tmp "2"
+  :time_submission_str nil
+  :editor nil
+  :rw_contacted nil
+  ;:rw_offer_occupied nil  ;; test that it works when not even nil
   :beds 1,
   :place_street "p8",
   :contact_email "i",
@@ -80,10 +93,12 @@
   :accessible nil,
   :animals_allowed true
   :covid_vaccination_status_str nil
-  :skills_translation nil
-  :editor nil}
+  :skills_translation nil}
  {:id "3"
   :id_tmp "3"
+  :time_submission_str nil
+  :editor nil
+  :rw_contacted nil
   :beds 0,
   :place_street "w4",
   :contact_email "5",
@@ -101,10 +116,12 @@
   :accessible false,
   :animals_allowed nil
   :covid_vaccination_status_str nil
-  :skills_translation nil
-  :editor nil}
+  :skills_translation nil}
  {:id "4"
   :id_tmp "4"
+  :time_submission_str nil
+  :editor nil
+  :rw_contacted nil
   :beds 2,
   :place_street nil,
   :contact_email nil,
@@ -122,10 +139,12 @@
   :accessible true,
   :animals_allowed true
   :covid_vaccination_status_str nil
-  :skills_translation nil
-  :editor nil}
+  :skills_translation nil}
  {:id "5"
   :id_tmp "5"
+  :time_submission_str nil
+  :editor nil
+  :rw_contacted nil
   :beds 1,
   :place_street "4N2",
   :contact_email "u1",
@@ -143,10 +162,12 @@
   :accessible false,
   :animals_allowed false
   :covid_vaccination_status_str nil
-  :skills_translation nil
-  :editor nil}
+  :skills_translation nil}
  {:id "6"
   :id_tmp "6"
+  :time_submission_str nil
+  :editor nil
+  :rw_contacted nil
   :beds 0,
   :place_street "T",
   :contact_email "W1wL",
@@ -164,10 +185,12 @@
   :accessible false,
   :animals_allowed true
   :covid_vaccination_status_str nil
-  :skills_translation nil
-  :editor nil}
+  :skills_translation nil}
  {:id "7"
   :id_tmp "7"
+  :time_submission_str nil
+  :editor nil
+  :rw_contacted nil
   :beds nil,
   :place_street "0IDd",
   :contact_email "2511JLD",
@@ -185,10 +208,12 @@
   :accessible false,
   :animals_allowed false
   :covid_vaccination_status_str nil
-  :skills_translation nil
-  :editor nil}
+  :skills_translation nil}
  {:id "8"
   :id_tmp "8"
+  :time_submission_str nil
+  :editor nil
+  :rw_contacted nil
   :beds 4,
   :place_street "Wy",
   :contact_email "35e6Rnj",
@@ -206,10 +231,12 @@
   :accessible true,
   :animals_allowed false
   :covid_vaccination_status_str nil
-  :skills_translation nil
-  :editor nil}
+  :skills_translation nil}
  {:id "9"
   :id_tmp "9"
+  :time_submission_str nil
+  :editor nil
+  :rw_contacted nil
   :beds 27,
   :place_street "wIbUsu",
   :contact_email "x0Vl9",
@@ -227,6 +254,5 @@
   :accessible false,
   :animals_allowed false
   :covid_vaccination_status_str nil
-  :skills_translation nil
-  :editor nil}
+  :skills_translation nil}
 ]

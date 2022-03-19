@@ -40,6 +40,10 @@ export const get_offers = gql`
     get_offers(auth: $auth) {
       id
       id_tmp
+      time_submission_str
+      editor
+      rw_contacted
+      rw_offer_occupied
       time_from_str
       time_duration_str
       beds
@@ -60,7 +64,6 @@ export const get_offers = gql`
       note
       covid_vaccination_status_str
       skills_translation
-      editor
     }
   }
 `;

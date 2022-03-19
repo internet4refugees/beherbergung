@@ -8,8 +8,13 @@
 
 (def mapping {:id_tmp #(or (not-empty (get % "E-Mail")) (get % "Telefonnummer"))
 
+              ;:time_submission_str (constantly nil)
+              ;:editor (constantly nil)
+              ;:rw_contacted (constantly nil)
+              ;:rw_offer_occupied (constantly nil)
+
               :time_from_str "frühestes Einzugsdatum"
-              :time_duration_str "Möglicher Aufenthalt (Dauer)"  ;; TODO: the duration is not parsed till now
+              :time_duration_str "Möglicher Aufenthalt (Dauer)"  ;; for lifeline MM/DD/YYYY
 
               :beds ["Verfügbare Betten" #(s/conform int_string %)]
               :languages ["Sprachen (sprechen / verstehen)" #(split % #"\n")]
@@ -24,13 +29,11 @@
               :animals_allowed ["Haustiere erlaubt?" JaNein->bool]
               :animals_present ["Sind Haustiere im Haushalt vorhanden?" JaNein->bool]
 
-              :covid_vaccination_status_str (constantly nil)
+              ;:covid_vaccination_status_str (constantly nil)
 
-              :skills_translation (constantly nil)
+              ;:skills_translation (constantly nil)
 
               :contact_name_full "Name"
               :contact_phone "Telefonnummer"
               :contact_email "E-Mail"
-              :note "Nachricht"
-
-              :editor (constantly nil)})
+              :note "Nachricht"})

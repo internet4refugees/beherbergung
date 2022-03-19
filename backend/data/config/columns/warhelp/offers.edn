@@ -1,5 +1,11 @@
 [
   {
+    :name "time_submission_str",
+    :header "Submission",
+    :type "string",
+    :defaultWidth 85,
+  },
+  {
     :name "editor",
     :header "Editor",
     :type "string",

@@ -132,8 +132,8 @@ async function mutate(auth: AuthState, onEditComplete: { value: string, columnId
   const onEditCompleteByType = {
     rowId: onEditComplete.rowId,
     columnId: onEditComplete.columnId,
-    value_boolean: type === 'boolean' && onEditComplete.value || null,
-    value_string: type === 'string' && onEditComplete.value || null
+    value_boolean: type === 'boolean' ? onEditComplete.value : null,
+    value_string: type === 'string' ? onEditComplete.value : null
   }
   const result = await fetcher<any, any>(`mutation WriteRW($auth: Auth!, $onEditCompleteByType: Boolean) {
                                             write_rw(auth: $auth, onEditCompleteByType: $onEditCompleteByType) }`,
@@ -147,6 +147,23 @@ const rw_default = {
   rw_offer_occupied: false,
   rw_note: ''
 }  // Required for filtering 'Not empty'. TODO: Should be fixed in StringFilter
+
+function objectWithoutNil<T extends {[k:string]:any}|undefined>(o: T): Partial<T> {
+ return o && Object.fromEntries(
+               Object.entries(o).filter(
+                 ([,v]) => ![null, undefined].includes(v))) as Partial<T>
+}
+
+function mergeRoAndRw(data_ro: HostOfferLookupTableProps['data_ro'], data_rw: HostOfferLookupTableProps['data_rw']) {
+  return data_ro
+    ?.map(e_ro => ({
+      ...rw_default,
+      ...e_ro,
+      ...objectWithoutNil(data_rw?.find((e_rw) => e_ro.id_tmp === e_rw.id
+	                                          || `rw_${e_ro.id}` === e_rw.id)),
+      id: e_ro.id
+    })) || []
+}
 
 const HostOfferLookupTable = ({
                                 data_ro,
@@ -180,12 +197,7 @@ const HostOfferLookupTable = ({
   }, [columnsRaw, dataSource, filterValue, filterAndSetData]);
 
   useEffect(() => {
-    const data = filterUndefOrNull(data_ro
-      ?.map(e_ro => ({
-        ...((data_rw?.find((e_rw) => e_ro.id_tmp === e_rw.id || `rw_${e_ro.id}` === e_rw.id
-        ) || rw_default)),
-        ...e_ro
-      })) || [])
+    const data = filterUndefOrNull(mergeRoAndRw(data_ro, data_rw))
       .map(v => transformValue(v, columnsRaw))
       .map(v => center ? {...v, place_distance: calculateDistance(v, center)} : v)
 

@@ -25,6 +25,10 @@
 
 (s/def :xt/id ::t_string)
 (s/def ::id_tmp (s/nilable ::t_string))
+(s/def ::time_submission_str (s/nilable ::t_string))
+(s/def ::editor (s/nilable ::t_string))
+(s/def ::rw_contacted (s/nilable ::t_boolean))
+(s/def ::rw_offer_occupied (s/nilable ::t_boolean))
 (s/def ::time_from_str (s/nilable ::t_string))
 (s/def ::time_duration_str (s/nilable ::t_string))
 (s/def ::beds (s/nilable ::t_int_string))
@@ -45,7 +49,6 @@
 (s/def ::contact_phone (s/nilable ::t_string))
 (s/def ::contact_email (s/nilable ::t_string))
 (s/def ::note (s/nilable ::t_string))
-(s/def ::editor (s/nilable ::t_string))
 (s/def ::offer (s/keys :req-un [::id_tmp
                                 ::time_from_str ::time_duration_str ::beds ::languages
                                 ::place_country ::place_city ::place_zip ::place_street ::place_street_number
@@ -54,9 +57,12 @@
                                 ::contact_name_full ::contact_phone ::contact_email
                                 ::note]
                        :opt-un [:xt/id  ;; TODO: when validating the db, we either need check for namespaced keywords or call db->graphql
+                                ::time_submission_str
+                                ::editor
+                                ::rw_contacted
+                                ::rw_offer_occupied
                                 ::covid_vaccination_status_str
-                                ::skills_translation
-                                ::editor]))
+                                ::skills_translation]))
 (comment
   (write-edn "./data/sample-data/example.edn"
              (gen/sample (s/gen ::offer))))
@@ -66,6 +72,9 @@
 (defn db->graphql [record]
   (some-> record
           (assoc :id (:xt/id record))
+          (update :time_submission_str identity)
+          (update :editor identity)
+          (update :rw_contacted identity)
+          (update :rw_offer_occupied identity)
           (update :covid_vaccination_status_str identity)
-          (update :skills_translation identity)
-          (update :editor identity)))
+          (update :skills_translation identity)))

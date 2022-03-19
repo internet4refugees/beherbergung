@@ -167,9 +167,12 @@ export type Get_Offers = {
   place_street?: Maybe<Scalars['String']>;
   place_street_number?: Maybe<Scalars['String']>;
   place_zip?: Maybe<Scalars['String']>;
+  rw_contacted?: Maybe<Scalars['Boolean']>;
+  rw_offer_occupied?: Maybe<Scalars['Boolean']>;
   skills_translation?: Maybe<Scalars['Boolean']>;
   time_duration_str?: Maybe<Scalars['String']>;
   time_from_str?: Maybe<Scalars['String']>;
+  time_submission_str?: Maybe<Scalars['String']>;
 };
 
 export type Get_Rw = {
@@ -207,7 +210,7 @@ export type GetOffersQueryVariables = Exact<{
 }>;
 
 
-export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, covid_vaccination_status_str?: string | null, skills_translation?: boolean | null, editor?: string | null }> | null };
+export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, time_submission_str?: string | null, editor?: string | null, rw_contacted?: boolean | null, rw_offer_occupied?: boolean | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, covid_vaccination_status_str?: string | null, skills_translation?: boolean | null }> | null };
 
 export type GetRwQueryVariables = Exact<{
   auth: Auth;
@@ -279,6 +282,10 @@ export const GetOffersDocument = `
   get_offers(auth: $auth) {
     id
     id_tmp
+    time_submission_str
+    editor
+    rw_contacted
+    rw_offer_occupied
     time_from_str
     time_duration_str
     beds
@@ -299,7 +306,6 @@ export const GetOffersDocument = `
     note
     covid_vaccination_status_str
     skills_translation
-    editor
   }
 }
     `;

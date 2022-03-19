@@ -19,7 +19,10 @@
         tx_result (when ngo:id
                         (let [{:keys [rowId columnId
                                       value_boolean value_string]} (:onEditCompleteByType opt)
-                              value (or value_boolean value_string)
+                              value (cond (some? value_boolean)
+                                            value_boolean
+                                          :else
+                                            value_string)
                               doc {(keyword columnId) value}]
                              (tx-fn-put :write_rw
                                    '(fn [ctx eid doc]
