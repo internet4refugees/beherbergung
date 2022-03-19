@@ -18,7 +18,7 @@
        :validate-output true
 
        :db-inmemory false
-       :db-dir "/var/lib/beherbungs-backend/xtdb/rocksdb"
+       :db-dir "/var/lib/beherbergung-backend/xtdb/rocksdb"
        :db-seed nil #_"${pkgs.writeText "seed.edn" ''[]''}"
        :db-export-prefix "/var/lib/beherbergung-backend/data/export/"
        :db-validate true
