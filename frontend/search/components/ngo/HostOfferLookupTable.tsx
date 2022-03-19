@@ -115,7 +115,7 @@ function columns(columnsRaw: TypeColumn[]) {
 function defaultFilterValue(columnsRaw: NonNullable<GetColumnsQuery["get_columns"]>[]) {  // TODO
   return columnsRaw
   // @ts-ignore
-  .filter(({type}) => type && ['string', 'number', 'boolean', 'date'].includes(type)) 
+  .filter(({type}) => type && ['string', 'number', 'boolean', 'date'].includes(type))
   // @ts-ignore
   .map(({name, type, options}) => {
     return {
@@ -217,6 +217,16 @@ const HostOfferLookupTable = ({
   // @ts-ignore
   const reactdatagridi18n = resources[language]?.translation?.reactdatagrid
 
+  const [cellSelection, setCellSelection] = useState<{[key: string]: boolean}>({})
+  const cellSelectionChangeHandler= useCallback(
+    (value: { [key: string]: boolean}) => {
+      console.log({cellSelectionChangeHandler: value})
+      setCellSelection(value)
+    },
+    [setCellSelection],
+  );
+
+
   return <DataGrid
     idProperty="id"
     filterable
@@ -233,6 +243,8 @@ const HostOfferLookupTable = ({
     style={{height: '100%'}}
     onEditComplete={onEditComplete}
     groups={defaultColumnGroups}
+    cellSelection={cellSelection}
+    onCellSelectionChange={cellSelectionChangeHandler}
   />
 }
 
