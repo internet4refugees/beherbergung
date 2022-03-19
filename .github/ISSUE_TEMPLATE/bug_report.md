@@ -2,7 +2,7 @@
 name: Bug report
 about: Tell us if an existing (documented) feature doesn't work as expected
 title: "[BUG]"
-labels: bug, low priority, medium priority, urgent
+labels: bug
 assignees: ''
 
 ---
@@ -27,3 +27,7 @@ Does the bug only exist on your System or can you reproduce it on other Desktops
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 Is there any useful output at the debug console?
+
+**Urgency**
+How quick is a fix required? What is the priority of solving this bug compared to others?
+Feel free, to assign one of this labels: `low priority`, `medium priority`, `high priority`, `urgent`
