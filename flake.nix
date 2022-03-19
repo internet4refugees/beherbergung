@@ -78,7 +78,6 @@
       alejandra.defaultPackage.${system}
       pkgs.treefmt
       pkgs.clj-kondo
-      pkgs.shellcheck
       pkgs.shfmt
     ];
   in rec {
