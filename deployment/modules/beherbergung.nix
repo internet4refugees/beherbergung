@@ -1,5 +1,4 @@
-{ beherbergung-backend }:
-{
+{beherbergung-backend}: {
   config,
   pkgs,
   lib,
@@ -60,9 +59,11 @@ in {
       serviceConfig = {
         DynamicUser = true;
         User = "beherbergung-backend";
-        Environment = [
-          "CONFIG=${config-edn}"
-        ] ++ (lib.mapAttrsToList (name: value: "${name}=${toString value}" ) config.it4r.beherbergung-backend.settings);
+        Environment =
+          [
+            "CONFIG=${config-edn}"
+          ]
+          ++ (lib.mapAttrsToList (name: value: "${name}=${toString value}") config.it4r.beherbergung-backend.settings);
         StateDirectory = "beherbergung-backend";
         WorkingDirectory = "/var/lib/beherbergung-backend";
         ExecStart = "${pkgs.jre}/bin/java -jar ${beherbergung-backend.jar}/beherbergung-backend-standalone.jar";
