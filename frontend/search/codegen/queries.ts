@@ -58,6 +58,9 @@ export const get_offers = gql`
       contact_phone
       contact_email
       note
+      covid_vaccination_status_str
+      skills_translation
+      editor
     }
   }
 `;

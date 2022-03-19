@@ -37,12 +37,15 @@
 (s/def ::place_lon (s/nilable ::t_float))
 (s/def ::place_lat (s/nilable ::t_float))
 (s/def ::accessible (s/nilable ::t_boolean))
+(s/def ::covid_vaccination_status_str (s/nilable ::t_string))
+(s/def ::skills_translation (s/nilable ::t_boolean))
 (s/def ::animals_allowed (s/nilable ::t_boolean))
 (s/def ::animals_present (s/nilable ::t_boolean))
 (s/def ::contact_name_full (s/nilable ::t_string))
 (s/def ::contact_phone (s/nilable ::t_string))
 (s/def ::contact_email (s/nilable ::t_string))
 (s/def ::note (s/nilable ::t_string))
+(s/def ::editor (s/nilable ::t_string))
 (s/def ::offer (s/keys :req-un [::id_tmp
                                 ::time_from_str ::time_duration_str ::beds ::languages
                                 ::place_country ::place_city ::place_zip ::place_street ::place_street_number
@@ -50,8 +53,10 @@
                                 ::accessible ::animals_allowed ::animals_present
                                 ::contact_name_full ::contact_phone ::contact_email
                                 ::note]
-                       :opt-un [:xt/id ]))  ;; TODO: when validating the db, we either need check for namespaced keywords or call db->graphql
-
+                       :opt-un [:xt/id  ;; TODO: when validating the db, we either need check for namespaced keywords or call db->graphql
+                                ::covid_vaccination_status_str
+                                ::skills_translation
+                                ::editor]))
 (comment
   (write-edn "./data/sample-data/example.edn"
              (gen/sample (s/gen ::offer))))
@@ -60,4 +65,7 @@
 
 (defn db->graphql [record]
   (some-> record
-          (assoc :id (:xt/id record))))
+          (assoc :id (:xt/id record))
+          (update :covid_vaccination_status_str identity)
+          (update :skills_translation identity)
+          (update :editor identity)))

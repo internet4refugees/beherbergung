@@ -24,7 +24,13 @@
               :animals_allowed ["Haustiere erlaubt?" JaNein->bool]
               :animals_present ["Sind Haustiere im Haushalt vorhanden?" JaNein->bool]
 
+              :covid_vaccination_status_str (constantly nil)
+
+              :skills_translation (constantly nil)
+
               :contact_name_full "Name"
               :contact_phone "Telefonnummer"
               :contact_email "E-Mail"
-              :note "Nachricht"})
+              :note "Nachricht"
+
+              :editor (constantly nil)})
