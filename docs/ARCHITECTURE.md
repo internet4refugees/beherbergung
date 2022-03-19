@@ -74,14 +74,11 @@ flowchart LR;
     import --> backend
 ```
 
-The delivered formats are loaded into objects. In general, we expect 2-dimensional data.
+**1st step - Extracting** Delivered formats are loaded into objects. In general we expect 2 dimensional data - the data set.
 
-**First step - Reading** A file contains multiple rows. Each row is a data
-point. Each row has multiple values. Import via CSV supports headers.
-**Second step - Mapping** The internal 2-dimensional data grid is mapped using
-associative attribute naming. Additional rules, checks and special functions are
-added - see 'offer_mapping'. This allows you to process custom representations
-of Boolean values or time string formats.
+**2nd step - Loading** A dataset contains multiple tupel. A tupel in turn consists of multiple attributes. Imports may support separate headlines. In case of csv the first row could be a headline. Usually each csv-row is a tupel/data point.  
+
+**3rd step - Mapping** The internal 2-dimensional data grid is mapped with help of associative attribut naming. Further rules, checks and specialised functions are added - see 'offer_mapping'. This allows to handle customer specific representation of boolean values or time string formats.
 
 Graphql allows generic access to the database. This way only the mappers have to
 deal with the specific customer related data model. To enable the merging or
