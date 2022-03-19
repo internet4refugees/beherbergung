@@ -80,13 +80,6 @@ flowchart LR;
 
 **3rd step - Mapping** The internal 2-dimensional data grid is mapped with help of associative attribut naming. Further rules, checks and specialised functions are added - see 'offer_mapping'. This allows to handle customer specific representation of boolean values or time string formats.
 
-**First step - Reading** A file contains multiple rows. Each row is a data
-point. Each row has multiple values. Import via CSV supports headers.
-**Second step - Mapping** The internal 2-dimensional data grid is mapped using
-associative attribute naming. Additional rules, checks and special functions are
-added - see 'offer_mapping'. This allows you to process custom representations
-of Boolean values or time string formats.
-
 Graphql allows generic access to the database. This way only the mappers have to
 deal with the specific customer related data model. To enable the merging or
 exchange of different data models, another mapping is applied. The so-called key
