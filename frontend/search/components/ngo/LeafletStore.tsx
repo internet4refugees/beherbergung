@@ -16,6 +16,8 @@ export interface LeafletState {
   setMarkers: (markers: Marker[]) => void
   filteredMarkers: Marker[]
   setFilteredMarkers: (filteredMarkers: Marker[]) => void
+  selectedId?: string
+  setSelectedId: (selectedId?: string ) => void
 }
 
 export const useLeafletStore = create<LeafletState>(set => ({
@@ -24,5 +26,7 @@ export const useLeafletStore = create<LeafletState>(set => ({
   markers: [],
   setMarkers: markers => set( _orig => ({markers}) ),
   filteredMarkers: [],
-  setFilteredMarkers: filteredMarkers => set( _orig => ({filteredMarkers}) )
+  setFilteredMarkers: filteredMarkers => set( _orig => ({filteredMarkers}) ),
+  selectedId: undefined,
+  setSelectedId: selectedId => set( _orig => ({selectedId}) )
 }))
