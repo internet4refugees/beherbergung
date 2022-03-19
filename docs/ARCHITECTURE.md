@@ -77,7 +77,7 @@ flowchart LR;
 The delivered formats are loaded into objects. In general, we expect 2-dimensional data.
 
 **First step - Reading** A file contains multiple rows. Each row is a data
-point. Each row has multiple values. Imports as CSV support headers.
+point. Each row has multiple values. Import via CSV supports headers.
 **Second step - Mapping** The internal 2-dimensional data grid is mapped using
 associative attribute naming. Additional rules, checks and special functions are
 added - see 'offer_mapping'. This allows you to process custom representations
