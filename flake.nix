@@ -3,6 +3,7 @@
 
   nixConfig.extra-substituters = ["https://cache.garnix.io"];
   nixConfig.extra-trusted-public-keys = ["cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="];
+  nixConfig.allow-import-from-derivation = true;
 
   inputs = {
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -77,7 +78,6 @@
       alejandra.defaultPackage.${system}
       pkgs.treefmt
       pkgs.clj-kondo
-      pkgs.shellcheck
       pkgs.shfmt
     ];
   in rec {
@@ -113,10 +113,15 @@
     checks.${system} = {
       format =
         pkgs.runCommandNoCC "treefmt" {
-          nativeBuildInputs = linters;
+          nativeBuildInputs = linters ++ [ pkgs.git ];
         } ''
           cp -r ${self} source && chmod -R +w source
           cd source
+          # treefmt needs git to detect changes
+          git init && git add .
+          export GIT_AUTHOR_NAME="foo" GIT_AUTHOR_EMAIL="foo@example.org"
+          export GIT_COMMITTER_NAME="foo" GIT_COMMITTER_EMAIL="foo@example.org"
+          git commit -m "first commit"
           HOME=$TMPDIR treefmt --fail-on-change
           touch $out
         '';
@@ -196,10 +201,11 @@
     };
 
     hydraJobs = with nixpkgs.lib; let
-      hydraJobs = mapAttrs (_: hydraJob);
+      #hydraJobs = mapAttrs (_: hydraJob);
     in {
-      checks = hydraJobs self.checks.x86_64-linux;
-      packages = hydraJobs self.packages.x86_64-linux;
+      # TODO: this does not evaluate (meta attribute is missing)
+      #checks = hydraJobs self.checks.x86_64-linux;
+      #packages = hydraJobs self.packages.x86_64-linux;
       nixosConfigurations =
         mapAttrs (
           _: nixos:
