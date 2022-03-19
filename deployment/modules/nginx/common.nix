@@ -1,7 +1,5 @@
 {
   config,
-  pkgs,
-  nixpkgs,
   ...
 }: {
   ## After updating the nixpkgs, the acme-unit failed. It was mitigated by:
