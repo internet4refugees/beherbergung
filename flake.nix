@@ -113,7 +113,7 @@
     checks.${system} = {
       format =
         pkgs.runCommandNoCC "treefmt" {
-          nativeBuildInputs = linters ++ [ pkgs.git ];
+          nativeBuildInputs = linters ++ [pkgs.git];
         } ''
           cp -r ${self} source && chmod -R +w source
           cd source

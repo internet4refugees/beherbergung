@@ -62,13 +62,12 @@ SET VERBOSE=true
 lein run
 ```
 
-to check using test-data use 
+to check using test-data use
 
 ```bash
 set DB_SEED="src/beherbergung/db/seed/test.edn"
 lein run
 ```
-
 
 ### State management
 
@@ -109,6 +108,3 @@ windows can't handle ":"-file names. Plz disable spit file in backend/src/beherb
 ```bash
 .\data\export\2022-03-18_10:03:37_start.edn (Die Syntax für den Dateinamen, Verzeichnisnamen oder die Datenträgerbezeichnung ist falsch)
 ```
-
-
-
