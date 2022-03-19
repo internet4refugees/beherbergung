@@ -126,6 +126,12 @@
           touch $out
         '';
 
+      nixos-test = import ./deployment/tests/nixos-test.nix {
+        inherit pkgs;
+        makeTest = import (pkgs.path + "/nixos/tests/make-test-python.nix");
+        beherbergung-module = self.nixosModules.beherbergung;
+      };
+
       deadnix =
         pkgs.runCommandNoCC "deadnix" {
           nativeBuildInputs = [deadnix.packages.${system}.deadnix];
