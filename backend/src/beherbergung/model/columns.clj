@@ -14,7 +14,8 @@
 ;; options.filter
 
 (s/def ::operator (s/nilable t/string))
-(t/defobject Filter {:name "Filter" :kind t/object-kind #_#_:description ""}
+(t/defobject Filter {:name "Filter" :kind t/object-kind
+                     :description "option that influences the default filter option for a column"}
             :opt-un [::operator])
 (s/def ::filter (s/nilable Filter))
 
@@ -22,7 +23,7 @@
 ;; options.transform
 
 (s/def ::inputDateFormat (s/nilable t/string))
-(t/defobject Date2Iso {:name "Date2Iso" :kind t/object-kind #_#_:description ""}
+(t/defobject Date2Iso {:name "Date2Iso" :kind t/object-kind :description "convert a string date to iso format or other string formats"}
             :opt-un [::inputDateFormat])
 (s/def ::date2Iso (s/nilable Date2Iso))
 
@@ -39,7 +40,7 @@
 
 ;; options.dateFormat
 
-(s/def ::dateFormat (s/nilable t/string))
+(s/def ::dateFormat (t/field (s/nilable t/string) "needed  for date-strings, in order to make filter understand what date format the date string has"))
 
 
 ;; options
