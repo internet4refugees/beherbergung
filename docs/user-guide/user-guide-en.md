@@ -4,11 +4,11 @@
 
 ## Login and authentication
 
-The authentication/login is two-step process, first you will be asked for your organisation login.
+Authentication/login is a two-step process. First, you will be asked for your organization's login.
 
 ![](./graphics/org_password.png)
 
-After that you will see a minimal dialogue asking you for your user-specific login credentials.
+Then, a minimal dialog is displayed asking for your user-specific credentials.
 
 ![](./graphics/user_password.png)
 
@@ -16,10 +16,10 @@ After that you will see a minimal dialogue asking you for your user-specific log
 
 ![](./graphics/overview.png)
 
-- **Structure:** On the lower half of the interface is a map, where the locations of the flats are displayed.
-- **Table too small:** There is a handle at the edge between the map and the table, allowing to resize the division of space used for the table and the map.
+- **Structure:** In the lower half of the user interface, there is a map showing the locations of the apartments.
+- **Table too small:** On the edge between the map and the table there is a handle that allows you to change the size of the area used for the table and the map.
 
-- **Navigating through the table** After clicking into the table, it can be moved by using the cursor (arrow) keys.
+- **Navigating the table** After clicking in the table, you can move it with the cursor keys (arrow).
 
 <!--
 
@@ -28,27 +28,44 @@ It becomes that the flat is in the respective grey circle. For exact locations, 
 
 ### Search and sort
 
-- In principle, the header of each column is interactive. Search criteria can be compiled by writing in the columns header.
-  The search results are then displayed directly in the table below.
+- In principle, the heading of each column is interactive. You can compose
+  search criteria by writing in the column heading. The search results will then
+  be displayed directly in the table below.
 
 ![](./graphics/table.png)
 
-- **Search:** The table can be filtered by most columns. To do this, simply type in the line between the table header and the first line with offers. With the filter symbol that is in this line in
-  for example "contains the entered text" or "columns that should be displayed must have a value that is at least as large as the entered value". For most columns we already have a reasonable preselection.
-- **Column types:** The table header contains input fields that can be used to search. The format of the column header depends on the column. Possible formats are e.g. strings, integers, checkboxes or dates. If a column has an incorrect type, please let us know.
+- **Search:** The table can be filtered by most columns. To do this, simply
+  write in the line between the table heading and the first line with offers.
+  With the filter symbol, which is in this line in for example "contains the
+  entered text" or "columns to be displayed must have a value at least as large
+  as the entered value". For most columns we have already made a reasonable
+  preselection.
+- **Column types:** The table header contains input fields that can be used for
+  searching. The format of the column header depends on the column. Possible
+  formats include strings, numbers, checkboxes, or dates. If a column has an
+  incorrect type, please let us know.
 
-- **Customise filter:** The filter method for a column header is in most cases equality or contains. However, this can also be changed by using the funnel icon (see image).
+- **Customize the filter:** The filter method for a column header in most cases
+  is equals or contains. However, this can also be changed using the funnel icon
+  (see figure).
 
 ![](./graphics/city_column.png)
 
-- **Reset filter/search:** F5 reloads the page and resets all filters.
-- **Sort table** The table can be sorted by any column. Simply click on the column heading, e.g. "Beds" or "km". Clicking on it again reverses the sorting order. The third click cancels the sorting.
+- **Reset Filter/Search:** The F5 key reloads the page and resets all filters.
+- **Sort Table** The table can be sorted by any column. Just click on the column
+  heading, e.g. "Beds" or "km". Another click on it reverses the sort order. The
+  third click cancels the sorting.
 
 ### Using the map
 
-- In the table there is the column Distance, this distance is calculated from the current map centre to the respective flat.
-- If you are looking for places in the centre of Dresden, for example, you align your map so that it points to the centre and then sort the entries in the table according to distance in descending order.
+- In the table there is the Distance column. This distance is calculated from
+  the current map center to the respective apartment.
+- For example, if you are looking for places in the center of Dresden, align
+  your map so that it points to the center and then sort the entries in the
+  table by distance in descending order.
 
 ### Error / Bugs found.
 
-- Please send us an email with a short description of how this error occurred. With instructions on how to reproduce this error. Screenshots are usually also very helpful, as well as potentially your browser + version.
+- Please send us an email with a brief description of how this error occurred.
+  With instructions on how to reproduce this error. Screenshots are usually also
+  very helpful, as well as possibly your browser + version.
