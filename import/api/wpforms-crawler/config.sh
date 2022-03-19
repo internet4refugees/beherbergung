@@ -1,8 +1,6 @@
-# shellcheck shell=bash
 ## common
 
-SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
-export DATA_DIR=${DATA_DIR:="${SCRIPT_DIR}/data"}
+export DATA_DIR=${DATA_DIR:='./data'}
 
 ## download
 
@@ -26,4 +24,4 @@ export UT=${OUT:="/tmp/example.csv"}
 
 ## setup
 
-[ -d "$DATA_DIR" ] || mkdir "$DATA_DIR"
+[ -d $DATA_DIR ] || mkdir $DATA_DIR
