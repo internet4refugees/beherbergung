@@ -7,7 +7,7 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 source "$SCRIPT_DIR/config.sh"
 
 pushd "$DATA_DIR"
-find . | head -n1 | xargs head -n1 >"$OUT"
+find . -type f | head -n1 | xargs head -n1 >"$OUT"
 popd
 cat "$DATA_DIR"/* | grep -v 'Name,Land,Straße,Hausnummer' >>"$OUT"
 
