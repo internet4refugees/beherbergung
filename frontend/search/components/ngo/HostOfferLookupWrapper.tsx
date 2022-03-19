@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { Login, useAuthStore } from '../Login'
 import {Marker, useLeafletStore} from './LeafletStore'
 import { filterUndefOrNull } from '../util/notEmpty'
+import { useGetColumnsQuery } from "../../codegen/generates"
 
 type HostOfferLookupWrapperProps = Partial<HostOfferLookupTableProps>
 
@@ -25,6 +26,7 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
 
   const staleTimeMinutes_ro = 5
   const staleTimeMinutes_rw = 1
+  const staleTimeMinutes_columns = 60
   const queryResult_ro = useGetOffersQuery({auth}, {enabled: !!auth.jwt, staleTime: staleTimeMinutes_ro * 60 * 1000})
   const queryResult_rw = useGetRwQuery({auth}, {enabled: !!auth.jwt, staleTime: staleTimeMinutes_rw * 60 * 1000})
   const {data: data_ro} = queryResult_ro
@@ -45,6 +47,9 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
     [setFilteredMarkers],
   );
 
+  const {data: data_columns} = useGetColumnsQuery({auth}, {enabled: !!auth.jwt, staleTime: staleTimeMinutes_columns * 60 * 1000})
+  const columnsRaw = data_columns?.get_columns
+
   return <>
     <Box sx={{
         display: 'flex',
@@ -58,7 +63,7 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
           && t('Seems like you have no permissions. Please try to login again.') }
         <Login/>
       </div>
-      {data_ro && <div
+      {columnsRaw && data_ro && <div
           style={{flex: '1 1', height: '100%'}}>
             <HostOfferLookupTable
               {...props}
@@ -67,6 +72,7 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
               refetch_rw={queryResult_rw.refetch}
               onFilteredDataChange={handleFilteredDataChange}
               center={center || undefined}
+	      columnsRaw={columnsRaw}
             />
         </div>}
     </Box>

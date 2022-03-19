@@ -8,6 +8,33 @@ export const login = gql`
   }
 `;
 
+export const get_columns = gql`
+  query GetColumns($auth: Auth!){
+    get_columns(auth: $auth) {
+      name
+      type
+      header
+      group
+      defaultWidth
+      editable
+      options {
+        filter {
+          operator
+        }
+        dateFormat
+        transform {
+          date2Iso {
+            inputDateFormat
+          }
+          array2string {
+            join
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const get_offers = gql`
   query GetOffers($auth: Auth!) {
     get_offers(auth: $auth) {

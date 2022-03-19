@@ -11,7 +11,7 @@ import StringFilter from '@inovua/reactdatagrid-community/StringFilter'
 import BoolFilter from '@inovua/reactdatagrid-community/BoolFilter'
 import NumberFilter from "@inovua/reactdatagrid-community/NumberFilter"
 import BoolEditor from '@inovua/reactdatagrid-community/BoolEditor'
-import {GetOffersQuery, GetRwQuery} from "../../codegen/generates"
+import {GetOffersQuery, GetRwQuery, GetColumnsQuery} from "../../codegen/generates"
 import moment from "moment"
 
 import {useTranslation} from "react-i18next"
@@ -19,10 +19,8 @@ import {resources} from '../../i18n/config'
 
 import {fetcher} from '../../codegen/fetcher'
 import {useAuthStore, AuthState} from '../Login'
-import defaultColumnRawDefinition from "../config/defaultColumnRawDefinition";
 import defaultColumnGroups from "../config/defaultColumnGroups";
 import {ColumnRaw} from '../util/datagrid/columnRaw'
-import columnsRaw from "../config/defaultColumnRawDefinition";
 import {transformValue} from "../util/tableValueMapper";
 import {filterUndefOrNull} from "../util/notEmpty";
 import extendedFilter from "../util/datagrid/extendedFilter";
@@ -39,6 +37,7 @@ export type HostOfferLookupTableProps = {
   refetch_rw: any,
   onFilteredDataChange?: (data: HostOfferLookupTableDataType[]) => void
   center?: LatLng
+  columnsRaw: any // TODO NonNullable<GetColumnsQuery["get_columns"]>[] & TypeColumn[]
 }
 
 const filterMappings = {
@@ -103,16 +102,21 @@ const floor = (v: number | undefined) => v && Math.floor(v);
 const calculateDistance = (r: {place_lat?: number | null, place_lon?: number | null}, {lng, lat}: LatLng) =>
   r.place_lat && r.place_lon && lng && lat && floor(haversine_distance(lat, lng, r.place_lat, r.place_lon))
 
-const columns: TypeColumn[] = defaultColumnRawDefinition
+function columns(columnsRaw: TypeColumn[]) {
+  return columnsRaw
   .map(c => ({
     ...c,
     render: findMatchingRenderer(c) || undefined,
     filterEditor: filterMappings[c.type as 'string' | 'number' | 'boolean' | 'date'],
     editor: editorMappings[c.type as 'string' | 'number' | 'boolean' | 'date']
   }))
+}
 
-const defaultFilterValue: TypeFilterValue = defaultColumnRawDefinition
-  .filter(({type}) => type && ['string', 'number', 'boolean', 'date'].includes(type))
+function defaultFilterValue(columnsRaw: NonNullable<GetColumnsQuery["get_columns"]>[]) {  // TODO
+  return columnsRaw
+  // @ts-ignore
+  .filter(({type}) => type && ['string', 'number', 'boolean', 'date'].includes(type)) 
+  // @ts-ignore
   .map(({name, type, options}) => {
     return {
       name,
@@ -121,6 +125,7 @@ const defaultFilterValue: TypeFilterValue = defaultColumnRawDefinition
       operator: options?.filter?.operator || operatorsForType[type as 'string' | 'number' | 'date' | 'boolean']
     } as unknown as TypeSingleFilterValue
   })
+}
 
 async function mutate(auth: AuthState, onEditComplete: { value: string, columnId: string, rowId: string }) {
   const type = typeof (onEditComplete.value)
@@ -148,11 +153,12 @@ const HostOfferLookupTable = ({
                                 data_rw,
                                 refetch_rw,
                                 onFilteredDataChange,
-                                center
+                                center,
+                                columnsRaw
                               }: HostOfferLookupTableProps) => {
   const [dataSource, setDataSource] = useState<HostOfferLookupTableDataType[]>([]);
   const [filteredData, setFilteredData] = useState<HostOfferLookupTableDataType[]>([]);
-  const [filterValue, setFilterValue] = useState<TypeFilterValue | undefined>(defaultFilterValue);
+  const [filterValue, setFilterValue] = useState<TypeFilterValue | undefined>(defaultFilterValue(columnsRaw));
 
   const filterValueChangeHandler = useCallback((_filterValue?: TypeFilterValue) => {
     setFilterValue(_filterValue);
@@ -209,7 +215,7 @@ const HostOfferLookupTable = ({
     rowIndexColumn
     enableSelection
     enableColumnAutosize={false}
-    columns={columns}
+    columns={columns(columnsRaw)}
     dataSource={filteredData}
     i18n={reactdatagridi18n || undefined}
     style={{height: '100%'}}
