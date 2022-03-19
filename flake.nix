@@ -43,7 +43,7 @@
     dns,
     alejandra,
     mvn2nix,
-    nixos-shell
+    nixos-shell,
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
@@ -89,9 +89,11 @@
         inherit (mvn2nix.legacyPackages.${system}) buildMavenRepositoryFromLockFile;
         inherit pkgs;
       };
-      inherit (pkgs.callPackages ./frontend/search {})
+      inherit
+        (pkgs.callPackages ./frontend/search {})
         beherbergung-frontend-deps
-        beherbergung-frontend-assets;
+        beherbergung-frontend-assets
+        ;
     };
 
     checks.${system} = {
@@ -139,11 +141,11 @@
           self.nixosModules.beherbergung
           # dummy value to make ci happy
           {
-             boot.loader.systemd-boot.enable = true;
-             fileSystems."/" = {
-               device = "/dev/disk/by-uuid/00000000-0000-0000-0000-000000000000";
-               fsType = "btrfs";
-             };
+            boot.loader.systemd-boot.enable = true;
+            fileSystems."/" = {
+              device = "/dev/disk/by-uuid/00000000-0000-0000-0000-000000000000";
+              fsType = "btrfs";
+            };
           }
         ];
       };
