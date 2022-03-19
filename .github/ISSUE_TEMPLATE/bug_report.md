@@ -28,6 +28,9 @@ Does the bug only exist on your System or can you reproduce it on other Desktops
 If applicable, add screenshots to help explain your problem.
 Is there any useful output at the debug console?
 
+**Workaround**
+While the bug in present, is there a way to work around it?
+
 **Urgency**
 How quick is a fix required? What is the priority of solving this bug compared to others?
 Feel free, to assign one of this labels: `low priority`, `medium priority`, `high priority`, `urgent`
