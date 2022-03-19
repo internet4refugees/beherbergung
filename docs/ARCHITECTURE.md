@@ -17,7 +17,7 @@ flowchart LR;
 Whilst the backend runs on clojure the frontend is modeled in nodejs quering data unsing graphql-interface.
 
 ```mermaid
-flowchart LR;
+flowchart RL;
     classDef focus fill:#f96;
     classDef hide_ color:gray , stroke-dasharray: 5 5 , stroke:lightgray;
      subgraph backend
@@ -34,12 +34,14 @@ flowchart LR;
             E(submit):::hide_
         end
     end
-    backend ==graphql==> frontend
+    frontend ==graphql==> backend
     style clojure color:grey;
     style nodejs color:grey;
     linkStyle 0 stroke:lightgrey;
     linkStyle 1 stroke:lightgrey;
 ```
+
+## Import pipeline
 
 The import and export function currently tied to the backend. Data to import will be pipelined from the source to interal database (rocksdb). Multiple steps allow imports to be adjusted. The connector gathers data from source (APIs, crawling for HTML/Mail) or supplied files.
 
