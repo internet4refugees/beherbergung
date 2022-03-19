@@ -12,7 +12,6 @@ function download() {
     --compressed | tee $OUT
 }
 
-
 for i in $(seq $START $END); do
   download $i || exit
 done

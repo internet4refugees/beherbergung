@@ -1,6 +1,6 @@
 ## Overview
 
-as discribed the projects bases of backend and separated frontend. The file system structure represents this.
+As described, the project is based on a backend and a separate frontend. The structure of the file system represents this.
 
 ```mermaid
 flowchart LR;
@@ -14,7 +14,7 @@ flowchart LR;
 
 ```
 
-Whilst the backend runs on clojure the frontend is modeled in nodejs quering data unsing graphql-interface.
+While the backend runs on Clojure, the frontend is built with React and queries data via the Graphql interface.
 
 ```mermaid
 flowchart RL;
@@ -43,7 +43,10 @@ flowchart RL;
 
 ## Import pipeline
 
-The import and export function currently tied to the backend. Data to import will be pipelined from the source to interal database (rocksdb). Multiple steps allow imports to be adjusted. The connector gathers data from source (APIs, crawling for HTML/Mail) or supplied files.
+The import and export function is currently tied to the backend. Data to be
+imported is piped from the source to the internal database (rocksdb). Through
+several steps, imports can be customized. The connector collects data from the
+source (APIs, crawling for HTML/E-Mail) or from supplied files.
 
 ```mermaid
 flowchart LR;
@@ -71,11 +74,21 @@ flowchart LR;
     import --> backend
 ```
 
-
 **1st step - Extracting** Delivered formats are loaded into objects. In general we expect 2 dimensional data - the data set.
 
 **2nd step - Loading** A dataset contains multiple tupel. A tupel in turn consists of multiple attributes. Imports my support separate headlines. In case of csv the first row could be a headline. Usually each csv-row is a tupel/data point.  
 
 **3rd step - Mapping** The internal 2-dimensional data grid is mapped with help of associative attribut naming. Further rules, checks and specialised functions are added - see 'offer_mapping'. This allows to handle customer specific representation of boolean values or time string formats.
 
-Graphql allows a generic way to access the database. This way only mappers have to deal with the specific customer related data model. To allow merging or exchanging of differnt modeled data a further mapping will be applied. The,so called, key mapping generates a key/fingerprint to match data only key-attribut-tupels accross different data models by hash value.
+**First step - Reading** A file contains multiple rows. Each row is a data
+point. Each row has multiple values. Import via CSV supports headers.
+**Second step - Mapping** The internal 2-dimensional data grid is mapped using
+associative attribute naming. Additional rules, checks and special functions are
+added - see 'offer_mapping'. This allows you to process custom representations
+of Boolean values or time string formats.
+
+Graphql allows generic access to the database. This way only the mappers have to
+deal with the specific customer related data model. To enable the merging or
+exchange of different data models, another mapping is applied. The so-called key
+mapping generates a key/fingerprint to match data containing only key-attribute
+tuples across different data models by a hash value.

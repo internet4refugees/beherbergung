@@ -63,6 +63,8 @@ export function Login() {
           <input id='password' type='password' name='password'/>
         </label>&nbsp;
         <input type='submit' value={ t('Login') as string }/>
+
+	{ data?.login && !data?.login?.jwt && <p>{ t('The login failed, please try again.') }</p> }
       </form>
     )
   } else {
