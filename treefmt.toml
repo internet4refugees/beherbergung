@@ -23,7 +23,7 @@ options = [
 # This is a bug in treefmt, the script should not be called without arguments
 if [[ $# -le 0 ]]; then exit 0; fi
 # First shellcheck
-shellcheck "$@"
+shellcheck --external-sources --source-path=SCRIPTDIR "$@"
 # Then format
 shfmt -i 2 -s -w "$@"
     """
