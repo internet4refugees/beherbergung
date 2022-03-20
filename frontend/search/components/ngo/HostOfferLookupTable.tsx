@@ -11,12 +11,13 @@ import {fetcher} from '../../codegen/fetcher'
 import {useAuthStore} from '../Login'
 import defaultColumnGroups from "../config/defaultColumnGroups";
 import {filterUndefOrNull} from "../util/notEmpty";
-import {haversine_distance, LatLng} from "../util/distance";
+import {haversine_distance} from "../util/distance";
 import {useLeafletStore} from "./LeafletStore";
 import DeclarativeDataGrid from "./DeclarativeDataGrid";
 import {TypeColumns} from "@inovua/reactdatagrid-community/types/TypeColumn";
 import {ShareLocation} from "@mui/icons-material";
 import {IconButton} from "@mui/material";
+import {LatLng} from "../util/geo";
 
 export type HostOfferLookupTableDataType =
   Omit<NonNullable<(GetOffersQuery["get_offers"] & GetRwQuery["get_rw"])>[number], '__typename'>
@@ -36,7 +37,7 @@ export type HostOfferLookupTableProps = {
 
 const floor = (v: number | undefined) => v && Math.floor(v);
 
-const calculateDistance = (r: { place_lat?: number | null, place_lon?: number | null }, {lng, lat}: LatLng) =>
+const calculateDistance = (r: { place_lat?: number | null, place_lon?: number | null }, [lat, lng]: LatLng) =>
   r.place_lat && r.place_lon && lng && lat && floor(haversine_distance(lat, lng, r.place_lat, r.place_lon))
 
 async function mutate(auth: { jwt: string }, onEditComplete: { value: string, columnId: string, rowId: string }) {
@@ -77,6 +78,17 @@ function mergeRoAndRw(data_ro: HostOfferLookupTableProps['data_ro'], data_rw: Ho
     })) || []
 }
 
+const dataItem2LngLat: (item: HostOfferLookupTableDataType) => LatLng  = ({place_lat, place_lon }) => {
+  const ensureNumber = (n: string | number) => typeof n === 'string' ? parseFloat(n) : n
+  const lat = ensureNumber(place_lat)
+  const lng = ensureNumber(place_lon)
+  if (!lat || isNaN(lat) || !lng || isNaN(lng)) return
+  return [lat, lng]
+
+}
+
+
+
 const HostOfferLookupTable = ({
                                 data_ro,
                                 data_rw,
@@ -107,17 +119,28 @@ const HostOfferLookupTable = ({
   // @ts-ignore
   const reactdatagridi18n = resources[language]?.translation?.reactdatagrid
 
-  const {selectedId, setSelectedId, zoomToId} = useLeafletStore()
+  const {selectedId, setSelectedId, zoomToCoordinate} = useLeafletStore()
 
   const handleRowSelect = useCallback((id: string) => {
     setSelectedId(id)
   }, [setSelectedId])
 
   const firstColumns: TypeColumns = [
-    { name: 'action', resizable: false, width: 50,
-      render: ({ data  }) => <span><IconButton onClick={() =>  zoomToId(data.id as string)}><ShareLocation /></IconButton></span>
-    }
-  ]
+    {
+      name: 'action', resizable: false, width: 50,
+      render: ({data}) => {
+        const c = dataItem2LngLat(data)
+        return <span>
+          <IconButton
+            disabled={!c}
+            onClick={() => {
+              zoomToCoordinate && c && zoomToCoordinate(c)
+            }}>
+            <ShareLocation/>
+          </IconButton>
+      </span>;
+      }
+    }]
 
   return dataSource && <DeclarativeDataGrid
     i18n={reactdatagridi18n || undefined}
