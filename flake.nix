@@ -3,7 +3,6 @@
 
   nixConfig.extra-substituters = ["https://cache.garnix.io"];
   nixConfig.extra-trusted-public-keys = ["cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="];
-  nixConfig.allow-import-from-derivation = true;
 
   inputs = {
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -101,7 +100,9 @@
       inherit
         (pkgs.callPackages ./frontend/search {})
         beherbergung-frontend-deps
-        beherbergung-frontend-assets;
+        updateFrontendDeps
+        beherbergung-frontend-assets
+        ;
     };
     apps.${system} = {
       # Run the VM with `nixos run .#vm`

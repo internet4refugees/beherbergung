@@ -3,16 +3,27 @@
   glibcLocales,
   stdenv,
   yarn,
+  writeScriptBin,
+  runtimeShell,
+  yarn2nix,
 }: let
   beherbergung-frontend-deps = yarn2nix-moretea.mkYarnPackage {
     pname = "beherbergungs-frontend-deps";
     src = ./.;
     yarnLock = ./yarn.lock;
+    # XXX: we cannot disable this yet because enabling import-from-derivation in flake.nix breaks in nix 2.5
+    yarnNix = ./yarn.nix;
     # slow
     dontStrip = true;
   };
 in {
   inherit beherbergung-frontend-deps;
+  updateFrontendDeps = writeScriptBin "frontendUpdatedDeps" ''
+    #!${runtimeShell} -xe
+
+    cd frontend/search
+    ${yarn2nix}/bin/yarn2nix > yarn.nix
+  '';
   beherbergung-frontend-assets = stdenv.mkDerivation {
     name = "beherbergung-frontend-assets";
     src = ./.;
