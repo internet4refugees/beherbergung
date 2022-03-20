@@ -9,19 +9,18 @@ import {
   //Marker,
   //Polygon,
   //Polyline,
-  Popup,
   Circle,
   TileLayer,
   useMap,
   useMapEvent
 } from '@monsonjeremy/react-leaflet'
 import * as L from 'leaflet'
-import { useLeafletStore } from './LeafletStore'
+import {Marker, useLeafletStore} from './LeafletStore'
 
 type LeafletMapProps = {onBoundsChange?: (bounds: L.LatLngBounds) => void}
 
 const BoundsChangeListener = ({onBoundsChange}: {onBoundsChange?: (bounds: L.LatLngBounds) => void}) => {
-  const { setCenter} = useLeafletStore()
+  const { setCenter } = useLeafletStore()
 
   const map = useMap()
 
@@ -46,13 +45,27 @@ const BoundsChangeListener = ({onBoundsChange}: {onBoundsChange?: (bounds: L.Lat
   return null
 }
 
+const CircleMarker = ({marker: m, color, onMarkerClick }: {marker: Marker, color: string, onMarkerClick?: (id: string) => void }) =>
+  <Circle
+    center={[m.lat, m.lng]}
+    radius={m.radius}
+    pathOptions={{color: color}}
+    eventHandlers={{click: () => onMarkerClick && onMarkerClick(m.id)}}>
+  </Circle>
+
 const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
   const [zoom, setZoom] = useState<number>( 8 )
   const [position, setPosition] = useState<L.LatLngExpression>(  {
     lat: config.initial_lat || 51.0833,
     lng: config.initial_lng || 13.73126,
   } )
-  const leafletStore = useLeafletStore()
+  const { markers, selectedId, setSelectedId } = useLeafletStore()
+
+  const handleMarkerSelect = useCallback(
+    (id: string) => {
+      setSelectedId(id)
+    },
+    [setSelectedId]);
 
   return (
     <>
@@ -65,20 +78,20 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
         }}
         center={position}
         zoom={zoom}
-        maxZoom={24}
+        maxZoom={18}
       >
         <BoundsChangeListener onBoundsChange={onBoundsChange}/>
         <LayersControl position="topright">
-          <LayersControl.BaseLayer checked name="OpenStreetMap.default">
+          <LayersControl.BaseLayer checked name="Terrain">
+            <TileLayer
+              attribution={"Map tiles by <a href=\"http://stamen.com\">Stamen Design</a>, under <a href=\"http://creativecommons.org/licenses/by/3.0\">CC BY 3.0</a>. Data by <a href=\"http://openstreetmap.org\">OpenStreetMap</a>, under <a href=\"http://www.openstreetmap.org/copyright\">ODbL</a>."}
+              url="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png"/>
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="OpenStreetMap.default">
             <TileLayer
               attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               maxNativeZoom={18}
-            />
-          </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name="Terain">
-            <TileLayer url="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png"
-
             />
           </LayersControl.BaseLayer>
           <LayersControl.BaseLayer name="swisstopo">
@@ -93,28 +106,27 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
           </LayersControl.BaseLayer>
 
 
-          {leafletStore.markers.map((m, i) =>
-	    /** TODO: Maybe a clustered marker would be helpfull, but we loose the possibility of showing the radius (display accuracy of the coordinate).
-	    *         Probably the best solution is showing Circle and clustered marker.
-	    **/
-            <Circle key={m.id + i.toString() /* Till we have unique ids from the db */}
-                    center={[m.lat, m.lng]}
-                    radius={m.radius}
-                    pathOptions={{color: 'grey'}}>
-              <Popup><a href={`#${m.id}`}>{ m.content }</a></Popup>
-            </Circle>
-          )}
-          {leafletStore.filteredMarkers.map((m, i) =>
-            /** TODO: Maybe a clustered marker would be helpfull, but we loose the possibility of showing the radius (display accuracy of the coordinate).
-             *         Probably the best solution is showing Circle and clustered marker.
-             **/
-            <Circle key={m.id + i.toString() /* Till we have unique ids from the db */}
-                    center={[m.lat, m.lng]}
-                    radius={m.radius}
-                    pathOptions={{color: 'blue'}}>
-              <Popup><a href={`#${m.id}`}>{ m.content }</a></Popup>
-            </Circle>
-          )}
+          {markers
+            .filter(({withinFilter, id}) => !withinFilter && id !== selectedId )
+            .map((m, i) =>
+              <CircleMarker
+                key={m.id + i}
+                marker={m} color={'grey'}
+                onMarkerClick={handleMarkerSelect}/>)}
+          {markers
+            .filter(({withinFilter, id}) => withinFilter  && id !== selectedId)
+            .map((m, i) =>
+              <CircleMarker
+                key={m.id + i}
+                marker={m} color={'blue'}
+                onMarkerClick={handleMarkerSelect}/>)}
+          {markers
+            .filter(({id}) => id === selectedId )
+            .map((m, i) =>
+              <CircleMarker
+                key={m.id + i}
+                marker={m} color={'red'}
+                onMarkerClick={handleMarkerSelect}/>)}
         </LayersControl>
       </MapContainer>
     </>)

@@ -1,11 +1,16 @@
-import React, {ReactNode, useCallback, useEffect, useState} from 'react'
+import React, {ReactNode, useCallback, useEffect, useRef, useState} from 'react'
 
 import {CheckBoxOutlineBlank, CheckBox} from '@mui/icons-material'
 
 import '@inovua/reactdatagrid-community/index.css'
 
 import DataGrid from '@inovua/reactdatagrid-community'
-import {TypeColumn, TypeFilterValue, TypeSingleFilterValue} from "@inovua/reactdatagrid-community/types"
+import {
+  TypeColumn,
+  TypeComputedProps,
+  TypeFilterValue,
+  TypeSingleFilterValue
+} from "@inovua/reactdatagrid-community/types"
 import DateFilter from '@inovua/reactdatagrid-community/DateFilter'
 import StringFilter from '@inovua/reactdatagrid-community/StringFilter'
 import BoolFilter from '@inovua/reactdatagrid-community/BoolFilter'
@@ -25,6 +30,8 @@ import {transformValue} from "../util/tableValueMapper";
 import {filterUndefOrNull} from "../util/notEmpty";
 import extendedFilter from "../util/datagrid/extendedFilter";
 import {haversine_distance, LatLng} from "../util/distance";
+import {TypeOnSelectionChangeArg} from "@inovua/reactdatagrid-community/types/TypeDataGridProps";
+import {useLeafletStore} from "./LeafletStore";
 
 global.moment = moment
 
@@ -115,7 +122,7 @@ function columns(columnsRaw: TypeColumn[]) {
 function defaultFilterValue(columnsRaw: NonNullable<GetColumnsQuery["get_columns"]>[]) {  // TODO
   return columnsRaw
   // @ts-ignore
-  .filter(({type}) => type && ['string', 'number', 'boolean', 'date'].includes(type)) 
+  .filter(({type}) => type && ['string', 'number', 'boolean', 'date'].includes(type))
   // @ts-ignore
   .map(({name, type, options}) => {
     return {
@@ -199,7 +206,7 @@ const HostOfferLookupTable = ({
   useEffect(() => {
     const data = filterUndefOrNull(mergeRoAndRw(data_ro, data_rw))
       .map(v => transformValue(v, columnsRaw))
-      .map(v => center ? {...v, place_distance: calculateDistance(v, center)} : v)
+      .map(v => center ? {...v, place_distance: calculateDistance(v, center) || Infinity} : v)
 
     // @ts-ignore
     data && setDataSource(data)
@@ -217,15 +224,32 @@ const HostOfferLookupTable = ({
   // @ts-ignore
   const reactdatagridi18n = resources[language]?.translation?.reactdatagrid
 
+
+  const { selectedId, setSelectedId } = useLeafletStore()
+
+  const gridRef = useRef<TypeComputedProps | null>(null);
+  const scrollTo = useCallback((id: string) => {
+      gridRef.current?.scrollToId(id, { duration: 300 })
+  }, [gridRef])
+
+
+  useEffect(() => {
+    selectedId && scrollTo(selectedId)
+  }, [selectedId]);
+
+  const handleRowSelect = useCallback(({ selected }: TypeOnSelectionChangeArg) => {
+    typeof selected === 'string' && setSelectedId(selected)
+  }, [])
+
   return <DataGrid
     idProperty="id"
     filterable
+    onReady={(computedPropsRef) => gridRef.current = computedPropsRef.current }
     showColumnMenuFilterOptions={true}
     showFilteringMenuItems={true}
     filterValue={filterValue}
     onFilterValueChange={filterValueChangeHandler}
     rowIndexColumn
-    enableSelection
     enableColumnAutosize={false}
     columns={columns(columnsRaw)}
     dataSource={filteredData}
@@ -233,6 +257,8 @@ const HostOfferLookupTable = ({
     style={{height: '100%'}}
     onEditComplete={onEditComplete}
     groups={defaultColumnGroups}
+    selected={selectedId}
+    onSelectionChange={handleRowSelect}
   />
 }
 
