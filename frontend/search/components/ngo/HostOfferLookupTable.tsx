@@ -67,8 +67,8 @@ function mergeRoAndRw(data_ro: HostOfferLookupTableProps['data_ro'], data_rw: Ho
     ?.map(e_ro => ({
       ...rw_default,
       ...e_ro,
-      ...objectWithoutNil(data_rw?.find((e_rw) => e_ro.id_tmp === e_rw.id
-	                                          || `rw_${e_ro.id}` === e_rw.id)),
+      ...objectWithoutNil(data_rw?.find((e_rw) => e_ro.id_tmp === e_rw.id)),
+      ...objectWithoutNil(data_rw?.find((e_rw) => `rw_${e_ro.id}` === e_rw.id)),
       id: e_ro.id
     })) || []
 }
