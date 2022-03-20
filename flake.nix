@@ -87,7 +87,7 @@
 
     packages.${system} = {
       devShell = self.devShell.${system}.inputDerivation;
-      backendUpdatedDeps = pkgs.callPackage ./backend/nix/tools/updated-deps.nix {
+      updateBackendDeps = pkgs.callPackage ./backend/nix/tools/updated-deps.nix {
         inherit (mvn2nix.legacyPackages.${system}) mvn2nix;
       };
       beherbergung-backend = pkgs.callPackage ./backend/nix/beherbergung-backend.nix {
@@ -153,6 +153,7 @@
           pkgs.hivemind
           pkgs.nodejs
           pkgs.entr
+          pkgs.yarn2nix
           nixos-shell.packages.${system}.nixos-shell
         ]
         ++ linters;
