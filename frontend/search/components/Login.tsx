@@ -1,7 +1,13 @@
 import {useEffect} from 'react'
+
 import {useLoginQuery} from '../codegen/generates'
 import create from 'zustand'
 import {useTranslation} from 'react-i18next';
+import AvatarMenu from "./user/AvatarMenu";
+import * as React from "react";
+import {Box, Button} from "@mui/material";
+import {AlternateEmail, Key} from "@mui/icons-material";
+import ToolbarStyledInput from "./user/ToolbarStyledInput";
 
 function jwtDecode(jwt: string) {
   /* Just parses the payload — Be aware that signature is not checked */
@@ -33,11 +39,12 @@ export function jwtFromLocalStorage() {
   return localStorage.getItem('jwt') || ''
 }
 
+
 export function Login() {
   const {t} = useTranslation()
-  const { jwt, mail, password, logout, setJwt, setLogin } = useAuthStore()
+  const {jwt, mail, password, logout, setJwt, setLogin} = useAuthStore()
 
-  const {data} = useLoginQuery({auth: { jwt, mail, password }}, {enabled: Boolean(!jwt && mail && password)})
+  const {data} = useLoginQuery({auth: {jwt, mail, password}}, {enabled: Boolean(!jwt && mail && password)})
 
   useEffect(() => {
     if (jwt) {
@@ -52,33 +59,24 @@ export function Login() {
     }
   }, [logout, setJwt, jwt, data])
 
-  if (!jwt) {
-    return (
-      <form onSubmit={(event) => {
-        event.preventDefault()
-        setLogin((document.getElementById('mail') as HTMLInputElement).value,
-          (document.getElementById('password') as HTMLInputElement).value)
-      }}>
-        <label>{t('Email')}:
-          <input id='mail' name='mail'/>
-        </label>&nbsp;
-        <label>{t('Password')}:
-          <input id='password' type='password' name='password'/>
-        </label>&nbsp;
-        <input type='submit' value={t('Login') as string}/>
+  return (
+    <div style={{minHeight: '2em', display: 'flex'}}>
+      {(!jwt)
+        ? (
+          <Box component={'form'} onSubmit={(event: React.FormEvent<HTMLDivElement>) => {
+            event.preventDefault()
+            setLogin((document.getElementById('mail') as HTMLInputElement).value,
+              (document.getElementById('password') as HTMLInputElement).value)
+          }} display={'flex'}>
+            <ToolbarStyledInput icon={<AlternateEmail/>} id='mail' name='mail' placeholder={t('mail')}/>
+            <ToolbarStyledInput icon={<Key/>} id='password' type='password' name='password'
+                                placeholder={t('password')}/>
+            <Button color={'inherit'} type='submit'>{t('Login')}</Button>
 
-        {data?.login && !data?.login?.jwt && <p>{t('The login failed, please try again.')}</p>}
-      </form>
-    )
-  } else {
-    return (
-      <form onSubmit={async (event) => {
-        event.preventDefault()
-        logout()
-      }}
-            style={{width: "100%", textAlign: "right"}}>
-        <input type='submit' value={t('Logout') as string}/>
-      </form>
-    )
-  }
+            {data?.login && !data?.login?.jwt && <p>{t('The login failed, please try again.')}</p>}
+          </Box>)
+        : (
+          <AvatarMenu onLogout={logout}/>
+        )}
+    </div>)
 }
