@@ -97,12 +97,12 @@
   {
     :name "languages",
     :header "Languages",
-    :type "object",
+    :type "string",
     :defaultWidth 200,
     :options {
       :transform {
         :array2string {
-          :join ",",
+          ;:join " ",  ;; this is the default
         },
       },
     },
