@@ -1,5 +1,5 @@
 import create from 'zustand'
-import * as L from 'leaflet'
+import {IdLatLngCallback, LatLng} from "../util/geo";
 
 export interface Marker {
   id: string,
@@ -11,13 +11,15 @@ export interface Marker {
 }
 
 export interface LeafletState {
-  center: L.LatLng|null  // at the moment not used for setting the maps center, but only for distance calculation onBoundsChange
-  setCenter: (center: L.LatLng) => void
+  center: LatLng|null  // at the moment not used for setting the maps center, but only for distance calculation onBoundsChange
+  setCenter: (center: LatLng) => void
   markers: Marker[]
   setMarkers: (markers: Marker[]) => void
   setWithinFiltered: (ids: string[]) => void
   selectedId?: string | null
   setSelectedId: (selectedId?: string | null) => void
+  zoomToCoordinate?: IdLatLngCallback
+  setZoomToCoordinateCallback: (callback: IdLatLngCallback) => void
 }
 
 export const useLeafletStore = create<LeafletState>(set => ({
@@ -30,5 +32,6 @@ export const useLeafletStore = create<LeafletState>(set => ({
   setWithinFiltered: ids => set(({markers}) =>
     ({markers: markers.map(m => ({
         ...m,
-        withinFilter: ids.includes( m.id )}))}))
+        withinFilter: ids.includes( m.id )}))})),
+  setZoomToCoordinateCallback: callback => set({zoomToCoordinate: callback})
 }))

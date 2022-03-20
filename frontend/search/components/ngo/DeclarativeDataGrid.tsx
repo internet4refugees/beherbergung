@@ -23,6 +23,7 @@ import {transformValue} from "../util/tableValueMapper";
 import {filterUndefOrNull} from "../util/notEmpty";
 import extendedFilter from "../util/datagrid/extendedFilter";
 import {TypeOnSelectionChangeArg} from "@inovua/reactdatagrid-community/types/TypeDataGridProps";
+import {TypeColumns} from "@inovua/reactdatagrid-community/types/TypeColumn";
 
 global.moment = moment
 
@@ -31,6 +32,7 @@ export type DeclarativeDataGridProps<T extends { [k: string]: any }> = {
   data?: T[]
   onFilteredDataChange?: (data: T[]) => void
   columnsRaw: ColumnRaw[]
+  firstColumns?: TypeColumns
   onRowSelect?: (id: string) => void
   selectedId?: string | null
 } & Partial<TypeDataGridProps>
@@ -88,14 +90,16 @@ const findMatchingRenderer = (c: Partial<ColumnRaw>) =>
     ?.render
 
 
-const columns = (columnsRaw: TypeColumn[]) =>
-  columnsRaw
+const columns = (columnsRaw: ColumnRaw[], firstColumns?: TypeColumns) => ([
+  ...firstColumns,
+  ...columnsRaw
     .map(c => ({
       ...c,
       render: findMatchingRenderer(c) || undefined,
       filterEditor: filterMappings[c.type as 'string' | 'number' | 'boolean' | 'date'],
       editor: editorMappings[c.type as 'boolean']
-    }));
+    }))])
+
 
 function defaultFilterValue(columnsRaw: ColumnRaw[]) {
   return columnsRaw
@@ -116,6 +120,7 @@ const DeclarativeDataGrid = <T, >({
                                     columnsRaw,
                                     onRowSelect,
                                     selectedId,
+                                    firstColumns,
                                     ...props
                                   }: DeclarativeDataGridProps<T>) => {
   const [dataSource, setDataSource] = useState<T[]>([]);
@@ -173,7 +178,7 @@ const DeclarativeDataGrid = <T, >({
     onFilterValueChange={filterValueChangeHandler}
     rowIndexColumn
     enableColumnAutosize={false}
-    columns={columns(columnsRaw)}
+    columns={columns(columnsRaw, firstColumns)}
     dataSource={filteredData}
     style={{height: '100%'}}
     selected={selectedId}

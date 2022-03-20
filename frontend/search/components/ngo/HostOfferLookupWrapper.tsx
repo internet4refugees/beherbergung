@@ -3,11 +3,12 @@ import {useGetOffersQuery, useGetRwQuery} from "../../codegen/generates"
 import HostOfferLookupTable, {HostOfferLookupTableDataType, HostOfferLookupTableProps} from "./HostOfferLookupTable"
 import {Box} from "@mui/material"
 import {useTranslation} from 'react-i18next'
-import {Login, useAuthStore} from '../Login'
+import {useAuthStore} from '../Login'
 import {Marker, useLeafletStore} from './LeafletStore'
 import {filterUndefOrNull} from '../util/notEmpty'
 import {useGetColumnsQuery} from "../../codegen/generates"
-
+import CustomAppBar from "../user/CustomAppBar";
+import {useAppConfigStore} from "../config/appConfigStore";
 type HostOfferLookupWrapperProps = Partial<HostOfferLookupTableProps>
 
 //type HostOfferLookupTableDataRowType = NonNullable<HostOfferLookupTableDataType>[number]
@@ -23,6 +24,8 @@ const makeMarker: (row: { id?: string | null; place_lon?: number | null; place_l
 const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
   const {t} = useTranslation()
   const auth = useAuthStore()
+
+  const { groupsDisabled } = useAppConfigStore()
 
   const staleTimeMinutes_ro = 5
   const staleTimeMinutes_rw = 1
@@ -59,13 +62,13 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
       flexDirection: 'column',
       height: '100%'
     }}>
-      <div style={{minHeight: '2em', display: 'flex'}}>
+      <CustomAppBar status={<>
         {(queryResult_ro.isFetching || queryResult_rw.isFetching) && t('loading…')}
         {(queryResult_ro.error || queryResult_rw.error) && t('An error occurred while trying to get data from the backend.')}
         {(data_ro && !data_ro.get_offers || data_rw && !data_rw.get_rw)
           && t('Seems like you have no permissions. Please try to login again.')}
-        <Login/>
-      </div>
+      </>
+      }/>
       {columnsRaw && data_ro && <div
         style={{flex: '1 1', height: '100%'}}>
         <HostOfferLookupTable
@@ -76,6 +79,7 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
           onFilteredDataChange={handleFilteredDataChange}
           center={center || undefined}
           columnsRaw={columnsRaw}
+          groupsDisabled={groupsDisabled}
         />
       </div>}
     </Box>

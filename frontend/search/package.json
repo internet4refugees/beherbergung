@@ -21,6 +21,7 @@
     "@mui/lab": "^5.0.0-alpha.73",
     "@mui/material": "^5.5.1",
     "@mui/styles": "^5.5.1",
+    "country-code-emoji": "^2.3.0",
     "graphql-request": "^4.1.0",
     "i18next": "^21.6.14",
     "i18next-browser-languagedetector": "^6.1.3",

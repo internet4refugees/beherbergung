@@ -16,6 +16,7 @@ import {
 } from '@monsonjeremy/react-leaflet'
 import * as L from 'leaflet'
 import {Marker, useLeafletStore} from './LeafletStore'
+import {IdLatLngCallback} from "../util/geo";
 
 type LeafletMapProps = {onBoundsChange?: (bounds: L.LatLngBounds) => void}
 
@@ -26,7 +27,8 @@ const BoundsChangeListener: ({onBoundsChange}: { onBoundsChange?: (bounds: L.Lat
 
   const updateBounds = useCallback(
     () => {
-      setCenter(map.getCenter())
+      const {lat, lng} = map.getCenter()
+      setCenter([lat, lng])
 
       // onBoundsChange is unused at the moment
       onBoundsChange && onBoundsChange(
@@ -45,6 +47,29 @@ const BoundsChangeListener: ({onBoundsChange}: { onBoundsChange?: (bounds: L.Lat
   return null
 }
 
+const FitBounds: (props: { onSignatureUpdate: (fitBoundsToMarkerIdCallback: IdLatLngCallback) => void}) => null = ({onSignatureUpdate}  ) => {
+
+  const map = useMap()
+
+  const fitBoundsToMarkerId: IdLatLngCallback = useCallback(
+    (coordinate) => {
+      if(map && coordinate) {
+        const offset = 0.07
+        const [lat, lng] = coordinate
+        const bounds = L.latLngBounds(L.latLng([ lat - offset, lng - offset]), L.latLng([lat + offset, lng + offset]))
+        map.fitBounds(bounds)
+      }},
+    [map])
+
+
+  useEffect(() => {
+    onSignatureUpdate(fitBoundsToMarkerId)
+  }, [map, onSignatureUpdate, fitBoundsToMarkerId]);
+
+
+  return null
+}
+
 const CircleMarker = ({marker: m, color, onMarkerClick }: {marker: Marker, color: string, onMarkerClick?: (id: string) => void }) =>
   <Circle
     center={[m.lat, m.lng]}
@@ -59,7 +84,13 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
     lat: config.initial_lat || 51.0833,
     lng: config.initial_lng || 13.73126,
   } )
-  const { markers, selectedId, setSelectedId } = useLeafletStore()
+  const { markers, selectedId, setSelectedId, setZoomToCoordinateCallback } = useLeafletStore()
+
+  const setZoomToIdCallbackCallback: (fitBoundsToMarkerIdCallback: IdLatLngCallback) => void  =  useCallback(
+    fitBoundsToMarkerIdCallback => setZoomToCoordinateCallback(fitBoundsToMarkerIdCallback),
+    [setZoomToCoordinateCallback],
+  );
+
 
   const handleMarkerSelect = useCallback(
     (id: string) => {
@@ -81,6 +112,7 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
         maxZoom={18}
       >
         <BoundsChangeListener onBoundsChange={onBoundsChange}/>
+        <FitBounds  onSignatureUpdate={setZoomToIdCallbackCallback }/>
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="Terrain">
             <TileLayer
