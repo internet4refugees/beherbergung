@@ -1,13 +1,12 @@
 import React from 'react'
-import Divider from '@mui/material/Divider';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import Check from '@mui/icons-material/Check';
 import {Menu} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import {useAppConfigStore} from "../config/appConfigStore";
 
 type AppMenuProps = Record<string, never>
 
@@ -20,6 +19,8 @@ const AppMenu = ({}: AppMenuProps) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const { groupsDisabled, toggleGroupsDisabled } = useAppConfigStore()
 
   return <>
     <IconButton
@@ -57,15 +58,11 @@ const AppMenu = ({}: AppMenuProps) => {
           </ListItemIcon>
           clustered marker
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={toggleGroupsDisabled}>
           <ListItemIcon>
-            <Check/>
+            {groupsDisabled && <Check/>}
           </ListItemIcon>
           Show dense header
-        </MenuItem>
-        <Divider/>
-        <MenuItem>
-          <ListItemText>Custom spacing...</ListItemText>
         </MenuItem>
       </MenuList>
     </Menu>

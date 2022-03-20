@@ -8,6 +8,7 @@ import {Marker, useLeafletStore} from './LeafletStore'
 import {filterUndefOrNull} from '../util/notEmpty'
 import {useGetColumnsQuery} from "../../codegen/generates"
 import CustomAppBar from "../user/CustomAppBar";
+import {useAppConfigStore} from "../config/appConfigStore";
 type HostOfferLookupWrapperProps = Partial<HostOfferLookupTableProps>
 
 //type HostOfferLookupTableDataRowType = NonNullable<HostOfferLookupTableDataType>[number]
@@ -23,6 +24,8 @@ const makeMarker: (row: { id?: string | null; place_lon?: number | null; place_l
 const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
   const {t} = useTranslation()
   const auth = useAuthStore()
+
+  const { groupsDisabled } = useAppConfigStore()
 
   const staleTimeMinutes_ro = 5
   const staleTimeMinutes_rw = 1
@@ -76,6 +79,7 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
           onFilteredDataChange={handleFilteredDataChange}
           center={center || undefined}
           columnsRaw={columnsRaw}
+          groupsDisabled={groupsDisabled}
         />
       </div>}
     </Box>
