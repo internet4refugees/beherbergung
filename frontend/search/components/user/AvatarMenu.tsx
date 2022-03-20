@@ -50,12 +50,11 @@ const AvatarMenu = ({onLogout}: AvatarMenuProps) => {
       open={Boolean(anchorEl)}
       onClose={handleClose}
     >
-      <MenuItem onClick={handleClose}>Profile</MenuItem>
-      {onLogout && <MenuItem onClick={() => { onLogout();handleClose(); }}>{t('logout')}
+      {onLogout && <MenuItem onClick={() => { onLogout();handleClose(); }}>
         <ListItemIcon>
           <Logout fontSize="small" />
         </ListItemIcon>
-        Logout
+        {t('logout')}
       </MenuItem>}
     </Menu>
   </div>;
