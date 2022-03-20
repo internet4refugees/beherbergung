@@ -1330,6 +1330,14 @@
       };
     }
     {
+      name = "_types_leaflet.markercluster___leaflet.markercluster_1.4.6.tgz";
+      path = fetchurl {
+        name = "_types_leaflet.markercluster___leaflet.markercluster_1.4.6.tgz";
+        url  = "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.4.6.tgz";
+        sha1 = "1159460b374ba5e329cb678d0e427f99dca75be5";
+      };
+    }
+    {
       name = "_types_leaflet___leaflet_1.7.9.tgz";
       path = fetchurl {
         name = "_types_leaflet___leaflet_1.7.9.tgz";
@@ -3959,6 +3967,14 @@
         name = "latest_version___latest_version_5.1.0.tgz";
         url  = "https://registry.yarnpkg.com/latest-version/-/latest-version-5.1.0.tgz";
         sha1 = "119dfe908fe38d15dfa43ecd13fa12ec8832face";
+      };
+    }
+    {
+      name = "leaflet.markercluster___leaflet.markercluster_1.5.3.tgz";
+      path = fetchurl {
+        name = "leaflet.markercluster___leaflet.markercluster_1.5.3.tgz";
+        url  = "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.5.3.tgz";
+        sha1 = "9cdb52a4eab92671832e1ef9899669e80efc4056";
       };
     }
     {
