@@ -6,12 +6,12 @@ export type Array2StringTransformOptions = {
 };
 
 export type DateToISOTransformOptions = {
-  inputDateFormat: string;
+  inputDateFormat?: string;
   outputDateFormat?: string;
 };
 
 const array2string = (value: string[], options: Array2StringTransformOptions) =>
-  value.join(options.join || ",");
+  value.join(options.join || " ");
 
 const callOneOrMany: <T, O>(
   els: T | T[],
@@ -38,7 +38,7 @@ export const transformValue: <T>(values: T, columnsRaw: ColumnRaw[]) => T = (
     if (transform.date2Iso?.inputDateFormat) {
       value = callOneOrMany(value, dateToIso, [transform.date2Iso]);
     }
-    if (transform.array2string?.join) {
+    if (transform.array2string && Array.isArray(value)) {
       try {
         // @ts-ignore
         newValues[c.name] = array2string(value, transform.array2string);
