@@ -161,7 +161,7 @@ const DeclarativeDataGrid = <T, >({
 
   const debugPrint = useCallback((selectedId) => {
     console.log(data.filter(d => (d as any).id === selectedId))
-  }, [selectedId, data])
+  }, [data])
 
   useEffect(() => {
     selectedId && scrollTo(selectedId)
@@ -171,6 +171,16 @@ const DeclarativeDataGrid = <T, >({
   const handleRowSelect = useCallback(({selected}: TypeOnSelectionChangeArg) => {
     typeof selected === 'string' && onRowSelect && onRowSelect(selected)
   }, [onRowSelect])
+
+  const activeIndex2RowSelect= useCallback((index: number) => {
+      try {
+        // @ts-ignore
+        const t = gridRef.current?.getRowId(index) as string | undefined
+        typeof t === 'string' && onRowSelect && onRowSelect(t)
+      } catch (e) {}
+    },
+    [onRowSelect, gridRef])
+
 
   return <DataGrid
     idProperty="id"
@@ -187,6 +197,7 @@ const DeclarativeDataGrid = <T, >({
     style={{height: '100%'}}
     selected={selectedId}
     onSelectionChange={handleRowSelect}
+    onActiveIndexChange={activeIndex2RowSelect}
     {...props}
   />
 }

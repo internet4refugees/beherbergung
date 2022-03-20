@@ -5,11 +5,15 @@ export interface AppConfigState  {
   disableGroups: () => void
   enableGroups: () =>  void
   toggleGroupsDisabled: () => void
+  markerClusterDisabled?: boolean
+  toggleMarkerCluster: () => void
 }
 
 export const useAppConfigStore = create<AppConfigState>(set => ({
   groupsDisabled: undefined,
   disableGroups: () => set({groupsDisabled: false}),
   enableGroups: () => set({groupsDisabled: true}),
-  toggleGroupsDisabled: () => set(({groupsDisabled}) => ({groupsDisabled: !groupsDisabled}))
+  toggleGroupsDisabled: () => set(({groupsDisabled}) => ({groupsDisabled: !groupsDisabled})),
+  markerClusterDisabled: undefined,
+  toggleMarkerCluster: () => set(({markerClusterDisabled}) => ({markerClusterDisabled: !markerClusterDisabled}))
 }))

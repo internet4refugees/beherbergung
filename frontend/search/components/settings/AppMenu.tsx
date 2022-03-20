@@ -7,6 +7,7 @@ import {Menu} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import {useAppConfigStore} from "../config/appConfigStore";
+import {useTranslation} from "react-i18next";
 
 type AppMenuProps = Record<string, never>
 
@@ -20,7 +21,9 @@ const AppMenu = ({}: AppMenuProps) => {
     setAnchorEl(null);
   };
 
-  const { groupsDisabled, toggleGroupsDisabled } = useAppConfigStore()
+  const { t } = useTranslation()
+
+  const { groupsDisabled, toggleGroupsDisabled, markerClusterDisabled, toggleMarkerCluster } = useAppConfigStore()
 
   return <>
     <IconButton
@@ -52,17 +55,17 @@ const AppMenu = ({}: AppMenuProps) => {
       }}
     >
       <MenuList dense>
-        <MenuItem>
+        <MenuItem onClick={toggleMarkerCluster}>
           <ListItemIcon>
-            <Check/>
+            {!markerClusterDisabled && <Check/>}
           </ListItemIcon>
-          clustered marker
+          {t('options.clusterMarkers')}
         </MenuItem>
         <MenuItem onClick={toggleGroupsDisabled}>
           <ListItemIcon>
-            {groupsDisabled && <Check/>}
+            {!groupsDisabled && <Check/>}
           </ListItemIcon>
-          Show dense header
+          {t('options.showVerboseHeader')}
         </MenuItem>
       </MenuList>
     </Menu>
