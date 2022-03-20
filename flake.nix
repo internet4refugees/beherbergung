@@ -95,11 +95,13 @@
         inherit (mvn2nix.legacyPackages.${system}) buildMavenRepositoryFromLockFile;
         inherit pkgs;
       };
+      beherbergung-fullstack = self.packages.${system}.beherbergung-backend.override {
+        patchPublic = self.packages.${system}.beherbergung-frontend-assets;
+      };
       inherit
         (pkgs.callPackages ./frontend/search {})
         beherbergung-frontend-deps
-        beherbergung-frontend-assets
-        ;
+        beherbergung-frontend-assets;
     };
     apps.${system} = {
       # Run the VM with `nixos run .#vm`
