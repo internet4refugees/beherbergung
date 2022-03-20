@@ -14,6 +14,24 @@
 
 
 (comment
-  (require '[beherbergung.auth.password.hash :refer [hash-password]])
-  (require '[beherbergung.auth.password.generate :refer [generate-password]])
-  (let [pw (generate-password)] (prn (hash-password pw) pw)))
+  (do (require '[beherbergung.auth.password.hash :refer [hash-password]])
+      (require '[beherbergung.auth.password.generate :refer [generate-password]])
+      (require 'clojure.string))
+  ;; Create a single pw + hash
+  (let [pw (generate-password)] (prn (hash-password pw) pw))
+  ;; Bulk creation of users
+  (let [mails ["a@bc.de" "ab@c.de"]
+        mail+pw (doall (for [mail mails
+                             :let [pw (generate-password)
+                                   pw:hash (hash-password pw)]]
+                            ;; Print database entries of users + comment with password (for the DB_SEED)
+                            (do (pr {:xt/id (str "login_" mail)
+                                     :xt/spec :beherbergung.model.login/record
+                                     :mail mail
+                                     :password-hash pw:hash})
+                                (print "  ;; ") (prn pw)
+                                (str mail " " pw))))]
+       ;; List of new userIds that should be added to the ngo (in DB_SEED)
+       (prn (map #(str "login_" %) mails))
+       ;; Human readable list of mail + pw
+       (prn (clojure.string/join "     " mail+pw))))
