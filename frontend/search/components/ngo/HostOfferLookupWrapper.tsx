@@ -32,7 +32,7 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
   const {data: data_ro} = queryResult_ro
   const {data: data_rw} = queryResult_rw
 
-  const {setMarkers, center, setFilteredMarkers} = useLeafletStore()
+  const {setMarkers, center, setWithinFiltered} = useLeafletStore()
   useEffect(() => {
     const markers = filterUndefOrNull( data_ro?.get_offers?.map(makeMarker) )
     setMarkers(filterUndefOrNull(markers))
@@ -40,11 +40,10 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
 
   const handleFilteredDataChange = useCallback(
     (data:  HostOfferLookupTableDataType[]) => {
-      // @ts-ignore
-      const _filteredMarkers = filterUndefOrNull( data.map(d => d && makeMarker(d)))
-      setFilteredMarkers(_filteredMarkers)
+      const filteredIds = filterUndefOrNull( data.map(d => d && d.id))
+      setWithinFiltered(filteredIds)
     },
-    [setFilteredMarkers],
+    [setWithinFiltered],
   );
 
   const {data: data_columns} = useGetColumnsQuery({auth}, {enabled: !!auth.jwt, staleTime: staleTimeMinutes_columns * 60 * 1000})

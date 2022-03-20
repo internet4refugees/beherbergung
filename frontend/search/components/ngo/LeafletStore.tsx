@@ -6,7 +6,8 @@ export interface Marker {
   lat: number,
   lng: number,
   radius: number,  // in meters
-  content: string  // TODO react-child?
+  content: string,  // TODO react-child?
+  withinFilter?: boolean
 }
 
 export interface LeafletState {
@@ -14,10 +15,9 @@ export interface LeafletState {
   setCenter: (center: L.LatLng) => void
   markers: Marker[]
   setMarkers: (markers: Marker[]) => void
-  filteredMarkers: Marker[]
-  setFilteredMarkers: (filteredMarkers: Marker[]) => void
-  selectedId?: string
-  setSelectedId: (selectedId?: string ) => void
+  setWithinFiltered: (ids: string[]) => void
+  selectedId?: string | null
+  setSelectedId: (selectedId?: string | null) => void
 }
 
 export const useLeafletStore = create<LeafletState>(set => ({
@@ -25,8 +25,10 @@ export const useLeafletStore = create<LeafletState>(set => ({
   setCenter: center => set( _orig => ({center}) ),
   markers: [],
   setMarkers: markers => set( _orig => ({markers}) ),
-  filteredMarkers: [],
-  setFilteredMarkers: filteredMarkers => set( _orig => ({filteredMarkers}) ),
-  selectedId: undefined,
-  setSelectedId: selectedId => set( _orig => ({selectedId}) )
+  selectedId: null,
+  setSelectedId: selectedId => set( _orig => ({selectedId}) ),
+  setWithinFiltered: ids => set(({markers}) =>
+    ({markers: markers.map(m => ({
+        ...m,
+        withinFilter: ids.includes( m.id )}))}))
 }))
