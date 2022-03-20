@@ -1,14 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { config } from "../../config"
+import {config} from "../../config"
 
 import {
   LayersControl,
   MapContainer,
-  //Marker,
-  //Polygon,
-  //Polyline,
   Circle,
   TileLayer,
   useMap,
@@ -16,12 +13,13 @@ import {
 } from '@monsonjeremy/react-leaflet'
 import * as L from 'leaflet'
 import {Marker, useLeafletStore} from './LeafletStore'
+import MarkerClusterGroup from '../leaflet/MarkerClusterGroup'
 import {IdLatLngCallback} from "../util/geo";
 
-type LeafletMapProps = {onBoundsChange?: (bounds: L.LatLngBounds) => void}
+type LeafletMapProps = { onBoundsChange?: (bounds: L.LatLngBounds) => void }
 
 const BoundsChangeListener: ({onBoundsChange}: { onBoundsChange?: (bounds: L.LatLngBounds) => void }) => null = ({onBoundsChange}) => {
-  const { setCenter } = useLeafletStore()
+  const {setCenter} = useLeafletStore()
 
   const map = useMap()
 
@@ -43,7 +41,7 @@ const BoundsChangeListener: ({onBoundsChange}: { onBoundsChange?: (bounds: L.Lat
   }, [map, updateBounds])
 
   useMapEvent('moveend', (e) => updateBounds())
-  useMapEvent('load', (e) =>  updateBounds())
+  useMapEvent('load', (e) => updateBounds())
   return null
 }
 
@@ -70,7 +68,11 @@ const FitBounds: (props: { onSignatureUpdate: (fitBoundsToMarkerIdCallback: IdLa
   return null
 }
 
-const CircleMarker = ({marker: m, color, onMarkerClick }: {marker: Marker, color: string, onMarkerClick?: (id: string) => void }) =>
+const CircleMarker = ({
+                        marker: m,
+                        color,
+                        onMarkerClick
+                      }: { marker: Marker, color: string, onMarkerClick?: (id: string) => void }) =>
   <Circle
     center={[m.lat, m.lng]}
     radius={m.radius}
@@ -79,18 +81,17 @@ const CircleMarker = ({marker: m, color, onMarkerClick }: {marker: Marker, color
   </Circle>
 
 const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
-  const [zoom, setZoom] = useState<number>( 8 )
-  const [position, setPosition] = useState<L.LatLngExpression>(  {
+  const [zoom, setZoom] = useState<number>(8)
+  const [position, setPosition] = useState<L.LatLngExpression>({
     lat: config.initial_lat || 51.0833,
     lng: config.initial_lng || 13.73126,
-  } )
-  const { markers, selectedId, setSelectedId, setZoomToCoordinateCallback } = useLeafletStore()
+  })
+  const {markers, selectedId, setSelectedId, setZoomToCoordinateCallback } = useLeafletStore()
 
   const setZoomToIdCallbackCallback: (fitBoundsToMarkerIdCallback: IdLatLngCallback) => void  =  useCallback(
     fitBoundsToMarkerIdCallback => setZoomToCoordinateCallback(fitBoundsToMarkerIdCallback),
     [setZoomToCoordinateCallback],
   );
-
 
   const handleMarkerSelect = useCallback(
     (id: string) => {
@@ -127,7 +128,8 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
             />
           </LayersControl.BaseLayer>
           <LayersControl.BaseLayer name="swisstopo">
-            <TileLayer url="https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/256/{z}/{x}/{y}.png?key=gR2UbhjBpXWL68Dc4a3f" />
+            <TileLayer
+              url="https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/256/{z}/{x}/{y}.png?key=gR2UbhjBpXWL68Dc4a3f"/>
           </LayersControl.BaseLayer>
           <LayersControl.BaseLayer name="Arcgis Satelite">
             <TileLayer
@@ -137,23 +139,24 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
             />
           </LayersControl.BaseLayer>
 
-
+          <MarkerClusterGroup disableClusteringAtZoom={14}>
+            {markers
+              .filter(({withinFilter, id}) => !withinFilter && id !== selectedId)
+              .map((m, i) =>
+                <CircleMarker
+                  key={m.id + i}
+                  marker={m} color={'grey'}
+                  onMarkerClick={handleMarkerSelect}/>)}
+            {markers
+              .filter(({withinFilter, id}) => withinFilter && id !== selectedId)
+              .map((m, i) =>
+                <CircleMarker
+                  key={m.id + i}
+                  marker={m} color={'blue'}
+                  onMarkerClick={handleMarkerSelect}/>)}
+          </MarkerClusterGroup>
           {markers
-            .filter(({withinFilter, id}) => !withinFilter && id !== selectedId )
-            .map((m, i) =>
-              <CircleMarker
-                key={m.id + i}
-                marker={m} color={'grey'}
-                onMarkerClick={handleMarkerSelect}/>)}
-          {markers
-            .filter(({withinFilter, id}) => withinFilter  && id !== selectedId)
-            .map((m, i) =>
-              <CircleMarker
-                key={m.id + i}
-                marker={m} color={'blue'}
-                onMarkerClick={handleMarkerSelect}/>)}
-          {markers
-            .filter(({id}) => id === selectedId )
+            .filter(({id}) => id === selectedId)
             .map((m, i) =>
               <CircleMarker
                 key={m.id + i}
