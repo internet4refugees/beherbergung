@@ -9,7 +9,7 @@
     :name "editor",
     :header "Editor",
     :type "string",
-    ;:editable true,
+    :editable true,  ;; till https://github.com/internet4refugees/beherbergung/issues/70 is implemented
     :defaultWidth 85,
   },
   {
@@ -142,7 +142,7 @@
   },
   {
     :name "note",
-    :header "User comment",
+    :header "Anything else to keep in mind?",
     :type "string",
     :defaultWidth 400,
   },
