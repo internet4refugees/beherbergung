@@ -45,6 +45,25 @@ const BoundsChangeListener: ({onBoundsChange}: { onBoundsChange?: (bounds: L.Lat
   return null
 }
 
+const FitBounds: ({marker}: { marker?: Marker | null}) => null = ({marker} : {marker?: Marker}) => {
+
+  const map = useMap()
+
+  useEffect(() => {
+    if(map && marker) {
+      const offset = 0.07
+      const ensureNumber = (n: string | number) => typeof n === 'string' ? parseFloat(n) : n
+      const lat = ensureNumber(marker.lat)
+      const lng = ensureNumber(marker.lng)
+      const bounds = L.latLngBounds(L.latLng([ lat - offset, lng - offset]), L.latLng([lat + offset, lng + offset]))
+      map.fitBounds(bounds)
+    }
+  }, [map, marker]);
+
+
+  return null
+}
+
 const CircleMarker = ({marker: m, color, onMarkerClick }: {marker: Marker, color: string, onMarkerClick?: (id: string) => void }) =>
   <Circle
     center={[m.lat, m.lng]}
@@ -59,13 +78,21 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
     lat: config.initial_lat || 51.0833,
     lng: config.initial_lng || 13.73126,
   } )
-  const { markers, selectedId, setSelectedId } = useLeafletStore()
+  const { markers, selectedId, setSelectedId, zoomedId } = useLeafletStore()
 
   const handleMarkerSelect = useCallback(
     (id: string) => {
       setSelectedId(id)
     },
     [setSelectedId]);
+
+  const [zoomedMarker, setZoomedMarker] = useState<Marker | null>(null);
+  useEffect(() => {
+    if(!zoomedId) setZoomedMarker(null)
+    const m = markers.find(({id}) => id == zoomedId)
+    setZoomedMarker(m)
+  }, [markers, zoomedId, setZoomedMarker]);
+
 
   return (
     <>
@@ -81,6 +108,7 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
         maxZoom={18}
       >
         <BoundsChangeListener onBoundsChange={onBoundsChange}/>
+        <FitBounds marker={zoomedMarker}/>
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="Terrain">
             <TileLayer

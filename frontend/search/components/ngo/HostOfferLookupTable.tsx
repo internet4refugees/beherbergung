@@ -14,6 +14,9 @@ import {filterUndefOrNull} from "../util/notEmpty";
 import {haversine_distance, LatLng} from "../util/distance";
 import {useLeafletStore} from "./LeafletStore";
 import DeclarativeDataGrid from "./DeclarativeDataGrid";
+import {TypeColumns} from "@inovua/reactdatagrid-community/types/TypeColumn";
+import {ShareLocation} from "@mui/icons-material";
+import {IconButton} from "@mui/material";
 
 export type HostOfferLookupTableDataType =
   Omit<NonNullable<(GetOffersQuery["get_offers"] & GetRwQuery["get_rw"])>[number], '__typename'>
@@ -104,18 +107,24 @@ const HostOfferLookupTable = ({
   // @ts-ignore
   const reactdatagridi18n = resources[language]?.translation?.reactdatagrid
 
-  const {selectedId, setSelectedId} = useLeafletStore()
+  const {selectedId, setSelectedId, zoomToId} = useLeafletStore()
 
   const handleRowSelect = useCallback((id: string) => {
     setSelectedId(id)
   }, [setSelectedId])
 
+  const firstColumns: TypeColumns = [
+    { name: 'action', resizable: false, width: 50,
+      render: ({ data  }) => <span><IconButton onClick={() =>  zoomToId(data.id as string)}><ShareLocation /></IconButton></span>
+    }
+  ]
 
   return dataSource && <DeclarativeDataGrid
     i18n={reactdatagridi18n || undefined}
     onEditComplete={onEditComplete}
     groups={groupsDisabled ? undefined : defaultColumnGroups}
     columnsRaw={columnsRaw}
+    firstColumns={firstColumns}
     selectedId={selectedId}
     onRowSelect={handleRowSelect}
     data={dataSource}

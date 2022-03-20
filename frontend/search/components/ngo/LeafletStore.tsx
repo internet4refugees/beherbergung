@@ -18,6 +18,8 @@ export interface LeafletState {
   setWithinFiltered: (ids: string[]) => void
   selectedId?: string | null
   setSelectedId: (selectedId?: string | null) => void
+  zoomedId?: string | null
+  zoomToId: (id?: string | null) => void
 }
 
 export const useLeafletStore = create<LeafletState>(set => ({
@@ -30,5 +32,7 @@ export const useLeafletStore = create<LeafletState>(set => ({
   setWithinFiltered: ids => set(({markers}) =>
     ({markers: markers.map(m => ({
         ...m,
-        withinFilter: ids.includes( m.id )}))}))
+        withinFilter: ids.includes( m.id )}))})),
+  zoomedId: null,
+  zoomToId: id => set({zoomedId: id})
 }))
