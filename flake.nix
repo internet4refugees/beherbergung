@@ -209,9 +209,11 @@
     hydraJobs = with nixpkgs.lib; let
       hydraJobs = pkgs:
         mapAttrs (_: hydraJob) (
-          nixpkgs.lib.filterAttrs (_: pkg:
-            pkg ? meta
-          ) pkgs
+          nixpkgs.lib.filterAttrs (
+            _: pkg:
+              pkg ? meta
+          )
+          pkgs
         );
     in {
       checks = hydraJobs self.checks.x86_64-linux;
