@@ -157,11 +157,11 @@ const DeclarativeDataGrid = <T, >({
 
   useEffect(() => {
     selectedId && scrollTo(selectedId)
-  }, [selectedId]);
+  }, [selectedId, scrollTo]);
 
   const handleRowSelect = useCallback(({selected}: TypeOnSelectionChangeArg) => {
     typeof selected === 'string' && onRowSelect && onRowSelect(selected)
-  }, [])
+  }, [onRowSelect])
 
   return <DataGrid
     idProperty="id"
