@@ -35,7 +35,7 @@
       echo '{:user {:offline? true :local-repo "${mavenRepository}"}}' > ~/.lein/profiles.clj
       lein uberjar
     '';
-    #doCheck = false;
+    doCheck = true;
     checkPhase = ''
       lein test :local
     '';

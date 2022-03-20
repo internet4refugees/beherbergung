@@ -212,6 +212,12 @@
       <version>0.2.5</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.nrepl</groupId>
+      <artifactId>incomplete</artifactId>
+      <version>0.1.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
 

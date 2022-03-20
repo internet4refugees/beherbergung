@@ -40,5 +40,6 @@ includes = [
     "*.md",
     "*.mdx",
     "*.scss",
-    "*.ts",
+    # frontend devs seems to use a different formatting tool?
+    #"*.ts",
 ]

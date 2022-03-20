@@ -42,7 +42,9 @@
                                   [ring/ring-mock "0.4.0"]
                                   ;; additional deps to run `lein test` 
                                   [nrepl/nrepl "0.9.0"]
-                                  [clojure-complete/clojure-complete "0.2.5"]]
+                                  [clojure-complete/clojure-complete "0.2.5"]
+                                  ;; XXX seems to be an implicit dependency of lein test
+                                  [org.nrepl/incomplete "0.1.0"]]
                    #_#_:jvm-opts ["-Dverbose=true"]}
              :test {:jvm-opts ["-Ddb-inmemory=true" "-Ddb-export-prefix=" "-Ddb-seed=src/beherbergung/db/seed/test.edn"]}
              :uberjar {:aot :all}}
