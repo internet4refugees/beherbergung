@@ -19,7 +19,7 @@ import {Marker, useLeafletStore} from './LeafletStore'
 
 type LeafletMapProps = {onBoundsChange?: (bounds: L.LatLngBounds) => void}
 
-const BoundsChangeListener = ({onBoundsChange}: {onBoundsChange?: (bounds: L.LatLngBounds) => void}) => {
+const BoundsChangeListener: ({onBoundsChange}: { onBoundsChange?: (bounds: L.LatLngBounds) => void }) => null = ({onBoundsChange}) => {
   const { setCenter } = useLeafletStore()
 
   const map = useMap()
