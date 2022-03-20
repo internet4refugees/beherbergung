@@ -30,3 +30,17 @@ $ treefmt
 ```
 $ nix flake check -vL
 ```
+
+# Update dependencies
+
+When you update clojure dependencies in backend/project.clj, run:
+
+```
+$ nix run .#packages.x86_64-linux.updateBackendDeps
+```
+
+When you update javascript dependencies in frontend/search/packages.json, run:
+
+```
+$ nix run .#packages.x86_64-linux.updateFrontendDeps
+```
