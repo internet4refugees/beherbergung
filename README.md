@@ -38,3 +38,7 @@ NGOs that are satisfied with their existing solution do not need to use this com
 
 Read the [documentation intended for developers](./docs/DEVELOPMENT.md) and the [architecture](./docs/ARCHITECTURE.md) documentation.
 There is also a README.md for each component in its directory.
+
+# Similar projects
+
+- [Refugeesrouter](https://github.com/Lassulus/refugeerouter) - Match refugees groups, flats and drivers
