@@ -2,13 +2,21 @@
   (:require [clojure.spec.alpha :as s]
             [specialist-server.type :as t]))
 
-(s/def ::name t/string)
-(s/def ::type t/string)
-(s/def ::header t/string)
+;; Column definitions directly delivered to reactdatagrid.io
+;; See: https://reactdatagrid.io/docs/getting-started#defining-columns
+;;      https://reactdatagrid.io/docs/api-reference#props-columns
+
+(s/def ::name (t/field t/string "The identifier of the column"))
+(s/def ::type (t/field t/string "The type, deliverd to reactdatagrid (after transformation)"))
+(s/def ::header (t/field t/string "The displayed name of the column (before translation)"))
 
 (s/def ::group (s/nilable t/string))
 (s/def ::defaultWidth (s/nilable t/int))
 (s/def ::editable (s/nilable t/boolean))
+
+
+
+;; Additional definitions transformed by ./frontend/search/components/ngo/DeclarativeDataGrid.tsx
 
 
 ;; options.filter
