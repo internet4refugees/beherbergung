@@ -16,7 +16,7 @@
 
 (use-fixtures :once (fn [testcases] (mount/stop) (mount/start) (import! test-import-limit) (testcases) (mount/stop)))
 
-(deftest correct-login
+(deftest ^:remote correct-login
   (let [offers (get_offers {:auth {:mail mail :password password}})]
        (is (= test-import-limit (count offers)))
        (is (= {:beds 0
@@ -37,6 +37,6 @@
                :animals_allowed false}
               (last offers)))))  ;; the later random generated datasets contain less trivial values
 
-(deftest wrong-login
+(deftest ^:remote wrong-login
   (let [offers (get_offers {:auth {:mail mail :password "wrong"}})]
        (is (nil? offers))))

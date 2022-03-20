@@ -37,7 +37,7 @@
     '';
     #doCheck = false;
     checkPhase = ''
-      lein test
+      lein test :local
     '';
 
     installPhase = ''

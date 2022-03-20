@@ -36,6 +36,7 @@
                  [org.clojure/test.check "0.9.0"]
                 ]
   :main beherbergung.webserver.state
+  :test-selectors {:local (complement :remote)}
   :profiles {:dev {:dependencies [;; helpers for testing
                                   [javax.servlet/servlet-api "2.5"]
                                   [ring/ring-mock "0.4.0"]
