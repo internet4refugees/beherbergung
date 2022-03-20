@@ -4,6 +4,7 @@ import '../../i18n/config'
 import {useTranslation} from "react-i18next";
 import {resources} from "../../i18n/config";
 import { countryCodeEmoji  } from 'country-code-emoji';
+import {useEffect, useState} from "react";
 
 
 const flagMapping = {
@@ -13,12 +14,17 @@ const flagMapping = {
 }
 
 const Flag = ({langCode}: {langCode: string}) => {
-  // @ts-ignore
-  const countryCode = (flagMapping[langCode] || langCode).toUpperCase()
-  let emoji = ''
-  try {
-    emoji = countryCodeEmoji(countryCode)
-  } catch (e) {}
+
+  const [emoji, setEmoji] = useState('');
+  useEffect(() => {
+    try {
+      // @ts-ignore
+      const countryCode = (flagMapping[langCode] || langCode).toUpperCase()
+      const emoji = countryCodeEmoji(countryCode)
+      if(emoji) setEmoji(emoji)
+    } catch (e) {}
+  }, [langCode]);
+
   return <>{emoji}</>
 }
 
@@ -27,8 +33,10 @@ export default function LanguageSelection() {
   const { t, i18n: {language }} = useTranslation()
   const languages = Object.keys(resources)
 
+  const selectedLang = languages.includes(language) ? language : 'en'
+
   return  (
-    <Select value={language} renderValue={v => <Flag langCode={v} />}>
+    <Select value={selectedLang} renderValue={v => <Flag langCode={v} />}>
      { languages.map( lang => (
          <MenuItem dense value={lang}  key={lang} onClick={() => i18next.changeLanguage(lang)} >
            <ListItemIcon><Flag langCode={lang}/></ListItemIcon>
