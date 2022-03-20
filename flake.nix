@@ -79,6 +79,7 @@
       pkgs.treefmt
       pkgs.clj-kondo
       pkgs.shfmt
+      pkgs.nodePackages.prettier
     ];
   in rec {
     legacyPackages.${system} = lib.mergeAttrs pkgs {
@@ -149,7 +150,6 @@
           pkgs.hivemind
           pkgs.nodejs
           pkgs.entr
-          pkgs.nodePackages.prettier
           nixos-shell.packages.${system}.nixos-shell
         ]
         ++ linters;

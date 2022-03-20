@@ -76,7 +76,7 @@ flowchart LR;
 
 **1st step - Extracting** Delivered formats are loaded into objects. In general we expect 2 dimensional data - the data set.
 
-**2nd step - Loading** A dataset contains multiple tupel. A tupel in turn consists of multiple attributes. Imports may support separate headlines. In case of csv the first row could be a headline. Usually each csv-row is a tupel/data point.  
+**2nd step - Loading** A dataset contains multiple tupel. A tupel in turn consists of multiple attributes. Imports may support separate headlines. In case of csv the first row could be a headline. Usually each csv-row is a tupel/data point.
 
 **3rd step - Mapping** The internal 2-dimensional data grid is mapped with help of associative attribut naming. Further rules, checks and specialised functions are added - see 'offer_mapping'. This allows to handle customer specific representation of boolean values or time string formats.
 
