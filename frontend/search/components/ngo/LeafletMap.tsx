@@ -65,20 +65,20 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
         }}
         center={position}
         zoom={zoom}
-        maxZoom={24}
+        maxZoom={18}
       >
         <BoundsChangeListener onBoundsChange={onBoundsChange}/>
         <LayersControl position="topright">
-          <LayersControl.BaseLayer checked name="OpenStreetMap.default">
+          <LayersControl.BaseLayer checked name="Terrain">
+            <TileLayer
+              attribution={"Map tiles by <a href=\"http://stamen.com\">Stamen Design</a>, under <a href=\"http://creativecommons.org/licenses/by/3.0\">CC BY 3.0</a>. Data by <a href=\"http://openstreetmap.org\">OpenStreetMap</a>, under <a href=\"http://www.openstreetmap.org/copyright\">ODbL</a>."}
+              url="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png"/>
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="OpenStreetMap.default">
             <TileLayer
               attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               maxNativeZoom={18}
-            />
-          </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name="Terain">
-            <TileLayer url="https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png"
-
             />
           </LayersControl.BaseLayer>
           <LayersControl.BaseLayer name="swisstopo">
