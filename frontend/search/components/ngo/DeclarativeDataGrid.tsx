@@ -152,17 +152,21 @@ const DeclarativeDataGrid = <T, >({
       .map(v => transformValue(v, columnsRaw))
 
     _data && setDataSource(_data)
-  }, [columnsRaw, data]);
+  }, [columnsRaw, data])
 
   const gridRef = useRef<TypeComputedProps | null>(null);
   const scrollTo = useCallback((id: string) => {
     gridRef.current?.scrollToId(id, {duration: 300})
   }, [gridRef])
 
+  const debugPrint = useCallback((selectedId) => {
+    console.log(data.filter(d => (d as any).id === selectedId))
+  }, [selectedId, data])
 
   useEffect(() => {
     selectedId && scrollTo(selectedId)
-  }, [selectedId, scrollTo]);
+    selectedId && debugPrint(selectedId)  // TODO: only when debug option is checked in menu
+  }, [selectedId, scrollTo, debugPrint]);
 
   const handleRowSelect = useCallback(({selected}: TypeOnSelectionChangeArg) => {
     typeof selected === 'string' && onRowSelect && onRowSelect(selected)
