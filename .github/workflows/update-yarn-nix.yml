@@ -1,0 +1,14 @@
+name: yarn
+on:
+  push:
+
+jobs:
+  autoupdate-lockfiles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v16
+      - run: nix run .#packages.x86_64-linux.updateFrontendDeps
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update yarn.nix
