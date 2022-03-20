@@ -15,6 +15,7 @@ import * as L from 'leaflet'
 import {Marker, useLeafletStore} from './LeafletStore'
 import MarkerClusterGroup from '../leaflet/MarkerClusterGroup'
 import {IdLatLngCallback} from "../util/geo";
+import {useAppConfigStore} from "../config/appConfigStore";
 
 type LeafletMapProps = { onBoundsChange?: (bounds: L.LatLngBounds) => void }
 
@@ -45,18 +46,19 @@ const BoundsChangeListener: ({onBoundsChange}: { onBoundsChange?: (bounds: L.Lat
   return null
 }
 
-const FitBounds: (props: { onSignatureUpdate: (fitBoundsToMarkerIdCallback: IdLatLngCallback) => void}) => null = ({onSignatureUpdate}  ) => {
+const FitBounds: (props: { onSignatureUpdate: (fitBoundsToMarkerIdCallback: IdLatLngCallback) => void }) => null = ({onSignatureUpdate}) => {
 
   const map = useMap()
 
   const fitBoundsToMarkerId: IdLatLngCallback = useCallback(
     (coordinate) => {
-      if(map && coordinate) {
+      if (map && coordinate) {
         const offset = 0.07
         const [lat, lng] = coordinate
-        const bounds = L.latLngBounds(L.latLng([ lat - offset, lng - offset]), L.latLng([lat + offset, lng + offset]))
+        const bounds = L.latLngBounds(L.latLng([lat - offset, lng - offset]), L.latLng([lat + offset, lng + offset]))
         map.fitBounds(bounds)
-      }},
+      }
+    },
     [map])
 
 
@@ -80,15 +82,39 @@ const CircleMarker = ({
     eventHandlers={{click: () => onMarkerClick && onMarkerClick(m.id)}}>
   </Circle>
 
+const AllMarkers = ({
+                      markers,
+                      selectedId,
+                      onMarkerSelect
+                    }: { markers: Marker[], selectedId?: string, onMarkerSelect?: (id?: string) => void }) => {
+  return <>
+    {markers
+      .filter(({withinFilter, id}) => !withinFilter && id !== selectedId)
+      .map((m, i) =>
+        <CircleMarker
+          key={m.id + i}
+          marker={m} color={'grey'}
+          onMarkerClick={onMarkerSelect}/>)}
+    {markers
+      .filter(({withinFilter, id}) => withinFilter && id !== selectedId)
+      .map((m, i) =>
+        <CircleMarker
+          key={m.id + i}
+          marker={m} color={'blue'}
+          onMarkerClick={onMarkerSelect}/>)}
+  </>
+}
+
 const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
   const [zoom, setZoom] = useState<number>(8)
   const [position, setPosition] = useState<L.LatLngExpression>({
     lat: config.initial_lat || 51.0833,
     lng: config.initial_lng || 13.73126,
   })
-  const {markers, selectedId, setSelectedId, setZoomToCoordinateCallback } = useLeafletStore()
+  const {markers, selectedId, setSelectedId, setZoomToCoordinateCallback} = useLeafletStore()
+  const {markerClusterDisabled} = useAppConfigStore()
 
-  const setZoomToIdCallbackCallback: (fitBoundsToMarkerIdCallback: IdLatLngCallback) => void  =  useCallback(
+  const setZoomToIdCallbackCallback: (fitBoundsToMarkerIdCallback: IdLatLngCallback) => void = useCallback(
     fitBoundsToMarkerIdCallback => setZoomToCoordinateCallback(fitBoundsToMarkerIdCallback),
     [setZoomToCoordinateCallback],
   );
@@ -113,7 +139,7 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
         maxZoom={18}
       >
         <BoundsChangeListener onBoundsChange={onBoundsChange}/>
-        <FitBounds  onSignatureUpdate={setZoomToIdCallbackCallback }/>
+        <FitBounds onSignatureUpdate={setZoomToIdCallbackCallback}/>
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="Terrain">
             <TileLayer
@@ -138,23 +164,11 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
               maxNativeZoom={20}
             />
           </LayersControl.BaseLayer>
-
-          <MarkerClusterGroup disableClusteringAtZoom={14}>
-            {markers
-              .filter(({withinFilter, id}) => !withinFilter && id !== selectedId)
-              .map((m, i) =>
-                <CircleMarker
-                  key={m.id + i}
-                  marker={m} color={'grey'}
-                  onMarkerClick={handleMarkerSelect}/>)}
-            {markers
-              .filter(({withinFilter, id}) => withinFilter && id !== selectedId)
-              .map((m, i) =>
-                <CircleMarker
-                  key={m.id + i}
-                  marker={m} color={'blue'}
-                  onMarkerClick={handleMarkerSelect}/>)}
-          </MarkerClusterGroup>
+          {markerClusterDisabled
+            ? <AllMarkers markers={markers} selectedId={selectedId} onMarkerSelect={handleMarkerSelect}/>
+            : <MarkerClusterGroup disableClusteringAtZoom={14}>
+              <AllMarkers markers={markers} selectedId={selectedId} onMarkerSelect={handleMarkerSelect}/>
+            </MarkerClusterGroup>}
           {markers
             .filter(({id}) => id === selectedId)
             .map((m, i) =>
