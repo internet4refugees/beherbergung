@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
-import { useLoginQuery } from '../codegen/generates'
+import {useEffect} from 'react'
+import {useLoginQuery} from '../codegen/generates'
 import create from 'zustand'
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 function jwtDecode(jwt: string) {
   /* Just parses the payload — Be aware that signature is not checked */
@@ -20,11 +20,13 @@ export interface AuthState {
 export const useAuthStore = create<AuthState>(set => ({
   mail: '',
   password: '',
-  setLogin: (mail, password) => set( _orig => ({mail, password})),
+  setLogin: (mail, password) => set(_orig => ({mail, password})),
   jwt: '',
-  setJwt: jwt => set( _orig => ({jwt}) ),
-  logout: () => { localStorage.removeItem('jwt')
-	          set({mail: '', password: '', jwt: ''}) }
+  setJwt: jwt => set(_orig => ({jwt})),
+  logout: () => {
+    localStorage.removeItem('jwt')
+    set({mail: '', password: '', jwt: ''})
+  }
 }))
 
 export function jwtFromLocalStorage() {
@@ -33,46 +35,49 @@ export function jwtFromLocalStorage() {
 
 export function Login() {
   const {t} = useTranslation()
-  const auth = useAuthStore()
+  const { jwt, mail, password, logout, setJwt, setLogin } = useAuthStore()
 
-  const { data } = useLoginQuery({auth}, {enabled: Boolean(!auth.jwt && auth.mail && auth.password)})
+  const {data} = useLoginQuery({auth: { jwt, mail, password }}, {enabled: Boolean(!jwt && mail && password)})
 
   useEffect(() => {
-    if(auth.jwt) {
-      localStorage.setItem('jwt', auth.jwt)
-    }
-    else {
-      auth.setJwt(data?.login.jwt || jwtFromLocalStorage())
+    if (jwt) {
+      localStorage.setItem('jwt', jwt)
+    } else {
+      setJwt(data?.login.jwt || jwtFromLocalStorage())
     }
 
-    if(jwtDecode(auth.jwt).exp < Date.now()/1000) {
+    if (jwtDecode(jwt).exp < Date.now() / 1000) {
       console.log('session expired')
-      auth.logout()
+      logout()
     }
-  }, [auth, data])
+  }, [logout, setJwt, jwt, data])
 
-  if(!auth.jwt) {
+  if (!jwt) {
     return (
-      <form onSubmit={ (event) => {event.preventDefault()
-                                   auth.setLogin((document.getElementById('mail') as HTMLInputElement).value,
-                                                 (document.getElementById('password') as HTMLInputElement).value) }}>
-        <label>{ t('Email') }:
+      <form onSubmit={(event) => {
+        event.preventDefault()
+        setLogin((document.getElementById('mail') as HTMLInputElement).value,
+          (document.getElementById('password') as HTMLInputElement).value)
+      }}>
+        <label>{t('Email')}:
           <input id='mail' name='mail'/>
         </label>&nbsp;
-        <label>{ t('Password') }:
+        <label>{t('Password')}:
           <input id='password' type='password' name='password'/>
         </label>&nbsp;
-        <input type='submit' value={ t('Login') as string }/>
+        <input type='submit' value={t('Login') as string}/>
 
-	{ data?.login && !data?.login?.jwt && <p>{ t('The login failed, please try again.') }</p> }
+        {data?.login && !data?.login?.jwt && <p>{t('The login failed, please try again.')}</p>}
       </form>
     )
   } else {
     return (
-      <form onSubmit={ async (event) => {event.preventDefault()
-                                         auth.logout()}}
-	    style={{width: "100%", textAlign: "right"}}>
-        <input type='submit' value={ t('Logout') as string }/>
+      <form onSubmit={async (event) => {
+        event.preventDefault()
+        logout()
+      }}
+            style={{width: "100%", textAlign: "right"}}>
+        <input type='submit' value={t('Logout') as string}/>
       </form>
     )
   }
