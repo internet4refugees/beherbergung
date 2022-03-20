@@ -172,6 +172,16 @@ const DeclarativeDataGrid = <T, >({
     typeof selected === 'string' && onRowSelect && onRowSelect(selected)
   }, [onRowSelect])
 
+  const activeIndex2RowSelect= useCallback((index: number) => {
+      try {
+        // @ts-ignore
+        const t = gridRef.current?.getRowId(index) as string | undefined
+        typeof t === 'string' && onRowSelect && onRowSelect(t)
+      } catch (e) {}
+    },
+    [onRowSelect, gridRef])
+
+
   return <DataGrid
     idProperty="id"
     filterable
@@ -187,6 +197,7 @@ const DeclarativeDataGrid = <T, >({
     style={{height: '100%'}}
     selected={selectedId}
     onSelectionChange={handleRowSelect}
+    onActiveIndexChange={activeIndex2RowSelect}
     {...props}
   />
 }
