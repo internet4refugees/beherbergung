@@ -73,17 +73,17 @@
     :header "Beds",
     :type "number",
   },
-  #_{
+  {
     :name "time_from_str",
     :group "time",
     :header "From",
     :type "date",
     :defaultWidth 90,
     :options {
-      :dateFormat "MM/DD/YYYY",
+      :dateFormat "DD.MM.YYYY",
       :transform {
         :date2Iso {
-          :inputDateFormat "MM/DD/YYYY",
+          :inputDateFormat "DD.MM.DD.YYYY",
         },
       },
     },
@@ -109,18 +109,19 @@
   },
   {
     :name "skills_translation",
+    :group "features",
     :header "help with translations",
     :type "boolean",
     :defaultWidth 150,
   },
-  #_{
+  {
     :name "accessible",
     :group "features",
     :header "Accessible",
     :type "boolean",
     :defaultWidth 120,
   },
-  #_{
+  {
     :name "animals_allowed",
     :group "animals",
     :header "Allowed",
@@ -136,6 +137,7 @@
   },
   {
     :name "covid_vaccination_status_str",
+    :group "features",
     :header "vaccination",
     :type "string",
     :defaultWidth 200,
@@ -164,7 +166,7 @@
     :header "EMail",
     :type "string",
   },
-  #_{
+  {
     :name "place_street",
     :group "address",
     :header "Street",
@@ -177,7 +179,7 @@
     :type "string",
     :defaultWidth 100,
   },
-  #_{
+  {
     :name "place_zip",
     :group "address",
     :header "Zip",

@@ -22,22 +22,23 @@
               :rw_contacted ["contacted at least once" x->bool]
               :rw_offer_occupied ["Occupied" not-empty?]
 
-              :time_from_str (constantly nil)
-              :time_duration_str "Available from- , to / Verfügbar von- bis"
+              :time_from_str "Available from- / Verfügbar von- "
+              :time_duration_str "For how long? / Für wieviele Wochen?"
 
               :beds "How many people can you host? / Wievielen Menschen können sie Unterkunft bieten?"
               :languages ["The language you speak / Gesprochene Sprachen" split_user_string]
 
               :place_country "Country / Land"
-              :place_city (constantly nil)
-              :place_zip (constantly nil)
-              :place_street (constantly nil)
+              :place_city "City / Stadt"
+              :place_zip "Zip Code / Postleitzahl"
+              :place_street "Address / Adresse "
               :place_street_number (constantly nil)
-              :place_str #(or (not-empty (get % "Address (+ zip code!)"))
-                              (get % "Address (+ zip code!) / Adresse (+ PLZ)"))
+              :place_str (constantly nil)
+                         ; #(or (not-empty (get % "Address (+ zip code!)"))
+                         ;      (get % "Address (+ zip code!) / Adresse (+ PLZ)"))
 
-              :accessible (constantly nil)
-              :animals_allowed (constantly nil)
+              :accessible ["Is your accommodation handicapped accessible? / Ist Ihre Unterkunft Barrierefrei zugänglich?" yesNo->bool]
+              :animals_allowed ["Are Animals allowed? / Sind Tiere erlaubt?" yesNo->bool]
               :animals_present (constantly nil)
 
               :covid_vaccination_status_str "What is your vaccination status? / Wie ist Ihr Impfstatus? "
