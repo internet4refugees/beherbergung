@@ -25,7 +25,7 @@
               :time_from_str "Available from- / Verfügbar von- "
               :time_duration_str "For how long? / Für wieviele Wochen?"
 
-              :beds "How many people can you host? / Wievielen Menschen können sie Unterkunft bieten?"
+              :beds "How many people can you host max.? / Wievielen Menschen können sie maximal Unterkunft bieten?"
               :languages ["The language you speak / Gesprochene Sprachen" split_user_string]
 
               :place_country "Country / Land"
@@ -38,14 +38,18 @@
                          ;      (get % "Address (+ zip code!) / Adresse (+ PLZ)"))
 
               :accessible ["Is your accommodation handicapped accessible? / Ist Ihre Unterkunft Barrierefrei zugänglich?" yesNo->bool]
+              :kids_suitable ["Is the Accommodation Suitable for young Kids?  /  Ist die Unterkunft für Kleinkinder geeignet?"yesNo->bool]
               :animals_allowed ["Are Animals allowed? / Sind Tiere erlaubt?" yesNo->bool]
               :animals_present (constantly nil)
 
               :covid_vaccination_status_str "What is your vaccination status? / Wie ist Ihr Impfstatus? "
 
               :skills_translation ["Can you offer helping other hosts with translations from Ukrainian to German/English? / Können Sie anderen Gastgebern bei Übersetzungen aus dem Ukrainischen ins Deutsche/Englische helfen?" yesNo->bool]
+              :pickup ["Would you pick up  your guests when they arrive at HBF Vienna? Würden Sie ihre Gäste beim Hauptbahnhof Wien abholen? " yesNo->bool]
 
               :contact_name_full "Name "
               :contact_phone "Phone"
               :contact_email "E-Mail "
-              :note "Anything else to keep in mind? Animals? Allergies? / Gibt es sonst noch etwas zu bedenken? Tiere? Allergien?"})
+              :note "Anything else to keep in mind? Allergies? / Gibt es sonst noch etwas zu bedenken? Allergien?"
+              :description "Describe the place you can offer with a few words. (Whole Apartment/Couch) / Beschreiben Sie den Ort, den Sie anbieten können, mit ein paar Worten. (Wohnung/Couch)"
+             })

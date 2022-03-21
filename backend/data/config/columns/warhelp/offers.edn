@@ -110,9 +110,16 @@
   {
     :name "skills_translation",
     :group "features",
-    :header "help with translations",
+    :header "Help with translations",
     :type "boolean",
     :defaultWidth 150,
+  },
+  {
+    :name "kids_suitable",
+    :group "features",
+    :header "Kids",
+    :type "boolean",
+    :defaultWidth 90,
   },
   {
     :name "accessible",
@@ -138,13 +145,26 @@
   {
     :name "covid_vaccination_status_str",
     :group "features",
-    :header "vaccination",
+    :header "Vaccination",
     :type "string",
+    :defaultWidth 200,
+  },
+  {
+    :name "pickup",
+    :group "features",
+    :header "Pickup Hbf",
+    :type "boolean",
     :defaultWidth 200,
   },
   {
     :name "note",
     :header "Anything else to keep in mind?",
+    :type "string",
+    :defaultWidth 400,
+  },
+  {
+    :name "description",
+    :header "Description",
     :type "string",
     :defaultWidth 400,
   },

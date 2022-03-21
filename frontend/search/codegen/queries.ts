@@ -55,15 +55,18 @@ export const get_offers = gql`
       place_street_number
       place_lon
       place_lat
+      skills_translation
+      kids_suitable
       accessible
       animals_allowed
       animals_present
+      covid_vaccination_status_str
+      pickup
       contact_name_full
       contact_phone
       contact_email
       note
-      covid_vaccination_status_str
-      skills_translation
+      description
     }
   }
 `;

@@ -40,15 +40,18 @@
 (s/def ::place_street_number (s/nilable ::t_string))
 (s/def ::place_lon (s/nilable ::t_float))
 (s/def ::place_lat (s/nilable ::t_float))
+(s/def ::skills_translation (s/nilable ::t_boolean))
+(s/def ::kids_suitable (s/nilable ::t_boolean))
 (s/def ::accessible (s/nilable ::t_boolean))
 (s/def ::covid_vaccination_status_str (s/nilable ::t_string))
-(s/def ::skills_translation (s/nilable ::t_boolean))
+(s/def ::pickup (s/nilable ::t_boolean))
 (s/def ::animals_allowed (s/nilable ::t_boolean))
 (s/def ::animals_present (s/nilable ::t_boolean))
 (s/def ::contact_name_full (s/nilable ::t_string))
 (s/def ::contact_phone (s/nilable ::t_string))
 (s/def ::contact_email (s/nilable ::t_string))
 (s/def ::note (s/nilable ::t_string))
+(s/def ::description (s/nilable ::t_string))
 (s/def ::offer (s/keys :req-un [::id_tmp
                                 ::time_from_str ::time_duration_str ::beds ::languages
                                 ::place_country ::place_city ::place_zip ::place_street ::place_street_number
@@ -61,8 +64,11 @@
                                 ::editor
                                 ::rw_contacted
                                 ::rw_offer_occupied
+                                ::kids_suitable
+                                ::pickup
                                 ::covid_vaccination_status_str
-                                ::skills_translation]))
+                                ::skills_translation
+                                ::description]))
 (comment
   (write-edn "./data/sample-data/example.edn"
              (gen/sample (s/gen ::offer))))
@@ -76,5 +82,8 @@
           (update :editor identity)
           (update :rw_contacted identity)
           (update :rw_offer_occupied identity)
+          (update :kids_suitable identity)
           (update :covid_vaccination_status_str identity)
-          (update :skills_translation identity)))
+          (update :skills_translation identity)
+          (update :pickup identity)
+          (update :description identity)))

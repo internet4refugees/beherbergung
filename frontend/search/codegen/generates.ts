@@ -31,11 +31,13 @@ export type Auth = {
   password: Scalars['String'];
 };
 
+/** convert a string date to iso format or other string formats */
 export type Date2Iso = {
   __typename?: 'Date2Iso';
   inputDateFormat?: Maybe<Scalars['String']>;
 };
 
+/** option that influences the default filter option for a column */
 export type Filter = {
   __typename?: 'Filter';
   operator?: Maybe<Scalars['String']>;
@@ -66,6 +68,7 @@ export type OnEditCompleteByType = {
 
 export type Options = {
   __typename?: 'Options';
+  /** needed  for date-strings, in order to make filter understand what date format the date string has */
   dateFormat?: Maybe<Scalars['String']>;
   filter?: Maybe<Filter>;
   transform?: Maybe<Transform>;
@@ -134,12 +137,12 @@ export type Get_Columns = {
   defaultWidth?: Maybe<Scalars['Int']>;
   editable?: Maybe<Scalars['Boolean']>;
   group?: Maybe<Scalars['String']>;
-  /** Self descriptive. */
+  /** The displayed name of the column (before translation) */
   header: Scalars['String'];
-  /** Self descriptive. */
+  /** The identifier of the column */
   name: Scalars['String'];
   options?: Maybe<Options>;
-  /** Self descriptive. */
+  /** The type, deliverd to reactdatagrid (after transformation) */
   type: Scalars['String'];
 };
 
@@ -154,12 +157,15 @@ export type Get_Offers = {
   contact_name_full?: Maybe<Scalars['String']>;
   contact_phone?: Maybe<Scalars['String']>;
   covid_vaccination_status_str?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   editor?: Maybe<Scalars['String']>;
   /** Self descriptive. */
   id: Scalars['String'];
   id_tmp?: Maybe<Scalars['String']>;
+  kids_suitable?: Maybe<Scalars['Boolean']>;
   languages?: Maybe<Array<Scalars['String']>>;
   note?: Maybe<Scalars['String']>;
+  pickup?: Maybe<Scalars['Boolean']>;
   place_city?: Maybe<Scalars['String']>;
   place_country?: Maybe<Scalars['String']>;
   place_lat?: Maybe<Scalars['Float']>;
@@ -210,7 +216,7 @@ export type GetOffersQueryVariables = Exact<{
 }>;
 
 
-export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, time_submission_str?: string | null, editor?: string | null, rw_contacted?: boolean | null, rw_offer_occupied?: boolean | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, covid_vaccination_status_str?: string | null, skills_translation?: boolean | null }> | null };
+export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, time_submission_str?: string | null, editor?: string | null, rw_contacted?: boolean | null, rw_offer_occupied?: boolean | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccination_status_str?: string | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
 
 export type GetRwQueryVariables = Exact<{
   auth: Auth;
@@ -297,15 +303,18 @@ export const GetOffersDocument = `
     place_street_number
     place_lon
     place_lat
+    skills_translation
+    kids_suitable
     accessible
     animals_allowed
     animals_present
+    covid_vaccination_status_str
+    pickup
     contact_name_full
     contact_phone
     contact_email
     note
-    covid_vaccination_status_str
-    skills_translation
+    description
   }
 }
     `;
