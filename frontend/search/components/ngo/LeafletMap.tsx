@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useState} from 'react'
 import 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import {config} from "../../config"
@@ -6,81 +6,27 @@ import {config} from "../../config"
 import {
   LayersControl,
   MapContainer,
-  Circle,
-  TileLayer,
-  useMap,
-  useMapEvent
+  TileLayer
 } from '@monsonjeremy/react-leaflet'
 import * as L from 'leaflet'
 import {Marker, useLeafletStore} from './LeafletStore'
-import MarkerClusterGroup from '../leaflet/MarkerClusterGroup'
 import {IdLatLngCallback} from "../util/geo";
 import {useAppConfigStore} from "../config/appConfigStore";
+import CustomCircleMarker from "../leaflet/marker/CustomCircleMarker";
+import MarkerClusterLayer from "../leaflet/MarkerClusterLayer";
+import {customCircleMarker} from "../leaflet/marker/customCircleMarker";
+import BoundsChangeListener from "../leaflet/BoundsChangeListener";
+import FitBounds from "../leaflet/FitBounds";
 
 type LeafletMapProps = { onBoundsChange?: (bounds: L.LatLngBounds) => void }
 
-const BoundsChangeListener: ({onBoundsChange}: { onBoundsChange?: (bounds: L.LatLngBounds) => void }) => null = ({onBoundsChange}) => {
-  const {setCenter} = useLeafletStore()
-
-  const map = useMap()
-
-  const updateBounds = useCallback(
-    () => {
-      const {lat, lng} = map.getCenter()
-      setCenter([lat, lng])
-
-      // onBoundsChange is unused at the moment
-      onBoundsChange && onBoundsChange(
-        map.getBounds()
-      )
-    },
-    [map, onBoundsChange, setCenter],
-  )
-
-  useEffect(() => {
-    updateBounds()
-  }, [map, updateBounds])
-
-  useMapEvent('moveend', (e) => updateBounds())
-  useMapEvent('load', (e) => updateBounds())
-  return null
-}
-
-const FitBounds: (props: { onSignatureUpdate: (fitBoundsToMarkerIdCallback: IdLatLngCallback) => void }) => null = ({onSignatureUpdate}) => {
-
-  const map = useMap()
-
-  const fitBoundsToMarkerId: IdLatLngCallback = useCallback(
-    (coordinate) => {
-      if (map && coordinate) {
-        const offset = 0.07
-        const [lat, lng] = coordinate
-        const bounds = L.latLngBounds(L.latLng([lat - offset, lng - offset]), L.latLng([lat + offset, lng + offset]))
-        map.fitBounds(bounds)
-      }
-    },
-    [map])
-
-
-  useEffect(() => {
-    onSignatureUpdate(fitBoundsToMarkerId)
-  }, [map, onSignatureUpdate, fitBoundsToMarkerId]);
-
-
-  return null
-}
-
-const CircleMarker = ({
-                        marker: m,
-                        color,
-                        onMarkerClick
-                      }: { marker: Marker, color: string, onMarkerClick?: (id: string) => void }) =>
-  <Circle
-    center={[m.lat, m.lng]}
-    radius={m.radius}
-    pathOptions={{color: color}}
-    eventHandlers={{click: () => onMarkerClick && onMarkerClick(m.id)}}>
-  </Circle>
+const createClusterCustomIcon = function (cluster: L.MarkerCluster) {
+  return L.divIcon({
+    html: `<span>${cluster.getChildCount()}</span>`,
+    className: "marker-cluster-custom",
+    iconSize: L.point(40, 40, true)
+  });
+};
 
 const AllMarkers = ({
                       markers,
@@ -91,14 +37,14 @@ const AllMarkers = ({
     {markers
       .filter(({withinFilter, id}) => !withinFilter && id !== selectedId)
       .map((m, i) =>
-        <CircleMarker
+        <CustomCircleMarker
           key={m.id + i}
           marker={m} color={'grey'}
           onMarkerClick={onMarkerSelect}/>)}
     {markers
       .filter(({withinFilter, id}) => withinFilter && id !== selectedId)
       .map((m, i) =>
-        <CircleMarker
+        <CustomCircleMarker
           key={m.id + i}
           marker={m} color={'blue'}
           onMarkerClick={onMarkerSelect}/>)}
@@ -106,12 +52,12 @@ const AllMarkers = ({
 }
 
 const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
-  const [zoom, setZoom] = useState<number>(8)
+  const [zoom, setZoom] = useState<number>(10)
   const [position, setPosition] = useState<L.LatLngExpression>({
     lat: config.initial_lat || 51.0833,
     lng: config.initial_lng || 13.73126,
   })
-  const {markers, selectedId, setSelectedId, setZoomToCoordinateCallback} = useLeafletStore()
+  const {markers, selectedId, setSelectedId, setZoomToCoordinateCallback, setCenter} = useLeafletStore()
   const {markerClusterDisabled} = useAppConfigStore()
 
   const setZoomToIdCallbackCallback: (fitBoundsToMarkerIdCallback: IdLatLngCallback) => void = useCallback(
@@ -138,7 +84,9 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
         zoom={zoom}
         maxZoom={18}
       >
-        <BoundsChangeListener onBoundsChange={onBoundsChange}/>
+        <BoundsChangeListener
+          onCenterChange={setCenter}
+          onBoundsChange={onBoundsChange}/>
         <FitBounds onSignatureUpdate={setZoomToIdCallbackCallback}/>
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="Terrain">
@@ -164,18 +112,18 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
               maxNativeZoom={20}
             />
           </LayersControl.BaseLayer>
-          {markerClusterDisabled
-            ? <AllMarkers markers={markers} selectedId={selectedId} onMarkerSelect={handleMarkerSelect}/>
-            : <MarkerClusterGroup disableClusteringAtZoom={14}>
-              <AllMarkers markers={markers} selectedId={selectedId} onMarkerSelect={handleMarkerSelect}/>
-            </MarkerClusterGroup>}
-          {markers
-            .filter(({id}) => id === selectedId)
-            .map((m, i) =>
-              <CircleMarker
-                key={m.id + i}
-                marker={m} color={'red'}
-                onMarkerClick={handleMarkerSelect}/>)}
+          <MarkerClusterLayer
+            markers={markers}
+            disableCluster={markerClusterDisabled}
+            leafletMarkerFactory={customCircleMarker}
+            clusterGroupOptions={{
+              maxClusterRadius: 60,
+              disableClusteringAtZoom: 14,
+              zoomToBoundsOnClick: false,
+              spiderfyOnMaxZoom: true,
+              removeOutsideVisibleBounds: true,
+              iconCreateFunction: createClusterCustomIcon
+            }}/>
         </LayersControl>
       </MapContainer>
     </>)
