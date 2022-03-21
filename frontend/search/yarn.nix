@@ -698,11 +698,11 @@
       };
     }
     {
-      name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.8.tgz";
+      name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.9.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.8.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-3.5.8.tgz";
-        sha1 = "98b619cd94fd9020ec5080459433f8dc11ebe5e5";
+        name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.9.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-3.5.9.tgz";
+        sha1 = "ca3d479811e037f02d4b9c3bd23df51b82bdb1df";
       };
     }
     {

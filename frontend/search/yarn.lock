@@ -753,10 +753,10 @@
     auto-bind "~4.0.0"
     tslib "~2.3.0"
 
-"@graphql-codegen/typescript-react-query@^3.5.8":
-  version "3.5.8"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-3.5.8.tgz#98b619cd94fd9020ec5080459433f8dc11ebe5e5"
-  integrity sha512-hV1/gIpImZO4DcK/iCtg8dpfRQEvcOcyW4GQTz86TtRb6z17/nxeo4j5TuB3VYWjr/ITxD/lkmgNYIevjQjB2g==
+"@graphql-codegen/typescript-react-query@^3.5.9":
+  version "3.5.9"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-3.5.9.tgz#ca3d479811e037f02d4b9c3bd23df51b82bdb1df"
+  integrity sha512-Pdz9ZxPD4tldyZhX826HrXZAZe6pYP3kWAzXnQYfvihbnPKxGe9AsL8Rp7uj67no4Yi5aHYSuPA52Dt7cUYFOg==
   dependencies:
     "@graphql-codegen/plugin-helpers" "^2.4.0"
     "@graphql-codegen/visitor-plugin-common" "2.7.4"
