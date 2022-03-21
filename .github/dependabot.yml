@@ -6,7 +6,7 @@ updates:
       interval: "weekly"
   - package-ecosystem: "npm"
     # Look for NuGet dependency info from the `root` directory
-    directory: "/"
+    directory: "/frontend/search"
     # Check the nuget registry for updates every day (weekdays) schedule:
     schedule:
       interval: "daily"
