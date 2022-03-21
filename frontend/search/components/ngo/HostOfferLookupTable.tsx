@@ -15,9 +15,10 @@ import {haversine_distance} from "../util/distance";
 import {useLeafletStore} from "./LeafletStore";
 import DeclarativeDataGrid from "./DeclarativeDataGrid";
 import {TypeColumns} from "@inovua/reactdatagrid-community/types/TypeColumn";
-import {ShareLocation} from "@mui/icons-material";
+import {GpsFixed, Preview, ShareLocation} from "@mui/icons-material";
 import {IconButton} from "@mui/material";
 import {LatLng} from "../util/geo";
+import {useAppTempStore} from "../config/appTempStore";
 
 export type HostOfferLookupTableDataType =
   Omit<NonNullable<(GetOffersQuery["get_offers"] & GetRwQuery["get_rw"])>[number], '__typename'>
@@ -98,13 +99,13 @@ const HostOfferLookupTable = ({
                                 columnsRaw,
                                 groupsDisabled
                               }: HostOfferLookupTableProps) => {
-  const [dataSource, setDataSource] = useState<HostOfferLookupTableDataType[]>([]);
+  const { toggleInfoDrawer, openInfoDrawer, hostOffers, setHostOffers } = useAppTempStore()
 
   useEffect(() => {
     const data = filterUndefOrNull(mergeRoAndRw(data_ro, data_rw))
       .map(v => center ? {...v, place_distance: calculateDistance(v, center) || Infinity} : v)
     // @ts-ignore
-    data && setDataSource(data)
+    data && setHostOffers(data)
   }, [columnsRaw, data_ro, data_rw, center]);
 
   const {jwt} = useAuthStore()
@@ -123,26 +124,33 @@ const HostOfferLookupTable = ({
 
   const handleRowSelect = useCallback((id: string) => {
     setSelectedId(id)
+    const offer = hostOffers?.find(({id: _id}) => _id === id)
   }, [setSelectedId])
 
   const firstColumns: TypeColumns = [
     {
-      name: 'action', resizable: false, width: 50,
+      name: 'action', resizable: false, width: 100,
       render: ({data}) => {
         const c = dataItem2LngLat(data)
         return <span>
+          <IconButton
+            onClick={() => {
+              if(selectedId === data.id) {  toggleInfoDrawer() } else { openInfoDrawer() }
+            }}>
+            <Preview/>
+          </IconButton>
           <IconButton
             disabled={!c}
             onClick={() => {
               zoomToCoordinate && c && zoomToCoordinate(c)
             }}>
-            <ShareLocation/>
+            <GpsFixed/>
           </IconButton>
       </span>;
       }
     }]
 
-  return dataSource && <DeclarativeDataGrid
+  return hostOffers && <DeclarativeDataGrid
     i18n={reactdatagridi18n || undefined}
     onEditComplete={onEditComplete}
     groups={groupsDisabled ? undefined : defaultColumnGroups}
@@ -150,7 +158,7 @@ const HostOfferLookupTable = ({
     firstColumns={firstColumns}
     selectedId={selectedId}
     onRowSelect={handleRowSelect}
-    data={dataSource}
+    data={hostOffers}
     onFilteredDataChange={onFilteredDataChange}
   />
 }

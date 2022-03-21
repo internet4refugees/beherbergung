@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import { useTranslation } from 'react-i18next'
 import {SplitPane} from "react-collapse-pane";
 import {LeafletMapWithoutSSR} from "../components/ngo/LeafletMapWithoutSSR";
+import InfoDrawer from "../components/user/InfoDrawer";
 
 const Home: NextPage = () => {
   const { t } = useTranslation()
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
           <HostOfferLookupWrapper />
           <LeafletMapWithoutSSR />
         </SplitPane>
+        <InfoDrawer />
       </main>
 
     </div>
