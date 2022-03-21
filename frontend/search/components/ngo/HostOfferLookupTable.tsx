@@ -7,7 +7,6 @@ import {GetColumnsQuery, GetOffersQuery, GetRwQuery} from "../../codegen/generat
 import {useTranslation} from "react-i18next"
 import {resources} from '../../i18n/config'
 
-import {fetcher} from '../../codegen/fetcher'
 import {useAuthStore} from '../Login'
 import defaultColumnGroups from "../config/defaultColumnGroups";
 import {filterUndefOrNull} from "../util/notEmpty";
@@ -15,10 +14,11 @@ import {haversine_distance} from "../util/distance";
 import {useLeafletStore} from "./LeafletStore";
 import DeclarativeDataGrid from "./DeclarativeDataGrid";
 import {TypeColumns} from "@inovua/reactdatagrid-community/types/TypeColumn";
-import {GpsFixed, Preview, ShareLocation} from "@mui/icons-material";
+import {GpsFixed, Preview} from "@mui/icons-material";
 import {IconButton} from "@mui/material";
 import {LatLng} from "../util/geo";
 import {useAppTempStore} from "../config/appTempStore";
+import {mutate} from "../util/mutations/mutate";
 
 export type HostOfferLookupTableDataType =
   Omit<NonNullable<(GetOffersQuery["get_offers"] & GetRwQuery["get_rw"])>[number], '__typename'>
@@ -41,19 +41,6 @@ const floor = (v: number | undefined) => v && Math.floor(v);
 const calculateDistance = (r: { place_lat?: number | null, place_lon?: number | null }, [lat, lng]: LatLng) =>
   r.place_lat && r.place_lon && lng && lat && floor(haversine_distance(lat, lng, r.place_lat, r.place_lon))
 
-async function mutate(auth: { jwt: string }, onEditComplete: { value: string, columnId: string, rowId: string }) {
-  const type = typeof (onEditComplete.value)
-  const onEditCompleteByType = {
-    rowId: onEditComplete.rowId,
-    columnId: onEditComplete.columnId,
-    value_boolean: type === 'boolean' ? onEditComplete.value : null,
-    value_string: type === 'string' ? onEditComplete.value : null
-  }
-  const result = await fetcher<any, any>(`mutation WriteRW($auth: Auth!, $onEditCompleteByType: Boolean) {
-                                            write_rw(auth: $auth, onEditCompleteByType: $onEditCompleteByType) }`,
-    {auth, onEditCompleteByType})()
-  return result?.write_rw
-}
 
 const rw_default = {
   rw_contacted: false,
