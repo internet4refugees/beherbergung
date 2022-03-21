@@ -14,6 +14,6 @@ export const useAppConfigStore = create<AppConfigState>(set => ({
   disableGroups: () => set({groupsDisabled: false}),
   enableGroups: () => set({groupsDisabled: true}),
   toggleGroupsDisabled: () => set(({groupsDisabled}) => ({groupsDisabled: !groupsDisabled})),
-  markerClusterDisabled: undefined,
+  markerClusterDisabled: true,
   toggleMarkerCluster: () => set(({markerClusterDisabled}) => ({markerClusterDisabled: !markerClusterDisabled}))
 }))
