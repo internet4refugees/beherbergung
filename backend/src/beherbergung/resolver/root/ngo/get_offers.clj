@@ -20,7 +20,7 @@
                (q_unary '{:find [(pull ?e [*])]
                           :where [[?e :xt/spec ::offer/record]
                                   [?e ::ngo/id ngo:id]]
-                          :in [ngo:id]}
-                         ngo:id)))))
+                          :in [[ngo:id ...]]}  ;; Collection binding
+                         [:public ngo:id])))))
 
 (s/def ::get_offers (t/resolver #'get_offers))

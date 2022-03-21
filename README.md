@@ -4,8 +4,9 @@ This repository contains tools for NGOs organizing private hosting.
 
 ## Import / Transformation / Merging / Export of existing datasets
 
-- [x] https://mission-lifeline.de/unterkunft-bereitstellen/
-- [x] https://warhelp.eu/
+- [x] https://mission-lifeline.de/unterkunft-bereitstellen
+- [x] https://warhelp.eu
+- [x] https://icanhelp.host
 - [x] other Datasets created from Wordpress-Forms or Google-Docs
 - [x] Tables in one of this file formats: xlsx, csv, json, edn, xml
 

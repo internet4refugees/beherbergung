@@ -9,6 +9,8 @@
   ;; TODO: Here we should be able to use s/with-gen
   (fn [v]
     (cond
+      (nil? v)
+        nil
       (number? v)
         (int v)
       (string? v)
