@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import {config} from "../../config"
@@ -17,6 +17,7 @@ import MarkerClusterLayer from "../leaflet/MarkerClusterLayer";
 import {customCircleMarker} from "../leaflet/marker/customCircleMarker";
 import BoundsChangeListener from "../leaflet/BoundsChangeListener";
 import FitBounds from "../leaflet/FitBounds";
+import {VisualMarker} from "../leaflet/marker/visualMarker";
 
 type LeafletMapProps = { onBoundsChange?: (bounds: L.LatLngBounds) => void }
 
@@ -71,6 +72,25 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
     },
     [setSelectedId]);
 
+  const [visualMarkers, setVisualMarkers] = useState<VisualMarker<Marker>[]>([]);
+
+  useEffect(() => {
+    const _visualMarkers: VisualMarker<Marker>[] = markers?.map((marker) => ({
+      marker,
+      getId: () => marker.id,
+      getPathOptions: () => ({
+        color: marker.id == selectedId ? 'red' : (marker.withinFilter ? 'blue' : 'grey'),
+        radius: marker.radius / 100
+      }),
+      getCenter: () => L.latLng([marker.lat, marker.lng]),
+      getEvents: () => ({
+        click: handleMarkerSelect
+      })
+    })) || []
+    setVisualMarkers(_visualMarkers)
+  }, [markers,selectedId, handleMarkerSelect]);
+
+
   return (
     <>
       <MapContainer
@@ -113,13 +133,13 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
             />
           </LayersControl.BaseLayer>
           <MarkerClusterLayer
-            markers={markers}
+            markers={visualMarkers}
             disableCluster={markerClusterDisabled}
             leafletMarkerFactory={customCircleMarker}
             clusterGroupOptions={{
               maxClusterRadius: 60,
               disableClusteringAtZoom: 14,
-              zoomToBoundsOnClick: false,
+              zoomToBoundsOnClick: true,
               spiderfyOnMaxZoom: true,
               removeOutsideVisibleBounds: true,
               iconCreateFunction: createClusterCustomIcon

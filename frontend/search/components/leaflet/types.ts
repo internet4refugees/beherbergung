@@ -1,4 +1,8 @@
-import {Marker} from "../ngo/LeafletStore";
 import * as L from "leaflet";
+import {VisualMarker} from "./marker/visualMarker";
 
-export type LeafletMarkerFactory = (marker: Marker, pathOptions?: L.PathOptions, events?: { [k: string]: (id: string, e: L.LeafletEvent) => any}) => L.Layer
+export type LeafletMarkerWithIdEvents = {
+  [k: string]: (id: string, e: L.LeafletEvent) => any
+}
+
+export type LeafletMarkerFactory = <T>(marker: VisualMarker<T>, pathOptions?: L.PathOptions, events?: LeafletMarkerWithIdEvents ) => L.Layer

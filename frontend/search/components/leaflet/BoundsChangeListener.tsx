@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect} from 'react'
 import * as L from "leaflet";
-import {useLeafletStore} from "../ngo/LeafletStore";
 import {useMap, useMapEvent} from "@monsonjeremy/react-leaflet";
 import {LatLng} from "../util/geo";
 
@@ -23,8 +22,7 @@ const BoundsChangeListener: (props: BoundsChangeListenerProps) => null =
         map.getBounds()
       )
     },
-    [map, onBoundsChange, setCenter],
-  )
+    [map, onBoundsChange, onCenterChange])
 
   useEffect(() => {
     updateBounds()
