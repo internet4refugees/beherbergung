@@ -1,6 +1,11 @@
 name: yarn
 on:
+  pull_request_target:
+    branches:
+      - main
   push:
+    branches:
+      - main
 
 jobs:
   autoupdate-lockfiles:
