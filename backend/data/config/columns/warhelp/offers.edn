@@ -48,6 +48,7 @@
     :group "distance",
     :header "km",
     :type "number",
+    :editable false,
     :defaultWidth 105,
     :options {
       :filter {
@@ -60,6 +61,7 @@
     :group "locationCoarse",
     :header "Country",
     :type "string",
+    :editable true,
     :defaultWidth 10,
   },
   {
@@ -67,17 +69,20 @@
     :group "locationCoarse",
     :header "City",
     :type "string",
+    :editable true,
   },
   {
     :name "beds",
     :header "Beds",
     :type "number",
+    :editable true,
   },
   {
     :name "time_from_str",
     :group "time",
     :header "From",
     :type "date",
+    :editable true,
     :defaultWidth 90,
     :options {
       :dateFormat "DD.MM.YYYY",
@@ -93,11 +98,13 @@
     :group "time",
     :header "Duration",
     :type "string",
+    :editable true,
   },
   {
     :name "languages",
     :header "Languages",
     :type "string",
+    :editable true,
     :defaultWidth 200,
     :options {
       :transform {
@@ -112,6 +119,7 @@
     :group "features",
     :header "Help with translations",
     :type "boolean",
+    :editable true,
     :defaultWidth 150,
   },
   {
@@ -119,6 +127,7 @@
     :group "features",
     :header "Kids",
     :type "boolean",
+    :editable true,
     :defaultWidth 90,
   },
   {
@@ -126,6 +135,7 @@
     :group "features",
     :header "Accessible",
     :type "boolean",
+    :editable true,
     :defaultWidth 120,
   },
   {
@@ -133,6 +143,7 @@
     :group "animals",
     :header "Allowed",
     :type "boolean",
+    :editable true,
     :defaultWidth 100,
   },
   #_{
@@ -140,6 +151,7 @@
     :group "animals",
     :header "Present",
     :type "boolean",
+    :editable true,
     :defaultWidth 95,
   },
   {
@@ -147,6 +159,7 @@
     :group "features",
     :header "Vaccinated",
     :type "boolean",
+    :editable true,
     :defaultWidth 200,
   },
   {
@@ -154,18 +167,21 @@
     :group "features",
     :header "Pickup Hbf",
     :type "boolean",
+    :editable true,
     :defaultWidth 200,
   },
   {
     :name "note",
     :header "Anything else to keep in mind?",
     :type "string",
+    :editable true,
     :defaultWidth 400,
   },
   {
     :name "description",
     :header "Description",
     :type "string",
+    :editable true,
     :defaultWidth 400,
   },
   {
@@ -173,30 +189,35 @@
     :group "contact",
     :header "Name",
     :type "string",
+    :editable true,
   },
   {
     :name "contact_phone",
     :group "contact",
     :header "Phone",
     :type "string",
+    :editable true,
   },
   {
     :name "contact_email",
     :group "contact",
     :header "EMail",
     :type "string",
+    :editable true,
   },
   {
     :name "place_street",
     :group "address",
     :header "Street",
     :type "string",
+    :editable true,
   },
   #_{
     :name "place_street_number",
     :group "address",
     :header "Number",
     :type "string",
+    :editable true,
     :defaultWidth 100,
   },
   {
@@ -204,6 +225,7 @@
     :group "address",
     :header "Zip",
     :type "string",
+    :editable true,
     :defaultWidth 80,
   },
 ]

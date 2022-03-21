@@ -75,10 +75,37 @@ export const get_rw = gql`
   query GetRw($auth: Auth!) {
     get_rw(auth: $auth) {
       id
+      time_submission_str
+      editor
+
       rw_contacted
       rw_contact_replied
       rw_offer_occupied
       rw_note
+
+      time_from_str
+      time_duration_str
+      beds
+      languages
+      place_country
+      place_city
+      place_zip
+      place_street
+      place_street_number
+      place_lon
+      place_lat
+      skills_translation
+      kids_suitable
+      accessible
+      animals_allowed
+      animals_present
+      covid_vaccinated
+      pickup
+      contact_name_full
+      contact_phone
+      contact_email
+      note
+      description
     }
   }
 `;

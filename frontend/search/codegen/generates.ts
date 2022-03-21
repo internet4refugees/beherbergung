@@ -173,8 +173,10 @@ export type Get_Offers = {
   place_street?: Maybe<Scalars['String']>;
   place_street_number?: Maybe<Scalars['String']>;
   place_zip?: Maybe<Scalars['String']>;
-  rw_contacted?: Maybe<Scalars['Boolean']>;
-  rw_offer_occupied?: Maybe<Scalars['Boolean']>;
+  rw_contact_replied?: Maybe<Scalars['String']>;
+  rw_contacted?: Maybe<Scalars['String']>;
+  rw_note?: Maybe<Scalars['String']>;
+  rw_offer_occupied?: Maybe<Scalars['String']>;
   skills_translation?: Maybe<Scalars['Boolean']>;
   time_duration_str?: Maybe<Scalars['String']>;
   time_from_str?: Maybe<Scalars['String']>;
@@ -183,12 +185,37 @@ export type Get_Offers = {
 
 export type Get_Rw = {
   __typename?: 'get_rw';
+  accessible?: Maybe<Scalars['Boolean']>;
+  animals_allowed?: Maybe<Scalars['Boolean']>;
+  animals_present?: Maybe<Scalars['Boolean']>;
+  beds?: Maybe<Scalars['Int']>;
+  contact_email?: Maybe<Scalars['String']>;
+  contact_name_full?: Maybe<Scalars['String']>;
+  contact_phone?: Maybe<Scalars['String']>;
+  covid_vaccinated?: Maybe<Scalars['Boolean']>;
+  description?: Maybe<Scalars['String']>;
+  editor?: Maybe<Scalars['String']>;
   /** Self descriptive. */
   id: Scalars['String'];
+  kids_suitable?: Maybe<Scalars['Boolean']>;
+  languages?: Maybe<Array<Scalars['String']>>;
+  note?: Maybe<Scalars['String']>;
+  pickup?: Maybe<Scalars['Boolean']>;
+  place_city?: Maybe<Scalars['String']>;
+  place_country?: Maybe<Scalars['String']>;
+  place_lat?: Maybe<Scalars['Float']>;
+  place_lon?: Maybe<Scalars['Float']>;
+  place_street?: Maybe<Scalars['String']>;
+  place_street_number?: Maybe<Scalars['String']>;
+  place_zip?: Maybe<Scalars['String']>;
   rw_contact_replied?: Maybe<Scalars['String']>;
   rw_contacted?: Maybe<Scalars['String']>;
   rw_note?: Maybe<Scalars['String']>;
   rw_offer_occupied?: Maybe<Scalars['String']>;
+  skills_translation?: Maybe<Scalars['Boolean']>;
+  time_duration_str?: Maybe<Scalars['String']>;
+  time_from_str?: Maybe<Scalars['String']>;
+  time_submission_str?: Maybe<Scalars['String']>;
 };
 
 /** For a username+password get a jwt containing the login:id */
@@ -216,14 +243,14 @@ export type GetOffersQueryVariables = Exact<{
 }>;
 
 
-export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, time_submission_str?: string | null, editor?: string | null, rw_contacted?: boolean | null, rw_offer_occupied?: boolean | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccinated?: boolean | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
+export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, time_submission_str?: string | null, editor?: string | null, rw_contacted?: string | null, rw_offer_occupied?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccinated?: boolean | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
 
 export type GetRwQueryVariables = Exact<{
   auth: Auth;
 }>;
 
 
-export type GetRwQuery = { __typename?: 'QueryType', get_rw?: Array<{ __typename?: 'get_rw', id: string, rw_contacted?: string | null, rw_contact_replied?: string | null, rw_offer_occupied?: string | null, rw_note?: string | null }> | null };
+export type GetRwQuery = { __typename?: 'QueryType', get_rw?: Array<{ __typename?: 'get_rw', id: string, time_submission_str?: string | null, editor?: string | null, rw_contacted?: string | null, rw_contact_replied?: string | null, rw_offer_occupied?: string | null, rw_note?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccinated?: boolean | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
 
 
 export const LoginDocument = `
@@ -334,10 +361,35 @@ export const GetRwDocument = `
     query GetRw($auth: Auth!) {
   get_rw(auth: $auth) {
     id
+    time_submission_str
+    editor
     rw_contacted
     rw_contact_replied
     rw_offer_occupied
     rw_note
+    time_from_str
+    time_duration_str
+    beds
+    languages
+    place_country
+    place_city
+    place_zip
+    place_street
+    place_street_number
+    place_lon
+    place_lat
+    skills_translation
+    kids_suitable
+    accessible
+    animals_allowed
+    animals_present
+    covid_vaccinated
+    pickup
+    contact_name_full
+    contact_phone
+    contact_email
+    note
+    description
   }
 }
     `;

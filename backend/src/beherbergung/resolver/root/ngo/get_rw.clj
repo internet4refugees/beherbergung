@@ -4,11 +4,12 @@
             [beherbergung.auth.core :refer [auth+role->entity]]
             [beherbergung.model.auth :as auth]
             [beherbergung.model.ngo :as ngo]
-            [beherbergung.model.offer-rw :as offer-rw :refer [db->graphql]]))
+            [beherbergung.model.offer :as offer :refer [db->graphql]]
+            [beherbergung.model.offer-rw :as offer-rw]))
 
 (s/fdef get_rw
         :args (s/tuple map? (s/keys :req-un [::auth/auth]) map? map?)
-        :ret (s/nilable (s/* ::offer-rw/record)))
+        :ret (s/nilable (s/* ::offer/offer-rw)))
 
 (defn get_rw
   [_node opt ctx _info]

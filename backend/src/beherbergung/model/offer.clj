@@ -23,12 +23,17 @@
 (s/def ::t_int_string int_string #_ (s/with-gen t/int #(s/gen int?)))
 (s/def ::t_float t/float)
 
-(s/def :xt/id ::t_string)
+(s/def :xt/id t/string)  ;; This is required or we endup with an intropection error
+;(s/def :xt/id ::t_string)
 (s/def ::id_tmp (s/nilable ::t_string))
 (s/def ::time_submission_str (s/nilable ::t_string))
 (s/def ::editor (s/nilable ::t_string))
-(s/def ::rw_contacted (s/nilable ::t_boolean))
-(s/def ::rw_offer_occupied (s/nilable ::t_boolean))
+
+(s/def ::rw_contacted (s/nilable t/string))
+(s/def ::rw_contact_replied (s/nilable t/string))
+(s/def ::rw_offer_occupied (s/nilable t/string))
+(s/def ::rw_note (s/nilable t/string))
+
 (s/def ::time_from_str (s/nilable ::t_string))
 (s/def ::time_duration_str (s/nilable ::t_string))
 (s/def ::beds (s/nilable ::t_int_string))
@@ -62,13 +67,30 @@
                        :opt-un [:xt/id  ;; TODO: when validating the db, we either need check for namespaced keywords or call db->graphql
                                 ::time_submission_str
                                 ::editor
-                                ::rw_contacted
-                                ::rw_offer_occupied
+                                ::rw_contacted ::rw_contact_replied ::rw_offer_occupied ::rw_note
                                 ::kids_suitable
                                 ::pickup
                                 ::covid_vaccinated
                                 ::skills_translation
                                 ::description]))
+
+(s/def ::offer-rw (s/keys :opt-un [:xt/id
+                                   ::rw_contacted ::rw_contact_replied ::rw_offer_occupied ::rw_note
+                                   ::editor
+
+                                   ::time_from_str ::time_duration_str ::beds ::languages
+                                   ::place_country ::place_city ::place_zip ::place_street ::place_street_number
+                                   ::place_lon ::place_lat
+                                   ::accessible ::animals_allowed ::animals_present
+                                   ::contact_name_full ::contact_phone ::contact_email
+                                   ::note
+                                   ::rw_contacted ::rw_contact_replied ::rw_offer_occupied ::rw_note
+                                   ::kids_suitable
+                                   ::pickup
+                                   ::covid_vaccinated
+                                   ::skills_translation
+                                   ::description]))
+
 (comment
   (write-edn "./data/sample-data/example.edn"
              (gen/sample (s/gen ::offer))))
@@ -80,8 +102,31 @@
           (assoc :id (:xt/id record))
           (update :time_submission_str identity)
           (update :editor identity)
+
           (update :rw_contacted identity)
+          (update :rw_contact_replied identity)
           (update :rw_offer_occupied identity)
+          (update :rw_note identity)
+
+          (update :time_from_str identity)
+          (update :time_duration_str identity)
+          (update :beds identity)
+          (update :languages identity)
+          (update :place_country identity)
+          (update :place_city identity)
+          (update :place_zip identity)
+          (update :place_street identity)
+          (update :place_street_number identity)
+          (update :place_lon identity)
+          (update :place_lat identity)
+          (update :accessible identity)
+          (update :animals_allowed identity)
+          (update :animals_present identity)
+          (update :contact_name_full identity)
+          (update :contact_phone identity)
+          (update :contact_email identity)
+          (update :note identity)
+
           (update :kids_suitable identity)
           (update :covid_vaccinated identity)
           (update :skills_translation identity)
