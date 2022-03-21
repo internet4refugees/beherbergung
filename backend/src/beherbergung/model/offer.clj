@@ -43,7 +43,7 @@
 (s/def ::skills_translation (s/nilable ::t_boolean))
 (s/def ::kids_suitable (s/nilable ::t_boolean))
 (s/def ::accessible (s/nilable ::t_boolean))
-(s/def ::covid_vaccination_status_str (s/nilable ::t_string))
+(s/def ::covid_vaccinated (s/nilable ::t_boolean))
 (s/def ::pickup (s/nilable ::t_boolean))
 (s/def ::animals_allowed (s/nilable ::t_boolean))
 (s/def ::animals_present (s/nilable ::t_boolean))
@@ -66,7 +66,7 @@
                                 ::rw_offer_occupied
                                 ::kids_suitable
                                 ::pickup
-                                ::covid_vaccination_status_str
+                                ::covid_vaccinated
                                 ::skills_translation
                                 ::description]))
 (comment
@@ -83,7 +83,7 @@
           (update :rw_contacted identity)
           (update :rw_offer_occupied identity)
           (update :kids_suitable identity)
-          (update :covid_vaccination_status_str identity)
+          (update :covid_vaccinated identity)
           (update :skills_translation identity)
           (update :pickup identity)
           (update :description identity)))

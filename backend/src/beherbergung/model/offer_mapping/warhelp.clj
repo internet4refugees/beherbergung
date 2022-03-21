@@ -4,11 +4,14 @@
 (defn not-empty? [v]
   (boolean (not-empty v)))
 
+(defn yesNo->bool [yesNo]
+  ({"yes" true "no" false} yesNo))
+
 (defn x->bool [x]
   ({"x" true "" false} x))
 
-(defn yesNo->bool [yesNo]
-  ({"yes" true "no" false} yesNo))
+(defn vaccinated->bool [s]
+  ({"Vaccinated / Geimpft" true "Unvaccinated / Ungeimpft" false} s))
 
 (defn split_user_string
   "TODO handle common separators entered by users like `,` or `and`"
@@ -42,7 +45,7 @@
               :animals_allowed ["Are Animals allowed? / Sind Tiere erlaubt?" yesNo->bool]
               :animals_present (constantly nil)
 
-              :covid_vaccination_status_str "What is your vaccination status? / Wie ist Ihr Impfstatus? "
+              :covid_vaccinated ["What is your vaccination status? / Wie ist Ihr Impfstatus? " vaccinated->bool]
 
               :skills_translation ["Can you offer helping other hosts with translations from Ukrainian to German/English? / Können Sie anderen Gastgebern bei Übersetzungen aus dem Ukrainischen ins Deutsche/Englische helfen?" yesNo->bool]
               :pickup ["Would you pick up  your guests when they arrive at HBF Vienna? Würden Sie ihre Gäste beim Hauptbahnhof Wien abholen? " yesNo->bool]

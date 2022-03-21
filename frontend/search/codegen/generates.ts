@@ -156,7 +156,7 @@ export type Get_Offers = {
   contact_email?: Maybe<Scalars['String']>;
   contact_name_full?: Maybe<Scalars['String']>;
   contact_phone?: Maybe<Scalars['String']>;
-  covid_vaccination_status_str?: Maybe<Scalars['String']>;
+  covid_vaccinated?: Maybe<Scalars['Boolean']>;
   description?: Maybe<Scalars['String']>;
   editor?: Maybe<Scalars['String']>;
   /** Self descriptive. */
@@ -216,7 +216,7 @@ export type GetOffersQueryVariables = Exact<{
 }>;
 
 
-export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, time_submission_str?: string | null, editor?: string | null, rw_contacted?: boolean | null, rw_offer_occupied?: boolean | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccination_status_str?: string | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
+export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, time_submission_str?: string | null, editor?: string | null, rw_contacted?: boolean | null, rw_offer_occupied?: boolean | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccinated?: boolean | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
 
 export type GetRwQueryVariables = Exact<{
   auth: Auth;
@@ -308,7 +308,7 @@ export const GetOffersDocument = `
     accessible
     animals_allowed
     animals_present
-    covid_vaccination_status_str
+    covid_vaccinated
     pickup
     contact_name_full
     contact_phone

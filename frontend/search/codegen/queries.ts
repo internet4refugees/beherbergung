@@ -60,7 +60,7 @@ export const get_offers = gql`
       accessible
       animals_allowed
       animals_present
-      covid_vaccination_status_str
+      covid_vaccinated
       pickup
       contact_name_full
       contact_phone

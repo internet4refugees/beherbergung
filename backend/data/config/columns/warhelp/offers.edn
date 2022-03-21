@@ -143,10 +143,10 @@
     :defaultWidth 95,
   },
   {
-    :name "covid_vaccination_status_str",
+    :name "covid_vaccinated",
     :group "features",
-    :header "Vaccination",
-    :type "string",
+    :header "Vaccinated",
+    :type "boolean",
     :defaultWidth 200,
   },
   {
