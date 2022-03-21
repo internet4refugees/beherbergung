@@ -1,5 +1,11 @@
 [
   {
+    :name "source",
+    :header "Source",
+    :type "string",
+    :defaultWidth 95,
+  },
+  {
     :name "time_submission_str",
     :header "Submission",
     :type "string",
@@ -62,7 +68,7 @@
     :header "Country",
     :type "string",
     :editable true,
-    :defaultWidth 10,
+    :defaultWidth 100,
   },
   {
     :name "place_city",

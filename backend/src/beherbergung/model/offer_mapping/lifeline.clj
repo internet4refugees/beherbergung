@@ -7,6 +7,7 @@
   ({"Ja" true "Nein" false} JaNein))
 
 (def mapping {:id_tmp #(or (not-empty (get % "E-Mail")) (get % "Telefonnummer"))
+              :source (constantly "lifeline wpforms")
 
               ;:time_submission_str (constantly nil)
               ;:editor (constantly nil)

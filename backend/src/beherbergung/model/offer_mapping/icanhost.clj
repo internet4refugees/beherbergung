@@ -7,6 +7,7 @@
        (catch Exception _e)))
 
 (def mapping {:id_tmp :id
+              :source (constantly "icanhelp.host")
 
               :time_from_str (constantly nil)
               :time_duration_str (constantly nil)

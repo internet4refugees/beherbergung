@@ -40,6 +40,7 @@ export const get_offers = gql`
     get_offers(auth: $auth) {
       id
       id_tmp
+      source
       time_submission_str
       editor
       rw_contacted
@@ -75,7 +76,6 @@ export const get_rw = gql`
   query GetRw($auth: Auth!) {
     get_rw(auth: $auth) {
       id
-      time_submission_str
       editor
 
       rw_contacted

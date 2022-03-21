@@ -28,6 +28,7 @@
 (s/def :xt/id t/string)  ;; This is required or we endup with an intropection error
 ;(s/def :xt/id ::t_string)
 (s/def ::id_tmp (s/nilable ::t_string))
+(s/def ::source (s/nilable ::t_string))
 (s/def ::time_submission_str (s/nilable ::t_string))
 (s/def ::editor (s/nilable ::t_string))
 
@@ -67,6 +68,7 @@
                                 ::contact_name_full ::contact_phone ::contact_email
                                 ::note]
                        :opt-un [:xt/id  ;; TODO: when validating the db, we either need check for namespaced keywords or call db->graphql
+                                ::source
                                 ::time_submission_str
                                 ::editor
                                 ::rw_contacted ::rw_contact_replied ::rw_offer_occupied ::rw_note
@@ -102,6 +104,7 @@
 (defn db->graphql [record]
   (some-> record
           (assoc :id (:xt/id record))
+          (update :source identity)
           (update :time_submission_str identity)
           (update :editor identity)
 

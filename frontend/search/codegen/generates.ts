@@ -178,6 +178,7 @@ export type Get_Offers = {
   rw_note?: Maybe<Scalars['String']>;
   rw_offer_occupied?: Maybe<Scalars['String']>;
   skills_translation?: Maybe<Scalars['Boolean']>;
+  source?: Maybe<Scalars['String']>;
   time_duration_str?: Maybe<Scalars['String']>;
   time_from_str?: Maybe<Scalars['String']>;
   time_submission_str?: Maybe<Scalars['String']>;
@@ -213,9 +214,9 @@ export type Get_Rw = {
   rw_note?: Maybe<Scalars['String']>;
   rw_offer_occupied?: Maybe<Scalars['String']>;
   skills_translation?: Maybe<Scalars['Boolean']>;
+  source?: Maybe<Scalars['String']>;
   time_duration_str?: Maybe<Scalars['String']>;
   time_from_str?: Maybe<Scalars['String']>;
-  time_submission_str?: Maybe<Scalars['String']>;
 };
 
 /** For a username+password get a jwt containing the login:id */
@@ -243,14 +244,14 @@ export type GetOffersQueryVariables = Exact<{
 }>;
 
 
-export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, time_submission_str?: string | null, editor?: string | null, rw_contacted?: string | null, rw_offer_occupied?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccinated?: boolean | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
+export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, source?: string | null, time_submission_str?: string | null, editor?: string | null, rw_contacted?: string | null, rw_offer_occupied?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccinated?: boolean | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
 
 export type GetRwQueryVariables = Exact<{
   auth: Auth;
 }>;
 
 
-export type GetRwQuery = { __typename?: 'QueryType', get_rw?: Array<{ __typename?: 'get_rw', id: string, time_submission_str?: string | null, editor?: string | null, rw_contacted?: string | null, rw_contact_replied?: string | null, rw_offer_occupied?: string | null, rw_note?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccinated?: boolean | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
+export type GetRwQuery = { __typename?: 'QueryType', get_rw?: Array<{ __typename?: 'get_rw', id: string, editor?: string | null, rw_contacted?: string | null, rw_contact_replied?: string | null, rw_offer_occupied?: string | null, rw_note?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccinated?: boolean | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
 
 
 export const LoginDocument = `
@@ -315,6 +316,7 @@ export const GetOffersDocument = `
   get_offers(auth: $auth) {
     id
     id_tmp
+    source
     time_submission_str
     editor
     rw_contacted
@@ -361,7 +363,6 @@ export const GetRwDocument = `
     query GetRw($auth: Auth!) {
   get_rw(auth: $auth) {
     id
-    time_submission_str
     editor
     rw_contacted
     rw_contact_replied

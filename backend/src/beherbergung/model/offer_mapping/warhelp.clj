@@ -19,6 +19,7 @@
   (split s #" "))
 
 (def mapping {:id_tmp #(or (not-empty (get % "E-Mail ")) (get % "Phone"))
+              :source (constantly "warhelp.eu google-docs")
 
               :time_submission_str "Zeitstempel"
               :editor "Bearbeiter*in"

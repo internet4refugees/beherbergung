@@ -1,5 +1,11 @@
 [
   {
+    :name "source",
+    :header "Source",
+    :type "string",
+    :defaultWidth 95,
+  },
+  {
     :name "rw_contacted",
     :group "contactStatus",
     :header "Asked",
@@ -47,7 +53,7 @@
     :group "locationCoarse",
     :header "Country",
     :type "string",
-    :defaultWidth 10,
+    :defaultWidth 100,
   },
   {
     :name "place_city",
