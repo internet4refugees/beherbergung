@@ -37,6 +37,8 @@ in {
       node_modules=${beherbergung-frontend-deps}/libexec/beherbergung/node_modules
       ${yarn2nix-moretea.linkNodeModulesHook}
       HOME=$TMPDIR yarn --offline build
+      HOME=$TMPDIR yarn --offline export
+
       runHook postBuild
     '';
     doCheck = true;
@@ -47,7 +49,7 @@ in {
     '';
     installPhase = ''
       runHook preInstall
-      cp -r .next $out
+      cp -r out $out
       runHook postInstall
     '';
   };
