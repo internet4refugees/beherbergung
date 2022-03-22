@@ -127,11 +127,12 @@ const HostOfferLookupTable = ({
 
   const firstColumns: TypeColumns = [
     {
-      name: 'action', resizable: false, width: 50,
+      name: 'action', resizable: true, defaultWidth: 50,
       render: ({data}) => {
         const c = dataItem2LngLat(data)
         return <span>
           <IconButton
+            aria-label={'zoom to POI'}
             disabled={!c}
             onClick={() => {
               zoomToCoordinate && c && zoomToCoordinate(c)
