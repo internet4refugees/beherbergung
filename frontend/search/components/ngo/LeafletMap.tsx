@@ -72,7 +72,8 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
     },
     [setSelectedId]);
 
-  const [visualMarkers, setVisualMarkers] = useState<VisualMarker<Marker>[]>([]);
+  const [visualMarkersOutsideFilter, setVisualMarkersOutsideFilter] = useState<VisualMarker<Marker>[]>([]);
+  const [visualMarkersWithinFilter, setVisualMarkersWithinFilter] = useState<VisualMarker<Marker>[]>([]);
 
   useEffect(() => {
     const _visualMarkers: VisualMarker<Marker>[] = markers?.map((marker) => ({
@@ -87,7 +88,8 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
         click: handleMarkerSelect
       })
     })) || []
-    setVisualMarkers(_visualMarkers)
+    setVisualMarkersOutsideFilter(_visualMarkers.filter(({marker}) => marker.id === selectedId || !marker.withinFilter ))
+    setVisualMarkersWithinFilter(_visualMarkers.filter(({marker}) => marker.withinFilter ))
   }, [markers,selectedId, handleMarkerSelect]);
 
 
@@ -133,7 +135,12 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
             />
           </LayersControl.BaseLayer>
           <MarkerClusterLayer
-            markers={visualMarkers}
+            markers={visualMarkersOutsideFilter}
+            disableCluster={true}
+            leafletMarkerFactory={customCircleMarker}
+          />
+          <MarkerClusterLayer
+            markers={visualMarkersWithinFilter}
             disableCluster={markerClusterDisabled}
             leafletMarkerFactory={customCircleMarker}
             clusterGroupOptions={{
