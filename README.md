@@ -1,6 +1,6 @@
 This repository contains tools for NGOs organizing private hosting.
 
-![](./docs/user-guide/graphics/overview.png)
+![](./docs/user-guide/graphics/overview-without-clustering.png)
 
 ## Import / Transformation / Merging / Export of existing datasets
 

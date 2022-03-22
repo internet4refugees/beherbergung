@@ -14,7 +14,8 @@ Danach siehst du einen minimalen Dialog, welcher dich nach deinen Benutzer-spezi
 
 ### Navigation der UI
 
-![](./graphics/overview.png)
+![](./graphics/overview-without-clustering.png)
+![](./graphics/overview-with-clustering.png)
 
 - **Struktur:** Auf der unteren Hälfte der Oberfläche ist eine Karte, wo die Orte der Wohnungen eingetragen sind.
 

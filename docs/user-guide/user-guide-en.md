@@ -14,7 +14,8 @@ Then, a minimal dialog is displayed asking for your user-specific credentials.
 
 ### Navigation of the UI
 
-![](./graphics/overview.png)
+![](./graphics/overview-without-clustering.png)
+![](./graphics/overview-with-clustering.png)
 
 - **Structure:** In the lower half of the user interface, there is a map showing the locations of the apartments.
 - **Table too small:** On the edge between the map and the table there is a handle that allows you to change the size of the area used for the table and the map.
