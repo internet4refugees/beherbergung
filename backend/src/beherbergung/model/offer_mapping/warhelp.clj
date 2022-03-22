@@ -50,7 +50,7 @@
 
               :covid_vaccinated ["What is your vaccination status? / Wie ist Ihr Impfstatus? " vaccinated->bool]
 
-              :skills_translation ["Can you offer helping other hosts with translations from Ukrainian to German/English? / Können Sie anderen Gastgebern bei Übersetzungen aus dem Ukrainischen ins Deutsche/Englische helfen?" yesNo->bool]
+              :skills_translation ["Can you offer to help other hosts with translations from Ukrainian to German/English? / Können Sie anderen Gastgebern bei Übersetzungen aus dem Ukrainischen ins Deutsche/Englische helfen?" yesNo->bool]
               :pickup ["Would you pick up  your guests when they arrive at HBF Vienna? Würden Sie ihre Gäste beim Hauptbahnhof Wien abholen? " yesNo->bool]
 
               :contact_name_full "Name "
