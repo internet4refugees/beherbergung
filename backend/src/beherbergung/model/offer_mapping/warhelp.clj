@@ -5,7 +5,9 @@
   (boolean (not-empty v)))
 
 (defn yesNo->bool [yesNo]
-  ({"yes" true "no" false} yesNo))
+  ({"Yes / Ja" true "No / Nein" false
+    "yes" true "no" false
+    "ja" true "nein" false} yesNo))
 
 (defn x->bool [x]
   ({"x" true "" false} x))
