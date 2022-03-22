@@ -7,12 +7,14 @@
   },
   {
     :name "time_submission_str",
+    :group "editStatus",
     :header "Submission",
     :type "string",
     :defaultWidth 85,
   },
   {
     :name "editor",
+    :group "editStatus",
     :header "Editor",
     :type "string",
     :editable false
