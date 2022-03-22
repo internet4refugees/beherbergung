@@ -7,7 +7,8 @@
             [beherbergung.db.validate :refer [validate-db validate-tx]]))
 
 (defn export-named-by-date [db_ctx cause]
-  (when (:db-export-prefix env)
+  (when (and (not (:db-inmemory env))
+             (not-empty (:db-export-prefix env)))
         (let [date (.format (java.text.SimpleDateFormat. "yyyyMMdd_HHmmss")
                             (.getTime (java.util.Calendar/getInstance)))
               file (str (:db-export-prefix env) date "_" cause ".edn")]
