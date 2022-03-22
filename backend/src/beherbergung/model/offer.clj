@@ -31,6 +31,7 @@
 (s/def ::source (s/nilable ::t_string))
 (s/def ::time_submission_str (s/nilable ::t_string))
 (s/def ::editor (s/nilable ::t_string))
+(s/def ::edit_date (s/nilable ::t_string))
 
 (s/def ::rw_contacted (s/nilable t/string))
 (s/def ::rw_contact_replied (s/nilable t/string))
@@ -79,8 +80,10 @@
                                 ::description]))
 
 (s/def ::offer-rw (s/keys :opt-un [:xt/id
-                                   ::rw_contacted ::rw_contact_replied ::rw_offer_occupied ::rw_note
                                    ::editor
+                                   ::edit_date
+
+                                   ::rw_contacted ::rw_contact_replied ::rw_offer_occupied ::rw_note
 
                                    ::time_from_str ::time_duration_str ::beds ::languages
                                    ::place_country ::place_city ::place_zip ::place_street ::place_street_number
@@ -107,6 +110,7 @@
           (update :source identity)
           (update :time_submission_str identity)
           (update :editor identity)
+          (update :edit_date identity)
 
           (update :rw_contacted identity)
           (update :rw_contact_replied identity)

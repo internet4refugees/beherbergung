@@ -77,6 +77,7 @@ export const get_rw = gql`
     get_rw(auth: $auth) {
       id
       editor
+      edit_date
 
       rw_contacted
       rw_contact_replied

@@ -6,6 +6,20 @@
     :defaultWidth 95,
   },
   {
+    :name "editor",
+    :header "Editor",
+    :type "string",
+    :editable false
+    :defaultWidth 85,
+  },
+  {
+    :name "edit_date",
+    :header "Time",
+    :type "date",
+    :editable false
+    :defaultWidth 105,
+  },
+  {
     :name "rw_contacted",
     :group "contactStatus",
     :header "Asked",
