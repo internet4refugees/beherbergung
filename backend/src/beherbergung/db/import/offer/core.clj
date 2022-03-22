@@ -37,7 +37,8 @@
 
 (defn import! [& args]
   (apply import-private! args)
-  (apply import-public! args))
+  (when (:import-public env)
+        (apply import-public! args)))
 
 
 (comment
