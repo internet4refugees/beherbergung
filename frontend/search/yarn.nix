@@ -3298,11 +3298,11 @@
       };
     }
     {
-      name = "i18next_browser_languagedetector___i18next_browser_languagedetector_6.1.3.tgz";
+      name = "i18next_browser_languagedetector___i18next_browser_languagedetector_6.1.4.tgz";
       path = fetchurl {
-        name = "i18next_browser_languagedetector___i18next_browser_languagedetector_6.1.3.tgz";
-        url  = "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-6.1.3.tgz";
-        sha1 = "9bc47fb4a5db86d567318895df343d2d1b9692f3";
+        name = "i18next_browser_languagedetector___i18next_browser_languagedetector_6.1.4.tgz";
+        url  = "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-6.1.4.tgz";
+        sha1 = "7b087c5edb6f6acd38ef54ede2160ab9cde0108f";
       };
     }
     {
