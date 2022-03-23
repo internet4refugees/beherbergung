@@ -3138,11 +3138,11 @@
       };
     }
     {
-      name = "graphql_request___graphql_request_4.1.0.tgz";
+      name = "graphql_request___graphql_request_4.2.0.tgz";
       path = fetchurl {
-        name = "graphql_request___graphql_request_4.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/graphql-request/-/graphql-request-4.1.0.tgz";
-        sha1 = "98d0d8d4458fd81674d8566d0b5781bd2823c26e";
+        name = "graphql_request___graphql_request_4.2.0.tgz";
+        url  = "https://registry.yarnpkg.com/graphql-request/-/graphql-request-4.2.0.tgz";
+        sha1 = "063377bc2dd29cc46aed3fddcc65fe97b805ba81";
       };
     }
     {
