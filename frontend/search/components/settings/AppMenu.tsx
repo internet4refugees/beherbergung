@@ -23,7 +23,7 @@ const AppMenu = ({}: AppMenuProps) => {
 
   const { t } = useTranslation()
 
-  const { groupsDisabled, toggleGroupsDisabled, markerClusterDisabled, toggleMarkerCluster } = useAppConfigStore()
+  const { groupsDisabled, toggleGroupsDisabled, markerClusterDisabled, toggleMarkerCluster, debugEnabled, toggleDebugEnabled } = useAppConfigStore()
 
   return <>
     <IconButton
@@ -66,6 +66,12 @@ const AppMenu = ({}: AppMenuProps) => {
             {!groupsDisabled && <Check/>}
           </ListItemIcon>
           {t('options.showVerboseHeader')}
+        </MenuItem>
+        <MenuItem onClick={toggleDebugEnabled}>
+          <ListItemIcon>
+            {debugEnabled && <Check/>}
+          </ListItemIcon>
+          {t('options.debug')}
         </MenuItem>
       </MenuList>
     </Menu>

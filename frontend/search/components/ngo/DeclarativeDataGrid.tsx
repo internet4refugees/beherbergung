@@ -35,6 +35,7 @@ export type DeclarativeDataGridProps<T extends { [k: string]: any }> = {
   firstColumns?: TypeColumns
   onRowSelect?: (id: string) => void
   selectedId?: string | null
+  debugEnabled: boolean
 } & Partial<TypeDataGridProps>
 
 const filterMappings = {
@@ -121,6 +122,7 @@ const DeclarativeDataGrid = <T, >({
                                     onRowSelect,
                                     selectedId,
                                     firstColumns,
+                                    debugEnabled,
                                     ...props
                                   }: DeclarativeDataGridProps<T>) => {
   const [dataSource, setDataSource] = useState<T[]>([]);
@@ -160,12 +162,12 @@ const DeclarativeDataGrid = <T, >({
   }, [gridRef])
 
   const debugPrint = useCallback((selectedId) => {
-    console.log(data.filter(d => (d as any).id === selectedId))
+    debugEnabled && console.log({selectedData: data.filter(d => (d as any).id === selectedId)})
   }, [data])
 
   useEffect(() => {
     selectedId && scrollTo(selectedId)
-    selectedId && debugPrint(selectedId)  // TODO: only when debug option is checked in menu
+    selectedId && debugPrint(selectedId)
   }, [selectedId, scrollTo, debugPrint]);
 
   const handleRowSelect = useCallback(({selected}: TypeOnSelectionChangeArg) => {

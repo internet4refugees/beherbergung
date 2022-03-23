@@ -33,6 +33,7 @@ export type HostOfferLookupTableProps = {
   center?: LatLng
   columnsRaw: HostOfferColumnRawType
   groupsDisabled?: boolean
+  debugEnabled?: boolean
 }
 
 const floor = (v: number | undefined) => v && Math.floor(v);
@@ -96,7 +97,8 @@ const HostOfferLookupTable = ({
                                 onFilteredDataChange,
                                 center,
                                 columnsRaw,
-                                groupsDisabled
+                                groupsDisabled,
+                                debugEnabled
                               }: HostOfferLookupTableProps) => {
   const [dataSource, setDataSource] = useState<HostOfferLookupTableDataType[]>([]);
 
@@ -153,6 +155,7 @@ const HostOfferLookupTable = ({
     onRowSelect={handleRowSelect}
     data={dataSource}
     onFilteredDataChange={onFilteredDataChange}
+    debugEnabled={debugEnabled}
   />
 }
 
