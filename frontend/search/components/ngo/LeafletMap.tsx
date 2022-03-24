@@ -14,7 +14,7 @@ import {IdLatLngCallback} from "../util/geo";
 import {useAppConfigStore} from "../config/appConfigStore";
 import CustomCircleMarker from "../leaflet/marker/CustomCircleMarker";
 import MarkerClusterLayer from "../leaflet/MarkerClusterLayer";
-import {customCircleMarker} from "../leaflet/marker/customCircleMarker";
+import {customCircleMarkerFactory} from "../leaflet/marker/customCircleMarkerFactory";
 import BoundsChangeListener from "../leaflet/BoundsChangeListener";
 import FitBounds from "../leaflet/FitBounds";
 import {VisualMarker} from "../leaflet/marker/visualMarker";
@@ -137,12 +137,12 @@ const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
           <MarkerClusterLayer
             markers={visualMarkersOutsideFilter}
             disableCluster={true}
-            leafletMarkerFactory={customCircleMarker}
+            leafletMarkerFactory={customCircleMarkerFactory}
           />
           <MarkerClusterLayer
             markers={visualMarkersWithinFilter}
             disableCluster={markerClusterDisabled}
-            leafletMarkerFactory={customCircleMarker}
+            leafletMarkerFactory={customCircleMarkerFactory}
             clusterGroupOptions={{
               maxClusterRadius: 60,
               disableClusteringAtZoom: 14,
