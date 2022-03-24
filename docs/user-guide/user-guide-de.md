@@ -40,7 +40,7 @@ In der Karte sieht das dann so aus
 
 ![](./graphics/marker.png)
 
-### und nun alles zusammen ...
+und nun alles zusammen ...
 
 ### ohne Gruppierung
 
@@ -50,17 +50,19 @@ In der Karte sieht das dann so aus
 
 ![](./graphics/overview-with-clustering.png)
 
-## Navigation der UI
 
-- **Tabelle zu klein:** Die Platzaufteilung von Kante und Tabelle kann angepasst werden, indem man mit der Maus die Grenze zwischen Karte und Tabelle verschiebt.
+## Arbeit mit Tabelle
 
-- **In der Tabelle navigieren** Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) oder mit der Maus verschoben werden.
+### Navigation in Tabelle
 
-<!--
-Es wird, dass die Wohnung in dem jeweiligen grauen Kreis ist. Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort.
--->
+#### Tabelle zu klein
+Die Platzaufteilung von Kante und Tabelle kann angepasst werden, indem man mit der Maus die Grenze zwischen Karte und Tabelle verschiebt.
 
-## Suchen und Sortieren
+#### In der Tabelle navigieren
+Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) werden.
+
+
+### Suchen und Sortieren
 
 - Prinzipiell ist der Kopf jeder Spalte interaktiv. Durch schreiben in den Spalten Kopf können Suchkriterien zusammen gestellt werden.
   Die Suchergebnisse werden dann direkt in der Tabelle darunter dargestellt.
@@ -80,11 +82,22 @@ Es wird, dass die Wohnung in dem jeweiligen grauen Kreis ist. Bei genauen Ortsan
 
 - **Tabelle Sortieren** Die Tabelle kann nach beliebigen Spalten sortiert werden. Dafür einfach auf die Überschrift der Spalte klicken z. B. „Beds“ oder „km“. Nochmal darauf klicken dreht die Sortierreihenfolge um. Beim dritten Klick wird die Sortierung aufgehoben.
 
+
 ## Nutzung der Karte
 
 - In der Tabelle gibt es die Spalte Distanz, diese Distanz wird von aktuellen Karten Mittelpunkt zu der jeweiligen Wohnung berechnet.
 
-- Wenn du z.B nach Orten im Dresdner Zentrum sucht richtest du deine Karte so aus das diese auf das Zentrum zeigt und sortierst dann die Einträge in der Tabelle nach der Distanz absteigend.
+- Wenn du z.B nach Orten im Dresdner Zentrum suchst richtest du deine Karte so aus das diese auf das Zentrum zeigt und sortierst dann die Einträge in der Tabelle nach der Distanz absteigend.
+
+
+## FAQ 
+
+### Wie werden die Entfernungen berechnet?
+Alle Entfernungen werden auf den Punkt in Karten bezogen. Somit ändern sich diese mit verschieben der Karte. Dies hat somit direkt Einfluss auf den Entfernungs filter. Wenn also in der Entfernungs-Spalte eine Filter-Kriterium (sprich eine Bedingung) angegeben ist, wechseln sich ggf. die Marker wenn die Karte verschoben wird.
+
+### Worauf zeigt der Marker?
+Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort. Der Marker ist natürlich nur so genau wie die Ortsangaben in den Daten.
+
 
 ## Fehler / Bugs gefunden.
 
