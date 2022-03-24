@@ -1,7 +1,7 @@
 import * as L from "leaflet";
 import {LeafletMarkerFactory} from "../types";
 
-export const customCircleMarker: LeafletMarkerFactory = function (marker, pathOptions = {}, events = {}) {
+export const customCircleMarkerFactory: LeafletMarkerFactory = function (marker, pathOptions = {}, events = {}) {
 
   const _pathOptions = marker.getPathOptions && marker.getPathOptions() || {}
   let m = L.circleMarker(marker.getCenter(), {
