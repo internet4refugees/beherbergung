@@ -85,18 +85,24 @@ Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) we
 
 ## Nutzung der Karte
 
-- In der Tabelle gibt es die Spalte Distanz, diese Distanz wird von aktuellen Karten Mittelpunkt zu der jeweiligen Wohnung berechnet.
+- In der Tabelle gibt es die Spalte Distanz, diese Distanz wird von aktuellen Kartenmittelpunkt zu der jeweiligen Wohnung berechnet.
 
 - Wenn du z.B nach Orten im Dresdner Zentrum suchst richtest du deine Karte so aus das diese auf das Zentrum zeigt und sortierst dann die Einträge in der Tabelle nach der Distanz absteigend.
+
+<!-- Hier könnten/sollten wir noch beschreiben welche Links es zwischen Karte und Tabelle gibt -->
 
 
 ## FAQ 
 
+<!--  // Das ist Reduntand zu dem was in „Nutzung der Karte“ steht, sehe da keine Mehraussage
 ### Wie werden die Entfernungen berechnet?
 Alle Entfernungen werden auf den Punkt in Karten bezogen. Somit ändern sich diese mit verschieben der Karte. Dies hat somit direkt Einfluss auf den Entfernungs filter. Wenn also in der Entfernungs-Spalte eine Filter-Kriterium (sprich eine Bedingung) angegeben ist, wechseln sich ggf. die Marker wenn die Karte verschoben wird.
+-->
+
 
 ### Worauf zeigt der Marker?
 Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort. Der Marker ist natürlich nur so genau wie die Ortsangaben in den Daten.
+<!-- Künftig werden Orte zu denen wir genauere Standorte haben (PLZ / Straße) wahrscheinlich genauer angezeigt. Im Moment hängt es noch vom Datensatz ab. -->
 
 
 ## Fehler / Bugs gefunden.
