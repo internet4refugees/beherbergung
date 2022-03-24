@@ -42,11 +42,14 @@ In der Karte sieht das dann so aus
 
 und nun alles zusammen ...
 
-### ohne Gruppierung
+### Gruppierung
+Über das Menü kann die Gruppierung von Markern aktiviert oder deaktiviert werden.
+
+#### ohne Gruppierung
 
 ![](./graphics/overview-without-clustering.png)
 
-### mit Gruppierung
+#### mit Gruppierung
 
 ![](./graphics/overview-with-clustering.png)
 
@@ -58,8 +61,20 @@ und nun alles zusammen ...
 #### Tabelle zu klein
 Die Platzaufteilung von Kante und Tabelle kann angepasst werden, indem man mit der Maus die Grenze zwischen Karte und Tabelle verschiebt.
 
-#### In der Tabelle navigieren
-Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) werden.
+#### Tabellen Navigtion per Tastatur
+Nach klicken in die Tabelle, kann mit den Cursor-Tasten (Pfeiltasten) navigiert werden. Mit Wechsel des Eintrages (der Zeile) wird auch der zugehörige Marker ![current](./graphics/marker_current.png) aktiviert, wenn dieser im Kartenausschnitt sichtbar ist.
+
+#### Tabellen Navigtion per Karte
+Ein Klick auf einen aktiven Marker ![aktiv](./graphics/marker_in_range.png) scrollt die Tabelle bis zum zugehörigen Eintrag.
+
+#### Tabelle erzwingt Karten Navigation
+Über den Link zum Eintrag kann der Kartenausschnitt zum Ort bewegt werden.
+![grafik](./graphics/grid_nav_link_map.png)
+
+#### Scrollbars
+Die Tabelle kann mithilfe von Scrollbars rechts bzw. Scrollbar zwischen Tabelle und Karte verschoben werden.
+
+![grafik](./graphics/grid_nav_scrollbar.png)
 
 
 ### Suchen und Sortieren
@@ -81,6 +96,13 @@ Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) we
 - **Filter/Suche Zurücksetzen:** F5 lädt die Seite neu und setzt somit alle Filter zurück.
 
 - **Tabelle Sortieren** Die Tabelle kann nach beliebigen Spalten sortiert werden. Dafür einfach auf die Überschrift der Spalte klicken z. B. „Beds“ oder „km“. Nochmal darauf klicken dreht die Sortierreihenfolge um. Beim dritten Klick wird die Sortierung aufgehoben.
+
+
+### Editieren
+
+Ein Doppelklick auf eine Zelle der Tabelle wechselt in den Editiermodus. Jetzt lassen sich Werte eingeben. Ähnlich wie in Excel kann per `<Tab>` in die nächste Spalte oder per `<Enter>` in die nächste Zeile gewechselt werden. Dabei bleibt der Editiermodus aktiv. `<ESC>` beendet den Editiermodus.
+
+![grafik](./graphics/grid_edit.png)
 
 
 ## Nutzung der Karte
