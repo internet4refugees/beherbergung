@@ -124,3 +124,4 @@ Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort. Der Marker ist natÃ
 ## Fehler / Bugs gefunden.
 
 - Bitte schreibe uns eine Mail mit einer kurzen Beschreibung wie es zu diesem Fehler kam. Mit einer Anleitung wie man diesen Fehler reproduzieren kann. Screenshots sind meistens auch sehr hilfreich zudem potenziell deine Browser + Version.
+

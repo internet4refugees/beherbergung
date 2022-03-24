@@ -50,6 +50,7 @@
   },
   "options": {
     "clusterMarkers": "Marker auf Karte Gruppieren",
-    "showVerboseHeader": "zeige erweiterten Tabellenkopf"
+    "showVerboseHeader": "zeige erweiterten Tabellenkopf",
+    "debug": "Debuginformationen loggen"
   }
 }
