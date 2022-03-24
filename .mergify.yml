@@ -1,5 +1,5 @@
 pull_request_rules:
-  - name: automatic merge on CI success
+  - name: automatic merge on CI success for updates from bots
     conditions:
       - check-success=Evaluate flake.nix
       - check-success=check format [x86-64-linux]
@@ -15,7 +15,8 @@ pull_request_rules:
       - check-success=package beherbergung-frontend-deps [x86-64-linux]
       - check-success=package beherbergung-fullstack [x86-64-linux]
       - check-success=package devShell [x86-64-linux]
-      - author=nix-eval-jobs-bot
+      - author=^(dependabot|nix-eval-jobs-bot)$
+      - base=main
     actions:
       merge:
         method: merge
