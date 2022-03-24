@@ -1370,11 +1370,11 @@
       };
     }
     {
-      name = "_types_node___node_17.0.22.tgz";
+      name = "_types_node___node_17.0.23.tgz";
       path = fetchurl {
-        name = "_types_node___node_17.0.22.tgz";
-        url  = "https://registry.yarnpkg.com/@types/node/-/node-17.0.22.tgz";
-        sha1 = "38b6c4b9b2f3ed9f2e376cce42a298fb2375251e";
+        name = "_types_node___node_17.0.23.tgz";
+        url  = "https://registry.yarnpkg.com/@types/node/-/node-17.0.23.tgz";
+        sha1 = "3b41a6e643589ac6442bdbd7a4a3ded62f33f7da";
       };
     }
     {
@@ -1410,11 +1410,11 @@
       };
     }
     {
-      name = "_types_react___react_17.0.41.tgz";
+      name = "_types_react___react_17.0.42.tgz";
       path = fetchurl {
-        name = "_types_react___react_17.0.41.tgz";
-        url  = "https://registry.yarnpkg.com/@types/react/-/react-17.0.41.tgz";
-        sha1 = "6e179590d276394de1e357b3f89d05d7d3da8b85";
+        name = "_types_react___react_17.0.42.tgz";
+        url  = "https://registry.yarnpkg.com/@types/react/-/react-17.0.42.tgz";
+        sha1 = "8242b9219bf8a911c47f248e327206fea3f4ee5a";
       };
     }
     {
@@ -3138,11 +3138,11 @@
       };
     }
     {
-      name = "graphql_request___graphql_request_4.1.0.tgz";
+      name = "graphql_request___graphql_request_4.2.0.tgz";
       path = fetchurl {
-        name = "graphql_request___graphql_request_4.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/graphql-request/-/graphql-request-4.1.0.tgz";
-        sha1 = "98d0d8d4458fd81674d8566d0b5781bd2823c26e";
+        name = "graphql_request___graphql_request_4.2.0.tgz";
+        url  = "https://registry.yarnpkg.com/graphql-request/-/graphql-request-4.2.0.tgz";
+        sha1 = "063377bc2dd29cc46aed3fddcc65fe97b805ba81";
       };
     }
     {
@@ -3298,11 +3298,11 @@
       };
     }
     {
-      name = "i18next_browser_languagedetector___i18next_browser_languagedetector_6.1.3.tgz";
+      name = "i18next_browser_languagedetector___i18next_browser_languagedetector_6.1.4.tgz";
       path = fetchurl {
-        name = "i18next_browser_languagedetector___i18next_browser_languagedetector_6.1.3.tgz";
-        url  = "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-6.1.3.tgz";
-        sha1 = "9bc47fb4a5db86d567318895df343d2d1b9692f3";
+        name = "i18next_browser_languagedetector___i18next_browser_languagedetector_6.1.4.tgz";
+        url  = "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-6.1.4.tgz";
+        sha1 = "7b087c5edb6f6acd38ef54ede2160ab9cde0108f";
       };
     }
     {
@@ -4362,11 +4362,11 @@
       };
     }
     {
-      name = "minimist___minimist_1.2.5.tgz";
+      name = "minimist___minimist_1.2.6.tgz";
       path = fetchurl {
-        name = "minimist___minimist_1.2.5.tgz";
-        url  = "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz";
-        sha1 = "67d66014b66a6a8aaa0c083c5fd58df4e4e97602";
+        name = "minimist___minimist_1.2.6.tgz";
+        url  = "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz";
+        sha1 = "8637a5b759ea0d6e98702cfb3a9283323c93af44";
       };
     }
     {
