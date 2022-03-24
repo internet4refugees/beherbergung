@@ -15,7 +15,9 @@ pull_request_rules:
       - check-success=package beherbergung-frontend-deps [x86-64-linux]
       - check-success=package beherbergung-fullstack [x86-64-linux]
       - check-success=package devShell [x86-64-linux]
-      - author=^(dependabot|nix-eval-jobs-bot)$
+      - or:
+        - author=dependabot
+        - author=nix-eval-jobs-bot
       - base=main
     actions:
       merge:
