@@ -7,6 +7,8 @@ export interface AppConfigState  {
   toggleGroupsDisabled: () => void
   markerClusterDisabled?: boolean
   toggleMarkerCluster: () => void
+  debugEnabled: boolean
+  toggleDebugEnabled: () => void
 }
 
 export const useAppConfigStore = create<AppConfigState>(set => ({
@@ -15,5 +17,7 @@ export const useAppConfigStore = create<AppConfigState>(set => ({
   enableGroups: () => set({groupsDisabled: true}),
   toggleGroupsDisabled: () => set(({groupsDisabled}) => ({groupsDisabled: !groupsDisabled})),
   markerClusterDisabled: true,
-  toggleMarkerCluster: () => set(({markerClusterDisabled}) => ({markerClusterDisabled: !markerClusterDisabled}))
+  toggleMarkerCluster: () => set(({markerClusterDisabled}) => ({markerClusterDisabled: !markerClusterDisabled})),
+  debugEnabled: false,
+  toggleDebugEnabled: () => set(({debugEnabled}) => ({debugEnabled: !debugEnabled}))
 }))

@@ -25,7 +25,7 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
   const {t} = useTranslation()
   const auth = useAuthStore()
 
-  const { groupsDisabled } = useAppConfigStore()
+  const { groupsDisabled, debugEnabled } = useAppConfigStore()
 
   const staleTimeMinutes_ro = 5
   const staleTimeMinutes_rw = 1
@@ -80,6 +80,7 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
           center={center || undefined}
           columnsRaw={columnsRaw}
           groupsDisabled={groupsDisabled}
+	  debugEnabled={debugEnabled}
         />
       </div>}
     </Box>
