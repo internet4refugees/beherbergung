@@ -14,7 +14,7 @@ Danach siehst du einen minimalen Dialog, welcher dich nach deinen Benutzer-spezi
 
 ## Die Elemente der Oberfläche (GUI)
 
-Die Oberfläche enthält neben dem **a) Toolbar mit Menü** die Daten in Form einer **b) Tabelle**. Sind die Daten mit gültigen Ortsangaben versehen werde diese in der **c) Karte** unten dargestellt. 
+Die Oberfläche enthält neben dem **a) Toolbar mit Menü** die Daten in Form einer **b) Tabelle**. Sind die Daten mit gültigen Ortsangaben versehen werde diese in der **c) Karte** unten dargestellt.
 
 ![](./graphics/gui_element.png)
 
@@ -22,7 +22,7 @@ Die Oberfläche enthält neben dem **a) Toolbar mit Menü** die Daten in Form ei
 
 ![](./graphics/toolbar.png)
 
-Die Toolbar erlaubt Zugriff auf ![](./graphics/menu_button.png)  Menu, Login und den Wechsel der GUI-Sprache.
+Die Toolbar erlaubt Zugriff auf ![](./graphics/menu_button.png) Menu, Login und den Wechsel der GUI-Sprache.
 
 ### Tabelle
 
@@ -30,11 +30,12 @@ Dieser Teil stellt die Daten tabellarisch dar.
 
 ### Karte
 
-Zur Verdeutlichung werden unterschiedliche Marker verwendent. 
-* Für den aktuellen ![current](./graphics/marker_current.png) (die in Tabelle ausgewählte Zeile). 
-* Für die ausgewählten ![aktiv](./graphics/marker_in_range.png) 
-* ... und nicht aktiven ![inaktiven](./graphics/marker_out_of_range.png) (über in Tabelle gesetzte Filter). 
-* Oder als Gruppe ![group](./graphics/marker_group.png) aktive Marker (bei gesetzter Gruppierungs-Option).
+Zur Verdeutlichung werden unterschiedliche Marker verwendent.
+
+- Für den aktuellen ![current](./graphics/marker_current.png) (die in Tabelle ausgewählte Zeile).
+- Für die ausgewählten ![aktiv](./graphics/marker_in_range.png)
+- ... und nicht aktiven ![inaktiven](./graphics/marker_out_of_range.png) (über in Tabelle gesetzte Filter).
+- Oder als Gruppe ![group](./graphics/marker_group.png) aktive Marker (bei gesetzter Gruppierungs-Option).
 
 In der Karte sieht das dann so aus
 
@@ -50,17 +51,17 @@ und nun alles zusammen ...
 
 ![](./graphics/overview-with-clustering.png)
 
-
 ## Arbeit mit Tabelle
 
 ### Navigation in Tabelle
 
 #### Tabelle zu klein
+
 Die Platzaufteilung von Kante und Tabelle kann angepasst werden, indem man mit der Maus die Grenze zwischen Karte und Tabelle verschiebt.
 
 #### In der Tabelle navigieren
-Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) werden.
 
+Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) werden.
 
 ### Suchen und Sortieren
 
@@ -82,7 +83,6 @@ Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) we
 
 - **Tabelle Sortieren** Die Tabelle kann nach beliebigen Spalten sortiert werden. Dafür einfach auf die Überschrift der Spalte klicken z. B. „Beds“ oder „km“. Nochmal darauf klicken dreht die Sortierreihenfolge um. Beim dritten Klick wird die Sortierung aufgehoben.
 
-
 ## Nutzung der Karte
 
 - In der Tabelle gibt es die Spalte Distanz, diese Distanz wird von aktuellen Kartenmittelpunkt zu der jeweiligen Wohnung berechnet.
@@ -91,19 +91,18 @@ Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) we
 
 <!-- Hier könnten/sollten wir noch beschreiben welche Links es zwischen Karte und Tabelle gibt -->
 
-
-## FAQ 
+## FAQ
 
 <!--  // Das ist Reduntand zu dem was in „Nutzung der Karte“ steht, sehe da keine Mehraussage
 ### Wie werden die Entfernungen berechnet?
 Alle Entfernungen werden auf den Punkt in Karten bezogen. Somit ändern sich diese mit verschieben der Karte. Dies hat somit direkt Einfluss auf den Entfernungs filter. Wenn also in der Entfernungs-Spalte eine Filter-Kriterium (sprich eine Bedingung) angegeben ist, wechseln sich ggf. die Marker wenn die Karte verschoben wird.
 -->
 
-
 ### Worauf zeigt der Marker?
-Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort. Der Marker ist natürlich nur so genau wie die Ortsangaben in den Daten.
-<!-- Künftig werden Orte zu denen wir genauere Standorte haben (PLZ / Straße) wahrscheinlich genauer angezeigt. Im Moment hängt es noch vom Datensatz ab. -->
 
+Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort. Der Marker ist natürlich nur so genau wie die Ortsangaben in den Daten.
+
+<!-- Künftig werden Orte zu denen wir genauere Standorte haben (PLZ / Straße) wahrscheinlich genauer angezeigt. Im Moment hängt es noch vom Datensatz ab. -->
 
 ## Fehler / Bugs gefunden.
 
