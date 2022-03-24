@@ -12,22 +12,55 @@ Danach siehst du einen minimalen Dialog, welcher dich nach deinen Benutzer-spezi
 
 ![](./graphics/user_password.png)
 
-### Navigation der UI
+## Die Elemente der Oberfläche (GUI)
+
+Die Oberfläche enthält neben dem **a) Toolbar mit Menü** die Daten in Form einer **b) Tabelle**. Sind die Daten mit gültigen Ortsangaben versehen werde diese in der **c) Karte** unten dargestellt. 
+
+![](./graphics/gui_element.png)
+
+### Toolbar
+
+![](./graphics/toolbar.png)
+
+Die Toolbar erlaubt Zugriff auf ![](./graphics/menu_button.png)  Menu, Login und den Wechsel der GUI-Sprache.
+
+### Tabelle
+
+Dieser Teil stellt die Daten tabellarisch dar.
+
+### Karte
+
+Zur Verdeutlichung werden unterschiedliche Marker verwendent. 
+* Für den aktuellen ![current](./graphics/marker_current.png) (die in Tabelle ausgewählte Zeile). 
+* Für die ausgewählten ![aktiv](./graphics/marker_in_range.png) 
+* ... und nicht aktiven ![inaktiven](./graphics/marker_out_of_range.png) (über in Tabelle gesetzte Filter). 
+* Oder als Gruppe ![group](./graphics/marker_group.png) aktive Marker (bei gesetzter Gruppierungs-Option).
+
+In der Karte sieht das dann so aus
+
+![](./graphics/marker.png)
+
+### und nun alles zusammen ...
+
+### ohne Gruppierung
 
 ![](./graphics/overview-without-clustering.png)
+
+### mit Gruppierung
+
 ![](./graphics/overview-with-clustering.png)
 
-- **Struktur:** Auf der unteren Hälfte der Oberfläche ist eine Karte, wo die Orte der Wohnungen eingetragen sind.
+## Navigation der UI
 
 - **Tabelle zu klein:** Die Platzaufteilung von Kante und Tabelle kann angepasst werden, indem man mit der Maus die Grenze zwischen Karte und Tabelle verschiebt.
 
-- **In der Tabelle navigieren** Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) verschoben werden.
+- **In der Tabelle navigieren** Nach klicken in die Tabelle, kann diese durch die Cursor-Tasten (Pfeiltasten) oder mit der Maus verschoben werden.
 
 <!--
 Es wird, dass die Wohnung in dem jeweiligen grauen Kreis ist. Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort.
 -->
 
-### Suchen und Sortieren
+## Suchen und Sortieren
 
 - Prinzipiell ist der Kopf jeder Spalte interaktiv. Durch schreiben in den Spalten Kopf können Suchkriterien zusammen gestellt werden.
   Die Suchergebnisse werden dann direkt in der Tabelle darunter dargestellt.
@@ -47,12 +80,12 @@ Es wird, dass die Wohnung in dem jeweiligen grauen Kreis ist. Bei genauen Ortsan
 
 - **Tabelle Sortieren** Die Tabelle kann nach beliebigen Spalten sortiert werden. Dafür einfach auf die Überschrift der Spalte klicken z. B. „Beds“ oder „km“. Nochmal darauf klicken dreht die Sortierreihenfolge um. Beim dritten Klick wird die Sortierung aufgehoben.
 
-### Nutzung der Karte
+## Nutzung der Karte
 
 - In der Tabelle gibt es die Spalte Distanz, diese Distanz wird von aktuellen Karten Mittelpunkt zu der jeweiligen Wohnung berechnet.
 
 - Wenn du z.B nach Orten im Dresdner Zentrum sucht richtest du deine Karte so aus das diese auf das Zentrum zeigt und sortierst dann die Einträge in der Tabelle nach der Distanz absteigend.
 
-### Fehler / Bugs gefunden.
+## Fehler / Bugs gefunden.
 
 - Bitte schreibe uns eine Mail mit einer kurzen Beschreibung wie es zu diesem Fehler kam. Mit einer Anleitung wie man diesen Fehler reproduzieren kann. Screenshots sind meistens auch sehr hilfreich zudem potenziell deine Browser + Version.
