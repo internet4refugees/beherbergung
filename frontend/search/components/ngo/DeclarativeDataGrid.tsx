@@ -163,7 +163,7 @@ const DeclarativeDataGrid = <T, >({
 
   const debugPrint = useCallback((selectedId) => {
     debugEnabled && console.log({selectedData: data.filter(d => (d as any).id === selectedId)})
-  }, [data])
+  }, [data, debugEnabled])
 
   useEffect(() => {
     selectedId && scrollTo(selectedId)
