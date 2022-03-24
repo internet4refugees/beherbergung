@@ -14,7 +14,7 @@ Danach siehst du einen minimalen Dialog, welcher dich nach deinen Benutzer-spezi
 
 ## Die Elemente der Oberfläche (GUI)
 
-Die Oberfläche enthält neben dem **a) Toolbar mit Menü** die Daten in Form einer **b) Tabelle**. Sind die Daten mit gültigen Ortsangaben versehen werde diese in der **c) Karte** unten dargestellt. 
+Die Oberfläche enthält neben dem **a) Toolbar mit Menü** die Daten in Form einer **b) Tabelle**. Sind die Daten mit gültigen Ortsangaben versehen werde diese in der **c) Karte** unten dargestellt.
 
 ![](./graphics/gui_element.png)
 
@@ -22,7 +22,7 @@ Die Oberfläche enthält neben dem **a) Toolbar mit Menü** die Daten in Form ei
 
 ![](./graphics/toolbar.png)
 
-Die Toolbar erlaubt Zugriff auf ![](./graphics/menu_button.png)  Menu, Login und den Wechsel der GUI-Sprache.
+Die Toolbar erlaubt Zugriff auf ![](./graphics/menu_button.png) Menu, Login und den Wechsel der GUI-Sprache.
 
 ### Tabelle
 
@@ -107,12 +107,12 @@ Ein Doppelklick auf eine Zelle der Tabelle wechselt in den Editiermodus. Jetzt l
 
 ## Nutzung der Karte
 
-- In der Tabelle gibt es die Spalte Distanz, diese Distanz wird von aktuellen Karten Mittelpunkt zu der jeweiligen Wohnung berechnet.
+- In der Tabelle gibt es die Spalte Distanz, diese Distanz wird von aktuellen Karten-Mittelpunkt zu der jeweiligen Wohnung berechnet.
 
 - Wenn du z.B nach Orten im Dresdner Zentrum suchst richtest du deine Karte so aus das diese auf das Zentrum zeigt und sortierst dann die Einträge in der Tabelle nach der Distanz absteigend.
 
 
-## FAQ 
+## FAQ
 
 ### Wie werden die Entfernungen berechnet?
 Alle Entfernungen werden auf den Punkt in Karten bezogen. Somit ändern sich diese mit verschieben der Karte. Dies hat somit direkt Einfluss auf den Entfernungs filter. Wenn also in der Entfernungs-Spalte eine Filter-Kriterium (sprich eine Bedingung) angegeben ist, wechseln sich ggf. die Marker wenn die Karte verschoben wird.
@@ -124,4 +124,3 @@ Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort. Der Marker ist nat�
 ## Fehler / Bugs gefunden.
 
 - Bitte schreibe uns eine Mail mit einer kurzen Beschreibung wie es zu diesem Fehler kam. Mit einer Anleitung wie man diesen Fehler reproduzieren kann. Screenshots sind meistens auch sehr hilfreich zudem potenziell deine Browser + Version.
-
