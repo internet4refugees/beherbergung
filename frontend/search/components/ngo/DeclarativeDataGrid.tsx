@@ -163,12 +163,15 @@ const DeclarativeDataGrid = <T, >({
 
   const debugPrint = useCallback((selectedId) => {
     debugEnabled && console.log({selectedData: data.filter(d => (d as any).id === selectedId)})
-  }, [data])
+  }, [data, debugEnabled])
 
   useEffect(() => {
     selectedId && scrollTo(selectedId)
+  }, [selectedId, scrollTo])
+
+  useEffect(() => {
     selectedId && debugPrint(selectedId)
-  }, [selectedId, scrollTo, debugPrint]);
+  }, [selectedId, debugPrint])
 
   const handleRowSelect = useCallback(({selected}: TypeOnSelectionChangeArg) => {
     typeof selected === 'string' && onRowSelect && onRowSelect(selected)
