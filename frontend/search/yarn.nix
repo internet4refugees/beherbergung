@@ -1098,11 +1098,11 @@
       };
     }
     {
-      name = "_next_env___env_12.1.0.tgz";
+      name = "_next_env___env_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_env___env_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/env/-/env-12.1.0.tgz";
-        sha1 = "73713399399b34aa5a01771fb73272b55b22c314";
+        name = "_next_env___env_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/env/-/env-12.1.1.tgz";
+        sha1 = "8a927397697ee9d94852feb5fed57a813d299979";
       };
     }
     {
@@ -1114,91 +1114,99 @@
       };
     }
     {
-      name = "_next_swc_android_arm64___swc_android_arm64_12.1.0.tgz";
+      name = "_next_swc_android_arm_eabi___swc_android_arm_eabi_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_swc_android_arm64___swc_android_arm64_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/swc-android-arm64/-/swc-android-arm64-12.1.0.tgz";
-        sha1 = "865ba3a9afc204ff2bdeea49dd64d58705007a39";
+        name = "_next_swc_android_arm_eabi___swc_android_arm_eabi_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-android-arm-eabi/-/swc-android-arm-eabi-12.1.1.tgz";
+        sha1 = "2b134efb6639a770db10688a93ce0d2a9362fc5e";
       };
     }
     {
-      name = "_next_swc_darwin_arm64___swc_darwin_arm64_12.1.0.tgz";
+      name = "_next_swc_android_arm64___swc_android_arm64_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_swc_darwin_arm64___swc_darwin_arm64_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/swc-darwin-arm64/-/swc-darwin-arm64-12.1.0.tgz";
-        sha1 = "08e8b411b8accd095009ed12efbc2f1d4d547135";
+        name = "_next_swc_android_arm64___swc_android_arm64_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-android-arm64/-/swc-android-arm64-12.1.1.tgz";
+        sha1 = "4fc66990c71c066f99fc435c0e8a4b3191bdfb4a";
       };
     }
     {
-      name = "_next_swc_darwin_x64___swc_darwin_x64_12.1.0.tgz";
+      name = "_next_swc_darwin_arm64___swc_darwin_arm64_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_swc_darwin_x64___swc_darwin_x64_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/swc-darwin-x64/-/swc-darwin-x64-12.1.0.tgz";
-        sha1 = "fcd684497a76e8feaca88db3c394480ff0b007cd";
+        name = "_next_swc_darwin_arm64___swc_darwin_arm64_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-darwin-arm64/-/swc-darwin-arm64-12.1.1.tgz";
+        sha1 = "a5b4ea73ebf769f48dae97942b6b6fbeaf3f1dfc";
       };
     }
     {
-      name = "_next_swc_linux_arm_gnueabihf___swc_linux_arm_gnueabihf_12.1.0.tgz";
+      name = "_next_swc_darwin_x64___swc_darwin_x64_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_swc_linux_arm_gnueabihf___swc_linux_arm_gnueabihf_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/swc-linux-arm-gnueabihf/-/swc-linux-arm-gnueabihf-12.1.0.tgz";
-        sha1 = "9ec6380a27938a5799aaa6035c205b3c478468a7";
+        name = "_next_swc_darwin_x64___swc_darwin_x64_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-darwin-x64/-/swc-darwin-x64-12.1.1.tgz";
+        sha1 = "064d50c08d9eec0fc1ff76e190d4fe43184aa8b7";
       };
     }
     {
-      name = "_next_swc_linux_arm64_gnu___swc_linux_arm64_gnu_12.1.0.tgz";
+      name = "_next_swc_linux_arm_gnueabihf___swc_linux_arm_gnueabihf_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_swc_linux_arm64_gnu___swc_linux_arm64_gnu_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-12.1.0.tgz";
-        sha1 = "7f4196dff1049cea479607c75b81033ae2dbd093";
+        name = "_next_swc_linux_arm_gnueabihf___swc_linux_arm_gnueabihf_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-linux-arm-gnueabihf/-/swc-linux-arm-gnueabihf-12.1.1.tgz";
+        sha1 = "6cd6edda7f17ad1ceb1cd242419d93a643b1de31";
       };
     }
     {
-      name = "_next_swc_linux_arm64_musl___swc_linux_arm64_musl_12.1.0.tgz";
+      name = "_next_swc_linux_arm64_gnu___swc_linux_arm64_gnu_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_swc_linux_arm64_musl___swc_linux_arm64_musl_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-12.1.0.tgz";
-        sha1 = "b445f767569cdc2dddee785ca495e1a88c025566";
+        name = "_next_swc_linux_arm64_gnu___swc_linux_arm64_gnu_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-12.1.1.tgz";
+        sha1 = "d480c71de4150728c0c67a363c7f17291db3f070";
       };
     }
     {
-      name = "_next_swc_linux_x64_gnu___swc_linux_x64_gnu_12.1.0.tgz";
+      name = "_next_swc_linux_arm64_musl___swc_linux_arm64_musl_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_swc_linux_x64_gnu___swc_linux_x64_gnu_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-12.1.0.tgz";
-        sha1 = "67610e9be4fbc987de7535f1bcb17e45fe12f90e";
+        name = "_next_swc_linux_arm64_musl___swc_linux_arm64_musl_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-12.1.1.tgz";
+        sha1 = "9578705269b746617c763c1ac5c5b26084f1e5ce";
       };
     }
     {
-      name = "_next_swc_linux_x64_musl___swc_linux_x64_musl_12.1.0.tgz";
+      name = "_next_swc_linux_x64_gnu___swc_linux_x64_gnu_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_swc_linux_x64_musl___swc_linux_x64_musl_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-12.1.0.tgz";
-        sha1 = "ea19a23db08a9f2e34ac30401f774cf7d1669d31";
+        name = "_next_swc_linux_x64_gnu___swc_linux_x64_gnu_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-12.1.1.tgz";
+        sha1 = "40f3c79b65b6cfc880e6131a25f7936716ded1b9";
       };
     }
     {
-      name = "_next_swc_win32_arm64_msvc___swc_win32_arm64_msvc_12.1.0.tgz";
+      name = "_next_swc_linux_x64_musl___swc_linux_x64_musl_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_swc_win32_arm64_msvc___swc_win32_arm64_msvc_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-12.1.0.tgz";
-        sha1 = "eadf054fc412085659b98e145435bbba200b5283";
+        name = "_next_swc_linux_x64_musl___swc_linux_x64_musl_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-12.1.1.tgz";
+        sha1 = "922ea0306d36b5fd860d8cc5a6f4c53dca09395c";
       };
     }
     {
-      name = "_next_swc_win32_ia32_msvc___swc_win32_ia32_msvc_12.1.0.tgz";
+      name = "_next_swc_win32_arm64_msvc___swc_win32_arm64_msvc_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_swc_win32_ia32_msvc___swc_win32_ia32_msvc_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/swc-win32-ia32-msvc/-/swc-win32-ia32-msvc-12.1.0.tgz";
-        sha1 = "68faeae10c89f698bf9d28759172b74c9c21bda1";
+        name = "_next_swc_win32_arm64_msvc___swc_win32_arm64_msvc_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-12.1.1.tgz";
+        sha1 = "be13af4e33c071e6ec97b2cfead51eb57ecf189b";
       };
     }
     {
-      name = "_next_swc_win32_x64_msvc___swc_win32_x64_msvc_12.1.0.tgz";
+      name = "_next_swc_win32_ia32_msvc___swc_win32_ia32_msvc_12.1.1.tgz";
       path = fetchurl {
-        name = "_next_swc_win32_x64_msvc___swc_win32_x64_msvc_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-12.1.0.tgz";
-        sha1 = "d27e7e76c87a460a4da99c5bfdb1618dcd6cd064";
+        name = "_next_swc_win32_ia32_msvc___swc_win32_ia32_msvc_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-win32-ia32-msvc/-/swc-win32-ia32-msvc-12.1.1.tgz";
+        sha1 = "2a5adb993542fc54fedfd525c69593f75c055595";
+      };
+    }
+    {
+      name = "_next_swc_win32_x64_msvc___swc_win32_x64_msvc_12.1.1.tgz";
+      path = fetchurl {
+        name = "_next_swc_win32_x64_msvc___swc_win32_x64_msvc_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-12.1.1.tgz";
+        sha1 = "21c12feb6acf75cac7c1ae4ca7f251aa1943f081";
       };
     }
     {
@@ -4442,11 +4450,11 @@
       };
     }
     {
-      name = "next___next_12.1.0.tgz";
+      name = "next___next_12.1.1.tgz";
       path = fetchurl {
-        name = "next___next_12.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/next/-/next-12.1.0.tgz";
-        sha1 = "c33d753b644be92fc58e06e5a214f143da61dd5d";
+        name = "next___next_12.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/next/-/next-12.1.1.tgz";
+        sha1 = "f5e73d3a204da0632484a56040c23a4796958bc6";
       };
     }
     {
@@ -5618,11 +5626,11 @@
       };
     }
     {
-      name = "styled_jsx___styled_jsx_5.0.0.tgz";
+      name = "styled_jsx___styled_jsx_5.0.1.tgz";
       path = fetchurl {
-        name = "styled_jsx___styled_jsx_5.0.0.tgz";
-        url  = "https://registry.yarnpkg.com/styled-jsx/-/styled-jsx-5.0.0.tgz";
-        sha1 = "816b4b92e07b1786c6b7111821750e0ba4d26e77";
+        name = "styled_jsx___styled_jsx_5.0.1.tgz";
+        url  = "https://registry.yarnpkg.com/styled-jsx/-/styled-jsx-5.0.1.tgz";
+        sha1 = "78fecbbad2bf95ce6cd981a08918ce4696f5fc80";
       };
     }
     {
