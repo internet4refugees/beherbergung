@@ -1410,11 +1410,11 @@
       };
     }
     {
-      name = "_types_react___react_17.0.42.tgz";
+      name = "_types_react___react_17.0.43.tgz";
       path = fetchurl {
-        name = "_types_react___react_17.0.42.tgz";
-        url  = "https://registry.yarnpkg.com/@types/react/-/react-17.0.42.tgz";
-        sha1 = "8242b9219bf8a911c47f248e327206fea3f4ee5a";
+        name = "_types_react___react_17.0.43.tgz";
+        url  = "https://registry.yarnpkg.com/@types/react/-/react-17.0.43.tgz";
+        sha1 = "4adc142887dd4a2601ce730bc56c3436fdb07a55";
       };
     }
     {
