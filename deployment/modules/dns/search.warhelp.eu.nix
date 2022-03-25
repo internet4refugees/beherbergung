@@ -4,7 +4,7 @@ with dns.lib.combinators; rec {
     nameServer = "ns1.broenradio.org.";
 
     adminEmail = "dns-admin@warhelp.eu";
-    serial = 2022031701;
+    serial = 2022032501;
   };
 
   NS = [
@@ -15,8 +15,11 @@ with dns.lib.combinators; rec {
   A = ["88.99.244.96"];
   AAAA = ["2a01:4f8:10b:49f:1::1"];
 
-  subdomains = {
-    backend = {inherit A AAAA;};
+  subdomains = rec {
+    mic1 = {inherit A AAAA;};
+
+    backend = mic1;
+    search = mic1;
     #submission = mic1;
 
     #binarycache = mic1;

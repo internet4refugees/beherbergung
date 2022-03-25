@@ -3,14 +3,16 @@
     ./common.nix
   ];
 
+  ## while this old alternative subdomain is still used
   security.acme.certs."${config.networking.domain}".extraDomainNames = [
-    "backend.${config.networking.domain}"
-    "search.${config.networking.domain}"
-    #"submission.${config.networking.domain}"
+    #"beherbergung.broenradio.org"
+    "backend.beherbergung.broenradio.org"
+    "search.beherbergung.broenradio.org"
+    #"submission.beherbergung.broenradio.org"
   ];
 
   services.nginx.virtualHosts = {
-    "search.${config.networking.domain}" = {
+    "search.beherbergung.broenradio.org" = {
       #default = true;  ## we would need cors settings supporting multiple hosts
       forceSSL = true;
       useACMEHost = config.networking.domain;
@@ -21,7 +23,7 @@
         extraConfig = "proxy_pass_header Authorization;";
       };
     };
-    "backend.${config.networking.domain}" = {
+    "backend.beherbergung.broenradio.org" = {
       forceSSL = true;
       useACMEHost = config.networking.domain;
       locations."/" = {

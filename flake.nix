@@ -192,7 +192,7 @@
           commonModules
           ++ [
             ./deployment/hosts/beherbergung-lifeline/configuration.nix
-            #./deployment/modules/nginx/beherbergung-lifeline.nix
+            ./deployment/modules/nginx/beherbergung-broenradio.nix
             #./deployment/modules/binarycache/client.nix
             #./deployment/modules/binarycache/server.nix
             #./deployment/modules/monitoring/server.nix
