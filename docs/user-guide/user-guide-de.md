@@ -30,11 +30,12 @@ Dieser Teil stellt die Daten tabellarisch dar.
 
 ### Karte
 
-Zur Verdeutlichung werden unterschiedliche Marker verwendent. 
-* Für den aktuellen ![current](./graphics/marker_current.png) (die in Tabelle ausgewählte Zeile). 
-* Für die ausgewählten ![aktiv](./graphics/marker_in_range.png) 
-* ... und nicht aktiven ![inaktiven](./graphics/marker_out_of_range.png) (über in Tabelle gesetzte Filter). 
-* Oder als Gruppe ![group](./graphics/marker_group.png) aktive Marker (bei gesetzter Gruppierungs-Option).
+Zur Verdeutlichung werden unterschiedliche Marker verwendent.
+
+- Für den aktuellen ![current](./graphics/marker_current.png) (die in Tabelle ausgewählte Zeile).
+- Für die ausgewählten ![aktiv](./graphics/marker_in_range.png)
+- ... und nicht aktiven ![inaktiven](./graphics/marker_out_of_range.png) (über in Tabelle gesetzte Filter).
+- Oder als Gruppe ![group](./graphics/marker_group.png) aktive Marker (bei gesetzter Gruppierungs-Option).
 
 In der Karte sieht das dann so aus
 
@@ -43,6 +44,7 @@ In der Karte sieht das dann so aus
 und nun alles zusammen ...
 
 ### Gruppierung
+
 Über das Menü kann die Gruppierung von Markern aktiviert oder deaktiviert werden.
 
 #### ohne Gruppierung
@@ -53,29 +55,32 @@ und nun alles zusammen ...
 
 ![](./graphics/overview-with-clustering.png)
 
-
 ## Arbeit mit Tabelle
 
 ### Navigation in Tabelle
 
 #### Tabelle zu klein
+
 Die Platzaufteilung von Kante und Tabelle kann angepasst werden, indem man mit der Maus die Grenze zwischen Karte und Tabelle verschiebt.
 
 #### Tabellen Navigtion per Tastatur
+
 Nach klicken in die Tabelle, kann mit den Cursor-Tasten (Pfeiltasten) navigiert werden. Mit Wechsel des Eintrages (der Zeile) wird auch der zugehörige Marker ![current](./graphics/marker_current.png) aktiviert, wenn dieser im Kartenausschnitt sichtbar ist.
 
 #### Tabellen Navigtion per Karte
+
 Ein Klick auf einen aktiven Marker ![aktiv](./graphics/marker_in_range.png) scrollt die Tabelle bis zum zugehörigen Eintrag.
 
 #### Tabelle erzwingt Karten Navigation
+
 Über den Link zum Eintrag kann der Kartenausschnitt zum Ort bewegt werden.
 ![grafik](./graphics/grid_nav_link_map.png)
 
 #### Scrollbars
+
 Die Tabelle kann mithilfe von Scrollbars rechts bzw. Scrollbar zwischen Tabelle und Karte verschoben werden.
 
 ![grafik](./graphics/grid_nav_scrollbar.png)
-
 
 ### Suchen und Sortieren
 
@@ -97,13 +102,11 @@ Die Tabelle kann mithilfe von Scrollbars rechts bzw. Scrollbar zwischen Tabelle 
 
 - **Tabelle Sortieren** Die Tabelle kann nach beliebigen Spalten sortiert werden. Dafür einfach auf die Überschrift der Spalte klicken z. B. „Beds“ oder „km“. Nochmal darauf klicken dreht die Sortierreihenfolge um. Beim dritten Klick wird die Sortierung aufgehoben.
 
-
 ### Editieren
 
 Ein Doppelklick auf eine Zelle der Tabelle wechselt in den Editiermodus. Jetzt lassen sich Werte eingeben. Ähnlich wie in Excel kann per `<Tab>` in die nächste Spalte oder per `<Enter>` in die nächste Zeile gewechselt werden. Dabei bleibt der Editiermodus aktiv. `<ESC>` beendet den Editiermodus.
 
 ![grafik](./graphics/grid_edit.png)
-
 
 ## Nutzung der Karte
 
@@ -111,15 +114,15 @@ Ein Doppelklick auf eine Zelle der Tabelle wechselt in den Editiermodus. Jetzt l
 
 - Wenn du z.B nach Orten im Dresdner Zentrum suchst richtest du deine Karte so aus das diese auf das Zentrum zeigt und sortierst dann die Einträge in der Tabelle nach der Distanz absteigend.
 
-
 ## FAQ
 
 ### Wie werden die Entfernungen berechnet?
+
 Alle Entfernungen werden auf den Punkt in Karten bezogen. Somit ändern sich diese mit verschieben der Karte. Dies hat somit direkt Einfluss auf den Entfernungs filter. Wenn also in der Entfernungs-Spalte eine Filter-Kriterium (sprich eine Bedingung) angegeben ist, wechseln sich ggf. die Marker wenn die Karte verschoben wird.
 
 ### Worauf zeigt der Marker?
-Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort. Der Marker ist natürlich nur so genau wie die Ortsangaben in den Daten.
 
+Bei genauen Ortsangaben ist das Zentrum des Kreises der Ort. Der Marker ist natürlich nur so genau wie die Ortsangaben in den Daten.
 
 ## Fehler / Bugs gefunden.
 
