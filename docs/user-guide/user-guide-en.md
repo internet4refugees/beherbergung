@@ -62,6 +62,7 @@ The grouping of markes can be enabled/disabled in setting (via toolbars menu).
 #### Resizing the grid table
 
 The grid table can be resized by mouse draging. To do so please click and drag the line separeting grid-table and map.
+
 <!--todo add image-->
 
 #### Navigation by keyboard
@@ -76,10 +77,9 @@ Table entries can be selected via map. Clearly this will only work for rows that
 
 To force the map to current rows location just click the ![grafik](./graphics/grid_nav_link_map.png) link from table grid. The map will scroll to show the location.
 
-
 #### Navigation by scrollbars
 
-To fastly move accross the table grids data use the scrollbars. They are located on the line between grid and map and to the right hand side. Scrollbars are hidden by default. Getting close to it with your mouse will show them up. 
+To fastly move accross the table grids data use the scrollbars. They are located on the line between grid and map and to the right hand side. Scrollbars are hidden by default. Getting close to it with your mouse will show them up.
 
 ![grafik](./graphics/grid_nav_scrollbar.png)
 
@@ -97,9 +97,7 @@ To fastly move accross the table grids data use the scrollbars. They are located
 
 - **Reset:** F5 will reload the page and reset all filters and filter opertaions.
 
-
 - **Column Types:** Columns look and search capabilites are dependend on the data type to show. Columns can handle String, Numbers, Checkboxes or Dates. The types are preset. Please give us a shout if that won't fit.
-
 
 - **Sorting** The table can be sorted by any columns. A click on columns name in grids head will sort it. Reverse sorting is issued on 2nd click. The 3rd click will remove the sorting.
 
@@ -109,14 +107,13 @@ Doubleclicking a cell starts the edit mode. The cell will change into an input b
 
 ![grafik](./graphics/grid_edit.png)
 
-
 ## FAQ
 
 ### How is distance calulated ?
 
 The grid column distance is calculated by the maps centerpoint. Moving the map will force a recalculation of distances. This might recalculate filters. In turn markes might change colors too by moving the map.
 
-For example, if you are looking for places in the center of Dresden, align  your map so that it points to the center and then sort the entries in the table by distance in descending order.
+For example, if you are looking for places in the center of Dresden, align your map so that it points to the center and then sort the entries in the table by distance in descending order.
 
 ### What does the marker pin point?
 
