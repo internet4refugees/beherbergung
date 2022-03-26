@@ -17,7 +17,7 @@ with dns.lib.combinators; rec {
 
   subdomains = rec {
     server-cloud1 = {inherit A AAAA;};
-    ns1 = server-cloud1;  ## at the moment set as ns-record for *.mission-lifeline.de
+    ns1 = server-cloud1; ## at the moment set as ns-record for *.mission-lifeline.de
 
     backend = server-cloud1;
     search = server-cloud1;
