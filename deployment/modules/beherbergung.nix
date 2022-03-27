@@ -23,7 +23,7 @@
        :db-export-prefix "/var/lib/beherbergung-backend/data/export/"
        :db-validate true
 
-       :import-ngo "warhelp"
+       :import-ngo "random"
        :import-file nil #_"${pkgs.writeText "example.edn" ''[]''}"
        :import-limit nil
 

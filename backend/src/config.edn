@@ -17,7 +17,8 @@
  :db-validate true
 
  :import-public true
- :import-ngo "warhelp"
+ ;; possible values: random, lifeline_beherbergung, warhelp_beherbergung
+ :import-ngo "random"
  :import-file nil #_"./data/sample-data/example.edn"
  :import-limit nil
 
@@ -28,5 +29,5 @@
  ;:mail-from nil
 
  :admin-passphrase nil
- :admin-gpg-id "9EA68B7F21204979645182E4287B083353C3241C"
-}
+ :admin-gpg-id "9EA68B7F21204979645182E4287B083353C3241C"}
+
