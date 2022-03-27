@@ -23,8 +23,9 @@
        :db-export-prefix "/var/lib/beherbergung-backend/data/export/"
        :db-validate true
 
-       :import-ngo "warhelp"
-       :import-file nil #_"${pkgs.writeText "example.edn" ''[]''}"
+       ;:import-ngo "random"
+       ;:import-file nil #_""
+       ;:import-file nil #_"./data/sample-data/example.edn"
        :import-limit nil
 
        ;:mail-host ""
@@ -44,7 +45,7 @@ in {
       See https://github.com/internet4refugees/beherbergung/tree/main/backend#configuration
     '';
     example = {
-      CONFIG_MAIL_PASS = "secret";
+      MAIL_PASS = "secret";
     };
     type = lib.types.attrsOf lib.types.str;
   };

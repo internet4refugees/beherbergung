@@ -17,10 +17,6 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-deploy-git = {
-      url = "github:johannesloetzsch/nix-deploy-git/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     dns = {
       url = "github:kirelagin/dns.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,9 +29,19 @@
       url = "github:Mic92/nixos-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    naersk = {
+      url = "github:nix-community/naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     deadnix = {
       url = "github:astro/deadnix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.naersk.follows = "naersk";
+      inputs.fenix.follows = "fenix";
     };
   };
 
@@ -43,12 +49,12 @@
     self,
     nixpkgs,
     sops-nix,
-    nix-deploy-git,
     dns,
     alejandra,
     mvn2nix,
     nixos-shell,
     deadnix,
+    ...
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
@@ -69,8 +75,6 @@
       ./deployment/modules/dns.nix
       #./deployment/modules/monitoring/client.nix
       ./deployment/modules/nginx/beherbergung.nix
-      #nix-deploy-git.nixosModule
-      #./deployment/modules/nix-deploy-git.nix
     ];
     linters = [
       # TODO: switch to alejandra from nixpkgs in 22.05
@@ -168,6 +172,7 @@
       beherbergung = import ./deployment/modules/beherbergung.nix {
         inherit (self.packages.${system}) beherbergung-fullstack;
       };
+      beherbergung-demo = import ./deployment/modules/beherbergung-demo.nix;
     };
 
     nixosConfigurations = {
@@ -176,6 +181,7 @@
         inherit system;
         modules = [
           self.nixosModules.beherbergung
+          self.nixosModules.beherbergung-demo
           # dummy value to make ci happy
           {
             boot.loader.systemd-boot.enable = true;

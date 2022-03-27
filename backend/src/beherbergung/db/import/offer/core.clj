@@ -29,7 +29,9 @@
                               (lifeline/importfile->table (:import-file env))
                             "warhelp_beherbergung"
                               (warhelp/importfile->table (:import-file env))
-                            (random/importfile->table)))
+                            "random"
+                              (random/importfile->table (:import-file env))
+                            (throw (Exception. (str "Invalid import-ngo type " (:import-file env))))))
             table-limited (take limit table)]
            (println "Records to be imported:" (count table-limited))
            (update-offers (:import-ngo env) table-limited)
