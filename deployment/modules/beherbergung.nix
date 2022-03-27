@@ -1,4 +1,4 @@
-{beherbergung-backend}: {
+{beherbergung-fullstack}: {
   config,
   pkgs,
   lib,
@@ -66,7 +66,7 @@ in {
           ++ (lib.mapAttrsToList (name: value: "${name}=${toString value}") config.it4r.beherbergung-backend.settings);
         StateDirectory = "beherbergung-backend";
         WorkingDirectory = "/var/lib/beherbergung-backend";
-        ExecStart = "${pkgs.jre}/bin/java -jar ${beherbergung-backend.jar}/beherbergung-backend-standalone.jar";
+        ExecStart = "${pkgs.jre}/bin/java -jar ${beherbergung-fullstack.jar}/beherbergung-backend-standalone.jar";
       };
     };
   };
