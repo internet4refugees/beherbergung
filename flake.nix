@@ -172,6 +172,7 @@
       beherbergung = import ./deployment/modules/beherbergung.nix {
         inherit (self.packages.${system}) beherbergung-fullstack;
       };
+      beherbergung-demo = import ./deployment/modules/beherbergung-demo.nix;
     };
 
     nixosConfigurations = {
@@ -180,6 +181,7 @@
         inherit system;
         modules = [
           self.nixosModules.beherbergung
+          self.nixosModules.beherbergung-demo
           # dummy value to make ci happy
           {
             boot.loader.systemd-boot.enable = true;

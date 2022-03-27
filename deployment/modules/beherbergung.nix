@@ -23,8 +23,9 @@
        :db-export-prefix "/var/lib/beherbergung-backend/data/export/"
        :db-validate true
 
-       :import-ngo "random"
-       :import-file nil #_"${pkgs.writeText "example.edn" ''[]''}"
+       ;:import-ngo "random"
+       ;:import-file nil #_""
+       ;:import-file nil #_"./data/sample-data/example.edn"
        :import-limit nil
 
        ;:mail-host ""
