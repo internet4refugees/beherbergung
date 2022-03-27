@@ -184,6 +184,20 @@
               fsType = "btrfs";
             };
           }
+          # allow port 4000 from host machine
+          ({modulesPath, ...}: {
+            imports = [
+              (modulesPath + "/virtualisation/qemu-vm.nix")
+            ];
+            # port forward backend
+            virtualisation.forwardPorts = [
+              {
+                host.port = 4000;
+                guest.port = 4000;
+              }
+            ];
+            networking.firewall.allowedTCPPorts = [4000];
+          })
         ];
       };
 
