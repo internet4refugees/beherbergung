@@ -2,6 +2,7 @@
   system.stateVersion = "21.11";
 
   imports = [
+    ../../modules/default.nix
     ../../modules/nspawn-container.nix
   ];
   it4r.lxc.ipAddrs = [

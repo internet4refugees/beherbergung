@@ -68,13 +68,6 @@
       };
     };
     commonModules = [
-      ./deployment/modules/nix.nix
-      ./deployment/modules/default.nix
-      sops-nix.nixosModules.sops
-      ./deployment/modules/sops.nix
-      ./deployment/modules/dns.nix
-      #./deployment/modules/monitoring/client.nix
-      ./deployment/modules/nginx/beherbergung.nix
     ];
     linters = [
       # TODO: switch to alejandra from nixpkgs in 22.05
@@ -208,17 +201,20 @@
       };
 
       beherbergung-demo = nixpkgs.lib.nixosSystem (lib.mergeAttrs commonAttrs {
-        modules = [
-          ./deployment/hosts/beherbergung-demo/configuration.nix
-          self.nixosModules.beherbergung
-          self.nixosModules.beherbergung-demo
-        ];
+        modules =
+          commonModules
+          ++ [
+            ./deployment/hosts/beherbergung-demo/configuration.nix
+            self.nixosModules.beherbergung
+            self.nixosModules.beherbergung-demo
+          ];
       });
 
       beherbergung-lifeline = nixpkgs.lib.nixosSystem (lib.mergeAttrs commonAttrs {
         modules =
           commonModules
           ++ [
+            sops-nix.nixosModules.sops
             ./deployment/hosts/beherbergung-lifeline/configuration.nix
             ./deployment/modules/nginx/beherbergung-broenradio.nix
             #./deployment/modules/binarycache/client.nix
@@ -229,11 +225,9 @@
 
       beherbergung-warhelp = nixpkgs.lib.nixosSystem (lib.mergeAttrs commonAttrs {
         modules =
-          # commonModules ++
-          [
+          commonModules
+          ++ [
             ./deployment/hosts/beherbergung-warhelp/configuration.nix
-            ./deployment/modules/nix.nix
-            ./deployment/modules/default.nix
           ];
       });
     };

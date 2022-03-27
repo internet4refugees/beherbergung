@@ -8,6 +8,7 @@
   networking.hostName = "beherbergung-warhelp";
 
   imports = [
+    ../../modules/default.nix
     ../../modules/nspawn-container.nix
   ];
 
