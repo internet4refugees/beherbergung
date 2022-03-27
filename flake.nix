@@ -5,8 +5,8 @@
   nixConfig.extra-trusted-public-keys = ["cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="];
 
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
+    # use 21.11-small for fast security updates
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11-small";
 
     alejandra = {
       url = "github:kamadorueda/alejandra/1.1.0";
