@@ -2722,11 +2722,11 @@
       };
     }
     {
-      name = "eslint___eslint_8.11.0.tgz";
+      name = "eslint___eslint_8.12.0.tgz";
       path = fetchurl {
-        name = "eslint___eslint_8.11.0.tgz";
-        url  = "https://registry.yarnpkg.com/eslint/-/eslint-8.11.0.tgz";
-        sha1 = "88b91cfba1356fc10bb9eb592958457dfe09fb37";
+        name = "eslint___eslint_8.12.0.tgz";
+        url  = "https://registry.yarnpkg.com/eslint/-/eslint-8.12.0.tgz";
+        sha1 = "c7a5bd1cfa09079aae64c9076c07eada66a46e8e";
       };
     }
     {
