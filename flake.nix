@@ -166,7 +166,7 @@
 
     nixosModules = {
       beherbergung = import ./deployment/modules/beherbergung.nix {
-        inherit (self.packages.${system}) beherbergung-backend;
+        inherit (self.packages.${system}) beherbergung-fullstack;
       };
     };
 
