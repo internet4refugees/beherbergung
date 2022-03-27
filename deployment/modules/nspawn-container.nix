@@ -23,6 +23,10 @@
       passwordAuthentication = false;
       useDns = false;
     };
+
+    # override value from lxc-container profile; breaks java
+    environment.noXlibs = false;
+
     systemd.network.enable = true;
     networking.useDHCP = false;
     networking.useHostResolvConf = false;
