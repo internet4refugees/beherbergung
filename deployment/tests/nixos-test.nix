@@ -20,6 +20,10 @@ makeTest {
     server.wait_for_unit("beherbergung-backend.service")
     resp = server.wait_until_succeeds("curl http://localhost:4000/health")
     assert resp.strip() == "ok"
+
+    # Check if frontend is served
+    resp = server.wait_until_succeeds("curl http://localhost:4000/")
+    assert "Login" in resp
   '';
 } {
   inherit pkgs;
