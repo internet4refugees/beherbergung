@@ -3,7 +3,7 @@
   buildMavenRepositoryFromLockFile,
   patchPublic ? null,
 }: let
-  inherit (pkgs) lib stdenv jdk11_headless maven leiningen;
+  inherit (pkgs) lib stdenv jdk maven leiningen;
   inherit (stdenv) mkDerivation;
 
   mavenRepository = buildMavenRepositoryFromLockFile {file = ./deps/mvn2nix-lock.json;};
@@ -23,7 +23,7 @@
   beherbergung-backend-jar = mkDerivation rec {
     inherit src version pname name;
 
-    buildInputs = [jdk11_headless maven leiningen mavenRepository];
+    buildInputs = [jdk maven leiningen mavenRepository];
     patchPhase =
       if isNull patchPublic
       then ""
@@ -55,7 +55,7 @@ in
     ## TODO: JAVA_TOOL_OPTIONS should be generated from jvm-opts in project.clj and also update beherbergung.service
     export MALLOC_ARENA_MAX=2
     export JAVA_TOOL_OPTIONS='-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Dlog4j2.formatMsgNoLookups=true'
-    ${jdk11_headless}/bin/java -jar ${beherbergung-backend-jar}/${pname}-standalone.jar $@
+    ${jdk}/bin/java -jar ${beherbergung-backend-jar}/${pname}-standalone.jar $@
   '')
   {
     inherit mavenRepository;

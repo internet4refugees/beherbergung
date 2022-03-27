@@ -4,7 +4,11 @@
   ...
 }: {
   imports = [
+    ../../modules/default.nix
     ../../modules/hetzner.nix
+    ../../modules/sops.nix
+    ../../modules/dns.nix
+    ../../modules/nginx/beherbergung.nix
   ];
 
   system.stateVersion = "21.11";
