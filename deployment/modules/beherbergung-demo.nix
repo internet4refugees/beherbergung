@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-{
+{lib, ...}: {
   it4r.beherbergung-backend.settings = {
     VERBOSE = "true";
     DB_INMEMORY = "true";

@@ -207,6 +207,14 @@
         ];
       };
 
+      beherbergung-demo = nixpkgs.lib.nixosSystem (lib.mergeAttrs commonAttrs {
+        modules = [
+          ./deployment/hosts/beherbergung-demo/configuration.nix
+          self.nixosModules.beherbergung
+          self.nixosModules.beherbergung-demo
+        ];
+      });
+
       beherbergung-lifeline = nixpkgs.lib.nixosSystem (lib.mergeAttrs commonAttrs {
         modules =
           commonModules
