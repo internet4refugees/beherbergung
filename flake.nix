@@ -33,9 +33,19 @@
       url = "github:Mic92/nixos-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    naersk = {
+      url = "github:nix-community/naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     deadnix = {
       url = "github:astro/deadnix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.naersk.follows = "naersk";
+      inputs.fenix.follows = "fenix";
     };
   };
 
@@ -49,6 +59,7 @@
     mvn2nix,
     nixos-shell,
     deadnix,
+    ...
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
