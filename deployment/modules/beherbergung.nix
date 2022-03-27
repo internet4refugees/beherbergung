@@ -44,7 +44,7 @@ in {
       See https://github.com/internet4refugees/beherbergung/tree/main/backend#configuration
     '';
     example = {
-      CONFIG_MAIL_PASS = "secret";
+      MAIL_PASS = "secret";
     };
     type = lib.types.attrsOf lib.types.str;
   };
