@@ -163,27 +163,6 @@
         "type": "github"
       }
     },
-    "nix-deploy-git": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1637044180,
-        "narHash": "sha256-5r3pOGql5wr0PtuOb0rJ0EeorcT3A43tWYRRvnZB0jk=",
-        "owner": "johannesloetzsch",
-        "repo": "nix-deploy-git",
-        "rev": "c1c0b1def56009e8647bfe57c555c6bea0fb2b1a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "johannesloetzsch",
-        "ref": "main",
-        "repo": "nix-deploy-git",
-        "type": "github"
-      }
-    },
     "nixos-shell": {
       "inputs": {
         "nixpkgs": [
@@ -228,7 +207,6 @@
         "fenix": "fenix",
         "mvn2nix": "mvn2nix",
         "naersk": "naersk",
-        "nix-deploy-git": "nix-deploy-git",
         "nixos-shell": "nixos-shell",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix"

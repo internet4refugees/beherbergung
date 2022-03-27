@@ -17,10 +17,6 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-deploy-git = {
-      url = "github:johannesloetzsch/nix-deploy-git/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     dns = {
       url = "github:kirelagin/dns.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,7 +49,6 @@
     self,
     nixpkgs,
     sops-nix,
-    nix-deploy-git,
     dns,
     alejandra,
     mvn2nix,
@@ -80,8 +75,6 @@
       ./deployment/modules/dns.nix
       #./deployment/modules/monitoring/client.nix
       ./deployment/modules/nginx/beherbergung.nix
-      #nix-deploy-git.nixosModule
-      #./deployment/modules/nix-deploy-git.nix
     ];
     linters = [
       # TODO: switch to alejandra from nixpkgs in 22.05
