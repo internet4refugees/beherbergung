@@ -1058,14 +1058,6 @@
       };
     }
     {
-      name = "_mui_private_theming___private_theming_5.5.3.tgz";
-      path = fetchurl {
-        name = "_mui_private_theming___private_theming_5.5.3.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.5.3.tgz";
-        sha1 = "c232a39dd3c268fdef7e92ccc40d51bda9eec3ab";
-      };
-    }
-    {
       name = "_mui_styled_engine___styled_engine_5.5.2.tgz";
       path = fetchurl {
         name = "_mui_styled_engine___styled_engine_5.5.2.tgz";
