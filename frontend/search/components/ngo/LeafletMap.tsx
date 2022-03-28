@@ -12,7 +12,6 @@ import * as L from 'leaflet'
 import {Marker, useLeafletStore} from './LeafletStore'
 import {IdLatLngCallback} from "../util/geo";
 import {useAppConfigStore} from "../config/appConfigStore";
-import CustomCircleMarker from "../leaflet/marker/CustomCircleMarker";
 import MarkerClusterLayer from "../leaflet/MarkerClusterLayer";
 import {customCircleMarkerFactory} from "../leaflet/marker/customCircleMarkerFactory";
 import BoundsChangeListener from "../leaflet/BoundsChangeListener";
@@ -29,28 +28,6 @@ const createClusterCustomIcon = function (cluster: L.MarkerCluster) {
   });
 };
 
-const AllMarkers = ({
-                      markers,
-                      selectedId,
-                      onMarkerSelect
-                    }: { markers: Marker[], selectedId?: string, onMarkerSelect?: (id?: string) => void }) => {
-  return <>
-    {markers
-      .filter(({withinFilter, id}) => !withinFilter && id !== selectedId)
-      .map((m, i) =>
-        <CustomCircleMarker
-          key={m.id + i}
-          marker={m} color={'grey'}
-          onMarkerClick={onMarkerSelect}/>)}
-    {markers
-      .filter(({withinFilter, id}) => withinFilter && id !== selectedId)
-      .map((m, i) =>
-        <CustomCircleMarker
-          key={m.id + i}
-          marker={m} color={'blue'}
-          onMarkerClick={onMarkerSelect}/>)}
-  </>
-}
 
 const LeafletMap = ({onBoundsChange}: LeafletMapProps) => {
   const [zoom, setZoom] = useState<number>(10)
