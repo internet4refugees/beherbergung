@@ -2154,14 +2154,6 @@
       };
     }
     {
-      name = "commander___commander_8.3.0.tgz";
-      path = fetchurl {
-        name = "commander___commander_8.3.0.tgz";
-        url  = "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz";
-        sha1 = "4837ea1b2da67b9c616a67afbb0fafee567bca66";
-      };
-    }
-    {
       name = "common_tags___common_tags_1.8.2.tgz";
       path = fetchurl {
         name = "common_tags___common_tags_1.8.2.tgz";
@@ -6210,11 +6202,11 @@
       };
     }
     {
-      name = "yarn_upgrade_all___yarn_upgrade_all_0.6.1.tgz";
+      name = "yarn_upgrade_all___yarn_upgrade_all_0.7.0.tgz";
       path = fetchurl {
-        name = "yarn_upgrade_all___yarn_upgrade_all_0.6.1.tgz";
-        url  = "https://registry.yarnpkg.com/yarn-upgrade-all/-/yarn-upgrade-all-0.6.1.tgz";
-        sha1 = "e5b4ef112c2037501dd50f6ea1cf218fb2018128";
+        name = "yarn_upgrade_all___yarn_upgrade_all_0.7.0.tgz";
+        url  = "https://registry.yarnpkg.com/yarn-upgrade-all/-/yarn-upgrade-all-0.7.0.tgz";
+        sha1 = "bc0433ca19a5e5ac085b636face5c1be4e0f3d7b";
       };
     }
     {
