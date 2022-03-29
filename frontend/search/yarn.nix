@@ -1370,19 +1370,11 @@
       };
     }
     {
-      name = "_types_lodash___lodash_4.14.179.tgz";
+      name = "_types_lodash___lodash_4.14.181.tgz";
       path = fetchurl {
-        name = "_types_lodash___lodash_4.14.179.tgz";
-        url  = "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.179.tgz";
-        sha1 = "490ec3288088c91295780237d2497a3aa9dfb5c5";
-      };
-    }
-    {
-      name = "_types_lodash___lodash_4.14.180.tgz";
-      path = fetchurl {
-        name = "_types_lodash___lodash_4.14.180.tgz";
-        url  = "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.180.tgz";
-        sha1 = "4ab7c9ddfc92ec4a887886483bc14c79fb380670";
+        name = "_types_lodash___lodash_4.14.181.tgz";
+        url  = "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.181.tgz";
+        sha1 = "d1d3740c379fda17ab175165ba04e2d03389385d";
       };
     }
     {
