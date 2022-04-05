@@ -52,7 +52,7 @@
     :editable true,
     :defaultWidth 110,
   },
-  #_{
+  {
     :name "rw_offer_occupied",
     :group "offerStatus",
     :header "Occupied",

@@ -26,7 +26,7 @@
               :time_submission_str "Timestamp"
               :editor "Bearbeiter*in"
               :rw_contacted #(boolean (not-empty (get % "Kontaktiert (Name & Datum)")))
-              ;:rw_offer_occupied ["Occupied" not-empty?]
+              :rw_offer_occupied #(boolean (re-matches #"(?i).*occupied.*" %))
               :rw_note "Note"
 
               :time_from_str "Available from- / Verfügbar von- "
