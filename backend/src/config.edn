@@ -22,12 +22,8 @@
  :import-file nil #_"./data/sample-data/example.edn"
  :import-limit nil
 
- ;:mail-host ""
- ;:mail-user ""
- ;:mail-pass ""
- ;:mail-port 587
- ;:mail-from nil
-
  :admin-passphrase nil
- :admin-gpg-id "9EA68B7F21204979645182E4287B083353C3241C"}
+ :admin-gpg-id "9EA68B7F21204979645182E4287B083353C3241C"
 
+ :show-public-datasets false
+}

@@ -1,6 +1,7 @@
 (ns beherbergung.resolver.root.ngo.get-offers
   (:require [clojure.spec.alpha :as s]
             [specialist-server.type :as t]
+            [beherbergung.config.state :refer [env]]
             [beherbergung.auth.core :refer [auth+role->entity]]
             [beherbergung.model.auth :as auth]
             [beherbergung.model.ngo :as ngo]
@@ -21,6 +22,10 @@
                           :where [[?e :xt/spec ::offer/record]
                                   [?e ::ngo/id ngo:id]]
                           :in [[ngo:id ...]]}  ;; Collection binding
-                         [:public ngo:id])))))
+                         [ngo:id] #_
+                         (concat (when (or (:show-public-datasets env)
+                                           (nil? (:show-public-datasets env)))
+                                       [:public])
+                                 [ngo:id]))))))
 
 (s/def ::get_offers (t/resolver #'get_offers))

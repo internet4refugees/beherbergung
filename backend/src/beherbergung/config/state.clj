@@ -28,11 +28,7 @@
 (s/def ::import-file (s/nilable string?))
 (s/def ::import-limit (s/nilable number?))
 
-(s/def ::mail-host string?)
-(s/def ::mail-user string?)
-(s/def ::mail-pass string?)
-(s/def ::mail-port number?)
-(s/def ::mail-from (s/nilable string?))
+(s/def ::show-public-datasets (s/nilable boolean?))
 
 (s/def ::env (s/keys :req-un [::frontend-base-url
                               ::frontend-backend-base-url
@@ -49,7 +45,7 @@
                               ::import-ngo
                               ::import-file
                               ::import-limit
-                              ;::mail-host ::mail-user ::mail-pass ::mail-port ::mail-from
+                              ::show-public-datasets
                              ]))
 
 (defn strip-secrets [env]
