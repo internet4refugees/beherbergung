@@ -46,7 +46,7 @@
                                   ;; XXX seems to be an implicit dependency of lein test
                                   [org.nrepl/incomplete "0.1.0"]]
                    #_#_:jvm-opts ["-Dverbose=true"]}
-             :test {:jvm-opts ["-Ddb-inmemory=true" "-Ddb-export-prefix=" "-Ddb-seed=src/beherbergung/db/seed/test.edn" "-Dimport-public=false"]}
+             :test {:jvm-opts ["-Dconfig=data/test.edn"]}
              :uberjar {:aot :all}}
   :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory"  ;; used by yogthos/config and com.xtdb/xtdb-core
              "-Dorg.slf4j.simpleLogger.defaultLogLevel=warn"  ;; usded by jetty (via ring/ring-jetty-adapter)

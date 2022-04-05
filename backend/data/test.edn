@@ -1,0 +1,22 @@
+{
+ :frontend-base-url "http://localhost:4000"
+ :frontend-backend-base-url "http://localhost:4000"
+ :port 4000
+ ;:jwt-secret nil
+
+ :verbose false
+
+ :validate-output true
+
+ :db-inmemory true
+ ;:db-dir "./data/xtdb/rocksdb"
+ :db-seed "./src/beherbergung/db/seed/test.edn"
+ ;:db-export-prefix "./data/export/"
+ ;:db-validate true
+
+ :import-ngo "warhelp"
+ :import-file nil
+ :import-limit nil
+ :import-public false
+ :show-public-datasets false
+}
