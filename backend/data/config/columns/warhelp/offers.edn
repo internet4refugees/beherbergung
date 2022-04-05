@@ -35,7 +35,7 @@
     :editable true,
     :defaultWidth 85,
   },
-  {
+  #_{
     :name "rw_contact_replied",
     :group "contactStatus",
     :header "Answered",
@@ -43,7 +43,7 @@
     :editable true,
     :defaultWidth 110,
   },
-  {
+  #_{
     :name "rw_offer_occupied",
     :group "offerStatus",
     :header "Occupied",

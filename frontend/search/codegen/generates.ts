@@ -244,7 +244,7 @@ export type GetOffersQueryVariables = Exact<{
 }>;
 
 
-export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, source?: string | null, time_submission_str?: string | null, editor?: string | null, rw_contacted?: string | null, rw_offer_occupied?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccinated?: boolean | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
+export type GetOffersQuery = { __typename?: 'QueryType', get_offers?: Array<{ __typename?: 'get_offers', id: string, id_tmp?: string | null, source?: string | null, time_submission_str?: string | null, editor?: string | null, rw_contacted?: string | null, rw_offer_occupied?: string | null, rw_note?: string | null, time_from_str?: string | null, time_duration_str?: string | null, beds?: number | null, languages?: Array<string> | null, place_country?: string | null, place_city?: string | null, place_zip?: string | null, place_street?: string | null, place_street_number?: string | null, place_lon?: number | null, place_lat?: number | null, skills_translation?: boolean | null, kids_suitable?: boolean | null, accessible?: boolean | null, animals_allowed?: boolean | null, animals_present?: boolean | null, covid_vaccinated?: boolean | null, pickup?: boolean | null, contact_name_full?: string | null, contact_phone?: string | null, contact_email?: string | null, note?: string | null, description?: string | null }> | null };
 
 export type GetRwQueryVariables = Exact<{
   auth: Auth;
@@ -321,6 +321,7 @@ export const GetOffersDocument = `
     editor
     rw_contacted
     rw_offer_occupied
+    rw_note
     time_from_str
     time_duration_str
     beds

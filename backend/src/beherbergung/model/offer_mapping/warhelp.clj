@@ -25,8 +25,9 @@
 
               :time_submission_str "Zeitstempel"
               :editor "Bearbeiter*in"
-              :rw_contacted ["contacted at least once" x->bool]
-              :rw_offer_occupied ["Occupied" not-empty?]
+              :rw_contacted #(boolean (not-empty (get % "Kontaktiert (Name & Datum)")))
+              ;:rw_offer_occupied ["Occupied" not-empty?]
+              :rw_note "Note"
 
               :time_from_str "Available from- / Verfügbar von- "
               :time_duration_str "For how long? / Für wieviele Wochen?"
