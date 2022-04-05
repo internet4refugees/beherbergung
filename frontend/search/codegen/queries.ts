@@ -41,6 +41,7 @@ export const get_offers = gql`
       id
       id_tmp
       source
+      submission_count
       time_submission_str
       editor
       rw_contacted

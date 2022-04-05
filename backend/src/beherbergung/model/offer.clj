@@ -29,6 +29,7 @@
 ;(s/def :xt/id ::t_string)
 (s/def ::id_tmp (s/nilable ::t_string))
 (s/def ::source (s/nilable ::t_string))
+(s/def ::submission_count (s/nilable ::t_int_string))
 (s/def ::time_submission_str (s/nilable ::t_string))
 (s/def ::editor (s/nilable ::t_string))
 (s/def ::edit_date (s/nilable ::t_string))
@@ -70,6 +71,7 @@
                                 ::note]
                        :opt-un [:xt/id  ;; TODO: when validating the db, we either need check for namespaced keywords or call db->graphql
                                 ::source
+                                ::submission_count
                                 ::time_submission_str
                                 ::editor
                                 ::rw_contacted ::rw_contact_replied ::rw_offer_occupied ::rw_note
@@ -108,6 +110,7 @@
   (some-> record
           (assoc :id (:xt/id record))
           (update :source identity)
+          (update :submission_count identity)
           (update :time_submission_str identity)
           (update :editor identity)
           (update :edit_date identity)

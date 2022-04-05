@@ -23,7 +23,7 @@
 (def mapping {:id_tmp #(or (not-empty (get % "E-Mail ")) (get % "Phone"))
               :source (constantly "warhelp.eu google-docs")
 
-              :time_submission_str "Zeitstempel"
+              :time_submission_str "Timestamp"
               :editor "Bearbeiter*in"
               :rw_contacted #(boolean (not-empty (get % "Kontaktiert (Name & Datum)")))
               ;:rw_offer_occupied ["Occupied" not-empty?]
