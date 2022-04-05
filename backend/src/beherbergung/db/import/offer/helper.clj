@@ -10,7 +10,21 @@
   [record]
   (if (and (:place_lon record) (:place_lat record))
       record
-      (let [params (cond (not-empty (:place_city record))
+      (let [params ;; different cases from special (detailed information) to generic
+                   (cond (and (not-empty (:place_zip record))
+                              ;; zip codes are ambiguous without country or city
+                              (or (not-empty (:place_country record))
+                                  (not-empty (:place_city record))))
+                           (merge {:postalcode (:place_zip record)}
+                                  (when (not-empty (:place_country record))
+                                        {:country (:place_country record)})
+                                  (when (not-empty (:place_city record))
+                                        {:city (:place_city record)}))
+                         (and (not-empty (:place_country record))
+                              (not-empty (:place_city record)))
+                           {:country (:place_country record)
+                            :city (:place_city record)}
+                         (not-empty (:place_city record))
                            {:city (:place_city record)}
                          (not-empty (:place_str record))
                            {:q (:place_str record)})

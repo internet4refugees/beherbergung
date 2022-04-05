@@ -26,7 +26,7 @@
               :time_submission_str "Timestamp"
               :editor "Bearbeiter*in"
               :rw_contacted #(boolean (not-empty (get % "Kontaktiert (Name & Datum)")))
-              :rw_offer_occupied #(boolean (re-matches #"(?i).*occupied.*" %))
+              :rw_offer_occupied ["Occupied" #(boolean (re-matches #"(?i).*occupied.*" %))]
               :rw_note "Note"
 
               :time_from_str "Available from- / Verfügbar von- "
@@ -35,7 +35,7 @@
               :beds "How many people can you host max.? / Wievielen Menschen können sie maximal Unterkunft bieten?"
               :languages ["The language you speak / Gesprochene Sprachen" split_user_string]
 
-              :place_country "Country / Land"
+              :place_country #(or (not-empty (get % "Country / Land")) "Österreich")
               :place_city "City / Stadt"
               :place_zip "Zip Code / Postleitzahl"
               :place_street "Address / Adresse "
