@@ -17,6 +17,12 @@
     commonHttpConfig = ''
       #types_hash_max_size 1024;
       server_names_hash_bucket_size 128;
+
+      ## For download of encrypted backups
+      proxy_connect_timeout       600;
+      proxy_send_timeout          600;
+      proxy_read_timeout          600;
+      send_timeout                600;
     '';
 
     virtualHosts = {
