@@ -18,7 +18,7 @@
               :time_duration_str "Möglicher Aufenthalt (Dauer)"  ;; for lifeline MM/DD/YYYY
 
               :beds ["Verfügbare Betten" #(s/conform int_string %)]
-              :languages ["Sprachen (sprechen / verstehen)" #(split % #"\n")]
+              :languages ["Sprachen (sprechen / verstehen)" #(split (or % "") #"\n")]
 
               :place_country "Land"
               :place_city "Ort"
