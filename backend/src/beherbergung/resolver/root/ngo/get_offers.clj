@@ -22,7 +22,6 @@
                           :where [[?e :xt/spec ::offer/record]
                                   [?e ::ngo/id ngo:id]]
                           :in [[ngo:id ...]]}  ;; Collection binding
-                         [ngo:id] #_
                          (concat (when (or (:show-public-datasets env)
                                            (nil? (:show-public-datasets env)))
                                        [:public])
