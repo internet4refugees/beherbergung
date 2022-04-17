@@ -27,11 +27,10 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
 
   const { groupsDisabled, debugEnabled } = useAppConfigStore()
 
-  const staleTimeMinutes_ro = 5
-  const staleTimeMinutes_rw = 1
-  const staleTimeMinutes_columns = 60
-  const queryResult_ro = useGetOffersQuery({auth}, {enabled: !!auth.jwt, staleTime: staleTimeMinutes_ro * 60 * 1000})
-  const queryResult_rw = useGetRwQuery({auth}, {enabled: !!auth.jwt, staleTime: staleTimeMinutes_rw * 60 * 1000})
+  const queryResult_ro = useGetOffersQuery({auth}, {enabled: !!auth.jwt, staleTime: 5 * 60 * 1000})
+  const queryResult_rw = useGetRwQuery({auth}, {enabled: !!auth.jwt,
+                                                refetchInterval: 15 * 1000,
+				                staleTime: 15 * 1000})
   const {data: data_ro} = queryResult_ro
   const {data: data_rw} = queryResult_rw
 
@@ -51,7 +50,7 @@ const HostOfferLookupWrapper = (props: HostOfferLookupWrapperProps) => {
 
   const {data: data_columns} = useGetColumnsQuery({auth}, {
     enabled: !!auth.jwt,
-    staleTime: staleTimeMinutes_columns * 60 * 1000
+    staleTime: 60 * 60 * 1000
   })
   const columnsRaw = data_columns?.get_columns
 
