@@ -11,6 +11,8 @@
             [beherbergung.resolver.root.ngo.get-rw :refer [get_rw]]
             [beherbergung.resolver.root.ngo.write-rw :refer [write_rw]]
             [beherbergung.resolver.root.ngo.get-columns :refer [get_columns]]
+            ;; ngo-admin login
+            [beherbergung.resolver.root.ngo-admin.add-user :refer [add_user]]
             ;; admin passphrase
             [beherbergung.resolver.root.admin.export :refer [export]]))
 
@@ -19,7 +21,8 @@
                                  :get_rw #'get_rw
                                  :get_columns #'get_columns
                                  :export #'export}
-                         :mutation {:write_rw #'write_rw}}))
+                         :mutation {:write_rw #'write_rw
+                                    :add_user #'add_user}}))
 
 (defn ->graphql
   "Create a wrapped graphql-executor, that merges context into the request.

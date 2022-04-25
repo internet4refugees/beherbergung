@@ -10,6 +10,7 @@
 
  {:xt/id "login_max_mueller"
   :xt/spec :beherbergung.model.login/record
+  :admin true
   :mail "max.mueller@warhelp.eu"
   :password-hash "100$12$argon2id$v13$J3eX4KBaovul7h3vD5YZCw$AMeVeAUaiZo4/o9m2+k8v/jt7F3/7+wyhuyi0tPmK2Y$$$" #_"18;%+ZW^|tST_lJ(k9P[" }
 
