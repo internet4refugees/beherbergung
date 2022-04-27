@@ -27,18 +27,24 @@
 (defn add_user
   "add new user or reset password of existing user"
   [_node opt ctx _info]
-  (let [{:keys [tx]} (:db_ctx ctx)
+  (let [{:keys [tx tx-fn-put tx-fn-call]} (:db_ctx ctx)
         [ngo:id login:id] (auth+role->entity ctx (:auth opt) ::ngo/record)]
        (when (and ngo:id
                   (is_ngo_admin? (:db_ctx ctx) login:id))
              (let [mail (:mail opt)
                    pw (generate-password)
-                   pw:hash (hash-password pw)]
-                  (tx [[:xtdb.api/put {:xt/id (str "login_" mail)
+                   pw:hash (hash-password pw)
+                   new_login_id (str "login_" mail)]
+                  (tx [[:xtdb.api/put {:xt/id new_login_id
                                        :xt/spec :beherbergung.model.login/record
                                        :mail mail
                                        :password-hash pw:hash}]])
-                  ;; TODO add login to ngo
+                  (tx-fn-put :update-ngo-logins
+                             '(fn [ctx eid new_login_id]
+                                  (let [db (xtdb.api/db ctx)
+                                        entity (xtdb.api/entity db eid)]
+                                       [[:xtdb.api/put (update entity :beherbergung.model.login/login:ids conj new_login_id)]])))
+                  (tx-fn-call :update-ngo-logins ngo:id new_login_id)
                   pw))))
 
 (s/def ::add_user (t/resolver #'add_user))
