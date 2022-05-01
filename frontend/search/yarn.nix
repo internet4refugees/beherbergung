@@ -1010,19 +1010,19 @@
       };
     }
     {
-      name = "_mui_base___base_5.0.0_alpha.73.tgz";
-      path = fetchurl {
-        name = "_mui_base___base_5.0.0_alpha.73.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.73.tgz";
-        sha1 = "1b5bc60d31eb2b374516c4f3bae2835f94510169";
-      };
-    }
-    {
       name = "_mui_base___base_5.0.0_alpha.74.tgz";
       path = fetchurl {
         name = "_mui_base___base_5.0.0_alpha.74.tgz";
         url  = "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.74.tgz";
         sha1 = "15509242e7911446d5957375b1b18cbb72b3a750";
+      };
+    }
+    {
+      name = "_mui_base___base_5.0.0_alpha.78.tgz";
+      path = fetchurl {
+        name = "_mui_base___base_5.0.0_alpha.78.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.78.tgz";
+        sha1 = "9d0ee8c913969f60cd7072a6082e3c0652be0b74";
       };
     }
     {
@@ -1042,11 +1042,11 @@
       };
     }
     {
-      name = "_mui_material___material_5.5.2.tgz";
+      name = "_mui_material___material_5.6.3.tgz";
       path = fetchurl {
-        name = "_mui_material___material_5.5.2.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/material/-/material-5.5.2.tgz";
-        sha1 = "9cea96abda87bed51d435e8676d5bfad99750b8a";
+        name = "_mui_material___material_5.6.3.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/material/-/material-5.6.3.tgz";
+        sha1 = "a5b6cd1b0417fca67a65172530ff5573ab7bc453";
       };
     }
     {
@@ -1058,11 +1058,19 @@
       };
     }
     {
-      name = "_mui_styled_engine___styled_engine_5.5.2.tgz";
+      name = "_mui_private_theming___private_theming_5.6.2.tgz";
       path = fetchurl {
-        name = "_mui_styled_engine___styled_engine_5.5.2.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.5.2.tgz";
-        sha1 = "1f92dd27d76f0b7df7aa52c7c7a710e59b2275a6";
+        name = "_mui_private_theming___private_theming_5.6.2.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.6.2.tgz";
+        sha1 = "c42da32f8b9481ba12885176c0168a355727c189";
+      };
+    }
+    {
+      name = "_mui_styled_engine___styled_engine_5.6.1.tgz";
+      path = fetchurl {
+        name = "_mui_styled_engine___styled_engine_5.6.1.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.6.1.tgz";
+        sha1 = "e2c859a4dbdd65af89e77703a0725285aef471fd";
       };
     }
     {
@@ -1074,11 +1082,11 @@
       };
     }
     {
-      name = "_mui_system___system_5.5.3.tgz";
+      name = "_mui_system___system_5.6.3.tgz";
       path = fetchurl {
-        name = "_mui_system___system_5.5.3.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/system/-/system-5.5.3.tgz";
-        sha1 = "c78d4c16009430389ffd3495d694945422d72ca5";
+        name = "_mui_system___system_5.6.3.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/system/-/system-5.6.3.tgz";
+        sha1 = "a03ad6d61b0b7d304a8af60374e27e71e7818ef7";
       };
     }
     {
@@ -1090,11 +1098,11 @@
       };
     }
     {
-      name = "_mui_utils___utils_5.5.3.tgz";
+      name = "_mui_utils___utils_5.6.1.tgz";
       path = fetchurl {
-        name = "_mui_utils___utils_5.5.3.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/utils/-/utils-5.5.3.tgz";
-        sha1 = "f6e1f10c0e8f4d0bf750588c2c3a96ad819c5b65";
+        name = "_mui_utils___utils_5.6.1.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/utils/-/utils-5.6.1.tgz";
+        sha1 = "4ab79a21bd481555d9a588f4b18061b3c28ea5db";
       };
     }
     {
@@ -1247,6 +1255,14 @@
         name = "_popperjs_core___core_2.11.4.tgz";
         url  = "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.4.tgz";
         sha1 = "d8c7b8db9226d2d7664553a0741ad7d0397ee503";
+      };
+    }
+    {
+      name = "_popperjs_core___core_2.11.5.tgz";
+      path = fetchurl {
+        name = "_popperjs_core___core_2.11.5.tgz";
+        url  = "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.5.tgz";
+        sha1 = "db5a11bf66bdab39569719555b0f76e138d7bd64";
       };
     }
     {
