@@ -3330,11 +3330,11 @@
       };
     }
     {
-      name = "i18next___i18next_21.6.14.tgz";
+      name = "i18next___i18next_21.6.16.tgz";
       path = fetchurl {
-        name = "i18next___i18next_21.6.14.tgz";
-        url  = "https://registry.yarnpkg.com/i18next/-/i18next-21.6.14.tgz";
-        sha1 = "2bc199fba7f4da44b5952d7df0a3814a6e5c3943";
+        name = "i18next___i18next_21.6.16.tgz";
+        url  = "https://registry.yarnpkg.com/i18next/-/i18next-21.6.16.tgz";
+        sha1 = "8cff8c3ba2ffaf8438a8c83fe284083f15cf3941";
       };
     }
     {
