@@ -1122,11 +1122,11 @@
       };
     }
     {
-      name = "_next_eslint_plugin_next___eslint_plugin_next_12.1.4.tgz";
+      name = "_next_eslint_plugin_next___eslint_plugin_next_12.1.5.tgz";
       path = fetchurl {
-        name = "_next_eslint_plugin_next___eslint_plugin_next_12.1.4.tgz";
-        url  = "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.1.4.tgz";
-        sha1 = "9c52637af8eecab24dac3f2e5098376f6fc2dff4";
+        name = "_next_eslint_plugin_next___eslint_plugin_next_12.1.5.tgz";
+        url  = "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.1.5.tgz";
+        sha1 = "273885b35e6bbcd40ff1436d2a8d0ec03fb6f6ef";
       };
     }
     {
@@ -2626,11 +2626,11 @@
       };
     }
     {
-      name = "eslint_config_next___eslint_config_next_12.1.4.tgz";
+      name = "eslint_config_next___eslint_config_next_12.1.5.tgz";
       path = fetchurl {
-        name = "eslint_config_next___eslint_config_next_12.1.4.tgz";
-        url  = "https://registry.yarnpkg.com/eslint-config-next/-/eslint-config-next-12.1.4.tgz";
-        sha1 = "939ea2ff33034763300bf1e62482cea91212d274";
+        name = "eslint_config_next___eslint_config_next_12.1.5.tgz";
+        url  = "https://registry.yarnpkg.com/eslint-config-next/-/eslint-config-next-12.1.5.tgz";
+        sha1 = "658cc61194a32dfd917a3db199351396ea5db1d1";
       };
     }
     {
