@@ -29,7 +29,7 @@
     "leaflet": "^1.7.1",
     "leaflet.markercluster": "^1.5.3",
     "lodash": "^4.17.21",
-    "moment": "^2.29.1",
+    "moment": "^2.29.3",
     "next": "^12.1.4",
     "react": "^17.0.2",
     "react-collapse-pane": "^2.0.1",
