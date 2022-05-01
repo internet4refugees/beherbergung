@@ -2,21 +2,21 @@ pull_request_rules:
   - name: automatic merge on CI success for updates from bots
     conditions:
       - check-success=Evaluate flake.nix
-      - check-success=check format [x86-64-linux]
+      - check-success=check format [x86_64-linux]
+      - check-success=nixosConfig beherbergung-demo
+      - check-success=package beherbergung-frontend-deps [x86_64-linux]
+      - check-success=nixosConfig vm
+      - check-success=package beherbergung-fullstack [x86_64-linux]
+      - check-success=check nixos-test [x86_64-linux]
+      - check-success=package beherbergung-frontend-assets [x86_64-linux]
+      - check-success=package updateFrontendDeps [x86_64-linux]
+      - check-success=package beherbergung-backend [x86_64-linux]
       - check-success=nixosConfig beherbergung-lifeline
       - check-success=nixosConfig beherbergung-warhelp
-      - check-success=nixosConfig vm
-      - check-success=Evaluate flake.nix
-      - check-success=check format [x86-64-linux]
-      - check-success=check deadnix [x86-64-linux]
-      - check-success=check nixos-test [x86-64-linux]
-      - check-success=package updateBackendDeps [x86-64-linux]
-      - check-success=package updateFrontendDeps [x86-64-linux]
-      - check-success=package beherbergung-backend [x86-64-linux]
-      - check-success=package beherbergung-frontend-assets [x86-64-linux]
-      - check-success=package beherbergung-frontend-deps [x86-64-linux]
-      - check-success=package beherbergung-fullstack [x86-64-linux]
-      - check-success=package devShell [x86-64-linux]
+      - check-success=check deadnix [x86_64-linux]
+      - check-success=package devShell [x86_64-linux]
+      - check-success=package updateBackendDeps [x86_64-linux]
+      - check-success=default devShell
       - or:
         - author=dependabot[bot]
         - author=nix-eval-jobs-bot
