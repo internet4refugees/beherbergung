@@ -29,4 +29,3 @@ with dns.lib.combinators; rec {
     #loki-server-dedicated1 = server-dedicated1;
   };
 }
-
