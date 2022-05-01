@@ -6194,11 +6194,11 @@
       };
     }
     {
-      name = "yarn_upgrade_all___yarn_upgrade_all_0.7.0.tgz";
+      name = "yarn_upgrade_all___yarn_upgrade_all_0.7.1.tgz";
       path = fetchurl {
-        name = "yarn_upgrade_all___yarn_upgrade_all_0.7.0.tgz";
-        url  = "https://registry.yarnpkg.com/yarn-upgrade-all/-/yarn-upgrade-all-0.7.0.tgz";
-        sha1 = "bc0433ca19a5e5ac085b636face5c1be4e0f3d7b";
+        name = "yarn_upgrade_all___yarn_upgrade_all_0.7.1.tgz";
+        url  = "https://registry.yarnpkg.com/yarn-upgrade-all/-/yarn-upgrade-all-0.7.1.tgz";
+        sha1 = "167a5a78127c7051c4ed15396bd5f68e3b5cc744";
       };
     }
     {
