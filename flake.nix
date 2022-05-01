@@ -114,15 +114,11 @@
     checks.${system} = {
       format =
         pkgs.runCommandNoCC "treefmt" {
-          nativeBuildInputs = linters ++ [pkgs.git];
+          nativeBuildInputs = linters;
         } ''
-          cp -r ${self} source && chmod -R +w source
+          # keep timestamps so that treefmt is able to detect mtime changes
+          cp --no-preserve=mode --preserve=timestamps -r ${self} source
           cd source
-          # treefmt needs git to detect changes
-          git init && git add .
-          export GIT_AUTHOR_NAME="foo" GIT_AUTHOR_EMAIL="foo@example.org"
-          export GIT_COMMITTER_NAME="foo" GIT_COMMITTER_EMAIL="foo@example.org"
-          git commit -m "first commit"
           HOME=$TMPDIR treefmt --fail-on-change
           touch $out
         '';
