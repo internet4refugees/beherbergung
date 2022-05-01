@@ -5700,10 +5700,10 @@ yargs@^17.0.0:
     y18n "^5.0.5"
     yargs-parser "^21.0.0"
 
-yarn-upgrade-all@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/yarn-upgrade-all/-/yarn-upgrade-all-0.7.0.tgz#bc0433ca19a5e5ac085b636face5c1be4e0f3d7b"
-  integrity sha512-rABjlUqwjIh+JzQLAEVPMxtaNM4U4sDtqZNWeu6hPU0JouTcI7jzhgpSwIs3qwDRpvu99EHy4gkrue8e8IhCCg==
+yarn-upgrade-all@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/yarn-upgrade-all/-/yarn-upgrade-all-0.7.1.tgz#167a5a78127c7051c4ed15396bd5f68e3b5cc744"
+  integrity sha512-KoYfSs8jGH5fp4+12ezF3uMMIxx70X8l9efmUvsI0KQmmF4nVssEmXw4Q2aZVrRZHF30b3+cyzMIp8iU6sb9aw==
 
 yn@3.1.1:
   version "3.1.1"
