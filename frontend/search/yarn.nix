@@ -1386,11 +1386,11 @@
       };
     }
     {
-      name = "_types_lodash___lodash_4.14.181.tgz";
+      name = "_types_lodash___lodash_4.14.182.tgz";
       path = fetchurl {
-        name = "_types_lodash___lodash_4.14.181.tgz";
-        url  = "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.181.tgz";
-        sha1 = "d1d3740c379fda17ab175165ba04e2d03389385d";
+        name = "_types_lodash___lodash_4.14.182.tgz";
+        url  = "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.182.tgz";
+        sha1 = "05301a4d5e62963227eaafe0ce04dd77c54ea5c2";
       };
     }
     {
