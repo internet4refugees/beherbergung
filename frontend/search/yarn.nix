@@ -1026,11 +1026,11 @@
       };
     }
     {
-      name = "_mui_icons_material___icons_material_5.5.1.tgz";
+      name = "_mui_icons_material___icons_material_5.6.2.tgz";
       path = fetchurl {
-        name = "_mui_icons_material___icons_material_5.5.1.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.5.1.tgz";
-        sha1 = "848a57972617411370775980cbc6990588d4aafb";
+        name = "_mui_icons_material___icons_material_5.6.2.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.6.2.tgz";
+        sha1 = "239c40fc5841dc7c6af7d00e4e988550de170fcd";
       };
     }
     {
