@@ -152,6 +152,11 @@
         ++ linters;
       # disable https://nextjs.org/telemetry
       NEXT_TELEMETRY_DISABLED = "1";
+      # fix ci failure by disabling nobuildPhase
+      # can be removed in NixOS 22.05
+      phases = [];
+      dontUnpack = true;
+      installPhase = "touch $out";
       shellHook = ''
         export PATH=${self.packages.${system}.beherbergung-frontend-deps}/libexec/beherbergung/node_modules/.bin:$PATH
       '';
