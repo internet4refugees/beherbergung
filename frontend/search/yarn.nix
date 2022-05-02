@@ -6226,11 +6226,11 @@
       };
     }
     {
-      name = "zustand___zustand_3.7.1.tgz";
+      name = "zustand___zustand_3.7.2.tgz";
       path = fetchurl {
-        name = "zustand___zustand_3.7.1.tgz";
-        url  = "https://registry.yarnpkg.com/zustand/-/zustand-3.7.1.tgz";
-        sha1 = "7388f0a7175a6c2fd9a2880b383a4bf6cdf6b7c6";
+        name = "zustand___zustand_3.7.2.tgz";
+        url  = "https://registry.yarnpkg.com/zustand/-/zustand-3.7.2.tgz";
+        sha1 = "7b44c4f4a5bfd7a8296a3957b13e1c346f42514d";
       };
     }
   ];
