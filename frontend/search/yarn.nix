@@ -570,19 +570,19 @@
       };
     }
     {
-      name = "_emotion_react___react_11.8.2.tgz";
+      name = "_emotion_react___react_11.9.0.tgz";
       path = fetchurl {
-        name = "_emotion_react___react_11.8.2.tgz";
-        url  = "https://registry.yarnpkg.com/@emotion/react/-/react-11.8.2.tgz";
-        sha1 = "e51f5e6372e22e82780836c9288da19af4b51e70";
+        name = "_emotion_react___react_11.9.0.tgz";
+        url  = "https://registry.yarnpkg.com/@emotion/react/-/react-11.9.0.tgz";
+        sha1 = "b6d42b1db3bd7511e7a7c4151dc8bc82e14593b8";
       };
     }
     {
-      name = "_emotion_serialize___serialize_1.0.2.tgz";
+      name = "_emotion_serialize___serialize_1.0.3.tgz";
       path = fetchurl {
-        name = "_emotion_serialize___serialize_1.0.2.tgz";
-        url  = "https://registry.yarnpkg.com/@emotion/serialize/-/serialize-1.0.2.tgz";
-        sha1 = "77cb21a0571c9f68eb66087754a65fa97bfcd965";
+        name = "_emotion_serialize___serialize_1.0.3.tgz";
+        url  = "https://registry.yarnpkg.com/@emotion/serialize/-/serialize-1.0.3.tgz";
+        sha1 = "99e2060c26c6292469fb30db41f4690e1c8fea63";
       };
     }
     {
