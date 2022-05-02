@@ -5874,11 +5874,11 @@
       };
     }
     {
-      name = "typescript___typescript_4.6.3.tgz";
+      name = "typescript___typescript_4.6.4.tgz";
       path = fetchurl {
-        name = "typescript___typescript_4.6.3.tgz";
-        url  = "https://registry.yarnpkg.com/typescript/-/typescript-4.6.3.tgz";
-        sha1 = "eefeafa6afdd31d725584c67a0eaba80f6fc6c6c";
+        name = "typescript___typescript_4.6.4.tgz";
+        url  = "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz";
+        sha1 = "caa78bbc3a59e6a5c510d35703f6a09877ce45e9";
       };
     }
     {
