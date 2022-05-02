@@ -3994,11 +3994,11 @@
       };
     }
     {
-      name = "leaflet___leaflet_1.7.1.tgz";
+      name = "leaflet___leaflet_1.8.0.tgz";
       path = fetchurl {
-        name = "leaflet___leaflet_1.7.1.tgz";
-        url  = "https://registry.yarnpkg.com/leaflet/-/leaflet-1.7.1.tgz";
-        sha1 = "10d684916edfe1bf41d688a3b97127c0322a2a19";
+        name = "leaflet___leaflet_1.8.0.tgz";
+        url  = "https://registry.yarnpkg.com/leaflet/-/leaflet-1.8.0.tgz";
+        sha1 = "4615db4a22a304e8e692cae9270b983b38a2055e";
       };
     }
     {
