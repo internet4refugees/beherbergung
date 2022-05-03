@@ -1122,11 +1122,11 @@
       };
     }
     {
-      name = "_next_eslint_plugin_next___eslint_plugin_next_12.1.5.tgz";
+      name = "_next_eslint_plugin_next___eslint_plugin_next_12.1.6.tgz";
       path = fetchurl {
-        name = "_next_eslint_plugin_next___eslint_plugin_next_12.1.5.tgz";
-        url  = "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.1.5.tgz";
-        sha1 = "273885b35e6bbcd40ff1436d2a8d0ec03fb6f6ef";
+        name = "_next_eslint_plugin_next___eslint_plugin_next_12.1.6.tgz";
+        url  = "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.1.6.tgz";
+        sha1 = "dde3f98831f15923b25244588d924c716956292e";
       };
     }
     {
@@ -1258,11 +1258,11 @@
       };
     }
     {
-      name = "_rushstack_eslint_patch___eslint_patch_1.0.8.tgz";
+      name = "_rushstack_eslint_patch___eslint_patch_1.1.3.tgz";
       path = fetchurl {
-        name = "_rushstack_eslint_patch___eslint_patch_1.0.8.tgz";
-        url  = "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.0.8.tgz";
-        sha1 = "be3e914e84eacf16dbebd311c0d0b44aa1174c64";
+        name = "_rushstack_eslint_patch___eslint_patch_1.1.3.tgz";
+        url  = "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.3.tgz";
+        sha1 = "6801033be7ff87a6b7cadaf5b337c9f366a3c4b0";
       };
     }
     {
@@ -1474,43 +1474,43 @@
       };
     }
     {
-      name = "_typescript_eslint_parser___parser_5.10.1.tgz";
+      name = "_typescript_eslint_parser___parser_5.22.0.tgz";
       path = fetchurl {
-        name = "_typescript_eslint_parser___parser_5.10.1.tgz";
-        url  = "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.10.1.tgz";
-        sha1 = "4ce9633cc33fc70bc13786cb793c1a76fe5ad6bd";
+        name = "_typescript_eslint_parser___parser_5.22.0.tgz";
+        url  = "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.22.0.tgz";
+        sha1 = "7bedf8784ef0d5d60567c5ba4ce162460e70c178";
       };
     }
     {
-      name = "_typescript_eslint_scope_manager___scope_manager_5.10.1.tgz";
+      name = "_typescript_eslint_scope_manager___scope_manager_5.22.0.tgz";
       path = fetchurl {
-        name = "_typescript_eslint_scope_manager___scope_manager_5.10.1.tgz";
-        url  = "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.10.1.tgz";
-        sha1 = "f0539c73804d2423506db2475352a4dec36cd809";
+        name = "_typescript_eslint_scope_manager___scope_manager_5.22.0.tgz";
+        url  = "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.22.0.tgz";
+        sha1 = "590865f244ebe6e46dc3e9cab7976fc2afa8af24";
       };
     }
     {
-      name = "_typescript_eslint_types___types_5.10.1.tgz";
+      name = "_typescript_eslint_types___types_5.22.0.tgz";
       path = fetchurl {
-        name = "_typescript_eslint_types___types_5.10.1.tgz";
-        url  = "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.10.1.tgz";
-        sha1 = "dca9bd4cb8c067fc85304a31f38ec4766ba2d1ea";
+        name = "_typescript_eslint_types___types_5.22.0.tgz";
+        url  = "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.22.0.tgz";
+        sha1 = "50a4266e457a5d4c4b87ac31903b28b06b2c3ed0";
       };
     }
     {
-      name = "_typescript_eslint_typescript_estree___typescript_estree_5.10.1.tgz";
+      name = "_typescript_eslint_typescript_estree___typescript_estree_5.22.0.tgz";
       path = fetchurl {
-        name = "_typescript_eslint_typescript_estree___typescript_estree_5.10.1.tgz";
-        url  = "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.10.1.tgz";
-        sha1 = "b268e67be0553f8790ba3fe87113282977adda15";
+        name = "_typescript_eslint_typescript_estree___typescript_estree_5.22.0.tgz";
+        url  = "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.22.0.tgz";
+        sha1 = "e2116fd644c3e2fda7f4395158cddd38c0c6df97";
       };
     }
     {
-      name = "_typescript_eslint_visitor_keys___visitor_keys_5.10.1.tgz";
+      name = "_typescript_eslint_visitor_keys___visitor_keys_5.22.0.tgz";
       path = fetchurl {
-        name = "_typescript_eslint_visitor_keys___visitor_keys_5.10.1.tgz";
-        url  = "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.10.1.tgz";
-        sha1 = "29102de692f59d7d34ecc457ed59ab5fc558010b";
+        name = "_typescript_eslint_visitor_keys___visitor_keys_5.22.0.tgz";
+        url  = "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.22.0.tgz";
+        sha1 = "f49c0ce406944ffa331a1cfabeed451ea4d0909c";
       };
     }
     {
@@ -2362,6 +2362,14 @@
       };
     }
     {
+      name = "debug___debug_4.3.4.tgz";
+      path = fetchurl {
+        name = "debug___debug_4.3.4.tgz";
+        url  = "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz";
+        sha1 = "1319f6579357f2338d3337d2cdd4914bb5dcc865";
+      };
+    }
+    {
       name = "decamelize___decamelize_1.2.0.tgz";
       path = fetchurl {
         name = "decamelize___decamelize_1.2.0.tgz";
@@ -2618,19 +2626,11 @@
       };
     }
     {
-      name = "eslint_config_next___eslint_config_next_12.1.5.tgz";
+      name = "eslint_config_next___eslint_config_next_12.1.6.tgz";
       path = fetchurl {
-        name = "eslint_config_next___eslint_config_next_12.1.5.tgz";
-        url  = "https://registry.yarnpkg.com/eslint-config-next/-/eslint-config-next-12.1.5.tgz";
-        sha1 = "658cc61194a32dfd917a3db199351396ea5db1d1";
-      };
-    }
-    {
-      name = "eslint_import_resolver_node___eslint_import_resolver_node_0.3.4.tgz";
-      path = fetchurl {
-        name = "eslint_import_resolver_node___eslint_import_resolver_node_0.3.4.tgz";
-        url  = "https://registry.yarnpkg.com/eslint-import-resolver-node/-/eslint-import-resolver-node-0.3.4.tgz";
-        sha1 = "85ffa81942c25012d8231096ddf679c03042c717";
+        name = "eslint_config_next___eslint_config_next_12.1.6.tgz";
+        url  = "https://registry.yarnpkg.com/eslint-config-next/-/eslint-config-next-12.1.6.tgz";
+        sha1 = "55097028982dce49159d8753000be3916ac55254";
       };
     }
     {
@@ -2642,11 +2642,11 @@
       };
     }
     {
-      name = "eslint_import_resolver_typescript___eslint_import_resolver_typescript_2.4.0.tgz";
+      name = "eslint_import_resolver_typescript___eslint_import_resolver_typescript_2.7.1.tgz";
       path = fetchurl {
-        name = "eslint_import_resolver_typescript___eslint_import_resolver_typescript_2.4.0.tgz";
-        url  = "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-2.4.0.tgz";
-        sha1 = "ec1e7063ebe807f0362a7320543aaed6fe1100e1";
+        name = "eslint_import_resolver_typescript___eslint_import_resolver_typescript_2.7.1.tgz";
+        url  = "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-2.7.1.tgz";
+        sha1 = "a90a4a1c80da8d632df25994c4c5fdcdd02b8751";
       };
     }
     {
@@ -2658,11 +2658,11 @@
       };
     }
     {
-      name = "eslint_plugin_import___eslint_plugin_import_2.25.2.tgz";
+      name = "eslint_plugin_import___eslint_plugin_import_2.26.0.tgz";
       path = fetchurl {
-        name = "eslint_plugin_import___eslint_plugin_import_2.25.2.tgz";
-        url  = "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.25.2.tgz";
-        sha1 = "b3b9160efddb702fc1636659e71ba1d10adbe9e9";
+        name = "eslint_plugin_import___eslint_plugin_import_2.26.0.tgz";
+        url  = "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.26.0.tgz";
+        sha1 = "f812dc47be4f2b72b478a021605a59fc6fe8b88b";
       };
     }
     {
@@ -2674,19 +2674,19 @@
       };
     }
     {
-      name = "eslint_plugin_react_hooks___eslint_plugin_react_hooks_4.3.0.tgz";
+      name = "eslint_plugin_react_hooks___eslint_plugin_react_hooks_4.5.0.tgz";
       path = fetchurl {
-        name = "eslint_plugin_react_hooks___eslint_plugin_react_hooks_4.3.0.tgz";
-        url  = "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.3.0.tgz";
-        sha1 = "318dbf312e06fab1c835a4abef00121751ac1172";
+        name = "eslint_plugin_react_hooks___eslint_plugin_react_hooks_4.5.0.tgz";
+        url  = "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.5.0.tgz";
+        sha1 = "5f762dfedf8b2cf431c689f533c9d3fa5dcf25ad";
       };
     }
     {
-      name = "eslint_plugin_react___eslint_plugin_react_7.29.1.tgz";
+      name = "eslint_plugin_react___eslint_plugin_react_7.29.4.tgz";
       path = fetchurl {
-        name = "eslint_plugin_react___eslint_plugin_react_7.29.1.tgz";
-        url  = "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.29.1.tgz";
-        sha1 = "6c40bc83142bb63d132a1b3565e2ea655411f800";
+        name = "eslint_plugin_react___eslint_plugin_react_7.29.4.tgz";
+        url  = "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.29.4.tgz";
+        sha1 = "4717de5227f55f3801a5fd51a16a4fa22b5914d2";
       };
     }
     {
@@ -5807,14 +5807,6 @@
         name = "tsconfig_paths___tsconfig_paths_3.14.1.tgz";
         url  = "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz";
         sha1 = "ba0734599e8ea36c862798e920bcf163277b137a";
-      };
-    }
-    {
-      name = "tsconfig_paths___tsconfig_paths_3.13.0.tgz";
-      path = fetchurl {
-        name = "tsconfig_paths___tsconfig_paths_3.13.0.tgz";
-        url  = "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.13.0.tgz";
-        sha1 = "f3e9b8f6876698581d94470c03c95b3a48c0e3d7";
       };
     }
     {
