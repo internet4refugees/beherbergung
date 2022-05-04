@@ -682,35 +682,35 @@
       };
     }
     {
-      name = "_graphql_codegen_typescript_operations___typescript_operations_2.3.5.tgz";
+      name = "_graphql_codegen_typescript_operations___typescript_operations_2.3.6.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_typescript_operations___typescript_operations_2.3.5.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript-operations/-/typescript-operations-2.3.5.tgz";
-        sha1 = "1e77b96da0949f9e0ecd6054eb28b582936e35e8";
+        name = "_graphql_codegen_typescript_operations___typescript_operations_2.3.6.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript-operations/-/typescript-operations-2.3.6.tgz";
+        sha1 = "f5de1fb6585dfe2b43a3a3dd77b86dedb6729dcd";
       };
     }
     {
-      name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.9.tgz";
+      name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.10.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.9.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-3.5.9.tgz";
-        sha1 = "ca3d479811e037f02d4b9c3bd23df51b82bdb1df";
+        name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.10.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-3.5.10.tgz";
+        sha1 = "31647c84930029d2ca0fc0fb656f136d08cad2c0";
       };
     }
     {
-      name = "_graphql_codegen_typescript___typescript_2.4.8.tgz";
+      name = "_graphql_codegen_typescript___typescript_2.4.9.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_typescript___typescript_2.4.8.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-2.4.8.tgz";
-        sha1 = "e8110baba9713cde72d57a5c95aa27400363ed9a";
+        name = "_graphql_codegen_typescript___typescript_2.4.9.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-2.4.9.tgz";
+        sha1 = "ab3eeaa5773cf78df7ddc2ffbb0447ee2920728c";
       };
     }
     {
-      name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.4.tgz";
+      name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.5.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.4.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.4.tgz";
-        sha1 = "fbc8aec9df0035b8f29fa64a6356cbb02062da5d";
+        name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.5.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.5.tgz";
+        sha1 = "930fea2c084042b604bead6665b7a0d1542c445b";
       };
     }
     {
@@ -5815,6 +5815,14 @@
         name = "tslib___tslib_1.14.1.tgz";
         url  = "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz";
         sha1 = "cf2d38bdc34a134bcaf1091c41f6619e2f672d00";
+      };
+    }
+    {
+      name = "tslib___tslib_2.4.0.tgz";
+      path = fetchurl {
+        name = "tslib___tslib_2.4.0.tgz";
+        url  = "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz";
+        sha1 = "7cecaa7f073ce680a05847aa77be941098f36dc3";
       };
     }
     {
