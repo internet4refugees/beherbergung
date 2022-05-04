@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.6.2",
-    "@graphql-codegen/typescript": "^2.4.8",
+    "@graphql-codegen/typescript": "^2.4.9",
     "@graphql-codegen/typescript-operations": "^2.3.5",
     "@graphql-codegen/typescript-react-query": "^3.5.10",
     "@types/leaflet": "^1.7.9",

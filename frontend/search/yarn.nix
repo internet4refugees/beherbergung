@@ -698,11 +698,11 @@
       };
     }
     {
-      name = "_graphql_codegen_typescript___typescript_2.4.8.tgz";
+      name = "_graphql_codegen_typescript___typescript_2.4.9.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_typescript___typescript_2.4.8.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-2.4.8.tgz";
-        sha1 = "e8110baba9713cde72d57a5c95aa27400363ed9a";
+        name = "_graphql_codegen_typescript___typescript_2.4.9.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-2.4.9.tgz";
+        sha1 = "ab3eeaa5773cf78df7ddc2ffbb0447ee2920728c";
       };
     }
     {
