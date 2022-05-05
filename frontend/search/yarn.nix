@@ -5002,11 +5002,11 @@
       };
     }
     {
-      name = "react_i18next___react_i18next_11.16.7.tgz";
+      name = "react_i18next___react_i18next_11.16.8.tgz";
       path = fetchurl {
-        name = "react_i18next___react_i18next_11.16.7.tgz";
-        url  = "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.16.7.tgz";
-        sha1 = "8d0680b7f4c8e43f59996336b7183ad576a28df7";
+        name = "react_i18next___react_i18next_11.16.8.tgz";
+        url  = "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.16.8.tgz";
+        sha1 = "e71621c16f8f77152e85795a88ba6a371e46687d";
       };
     }
     {
