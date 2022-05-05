@@ -698,11 +698,11 @@
       };
     }
     {
-      name = "_graphql_codegen_typescript___typescript_2.4.9.tgz";
+      name = "_graphql_codegen_typescript___typescript_2.4.10.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_typescript___typescript_2.4.9.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-2.4.9.tgz";
-        sha1 = "ab3eeaa5773cf78df7ddc2ffbb0447ee2920728c";
+        name = "_graphql_codegen_typescript___typescript_2.4.10.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-2.4.10.tgz";
+        sha1 = "245512826fc0c6663756cca6359ac4d45719af5f";
       };
     }
     {
@@ -714,11 +714,11 @@
       };
     }
     {
-      name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.5.tgz";
+      name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.6.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.5.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.5.tgz";
-        sha1 = "930fea2c084042b604bead6665b7a0d1542c445b";
+        name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.6.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.6.tgz";
+        sha1 = "70be729551fedc090d69fe4f16272bccf5222d28";
       };
     }
     {
