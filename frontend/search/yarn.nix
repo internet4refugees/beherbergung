@@ -690,11 +690,11 @@
       };
     }
     {
-      name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.10.tgz";
+      name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.11.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.10.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-3.5.10.tgz";
-        sha1 = "31647c84930029d2ca0fc0fb656f136d08cad2c0";
+        name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.11.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-3.5.11.tgz";
+        sha1 = "c366452079ece32b17bf4bf6197fb4633931afab";
       };
     }
     {
@@ -719,6 +719,14 @@
         name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.5.tgz";
         url  = "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.5.tgz";
         sha1 = "930fea2c084042b604bead6665b7a0d1542c445b";
+      };
+    }
+    {
+      name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.6.tgz";
+      path = fetchurl {
+        name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.6.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.6.tgz";
+        sha1 = "70be729551fedc090d69fe4f16272bccf5222d28";
       };
     }
     {
