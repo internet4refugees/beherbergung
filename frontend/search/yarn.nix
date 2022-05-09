@@ -722,14 +722,6 @@
       };
     }
     {
-      name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.8.0.tgz";
-      path = fetchurl {
-        name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.8.0.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.8.0.tgz";
-        sha1 = "f1de3bd5ee123e6f72c06423912a3a83a6044938";
-      };
-    }
-    {
       name = "_graphql_tools_apollo_engine_loader___apollo_engine_loader_7.2.3.tgz";
       path = fetchurl {
         name = "_graphql_tools_apollo_engine_loader___apollo_engine_loader_7.2.3.tgz";
