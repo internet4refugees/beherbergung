@@ -690,19 +690,19 @@
       };
     }
     {
-      name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.11.tgz";
+      name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.12.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.11.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-3.5.11.tgz";
-        sha1 = "c366452079ece32b17bf4bf6197fb4633931afab";
+        name = "_graphql_codegen_typescript_react_query___typescript_react_query_3.5.12.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-query/-/typescript-react-query-3.5.12.tgz";
+        sha1 = "57f452eeb3fc669c85420d855c60223ba804be91";
       };
     }
     {
-      name = "_graphql_codegen_typescript___typescript_2.4.10.tgz";
+      name = "_graphql_codegen_typescript___typescript_2.4.11.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_typescript___typescript_2.4.10.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-2.4.10.tgz";
-        sha1 = "245512826fc0c6663756cca6359ac4d45719af5f";
+        name = "_graphql_codegen_typescript___typescript_2.4.11.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-2.4.11.tgz";
+        sha1 = "b9d8bddaeb79ff4a85e1d0f9c774afba7423177c";
       };
     }
     {
@@ -714,11 +714,11 @@
       };
     }
     {
-      name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.6.tgz";
+      name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.8.0.tgz";
       path = fetchurl {
-        name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.7.6.tgz";
-        url  = "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.6.tgz";
-        sha1 = "70be729551fedc090d69fe4f16272bccf5222d28";
+        name = "_graphql_codegen_visitor_plugin_common___visitor_plugin_common_2.8.0.tgz";
+        url  = "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.8.0.tgz";
+        sha1 = "f1de3bd5ee123e6f72c06423912a3a83a6044938";
       };
     }
     {
