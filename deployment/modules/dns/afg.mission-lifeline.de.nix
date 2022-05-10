@@ -4,7 +4,7 @@ with dns.lib.combinators; rec {
     nameServer = "ns1.broenradio.org.";
 
     adminEmail = "dns-admin@mission-lifeline.de";
-    serial = 2022043001;
+    serial = 2022051001;
   };
 
   NS = [
@@ -22,9 +22,10 @@ with dns.lib.combinators; rec {
 
     mqtt = server-dedicated1;
 
+    restic = server-dedicated1;
+
     #binarycache = server-dedicated1;
     #grafana = server-dedicated1;
-
     #prometheus-server-dedicated1 = server-dedicated1;
     #loki-server-dedicated1 = server-dedicated1;
   };
