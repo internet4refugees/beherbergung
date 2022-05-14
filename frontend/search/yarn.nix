@@ -1370,11 +1370,11 @@
       };
     }
     {
-      name = "_types_leaflet.markercluster___leaflet.markercluster_1.4.6.tgz";
+      name = "_types_leaflet.markercluster___leaflet.markercluster_1.5.0.tgz";
       path = fetchurl {
-        name = "_types_leaflet.markercluster___leaflet.markercluster_1.4.6.tgz";
-        url  = "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.4.6.tgz";
-        sha1 = "1159460b374ba5e329cb678d0e427f99dca75be5";
+        name = "_types_leaflet.markercluster___leaflet.markercluster_1.5.0.tgz";
+        url  = "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.5.0.tgz";
+        sha1 = "c455e4ae8f238612395cc8de19cc8086db859ce5";
       };
     }
     {
