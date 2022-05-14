@@ -1018,19 +1018,19 @@
       };
     }
     {
-      name = "_mui_base___base_5.0.0_alpha.78.tgz";
-      path = fetchurl {
-        name = "_mui_base___base_5.0.0_alpha.78.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.78.tgz";
-        sha1 = "9d0ee8c913969f60cd7072a6082e3c0652be0b74";
-      };
-    }
-    {
       name = "_mui_base___base_5.0.0_alpha.79.tgz";
       path = fetchurl {
         name = "_mui_base___base_5.0.0_alpha.79.tgz";
         url  = "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.79.tgz";
         sha1 = "1994a6382a162b52ec93b66f3c74d193820d2365";
+      };
+    }
+    {
+      name = "_mui_base___base_5.0.0_alpha.80.tgz";
+      path = fetchurl {
+        name = "_mui_base___base_5.0.0_alpha.80.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.80.tgz";
+        sha1 = "2449508d7e6cda6a86b964b601ec5410c6dbeb9e";
       };
     }
     {
@@ -1050,11 +1050,19 @@
       };
     }
     {
-      name = "_mui_material___material_5.6.3.tgz";
+      name = "_mui_material___material_5.7.0.tgz";
       path = fetchurl {
-        name = "_mui_material___material_5.6.3.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/material/-/material-5.6.3.tgz";
-        sha1 = "a5b6cd1b0417fca67a65172530ff5573ab7bc453";
+        name = "_mui_material___material_5.7.0.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/material/-/material-5.7.0.tgz";
+        sha1 = "94f326ce517fc3fcaf1b744b4358af3daf8dcac6";
+      };
+    }
+    {
+      name = "_mui_private_classnames___private_classnames_5.7.0.tgz";
+      path = fetchurl {
+        name = "_mui_private_classnames___private_classnames_5.7.0.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/private-classnames/-/private-classnames-5.7.0.tgz";
+        sha1 = "7ec4c4632b58eb89bfecf67f2bf2a29a54022f6e";
       };
     }
     {
@@ -1066,11 +1074,19 @@
       };
     }
     {
-      name = "_mui_styled_engine___styled_engine_5.6.1.tgz";
+      name = "_mui_private_theming___private_theming_5.7.0.tgz";
       path = fetchurl {
-        name = "_mui_styled_engine___styled_engine_5.6.1.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.6.1.tgz";
-        sha1 = "e2c859a4dbdd65af89e77703a0725285aef471fd";
+        name = "_mui_private_theming___private_theming_5.7.0.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.7.0.tgz";
+        sha1 = "d4e1b34154df1cbd8a01901c3e2dcdb785825468";
+      };
+    }
+    {
+      name = "_mui_styled_engine___styled_engine_5.7.0.tgz";
+      path = fetchurl {
+        name = "_mui_styled_engine___styled_engine_5.7.0.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.7.0.tgz";
+        sha1 = "59e4937cebab5c72b080914c7071a41489f6f416";
       };
     }
     {
@@ -1082,11 +1098,11 @@
       };
     }
     {
-      name = "_mui_system___system_5.6.4.tgz";
+      name = "_mui_system___system_5.7.0.tgz";
       path = fetchurl {
-        name = "_mui_system___system_5.6.4.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/system/-/system-5.6.4.tgz";
-        sha1 = "b1c615c70b3573d61a8a56dbaee6700bb9a5ca9b";
+        name = "_mui_system___system_5.7.0.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/system/-/system-5.7.0.tgz";
+        sha1 = "b72da5e8acbd60860961e63f8f51d14902d18faf";
       };
     }
     {
@@ -1098,11 +1114,11 @@
       };
     }
     {
-      name = "_mui_utils___utils_5.6.1.tgz";
+      name = "_mui_utils___utils_5.7.0.tgz";
       path = fetchurl {
-        name = "_mui_utils___utils_5.6.1.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/utils/-/utils-5.6.1.tgz";
-        sha1 = "4ab79a21bd481555d9a588f4b18061b3c28ea5db";
+        name = "_mui_utils___utils_5.7.0.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/utils/-/utils-5.7.0.tgz";
+        sha1 = "7e96df6b871f4d3da13f26a623d73ddf9a11b19c";
       };
     }
     {
@@ -1394,11 +1410,11 @@
       };
     }
     {
-      name = "_types_node___node_17.0.31.tgz";
+      name = "_types_node___node_17.0.33.tgz";
       path = fetchurl {
-        name = "_types_node___node_17.0.31.tgz";
-        url  = "https://registry.yarnpkg.com/@types/node/-/node-17.0.31.tgz";
-        sha1 = "a5bb84ecfa27eec5e1c802c6bbf8139bdb163a5d";
+        name = "_types_node___node_17.0.33.tgz";
+        url  = "https://registry.yarnpkg.com/@types/node/-/node-17.0.33.tgz";
+        sha1 = "3c1879b276dc63e73030bb91165e62a4509cd506";
       };
     }
     {
@@ -1415,6 +1431,14 @@
         name = "_types_prop_types___prop_types_15.7.4.tgz";
         url  = "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz";
         sha1 = "fcf7205c25dff795ee79af1e30da2c9790808f11";
+      };
+    }
+    {
+      name = "_types_prop_types___prop_types_15.7.5.tgz";
+      path = fetchurl {
+        name = "_types_prop_types___prop_types_15.7.5.tgz";
+        url  = "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz";
+        sha1 = "5f19d2b85a98e9558036f6a3cacc8819420f05cf";
       };
     }
     {
@@ -3330,11 +3354,11 @@
       };
     }
     {
-      name = "i18next___i18next_21.7.1.tgz";
+      name = "i18next___i18next_21.8.2.tgz";
       path = fetchurl {
-        name = "i18next___i18next_21.7.1.tgz";
-        url  = "https://registry.yarnpkg.com/i18next/-/i18next-21.7.1.tgz";
-        sha1 = "3b63390fa7c2eb22440f80ef8c7f4d7e4f8187e8";
+        name = "i18next___i18next_21.8.2.tgz";
+        url  = "https://registry.yarnpkg.com/i18next/-/i18next-21.8.2.tgz";
+        sha1 = "b2d9fd7feafc1a9929651c24a5c17ba703552bbc";
       };
     }
     {
