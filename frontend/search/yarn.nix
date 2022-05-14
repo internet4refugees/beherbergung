@@ -1058,14 +1058,6 @@
       };
     }
     {
-      name = "_mui_private_theming___private_theming_5.6.2.tgz";
-      path = fetchurl {
-        name = "_mui_private_theming___private_theming_5.6.2.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.6.2.tgz";
-        sha1 = "c42da32f8b9481ba12885176c0168a355727c189";
-      };
-    }
-    {
       name = "_mui_private_theming___private_theming_5.7.0.tgz";
       path = fetchurl {
         name = "_mui_private_theming___private_theming_5.7.0.tgz";
@@ -1082,11 +1074,11 @@
       };
     }
     {
-      name = "_mui_styles___styles_5.6.2.tgz";
+      name = "_mui_styles___styles_5.7.0.tgz";
       path = fetchurl {
-        name = "_mui_styles___styles_5.6.2.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/styles/-/styles-5.6.2.tgz";
-        sha1 = "6338f49cb55ae0b5052ff8fddeedf40a45cec815";
+        name = "_mui_styles___styles_5.7.0.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/styles/-/styles-5.7.0.tgz";
+        sha1 = "797ad5ce9768dc5646a5a41b2cff939a0e84e735";
       };
     }
     {
