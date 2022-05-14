@@ -898,11 +898,11 @@
       };
     }
     {
-      name = "_inovua_reactdatagrid_community___reactdatagrid_community_4.18.0.tgz";
+      name = "_inovua_reactdatagrid_community___reactdatagrid_community_4.19.3.tgz";
       path = fetchurl {
-        name = "_inovua_reactdatagrid_community___reactdatagrid_community_4.18.0.tgz";
-        url  = "https://registry.yarnpkg.com/@inovua/reactdatagrid-community/-/reactdatagrid-community-4.18.0.tgz";
-        sha1 = "2ba549b23e4b01965ae970d47712d152cfe95ff6";
+        name = "_inovua_reactdatagrid_community___reactdatagrid_community_4.19.3.tgz";
+        url  = "https://registry.yarnpkg.com/@inovua/reactdatagrid-community/-/reactdatagrid-community-4.19.3.tgz";
+        sha1 = "db1385fdd8766788a176571fee93d4a5211249e6";
       };
     }
     {
@@ -1370,11 +1370,11 @@
       };
     }
     {
-      name = "_types_leaflet.markercluster___leaflet.markercluster_1.4.6.tgz";
+      name = "_types_leaflet.markercluster___leaflet.markercluster_1.5.0.tgz";
       path = fetchurl {
-        name = "_types_leaflet.markercluster___leaflet.markercluster_1.4.6.tgz";
-        url  = "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.4.6.tgz";
-        sha1 = "1159460b374ba5e329cb678d0e427f99dca75be5";
+        name = "_types_leaflet.markercluster___leaflet.markercluster_1.5.0.tgz";
+        url  = "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.5.0.tgz";
+        sha1 = "c455e4ae8f238612395cc8de19cc8086db859ce5";
       };
     }
     {
@@ -1410,11 +1410,11 @@
       };
     }
     {
-      name = "_types_node___node_17.0.31.tgz";
+      name = "_types_node___node_17.0.33.tgz";
       path = fetchurl {
-        name = "_types_node___node_17.0.31.tgz";
-        url  = "https://registry.yarnpkg.com/@types/node/-/node-17.0.31.tgz";
-        sha1 = "a5bb84ecfa27eec5e1c802c6bbf8139bdb163a5d";
+        name = "_types_node___node_17.0.33.tgz";
+        url  = "https://registry.yarnpkg.com/@types/node/-/node-17.0.33.tgz";
+        sha1 = "3c1879b276dc63e73030bb91165e62a4509cd506";
       };
     }
     {
@@ -5026,11 +5026,11 @@
       };
     }
     {
-      name = "react_i18next___react_i18next_11.16.8.tgz";
+      name = "react_i18next___react_i18next_11.16.9.tgz";
       path = fetchurl {
-        name = "react_i18next___react_i18next_11.16.8.tgz";
-        url  = "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.16.8.tgz";
-        sha1 = "e71621c16f8f77152e85795a88ba6a371e46687d";
+        name = "react_i18next___react_i18next_11.16.9.tgz";
+        url  = "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.16.9.tgz";
+        sha1 = "890cdac0c49120e075d6c520b43dbad3f91bd2df";
       };
     }
     {
@@ -5050,11 +5050,11 @@
       };
     }
     {
-      name = "react_query___react_query_3.34.19.tgz";
+      name = "react_query___react_query_3.39.0.tgz";
       path = fetchurl {
-        name = "react_query___react_query_3.34.19.tgz";
-        url  = "https://registry.yarnpkg.com/react-query/-/react-query-3.34.19.tgz";
-        sha1 = "0ff049b6e0d2ed148e9abfdd346625d0e88dc229";
+        name = "react_query___react_query_3.39.0.tgz";
+        url  = "https://registry.yarnpkg.com/react-query/-/react-query-3.39.0.tgz";
+        sha1 = "0caca7b0da98e65008bbcd4df0d25618c2100050";
       };
     }
     {
