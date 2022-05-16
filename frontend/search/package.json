@@ -13,7 +13,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
-    "@inovua/reactdatagrid-community": "^4.19.3",
+    "@inovua/reactdatagrid-community": "^4.19.5",
     "@jsonforms/core": "^2.5.2",
     "@jsonforms/material-renderers": "^2.5.2",
     "@jsonforms/react": "^2.5.2",
