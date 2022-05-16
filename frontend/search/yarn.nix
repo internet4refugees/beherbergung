@@ -890,11 +890,11 @@
       };
     }
     {
-      name = "_inovua_reactdatagrid_community___reactdatagrid_community_4.19.3.tgz";
+      name = "_inovua_reactdatagrid_community___reactdatagrid_community_4.19.5.tgz";
       path = fetchurl {
-        name = "_inovua_reactdatagrid_community___reactdatagrid_community_4.19.3.tgz";
-        url  = "https://registry.yarnpkg.com/@inovua/reactdatagrid-community/-/reactdatagrid-community-4.19.3.tgz";
-        sha1 = "db1385fdd8766788a176571fee93d4a5211249e6";
+        name = "_inovua_reactdatagrid_community___reactdatagrid_community_4.19.5.tgz";
+        url  = "https://registry.yarnpkg.com/@inovua/reactdatagrid-community/-/reactdatagrid-community-4.19.5.tgz";
+        sha1 = "3b34bd6fda8c0ee8aed46a43aaff3347ec3a2553";
       };
     }
     {
