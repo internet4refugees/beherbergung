@@ -2530,11 +2530,11 @@
       };
     }
     {
-      name = "dset___dset_3.1.1.tgz";
+      name = "dset___dset_3.1.2.tgz";
       path = fetchurl {
-        name = "dset___dset_3.1.1.tgz";
-        url  = "https://registry.yarnpkg.com/dset/-/dset-3.1.1.tgz";
-        sha1 = "07de5af7a8d03eab337ad1a8ba77fe17bba61a8c";
+        name = "dset___dset_3.1.2.tgz";
+        url  = "https://registry.yarnpkg.com/dset/-/dset-3.1.2.tgz";
+        sha1 = "89c436ca6450398396dc6538ea00abc0c54cd45a";
       };
     }
     {
