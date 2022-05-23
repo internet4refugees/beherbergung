@@ -1010,14 +1010,6 @@
       };
     }
     {
-      name = "_mui_base___base_5.0.0_alpha.80.tgz";
-      path = fetchurl {
-        name = "_mui_base___base_5.0.0_alpha.80.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-alpha.80.tgz";
-        sha1 = "2449508d7e6cda6a86b964b601ec5410c6dbeb9e";
-      };
-    }
-    {
       name = "_mui_base___base_5.0.0_alpha.81.tgz";
       path = fetchurl {
         name = "_mui_base___base_5.0.0_alpha.81.tgz";
@@ -1042,19 +1034,11 @@
       };
     }
     {
-      name = "_mui_material___material_5.7.0.tgz";
+      name = "_mui_material___material_5.8.0.tgz";
       path = fetchurl {
-        name = "_mui_material___material_5.7.0.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/material/-/material-5.7.0.tgz";
-        sha1 = "94f326ce517fc3fcaf1b744b4358af3daf8dcac6";
-      };
-    }
-    {
-      name = "_mui_private_classnames___private_classnames_5.7.0.tgz";
-      path = fetchurl {
-        name = "_mui_private_classnames___private_classnames_5.7.0.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/private-classnames/-/private-classnames-5.7.0.tgz";
-        sha1 = "7ec4c4632b58eb89bfecf67f2bf2a29a54022f6e";
+        name = "_mui_material___material_5.8.0.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/material/-/material-5.8.0.tgz";
+        sha1 = "7451cecde57a24a9c407ec5122369240f5e7fae3";
       };
     }
     {
