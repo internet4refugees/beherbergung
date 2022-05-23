@@ -1402,11 +1402,11 @@
       };
     }
     {
-      name = "_types_node___node_17.0.34.tgz";
+      name = "_types_node___node_17.0.35.tgz";
       path = fetchurl {
-        name = "_types_node___node_17.0.34.tgz";
-        url  = "https://registry.yarnpkg.com/@types/node/-/node-17.0.34.tgz";
-        sha1 = "3b0b6a50ff797280b8d000c6281d229f9c538cef";
+        name = "_types_node___node_17.0.35.tgz";
+        url  = "https://registry.yarnpkg.com/@types/node/-/node-17.0.35.tgz";
+        sha1 = "635b7586086d51fb40de0a2ec9d1014a5283ba4a";
       };
     }
     {
