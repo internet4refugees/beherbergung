@@ -3202,11 +3202,11 @@
       };
     }
     {
-      name = "graphql___graphql_16.4.0.tgz";
+      name = "graphql___graphql_16.5.0.tgz";
       path = fetchurl {
-        name = "graphql___graphql_16.4.0.tgz";
-        url  = "https://registry.yarnpkg.com/graphql/-/graphql-16.4.0.tgz";
-        sha1 = "bb10b1b4683045dedcb67000eb4ad134a36c59e6";
+        name = "graphql___graphql_16.5.0.tgz";
+        url  = "https://registry.yarnpkg.com/graphql/-/graphql-16.5.0.tgz";
+        sha1 = "41b5c1182eaac7f3d47164fb247f61e4dfb69c85";
       };
     }
     {
