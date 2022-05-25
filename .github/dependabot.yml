@@ -10,3 +10,4 @@ updates:
     # Check the nuget registry for updates every day (weekdays) schedule:
     schedule:
       interval: "daily"
+    open-pull-requests-limit: 1
