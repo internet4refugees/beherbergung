@@ -1204,10 +1204,10 @@
     prop-types "^15.8.1"
     react-is "^17.0.2"
 
-"@mui/icons-material@^5.6.2":
-  version "5.6.2"
-  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.6.2.tgz#239c40fc5841dc7c6af7d00e4e988550de170fcd"
-  integrity sha512-9QdI7axKuBAyaGz4mtdi7Uy1j73/thqFmEuxpJHxNC7O8ADEK1Da3t2veK2tgmsXsUlAHcAG63gg+GvWWeQNqQ==
+"@mui/icons-material@^5.8.0":
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.8.0.tgz#c85768434bda885c64a8e4b9e222e73912244570"
+  integrity sha512-ScwLxa0q5VYV70Jfc60V/9VD0b9SvIeZ0Jddx2Dt2pBUFFO9vKdrbt9LYiT+4p21Au5NdYIb2XSHj46CLN1v3g==
   dependencies:
     "@babel/runtime" "^7.17.2"
 
@@ -1251,15 +1251,6 @@
   resolved "https://registry.yarnpkg.com/@mui/private-classnames/-/private-classnames-5.7.0.tgz#7ec4c4632b58eb89bfecf67f2bf2a29a54022f6e"
   integrity sha512-OSB4ybzpYiS11rQ3VtbcJz/CS19lC0r0Hk14iRZwPtVgapnL1hKsGtmgRviZLxpLk/cZUKaxaJDuuzI/extCoA==
 
-"@mui/private-theming@^5.7.0":
-  version "5.7.0"
-  resolved "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.7.0.tgz#d4e1b34154df1cbd8a01901c3e2dcdb785825468"
-  integrity sha512-r/6JAWAHV1IFASZnceJPe9QT/s12ia/okGbmCUO4MEPdsWcNKye1RVKSwVgLATaX3YwPxDljWguIQrM3R2gZNA==
-  dependencies:
-    "@babel/runtime" "^7.17.2"
-    "@mui/utils" "^5.7.0"
-    prop-types "^15.8.1"
-
 "@mui/private-theming@^5.8.0":
   version "5.8.0"
   resolved "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.8.0.tgz#7d927e7e12616dc10b0dcbe665df2c00ed859796"
@@ -1278,16 +1269,16 @@
     "@emotion/cache" "^11.7.1"
     prop-types "^15.8.1"
 
-"@mui/styles@^5.7.0":
-  version "5.7.0"
-  resolved "https://registry.yarnpkg.com/@mui/styles/-/styles-5.7.0.tgz#797ad5ce9768dc5646a5a41b2cff939a0e84e735"
-  integrity sha512-WwDxn2qGd35huodKsuUjOvH6xSlAQFqJZnSdqHKxgC9vOwDVQo1DmS3zASPvMVm0/wqXVcbkwjF8RFW1IClbAA==
+"@mui/styles@^5.8.0":
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/@mui/styles/-/styles-5.8.0.tgz#43ac26adaf30e911c97b71d60c536d55398d4993"
+  integrity sha512-kssqBWhCFo7AMiu93QziR8qxq3z8bJm2qCYdmNadE5NvEla7Xwu3twNJUWnCEoeDeoFMk/2H0ACMOdrasI9ANw==
   dependencies:
     "@babel/runtime" "^7.17.2"
     "@emotion/hash" "^0.8.0"
-    "@mui/private-theming" "^5.7.0"
+    "@mui/private-theming" "^5.8.0"
     "@mui/types" "^7.1.3"
-    "@mui/utils" "^5.7.0"
+    "@mui/utils" "^5.8.0"
     clsx "^1.1.1"
     csstype "^3.0.11"
     hoist-non-react-statics "^3.3.2"
@@ -5446,10 +5437,10 @@ type-fest@^0.21.3:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.21.3.tgz#d260a24b0198436e133fa26a524a6d65fa3b2e37"
   integrity sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==
 
-typescript@^4.6.4:
-  version "4.6.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
-  integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
+typescript@^4.7.2:
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.2.tgz#1f9aa2ceb9af87cca227813b4310fff0b51593c4"
+  integrity sha512-Mamb1iX2FDUpcTRzltPxgWMKy3fhg0TN378ylbktPGPK/99KbDtMQ4W1hwgsbPAsG3a0xKa1vmw4VKZQbkvz5A==
 
 ua-parser-js@^0.7.30:
   version "0.7.31"
