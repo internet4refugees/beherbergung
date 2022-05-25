@@ -1026,11 +1026,11 @@
       };
     }
     {
-      name = "_mui_icons_material___icons_material_5.6.2.tgz";
+      name = "_mui_icons_material___icons_material_5.8.0.tgz";
       path = fetchurl {
-        name = "_mui_icons_material___icons_material_5.6.2.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.6.2.tgz";
-        sha1 = "239c40fc5841dc7c6af7d00e4e988550de170fcd";
+        name = "_mui_icons_material___icons_material_5.8.0.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.8.0.tgz";
+        sha1 = "c85768434bda885c64a8e4b9e222e73912244570";
       };
     }
     {
@@ -1058,14 +1058,6 @@
       };
     }
     {
-      name = "_mui_private_theming___private_theming_5.7.0.tgz";
-      path = fetchurl {
-        name = "_mui_private_theming___private_theming_5.7.0.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.7.0.tgz";
-        sha1 = "d4e1b34154df1cbd8a01901c3e2dcdb785825468";
-      };
-    }
-    {
       name = "_mui_private_theming___private_theming_5.8.0.tgz";
       path = fetchurl {
         name = "_mui_private_theming___private_theming_5.8.0.tgz";
@@ -1082,11 +1074,11 @@
       };
     }
     {
-      name = "_mui_styles___styles_5.7.0.tgz";
+      name = "_mui_styles___styles_5.8.0.tgz";
       path = fetchurl {
-        name = "_mui_styles___styles_5.7.0.tgz";
-        url  = "https://registry.yarnpkg.com/@mui/styles/-/styles-5.7.0.tgz";
-        sha1 = "797ad5ce9768dc5646a5a41b2cff939a0e84e735";
+        name = "_mui_styles___styles_5.8.0.tgz";
+        url  = "https://registry.yarnpkg.com/@mui/styles/-/styles-5.8.0.tgz";
+        sha1 = "43ac26adaf30e911c97b71d60c536d55398d4993";
       };
     }
     {
@@ -5882,11 +5874,11 @@
       };
     }
     {
-      name = "typescript___typescript_4.6.4.tgz";
+      name = "typescript___typescript_4.7.2.tgz";
       path = fetchurl {
-        name = "typescript___typescript_4.6.4.tgz";
-        url  = "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz";
-        sha1 = "caa78bbc3a59e6a5c510d35703f6a09877ce45e9";
+        name = "typescript___typescript_4.7.2.tgz";
+        url  = "https://registry.yarnpkg.com/typescript/-/typescript-4.7.2.tgz";
+        sha1 = "1f9aa2ceb9af87cca227813b4310fff0b51593c4";
       };
     }
     {
