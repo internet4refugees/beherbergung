@@ -20,7 +20,7 @@
     "@monsonjeremy/react-leaflet": "^3.2.2",
     "@mui/icons-material": "^5.8.0",
     "@mui/lab": "^5.0.0-alpha.83",
-    "@mui/material": "^5.7.0",
+    "@mui/material": "^5.8.1",
     "@mui/styles": "^5.8.0",
     "country-code-emoji": "^2.3.0",
     "graphql-request": "^4.2.0",
