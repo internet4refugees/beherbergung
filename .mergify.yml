@@ -18,7 +18,7 @@ pull_request_rules:
       - check-success=package updateBackendDeps [x86_64-linux]
       - or:
         - author=dependabot[bot]
-        - author=nix-eval-jobs-bot
+        - author=beherbergung-bot
       - base=main
     actions:
       merge:
