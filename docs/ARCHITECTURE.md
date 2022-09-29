@@ -62,7 +62,7 @@ flowchart LR;
         c(csv) --> o(object):::focus
         e(edn) --> o
         j(json) --> o
-        xlm(xlm) --> o
+        xml(xml) --> o
         xlsx(xlsx) --> o
         o --> I(mapping):::focus
     end
