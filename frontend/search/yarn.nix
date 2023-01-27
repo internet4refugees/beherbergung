@@ -5866,11 +5866,11 @@
       };
     }
     {
-      name = "ua_parser_js___ua_parser_js_0.7.31.tgz";
+      name = "ua_parser_js___ua_parser_js_0.7.33.tgz";
       path = fetchurl {
-        name = "ua_parser_js___ua_parser_js_0.7.31.tgz";
-        url  = "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.31.tgz";
-        sha1 = "649a656b191dffab4f21d5e053e27ca17cbff5c6";
+        name = "ua_parser_js___ua_parser_js_0.7.33.tgz";
+        url  = "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.33.tgz";
+        sha1 = "1d04acb4ccef9293df6f70f2c3d22f3030d8b532";
       };
     }
     {
