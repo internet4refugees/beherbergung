@@ -3274,11 +3274,11 @@
       };
     }
     {
-      name = "http_cache_semantics___http_cache_semantics_4.1.0.tgz";
+      name = "http_cache_semantics___http_cache_semantics_4.1.1.tgz";
       path = fetchurl {
-        name = "http_cache_semantics___http_cache_semantics_4.1.0.tgz";
-        url  = "https://registry.yarnpkg.com/http-cache-semantics/-/http-cache-semantics-4.1.0.tgz";
-        sha1 = "49e91c5cbf36c9b94bcfcd71c23d5249ec74e390";
+        name = "http_cache_semantics___http_cache_semantics_4.1.1.tgz";
+        url  = "https://registry.yarnpkg.com/http-cache-semantics/-/http-cache-semantics-4.1.1.tgz";
+        sha1 = "abe02fcb2985460bf0323be664436ec3476a6d5a";
       };
     }
     {
