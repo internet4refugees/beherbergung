@@ -17,10 +17,9 @@ pull_request_rules:
       - check-success=package devShell [x86_64-linux]
       - check-success=package updateBackendDeps [x86_64-linux]
       - or:
-        - author=dependabot[bot]
-        - author=beherbergung-bot
+          - author=dependabot[bot]
+          - author=beherbergung-bot
       - base=main
     actions:
       merge:
         method: merge
-      delete_head_branch: {}
